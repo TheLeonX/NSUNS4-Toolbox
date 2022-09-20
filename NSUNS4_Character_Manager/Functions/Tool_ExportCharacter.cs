@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NSUNS4_Character_Manager.Tools;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -379,6 +380,109 @@ namespace NSUNS4_Character_Manager.Functions {
                 }
                 CspFile.SaveFileAs(SaveDirectory + "\\" + cspPath.Substring(cspPath.IndexOf("data_win32\\") + 11));
             }
+            if (skillCustomizeExist) {
+                Tool_SkillCustomizeParamEditor_new skillCustomizeFile = new Tool_SkillCustomizeParamEditor_new();
+                skillCustomizeFile.OpenFile(skillCustomizePath);
+                for (int x = 0; x< skillCustomizeFile.EntryCount; x++) {
+                    if (Main.b_byteArrayToInt(skillCustomizeFile.CharacodeList[x]) != CharacodeID) {
+                        skillCustomizeFile.CharacodeList.RemoveAt(x);
+                        skillCustomizeFile.Skill1List.RemoveAt(x);
+                        skillCustomizeFile.Skill1_ex_List.RemoveAt(x);
+                        skillCustomizeFile.Skill1_air_List.RemoveAt(x);
+                        skillCustomizeFile.Skill2List.RemoveAt(x);
+                        skillCustomizeFile.Skill2_ex_List.RemoveAt(x);
+                        skillCustomizeFile.Skill2_air_List.RemoveAt(x);
+                        skillCustomizeFile.Skill3List.RemoveAt(x);
+                        skillCustomizeFile.Skill3_ex_List.RemoveAt(x);
+                        skillCustomizeFile.Skill3_air_List.RemoveAt(x);
+                        skillCustomizeFile.Skill4List.RemoveAt(x);
+                        skillCustomizeFile.Skill4_ex_List.RemoveAt(x);
+                        skillCustomizeFile.Skill4_air_List.RemoveAt(x);
+                        skillCustomizeFile.Skill5List.RemoveAt(x);
+                        skillCustomizeFile.Skill5_ex_List.RemoveAt(x);
+                        skillCustomizeFile.Skill5_air_List.RemoveAt(x);
+                        skillCustomizeFile.Skill6List.RemoveAt(x);
+                        skillCustomizeFile.Skill6_ex_List.RemoveAt(x);
+                        skillCustomizeFile.Skill6_air_List.RemoveAt(x);
+                        skillCustomizeFile.SkillAwaList.RemoveAt(x);
+                        skillCustomizeFile.SkillAwa_ex_List.RemoveAt(x);
+                        skillCustomizeFile.SkillAwa_air_List.RemoveAt(x);
+                        skillCustomizeFile.Skill1_CUC_List.RemoveAt(x);
+                        skillCustomizeFile.Skill1_CUCC_List.RemoveAt(x);
+                        skillCustomizeFile.Skill2_CUC_List.RemoveAt(x);
+                        skillCustomizeFile.Skill2_CUCC_List.RemoveAt(x);
+                        skillCustomizeFile.Skill3_CUC_List.RemoveAt(x);
+                        skillCustomizeFile.Skill3_CUCC_List.RemoveAt(x);
+                        skillCustomizeFile.Skill4_CUC_List.RemoveAt(x);
+                        skillCustomizeFile.Skill4_CUCC_List.RemoveAt(x);
+                        skillCustomizeFile.Skill5_CUC_List.RemoveAt(x);
+                        skillCustomizeFile.Skill5_CUCC_List.RemoveAt(x);
+                        skillCustomizeFile.Skill6_CUC_List.RemoveAt(x);
+                        skillCustomizeFile.Skill6_CUCC_List.RemoveAt(x);
+                        skillCustomizeFile.SkillAwa_CUC_List.RemoveAt(x);
+                        skillCustomizeFile.SkillAwa_CUCC_List.RemoveAt(x);
+                        skillCustomizeFile.Skill1_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill2_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill3_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill4_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill5_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill6_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.SkillAwa_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill1ex_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill2ex_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill3ex_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill4ex_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill5ex_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill6ex_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.SkillAwaex_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill1air_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill2air_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill3air_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill4air_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill5air_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.Skill6air_Priority_List.RemoveAt(x);
+                        skillCustomizeFile.SkillAwaair_Priority_List.RemoveAt(x);
+                        x--;
+                        skillCustomizeFile.EntryCount--;
+                    }
+                }
+                if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + skillCustomizePath.Substring(skillCustomizePath.IndexOf("data_win32\\") + 11)))) {
+                    Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + skillCustomizePath.Substring(skillCustomizePath.IndexOf("data_win32\\") + 11)));
+                }
+                skillCustomizeFile.SaveFileAs(SaveDirectory + "\\" + skillCustomizePath.Substring(skillCustomizePath.IndexOf("data_win32\\") + 11));
+            }
+            if (spskillCustomizeExist) {
+                Tool_SpSkillCustomizeParamEditor spSkillCustomizeFile = new Tool_SpSkillCustomizeParamEditor();
+                spSkillCustomizeFile.OpenFile(spskillCustomizePath);
+                for (int x = 0; x< spSkillCustomizeFile.EntryCount; x++) {
+                    if (Main.b_byteArrayToInt(spSkillCustomizeFile.CharacodeList[x]) != CharacodeID) {
+                        spSkillCustomizeFile.CharacodeList.RemoveAt(x);
+                        spSkillCustomizeFile.spl1_chUsageCountValueList.RemoveAt(x);
+                        spSkillCustomizeFile.spl2_chUsageCountValueList.RemoveAt(x);
+                        spSkillCustomizeFile.spl3_chUsageCountValueList.RemoveAt(x);
+                        spSkillCustomizeFile.spl4_chUsageCountValueList.RemoveAt(x);
+                        spSkillCustomizeFile.spl1_chUsageCountValueListFloat.RemoveAt(x);
+                        spSkillCustomizeFile.spl2_chUsageCountValueListFloat.RemoveAt(x);
+                        spSkillCustomizeFile.spl3_chUsageCountValueListFloat.RemoveAt(x);
+                        spSkillCustomizeFile.spl4_chUsageCountValueListFloat.RemoveAt(x);
+                        spSkillCustomizeFile.spl1_PriorList.RemoveAt(x);
+                        spSkillCustomizeFile.spl2_PriorList.RemoveAt(x);
+                        spSkillCustomizeFile.spl3_PriorList.RemoveAt(x);
+                        spSkillCustomizeFile.spl4_PriorList.RemoveAt(x);
+                        spSkillCustomizeFile.spl1_NameList.RemoveAt(x);
+                        spSkillCustomizeFile.spl2_NameList.RemoveAt(x);
+                        spSkillCustomizeFile.spl3_NameList.RemoveAt(x);
+                        spSkillCustomizeFile.spl4_NameList.RemoveAt(x);
+                        spSkillCustomizeFile.WeirdValuesList.RemoveAt(x);
+                        spSkillCustomizeFile.EntryCount--;
+                        x--;
+                    }
+                }
+                if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + spskillCustomizePath.Substring(spskillCustomizePath.IndexOf("data_win32\\") + 11)))) {
+                    Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + spskillCustomizePath.Substring(spskillCustomizePath.IndexOf("data_win32\\") + 11)));
+                }
+                spSkillCustomizeFile.SaveFileAs(SaveDirectory + "\\" + spskillCustomizePath.Substring(spskillCustomizePath.IndexOf("data_win32\\") + 11));
+            }
             foreach (FileInfo file in Files) {
                 if (File.Exists(Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf("data_win32\\") + 11))) {
                     if (file.Name.Contains(SaveCharacode))
@@ -387,7 +491,7 @@ namespace NSUNS4_Character_Manager.Functions {
             }
 
 
-
+            MessageBox.Show(SaveCharacode + " lite exported successfuly!");
         }
 
         public void ExpertExport(int CharacodeID) {
