@@ -30,24 +30,24 @@ namespace NSUNS4_Character_Manager.Functions {
         private void Tool_ExportCharacter_Load(object sender, EventArgs e) {
             // Open Characode
             
-            if (Main.chaPath == "[null]" || !File.Exists(Main.chaPath)) {
-                Main.chaPath = Directory.GetCurrentDirectory() + "\\systemFiles\\characode.bin.xfbin";
-            }
-            if (Main.dppPath == "[null]" || !File.Exists(Main.dppPath)) {
-                Main.dppPath = Directory.GetCurrentDirectory() + "\\systemFiles\\duelPlayerParam.xfbin";
-            }
-            if (Main.pspPath == "[null]" || !File.Exists(Main.pspPath)) {
-                Main.pspPath = Directory.GetCurrentDirectory() + "\\systemFiles\\playerSettingParam.bin.xfbin";
-            }
-            if (Main.skillCustomizePath == "[null]" || !File.Exists(Main.skillCustomizePath)) {
-                Main.skillCustomizePath = Directory.GetCurrentDirectory() + "\\systemFiles\\skillCustomizeParam.bin.xfbin";
-            }
-            if (Main.spSkillCustomizePath == "[null]" || !File.Exists(Main.spSkillCustomizePath)) {
-                Main.spSkillCustomizePath = Directory.GetCurrentDirectory() + "\\systemFiles\\spSkillCustomizeParam.bin.xfbin";
-            }
-            if (Main.awakeAuraPath == "[null]" || !File.Exists(Main.awakeAuraPath)) {
-                Main.awakeAuraPath = Directory.GetCurrentDirectory() + "\\systemFiles\\awakeAura.xfbin";
-            }
+            //if (Main.chaPath == "[null]" || !File.Exists(Main.chaPath)) {
+            //    Main.chaPath = Directory.GetCurrentDirectory() + "\\systemFiles\\characode.bin.xfbin";
+            //}
+            //if (Main.dppPath == "[null]" || !File.Exists(Main.dppPath)) {
+            //    Main.dppPath = Directory.GetCurrentDirectory() + "\\systemFiles\\duelPlayerParam.xfbin";
+            //}
+            //if (Main.pspPath == "[null]" || !File.Exists(Main.pspPath)) {
+            //    Main.pspPath = Directory.GetCurrentDirectory() + "\\systemFiles\\playerSettingParam.bin.xfbin";
+            //}
+            //if (Main.skillCustomizePath == "[null]" || !File.Exists(Main.skillCustomizePath)) {
+            //    Main.skillCustomizePath = Directory.GetCurrentDirectory() + "\\systemFiles\\skillCustomizeParam.bin.xfbin";
+            //}
+            //if (Main.spSkillCustomizePath == "[null]" || !File.Exists(Main.spSkillCustomizePath)) {
+            //    Main.spSkillCustomizePath = Directory.GetCurrentDirectory() + "\\systemFiles\\spSkillCustomizeParam.bin.xfbin";
+            //}
+            //if (Main.awakeAuraPath == "[null]" || !File.Exists(Main.awakeAuraPath)) {
+            //    Main.awakeAuraPath = Directory.GetCurrentDirectory() + "\\systemFiles\\awakeAura.xfbin";
+            //}
             Tool_CharacodeEditor CharacodeFile = new Tool_CharacodeEditor();
             CharacodeFile.OpenFile(Main.chaPath);
 
@@ -61,25 +61,35 @@ namespace NSUNS4_Character_Manager.Functions {
             Tool_CharacodeEditor CharacodeFile = new Tool_CharacodeEditor();
             CharacodeFile.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\characode.bin.xfbin");
             if (x!=-1) {
-                if (x>=0 && x<=CharacodeFile.CharacterCount) {
-                    SaveCharacode = listBox1.Items[x].ToString();
-                    LiteExport(x + 1);
+                bool contain = false;
+                for (int i = 0; i< CharacodeFile.CharacterCount; i++) {
+                    if (CharacodeFile.CharacterList[x].Contains(listBox1.Items[x].ToString())) {
+                        SaveCharacode = listBox1.Items[x].ToString();
+                        ExportCharacter(x + 1);
+                        contain = true;
+                        break;
+                    }
                 }
-                else {
-                    SaveCharacode = listBox1.Items[x].ToString();
-                    ExpertExport(x + 1);
+                if (!contain) {
+                    if (File.Exists(Main.chaPath) && File.Exists(Main.dppPath) && File.Exists(Main.pspPath) && File.Exists(Main.skillCustomizePath) && File.Exists(Main.spSkillCustomizePath)) {
+                        SaveCharacode = listBox1.Items[x].ToString();
+                        ExportCharacter(x + 1);
+                    } else {
+                        MessageBox.Show("Unable to export, this character isnt exist in current game, it requires characode, playerSettingParam, characterSelectParam, duelPlayerParam, skillCustomizeParam and spSkillCustomizeParam files.");
+                    }
                 }
             }
         }
 
-        public void LiteExport(int CharacodeID) {
+        public void ExportCharacter(int CharacodeID) {
             FolderBrowserDialog f = new FolderBrowserDialog();
             f.ShowDialog();
             SaveDirectory = f.SelectedPath+"\\"+ SaveCharacode + "\\data_win32";
             Directory.CreateDirectory(SaveDirectory);
 
             DirectoryInfo d = new DirectoryInfo(@Main.datawin32Path);
-
+            string dataWinFolder = d.Name + "\\";
+            int dataWinFolderLength = dataWinFolder.Length;
             FileInfo[] Files = d.GetFiles("*.xfbin", SearchOption.AllDirectories);
             string prmLoadPath = "";
             string dppPath = "";
@@ -317,10 +327,10 @@ namespace NSUNS4_Character_Manager.Functions {
                         
                 }
                 if (DppFile.EntryCount != 0) {
-                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + dppPath.Substring(dppPath.IndexOf("data_win32\\") + 11)))) {
-                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + dppPath.Substring(dppPath.IndexOf("data_win32\\") + 11)));
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + dppPath.Substring(dppPath.IndexOf(dataWinFolder) + dataWinFolderLength)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + dppPath.Substring(dppPath.IndexOf(dataWinFolder) + dataWinFolderLength)));
                     }
-                    DppFile.SaveFileAs(SaveDirectory + "\\" + dppPath.Substring(dppPath.IndexOf("data_win32\\") + 11));
+                    DppFile.SaveFileAs(SaveDirectory + "\\" + dppPath.Substring(dppPath.IndexOf(dataWinFolder) + dataWinFolderLength));
                 }
             }
             if (pspExist) {
@@ -344,10 +354,10 @@ namespace NSUNS4_Character_Manager.Functions {
 
                 }
                 if (PspFile.EntryCount != 0) {
-                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf("data_win32\\") + 11)))) {
-                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf("data_win32\\") + 11)));
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf(dataWinFolder) + dataWinFolderLength)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf(dataWinFolder) + dataWinFolderLength)));
                     }
-                    PspFile.SaveFileAs(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf("data_win32\\") + 11));
+                    PspFile.SaveFileAs(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf(dataWinFolder) + dataWinFolderLength));
                 }
                 
             }
@@ -356,9 +366,9 @@ namespace NSUNS4_Character_Manager.Functions {
                 Tool_PlayerSettingParamEditor PspFile = new Tool_PlayerSettingParamEditor();
                 CspFile.OpenFile(cspPath);
                 if (pspExist)
-                    PspFile.OpenFile(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf("data_win32\\") + 11));
+                    PspFile.OpenFile(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf(dataWinFolder) + dataWinFolderLength));
                 else
-                    PspFile.OpenFile(Main.pspPath);
+                    PspFile.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\playerSettingParam.bin.xfbin");
                 List<string> CharacterList = new List<string>();
                 List<int> PageList = new List<int>();
                 List<int> PositionList = new List<int>();
@@ -392,10 +402,10 @@ namespace NSUNS4_Character_Manager.Functions {
                 CspFile.NewIdList = NewIdList;
                 CspFile.GibberishBytes = GibberishBytes;
                 if (CspFile.EntryCount != 0) {
-                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + cspPath.Substring(cspPath.IndexOf("data_win32\\") + 11)))) {
-                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + cspPath.Substring(cspPath.IndexOf("data_win32\\") + 11)));
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + cspPath.Substring(cspPath.IndexOf(dataWinFolder) + dataWinFolderLength)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + cspPath.Substring(cspPath.IndexOf(dataWinFolder) + dataWinFolderLength)));
                     }
-                    CspFile.SaveFileAs(SaveDirectory + "\\" + cspPath.Substring(cspPath.IndexOf("data_win32\\") + 11));
+                    CspFile.SaveFileAs(SaveDirectory + "\\" + cspPath.Substring(cspPath.IndexOf(dataWinFolder) + dataWinFolderLength));
                 }
             }
             if (skillCustomizeExist) {
@@ -465,10 +475,10 @@ namespace NSUNS4_Character_Manager.Functions {
                     }
                 }
                 if (skillCustomizeFile.EntryCount != 0) {
-                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + skillCustomizePath.Substring(skillCustomizePath.IndexOf("data_win32\\") + 11)))) {
-                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + skillCustomizePath.Substring(skillCustomizePath.IndexOf("data_win32\\") + 11)));
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + skillCustomizePath.Substring(skillCustomizePath.IndexOf(dataWinFolder) + dataWinFolderLength)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + skillCustomizePath.Substring(skillCustomizePath.IndexOf(dataWinFolder) + dataWinFolderLength)));
                     }
-                    skillCustomizeFile.SaveFileAs(SaveDirectory + "\\" + skillCustomizePath.Substring(skillCustomizePath.IndexOf("data_win32\\") + 11));
+                    skillCustomizeFile.SaveFileAs(SaveDirectory + "\\" + skillCustomizePath.Substring(skillCustomizePath.IndexOf(dataWinFolder) + dataWinFolderLength));
                 }
             }
             if (spskillCustomizeExist) {
@@ -499,10 +509,10 @@ namespace NSUNS4_Character_Manager.Functions {
                     }
                 }
                 if (spSkillCustomizeFile.EntryCount != 0) {
-                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + spskillCustomizePath.Substring(spskillCustomizePath.IndexOf("data_win32\\") + 11)))) {
-                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + spskillCustomizePath.Substring(spskillCustomizePath.IndexOf("data_win32\\") + 11)));
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + spskillCustomizePath.Substring(spskillCustomizePath.IndexOf(dataWinFolder) + dataWinFolderLength)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + spskillCustomizePath.Substring(spskillCustomizePath.IndexOf(dataWinFolder) + dataWinFolderLength)));
                     }
-                    spSkillCustomizeFile.SaveFileAs(SaveDirectory + "\\" + spskillCustomizePath.Substring(spskillCustomizePath.IndexOf("data_win32\\") + 11));
+                    spSkillCustomizeFile.SaveFileAs(SaveDirectory + "\\" + spskillCustomizePath.Substring(spskillCustomizePath.IndexOf(dataWinFolder) + dataWinFolderLength));
                 }  
             }
             if (awakeAuraExist) {
@@ -526,10 +536,10 @@ namespace NSUNS4_Character_Manager.Functions {
                     }
                 }
                 if (awakeAuraFile.EntryCount!=0) {
-                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + awakeAuraPath.Substring(awakeAuraPath.IndexOf("data_win32\\") + 11)))) {
-                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + awakeAuraPath.Substring(awakeAuraPath.IndexOf("data_win32\\") + 11)));
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + awakeAuraPath.Substring(awakeAuraPath.IndexOf(dataWinFolder) + dataWinFolderLength)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + awakeAuraPath.Substring(awakeAuraPath.IndexOf(dataWinFolder) + dataWinFolderLength)));
                     }
-                    awakeAuraFile.SaveFileAs(SaveDirectory + "\\" + awakeAuraPath.Substring(awakeAuraPath.IndexOf("data_win32\\") + 11));
+                    awakeAuraFile.SaveFileAs(SaveDirectory + "\\" + awakeAuraPath.Substring(awakeAuraPath.IndexOf(dataWinFolder) + dataWinFolderLength));
                 }
             }
             if (iconExist) {
@@ -537,9 +547,9 @@ namespace NSUNS4_Character_Manager.Functions {
                 Tool_PlayerSettingParamEditor PspFile = new Tool_PlayerSettingParamEditor();
                 iconFile.OpenFile(iconPath);
                 if (pspExist)
-                    PspFile.OpenFile(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf("data_win32\\") + 11));
+                    PspFile.OpenFile(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf(dataWinFolder) + dataWinFolderLength));
                 else
-                    PspFile.OpenFile(Main.pspPath);
+                    PspFile.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\playerSettingParam.bin.xfbin");
                 List<byte[]> CharacodeList = new List<byte[]>();
                 List<byte[]> CostumeList = new List<byte[]>();
                 List<string> NameList = new List<string>();
@@ -566,11 +576,20 @@ namespace NSUNS4_Character_Manager.Functions {
                 iconFile.AwaIconList = AwaIconList;
                 iconFile.EntryCount = CharacodeList.Count;
                 if (iconFile.EntryCount != 0) {
-                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + iconPath.Substring(iconPath.IndexOf("data_win32\\") + 11)))) {
-                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + iconPath.Substring(iconPath.IndexOf("data_win32\\") + 11)));
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + iconPath.Substring(iconPath.IndexOf(dataWinFolder) + dataWinFolderLength)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + iconPath.Substring(iconPath.IndexOf(dataWinFolder) + dataWinFolderLength)));
                     }
-                    iconFile.SaveFileAs(SaveDirectory + "\\" + iconPath.Substring(iconPath.IndexOf("data_win32\\") + 11));
+                    iconFile.SaveFileAs(SaveDirectory + "\\" + iconPath.Substring(iconPath.IndexOf(dataWinFolder) + dataWinFolderLength));
+                    foreach (FileInfo file in Files) {
+                        if (File.Exists(Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength))) {
+                            for (int z = 0; z< CharacodeList.Count; z++) {
+                                if (file.Name.Contains(NameList[z]) || file.Name.Contains(ExNinjutsuList[z]) || file.Name.Contains(IconList[z]) || file.Name.Contains(AwaIconList[z]))
+                                    CopyFiles(Path.GetDirectoryName(SaveDirectory + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength)), Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength), SaveDirectory + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength));
+                                }
+                        }
+                    }
                 }
+                
             }
             if (appearanceAnmExist) {
                 Tool_appearenceAnmEditor appearanceAnmFile = new Tool_appearenceAnmEditor();
@@ -596,10 +615,10 @@ namespace NSUNS4_Character_Manager.Functions {
                     }
                 }
                 if (appearanceAnmFile.EntryCount != 0) {
-                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + appearanceAnmPath.Substring(appearanceAnmPath.IndexOf("data_win32\\") + 11)))) {
-                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + appearanceAnmPath.Substring(appearanceAnmPath.IndexOf("data_win32\\") + 11)));
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + appearanceAnmPath.Substring(appearanceAnmPath.IndexOf(dataWinFolder) + dataWinFolderLength)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + appearanceAnmPath.Substring(appearanceAnmPath.IndexOf(dataWinFolder) + dataWinFolderLength)));
                     }
-                    appearanceAnmFile.SaveFileAs(SaveDirectory + "\\" + appearanceAnmPath.Substring(appearanceAnmPath.IndexOf("data_win32\\") + 11));
+                    appearanceAnmFile.SaveFileAs(SaveDirectory + "\\" + appearanceAnmPath.Substring(appearanceAnmPath.IndexOf(dataWinFolder) + dataWinFolderLength));
                 }
             }
             if (afterAttachObjectExist) {
@@ -630,16 +649,16 @@ namespace NSUNS4_Character_Manager.Functions {
                     }
                 }
                 if (afterAttachObjectFile.EntryCount != 0) {
-                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + afterAttachObjectPath.Substring(afterAttachObjectPath.IndexOf("data_win32\\") + 11)))) {
-                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + afterAttachObjectPath.Substring(afterAttachObjectPath.IndexOf("data_win32\\") + 11)));
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + afterAttachObjectPath.Substring(afterAttachObjectPath.IndexOf(dataWinFolder) + dataWinFolderLength)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + afterAttachObjectPath.Substring(afterAttachObjectPath.IndexOf(dataWinFolder) + dataWinFolderLength)));
                     }
-                    afterAttachObjectFile.SaveFileAs(SaveDirectory + "\\" + afterAttachObjectPath.Substring(afterAttachObjectPath.IndexOf("data_win32\\") + 11));
+                    afterAttachObjectFile.SaveFileAs(SaveDirectory + "\\" + afterAttachObjectPath.Substring(afterAttachObjectPath.IndexOf(dataWinFolder) + dataWinFolderLength));
                 }
             }
             foreach (FileInfo file in Files) {
-                if (File.Exists(Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf("data_win32\\") + 11))) {
+                if (File.Exists(Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength))) {
                     if (file.Name.Contains(SaveCharacode))
-                        CopyFiles(Path.GetDirectoryName(SaveDirectory + "\\" + file.FullName.Substring(file.FullName.IndexOf("data_win32\\") + 11)), Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf("data_win32\\") + 11), SaveDirectory + "\\" + file.FullName.Substring(file.FullName.IndexOf("data_win32\\") + 11));
+                        CopyFiles(Path.GetDirectoryName(SaveDirectory + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength)), Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength), SaveDirectory + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength));
                 }
             }
 
