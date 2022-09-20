@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>Item IDs:
+from duel/WIN64/ItemInfo.xfbin
+
+BATTLE_ITEM76: Health Up (Small)
+c_bat_148: Recover minimal Health.
+
+BATTLE_ITEM77: Health Up (Medium)
+c_bat_149: Recover a little Health.
+
+BATTLE_ITEM78: Health Up (Large)
+c_bat_150: Recover some Health.
+
+BATTLE_ITEM81: Chakra Up (Small)
+c_bat_153: Recover a little Chakra.
+
+BATTLE_ITEM82: Chakra Up (Medium)
+c_bat_154: Recover some Chakra.
+
+BATTLE_ITEM83: Chakra Up (Large)
+c_bat_155: Recover a lot of Chakra.
+
+BATTLE_ITEM84: Auto-Sub (Small)
+c_bat_156: Substitution Jutsu activates automatically for a short period of time.
+
+BATTLE_ITEM87: Chain mail (Small)
+c_bat_159: Shuriken won't work for a period of time. Short duration.
+
+BATTLE_ITEM90: Attack Up Pill (Small)
+c_bat_162: ATK is boosted for a set amount of time. Short duration.
+
+BATTLE_ITEM93: Defense Up Pill (Small)
+c_bat_165: DEF is boosted for a set amount of time. Short duration.
+
+BATTLE_ITEM96: Attack Down Tag (Small)
+c_bat_168: Opponent's ATK is reduced for a set period. Short duration.
+
+BATTLE_ITEM99: Defense Down Tag (Small)
+c_bat_171: Opponent's DEF is reduced for a set period. Short duration.
+
+BATTLE_ITEM102: Speed Down Tag (Small)
+c_bat_174: Opponent's Movement Speed is reduced for a set period. Short duration.
+
+BATTLE_ITEM105: Sleep Tag (Small)
+c_bat_177: Put your opponent to sleep and make them Defenseless for a short set period.
+
+BATTLE_ITEM105: Seal Tag (Small)
+c_bat_180: Make opponent's Chakra Unusable for a set period. Short duration.
+
+BATTLE_ITEM111: Kunai Parachute (Small)
+c_bat_183: Shoot Kunai from a parachute thrown into the air. Small damage.
+
+BATTLE_ITEM114: Explosive Tag (Small)
+c_bat_186: A tag you've thrown explodes. Small damage.
+
+BATTLE_ITEM117: Chakra Recovery Up (Small)
+c_bat_189: For a set amount of time Chakra Recovery Speed is boosted a little.
+
+BATTLE_ITEM120: Max Chakra Up (Small)
+c_bat_192: Recover a little of your lost Chakra Gauge.
+
+BATTLE_ITEM123: Substitution Recovery Up (Small)
+c_bat_195: For a set amount of time, Substitution Gauge Recovery Speed is boosted. Short duration.
+
+BATTLE_ITEM126: Speed Up Pill (Small)
+c_bat_198: For a set amount of time, Movement Speed is boosted. Short duration.
+
+BATTLE_ITEM131: Guard Break Up Pill (Small)
+c_bat_203: For a set amount of time, Guard Break Ability is boosted. Short duration.
+
+BATTLE_ITEM134: Poison Tag (Small)
+c_bat_206: For a set amount of time, damage your opponent with Poison. Small damage.
+
+BATTLE_ITEM137: Chakra Absorb Tag (Small)
+c_bat_209: Steal a little of your opponents Chakra and add it to your own.
+
+BATTLE_ITEM139: Storm Gauge Up (Small)
+c_bat_211: For a set amount of time, Storm Gauge fills up easily. Short duration and small recovery.
+
+BATTLE_ITEM141: Kunai Bag (Small)
+c_bat_213: Shoot Kunai from a bag set on the ground. Small damage.
+
+BATTLE_ITEM144: Explosive Ball (Small)
+c_bat_216: A thrown ball explodes. Small damage.
+
+BATTLE_ITEM147: Lightning Kunai (Small)
+c_bat_219: A Kunai you've thrown emits lightning, attacking a set area. Short duration.
+
+BATTLE_ITEM150: Guard Break Attack
+c_bat_611: Charge and immobilize the opponent for a set amount of time (cannot guard).</value>
+  </data>
+</root>

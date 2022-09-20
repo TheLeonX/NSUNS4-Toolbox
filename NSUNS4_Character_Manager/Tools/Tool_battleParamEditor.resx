@@ -1,0 +1,631 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="textBox29.Text" xml:space="preserve">
+    <value>-----------------------------------------------------PASSIVE EFFECTS-------------------------------------------------------
+E_ATK_UP_005 Enemy's attack power up (+5%)
+E_ATK_UP_010 Enemy's attack power up (+10%)
+E_ATK_UP_015 Enemy's attack power up (+15%)
+E_ATK_UP_020 Enemy's attack power up (+20%)
+E_ATK_UP_025 Enemy's attack power up (+25%)
+E_ATK_UP_030 Enemy's attack power up (+30%)
+E_ATK_UP_035 Enemy's attack power up (+35%)
+E_ATK_UP_040 Enemy's attack power up (+40%)
+E_ATK_UP_045 Enemy's attack power up (+45%)
+E_ATK_UP_050 Enemy's attack power up (+50%)
+E_ATK_UP_055 Enemy's attack power up (+55%)
+E_ATK_UP_060 Enemy's attack power up (+60%)
+E_ATK_UP_065 Enemy's attack power up (+65%)
+E_ATK_UP_070 Enemy's attack power up (+70%)
+E_ATK_UP_075 Enemy's attack power up (+75%)
+E_ATK_UP_080 Enemy's attack power up (+80%)
+E_ATK_UP_085 Enemy's attack power up (+85%)
+E_ATK_UP_090 Enemy's attack power up (+90%)
+E_ATK_UP_095 Enemy's attack power up (+95%)
+E_ATK_UP_100 Enemy's attack power up (+100%)
+E_ATK_UP_105 Enemy's attack power up (+105%)
+E_ATK_UP_110 Enemy's attack power up (+110%)
+E_ATK_UP_115 Enemy's attack power up (+115%)
+E_ATK_UP_120 Enemy's attack power up (+120%)
+E_ATK_UP_125 Enemy's attack power up (+125%)
+E_ATK_UP_130 Enemy's attack power up (+130%)
+E_ATK_UP_135 Enemy's attack power up (+135%)
+E_ATK_UP_140 Enemy's attack power up (+140%)
+E_ATK_UP_145 Enemy's attack power up (+145%)
+E_ATK_UP_150 Enemy's attack power up (+150%)
+
+E_DEF_UP_005 Enemy's defense power up (+5%)
+E_DEF_UP_010 Enemy's defense power up (+10%)
+E_DEF_UP_015 Enemy's defense power up (+15%)
+E_DEF_UP_020 Enemy's defense power up (+20%)
+E_DEF_UP_025 Enemy's defense power up (+25%)
+E_DEF_UP_030 Enemy's defense power up (+30%)
+E_DEF_UP_035 Enemy's defense power up (+35%)
+E_DEF_UP_040 Enemy's defense power up (+40%)
+E_DEF_UP_045 Enemy's defense power up (+45%)
+E_DEF_UP_050 Enemy's defense power up (+50%)
+E_DEF_UP_055 Enemy's defense power up (+55%)
+E_DEF_UP_060 Enemy's defense power up (+60%)
+E_DEF_UP_065 Enemy's defense power up (+65%)
+E_DEF_UP_070 Enemy's defense power up (+70%)
+E_DEF_UP_075 Enemy's defense power up (+75%)
+E_DEF_UP_080 Enemy's defense power up (+80%)
+E_DEF_UP_085 Enemy's defense power up (+85%)
+E_DEF_UP_090 Enemy's defense power up (+90%)
+E_DEF_UP_095 Enemy's defense power up (+95%)
+E_DEF_UP_100 Enemy's defense power up (+100%)
+E_DEF_UP_105 Enemy's defense power up (+105%)
+E_DEF_UP_110 Enemy's defense power up (+110%)
+E_DEF_UP_115 Enemy's defense power up (+115%)
+E_DEF_UP_120 Enemy's defense power up (+120%)
+E_DEF_UP_125 Enemy's defense power up (+125%)
+E_DEF_UP_130 Enemy's defense power up (+130%)
+E_DEF_UP_135 Enemy's defense power up (+135%)
+E_DEF_UP_140 Enemy's defense power up (+140%)
+E_DEF_UP_145 Enemy's defense power up (+145%)
+E_DEF_UP_150 Enemy's defense power up (+150%)
+
+E_HEAL_CHAKRA_UP_005 Enemy's chakra recovery speed up (+5%)
+E_HEAL_CHAKRA_UP_010 Enemy's chakra recovery speed up (+10%)
+E_HEAL_CHAKRA_UP_015 Enemy's chakra recovery speed up (+15%)
+E_HEAL_CHAKRA_UP_020 Enemy's chakra recovery speed up (+20%)
+E_HEAL_CHAKRA_UP_025 Enemy's chakra recovery speed up (+25%)
+E_HEAL_CHAKRA_UP_030 Enemy's chakra recovery speed up (+30%)
+E_HEAL_CHAKRA_UP_035 Enemy's chakra recovery speed up (+35%)
+E_HEAL_CHAKRA_UP_040 Enemy's chakra recovery speed up (+40%)
+E_HEAL_CHAKRA_UP_045 Enemy's chakra recovery speed up (+45%)
+E_HEAL_CHAKRA_UP_050 Enemy's chakra recovery speed up (+50%)
+E_HEAL_CHAKRA_UP_055 Enemy's chakra recovery speed up (+55%)
+E_HEAL_CHAKRA_UP_060 Enemy's chakra recovery speed up (+60%)
+E_HEAL_CHAKRA_UP_065 Enemy's chakra recovery speed up (+65%)
+E_HEAL_CHAKRA_UP_070 Enemy's chakra recovery speed up (+70%)
+E_HEAL_CHAKRA_UP_075 Enemy's chakra recovery speed up (+75%)
+E_HEAL_CHAKRA_UP_080 Enemy's chakra recovery speed up (+80%)
+E_HEAL_CHAKRA_UP_085 Enemy's chakra recovery speed up (+85%)
+E_HEAL_CHAKRA_UP_090 Enemy's chakra recovery speed up (+90%)
+E_HEAL_CHAKRA_UP_095 Enemy's chakra recovery speed up (+95%)
+E_HEAL_CHAKRA_UP_100 Enemy's chakra recovery speed up (+100%)
+E_HEAL_CHAKRA_UP_105 Enemy's chakra recovery speed up (+105%)
+E_HEAL_CHAKRA_UP_110 Enemy's chakra recovery speed up (+110%)
+E_HEAL_CHAKRA_UP_115 Enemy's chakra recovery speed up (+115%)
+E_HEAL_CHAKRA_UP_120 Enemy's chakra recovery speed up (+120%)
+E_HEAL_CHAKRA_UP_125 Enemy's chakra recovery speed up (+125%)
+E_HEAL_CHAKRA_UP_130 Enemy's chakra recovery speed up (+130%)
+E_HEAL_CHAKRA_UP_135 Enemy's chakra recovery speed up (+135%)
+E_HEAL_CHAKRA_UP_140 Enemy's chakra recovery speed up (+140%)
+E_HEAL_CHAKRA_UP_145 Enemy's chakra recovery speed up (+145%)
+E_HEAL_CHAKRA_UP_150 Enemy's chakra recovery speed up (+150%)
+
+E_HEAL_SUPPORT_UP_05 Enemy's support gauge recovery speed up (+5%)
+E_HEAL_SUPPORT_UP_10 Enemy's support gauge recovery speed up (+10%)
+E_HEAL_SUPPORT_UP_15 Enemy's support gauge recovery speed up (+15%)
+E_HEAL_SUPPORT_UP_20 Enemy's support gauge recovery speed up (+20%)
+E_HEAL_SUPPORT_UP_25 Enemy's support gauge recovery speed up (+25%)
+E_HEAL_SUPPORT_UP_30 Enemy's support gauge recovery speed up (+30%)
+E_HEAL_SUPPORT_UP_-50 Enemy's support gauge recovery speed down (-50%)
+
+E_ENDURANCE_POISON_05 Enemy poison lasting-time up (+5%)
+E_ENDURANCE_POISON_10 Enemy poison lasting-time up (+10%)
+E_ENDURANCE_POISON_15 Enemy poison lasting-time up (+15%)
+E_ENDURANCE_POISON_20 Enemy poison lasting-time up (+20%)
+E_ENDURANCE_POISON_25 Enemy poison lasting-time up (+25%)
+E_ENDURANCE_POISON_30 Enemy poison lasting-time up (+30%)
+
+E_ENDURANCE_SEAL_05 Enemy seal lasting-time up (+5%)
+E_ENDURANCE_SEAL_10 Enemy seal lasting-time up (+10%)
+E_ENDURANCE_SEAL_15 Enemy seal lasting-time up (+15%)
+E_ENDURANCE_SEAL_20 Enemy seal lasting-time up (+20%)
+E_ENDURANCE_SEAL_25 Enemy seal lasting-time up (+25%)
+E_ENDURANCE_SEAL_30 Enemy seal lasting-time up (+30%)
+
+E_BREAK_UP Guard breaking attack power increased
+E_BREAK_MAX Enemy attack breaks guards
+E_REVIVE Enemy uses Reanimation once
+E_HEAL_LIFE_UP Enemy's health constantly recovers
+E_SHAVE_CHAKRA Enemy attack shaves away chakra
+E_IGNORE_ITEM Ninja Tools don't hit enemy
+E_ADDITION_POISON Enemy's attack will poison you
+E_ADDITION_POISON_R Enemy's attack will lethally poison you
+E_ADDITION_SEAL Enemy's attack will seal you
+E_IGNORE_POISON Poison doesn't work on enemy
+E_IGNORE_SEAL Seal doesn't work on enemy
+E_SUPER_ARMOR Enemy won't stagger by attacks
+E_THINK_GUARD  Enemy guards often
+E_THINK_SKILL Enemy uses Ninjutsu often
+E_THINK_SPATK Enemy uses Secret Technique often
+E_THINK_SUPPORT Enemy uses support often
+E_THINK_DODGE Enemy uses Substitution Jutsu often
+
+S_SPD_DOWN Battle while slower in speed
+S_LIFE_DAMAGE Battle with reduced health
+S_HEAL_SUPPORT_DOWN Battle with a slower recovering Support Gauge
+S_HEAL_TEAM_DOWN Battle with a slower rising Storm Gauge
+S_SEAL_SKILL Unable to use Ninjutsu
+S_SEAL_SPATK Unable to use Secret Technique
+S_SEAL_TEAM_SKILL Unable to use Linked Secret Technique
+S_SEAL_AWAKE Unable to Awaken
+S_SEAL_ITEM Unable to use items
+S_SEAL_SKL_SPL_AWA Enemy's attack will poison you
+S_SEAL_SPL_AWA Enemy's attack will lethally poison you
+S_SEAL_SKL_AWA Enemy poison lasting-time up (+&lt;string /&gt;%)
+S_SEAL_DODGE Unable to use Substitution Jutsu
+S_DECREASE_CHAKRA Battle while the chakra gradually reduces
+S_HEAL_CHAKRA_DOWN Battle while the chakra does not recover
+S_ATK_DOWN_COUNT Battle with the attack power reduced -&lt;string /&gt;
+S_DEF_DOWN_COUNT Battle with the defense power reduced -&lt;string /&gt;
+WIN Win the battle
+
+COUNT_COMBO_05 Perform a 5-hit combo
+COUNT_COMBO_10 Perform a 10-hit combo
+COUNT_COMBO_15 Perform a 15-hit combo
+COUNT_COMBO_20 Perform a 20-hit combo
+COUNT_COMBO_25 Perform a 25-hit combo
+COUNT_COMBO_30 Perform a 30-hit combo
+
+COUNT_SKILL_01 Land a Ninjutsu attack 1 time(s)
+COUNT_SKILL_02 Land a Ninjutsu attack 2 time(s)
+COUNT_SKILL_03 Land a Ninjutsu attack 3 time(s)
+COUNT_SKILL_04 Land a Ninjutsu attack 4 time(s)
+COUNT_SKILL_06 Land a Ninjutsu attack 6 time(s)
+COUNT_SKILL_08 Land a Ninjutsu attack 8 time(s)
+COUNT_SKILL_10 Land a Ninjutsu attack 10 time(s)
+COUNT_SKILL_15 Land a Ninjutsu attack 15 time(s)
+
+COUNT_SPATK_1 Connect with Secret Technique 1 time(s)
+COUNT_SPATK_2 Connect with Secret Technique 2 time(s)
+COUNT_SPATK_3 Connect with Secret Technique 3 time(s)
+COUNT_SPATK_4 Connect with Secret Technique 4 time(s)
+COUNT_SPATK_5 Connect with Secret Technique 5 time(s)
+
+COUNT_TEAM_SKILL Use Linked Secret Technique 1 time(s)
+COUNT_TEAM_SKILL_2 Use Linked Secret Technique 1 time(s)
+COUNT_TEAM_SKILL_3 Don't work (removed content)
+COUNT_TEAM_SKILL_4 Don't work (removed content)
+COUNT_TEAM_SKILL_5 Don't work (removed content)
+
+COUNT_SUPPORT_2 Land a support attack 2 time(s)
+COUNT_SUPPORT_4 Land a support attack 4 time(s)
+COUNT_SUPPORT_6 Land a support attack 6 time(s)
+COUNT_SUPPORT_8 Land a support attack 8 time(s)
+COUNT_SUPPORT_10 Land a support attack 10 time(s)
+
+FINISH Finish them off
+FINISH_SKILL Finish enemy with Ninjutsu
+FINISH_SPATK Finish enemy with a Secret Technique
+FINISH_TEAM_SKILL Finish enemy with a Linked Secret Technique
+FINISH_AWAKE Finish enemy while in Awakened status
+FINISH_SUPPORT Finish enemy with a support attack
+
+COUNT_DODGE_2 Succeed with Substitution Jutsu 2 time(s)
+COUNT_DODGE_3 Succeed with Substitution Jutsu 3 time(s)
+COUNT_DODGE_4 Succeed with Substitution Jutsu 4 time(s)
+COUNT_DODGE_6 Succeed with Substitution Jutsu 6 time(s)
+COUNT_DODGE_8 Succeed with Substitution Jutsu 8 time(s)
+COUNT_DODGE_10 Succeed with Substitution Jutsu 10 time(s)
+
+SAVE_LIFE_020 Complete with over 20% health remaining
+SAVE_LIFE_040 Complete with over 40% health remaining
+SAVE_LIFE_050 Complete with over 50% health remaining
+SAVE_LIFE_060 Complete with over 60% health remaining
+SAVE_LIFE_070 Complete with over 70% health remaining
+SAVE_LIFE_080 Complete with over 80% health remaining
+SAVE_LIFE_100 Complete with over 100% health remaining
+
+SAVE_CHAKRA_020 Retain over 20% of your chakra
+SAVE_CHAKRA_040 Retain over 40% of your chakra
+SAVE_CHAKRA_060 Retain over 60% of your chakra
+SAVE_CHAKRA_080 Retain over 80% of your chakra
+SAVE_CHAKRA_100 Retain over 100% of your chakra
+
+SAVE_TIME_10 Strike final blow within 10 counts
+SAVE_TIME_20 Strike final blow within 20 counts
+SAVE_TIME_30 Strike final blow within 30 counts
+SAVE_TIME_40 Strike final blow within 40 counts
+SAVE_TIME_50 Strike final blow within 50 counts
+SAVE_TIME_60 Strike final blow within 60 counts
+SAVE_TIME_70 Strike final blow within 70 counts
+SAVE_TIME_80 Strike final blow within 80 counts
+SAVE_TIME_90 Strike final blow within 90 counts
+
+TIME_10 Empty, uses battlecondition_046
+TIME_20 Empty, uses battlecondition_046
+TIME_30 Empty, uses battlecondition_046
+TIME_40 Empty, uses battlecondition_046
+TIME_50 Empty, uses battlecondition_046
+TIME_60 Empty, uses battlecondition_046
+TIME_70 Empty, uses battlecondition_046
+TIME_80 Empty, uses battlecondition_046
+TIME_90 Empty, uses battlecondition_046
+MEMORY Creates flashback effect at start of fight
+E_UNKNOWN
+E_AWAKE Enemy is in Awakened state
+S_AWAKE You are in Awakened state
+E_AURA_NORMAL
+E_AURA_BOSS
+E_SEAL_SKILL Enemy cannot use Ninjutsu
+E_SEAL_SPATK Enemy cannot use Secret Technique
+E_SEAL_TEAM_SKILL Enemy cannot use Linked Secret Technique
+E_SEAL_AWAKE Enemy cannot use Awakening
+E_SEAL_ITEM Enemy cannot use items
+E_SEAL_SKL_SPL_AWA Enemy cannot use Ninjutsu, Secret Technique and Awakening
+E_SEAL_SPL_AWA Enemy cannot use Secret Technique and Awakening
+E_SEAL_SKL_AWA Enemy cannot use Ninjutsu and Awakening
+E_SEAL_DODGE Enemy cannot use Substitution Jutsu
+S_SEAL_SKILL_R Empty, uses t_battlecondition_163
+S_SEAL_COMBO_M Player cannot use mid-range attacks
+S_SEAL_SUPPORT Player cannot use Supports
+E_SEAL_SUPPORT Enemy cannot use Supports
+E_IGNORE_BAD_STATUS Opponent immune to all bad status effects
+S_TEAM_SEAL Empty, uses battlecondition_068
+CHAKURA_LIMIT_00 Start with your chakra halved
+CHAKURA_LIMIT_01 Start with your chakra at 30%
+LIFE_LIMIT_00 Start with your health halved
+LIFE_LIMIT_01 Start with your health at 30%
+ATK_UP_TWICE Both players' ATKs are doubled
+COUNT_ATK_UP_TWICE Both players' ATKs will double by turns at each count of 5
+COUNT_DEF_UP_TWICE Both players' DEFs will double by turns at each count of 5
+SEAL_DODGE Neither player can use Substitution Jutsu
+HEAL_CHAKRA_UP Both players' Chakra Recovery Speed is Fast
+HEAL_SUPPORT_UP Both players' Support Gauge Recovery Speed is Fast
+HEAL_TEAM_UP Both players' Storm Gauge Fill Rate is High
+ALL_CHAKRA_EMISSION Both players discharge all chakra in one down
+BREAK_UP Both players will Guard Break easily
+SPATK_DAMAGE_100 Either player will die instantly if hit by Secret Technique
+SKILL_ATK_UP Both players will take Big damage from Ninjutsu
+THROW_ATK_UP Both players will take Big damage from Throw
+SUPPORT_ATK_UP Both players will take Big damage from Support
+GUARD_DAMAGE_HALF Both players will receive some damage even if they Guard
+ALWAYS_USE_AWAKE Both players can Awaken from the beginning
+INFINITY_USE_TOOL Both players can use unlimited Ninja Tools
+ALWAYS_CHAKRA_DOWN Both players' Chakra is slowly drained
+CHAKRACHARGE_USE_LIFE_DOWN Both players' Health decreases when they use Chakra Charge
+TOURNAMENT_TIME_30 Battle will be automatically ended at the count of 30
+ENEMY_AWAKE_LIFE_UNDER_HALF
+MOVE_SPEED_DOWN Both players' movement speed is slowed
+NOT_GUARD Both players cannot guard
+NO_DAMAGE_OTHER_THAN_RING_OUT Both players will not take damage except from ring-outs
+
+(Left from revolution or Storm 3)
+TEAM_TYPE_OUGI Empty, uses t_battlecondition_206
+E_AWAKE2 Empty, uses t_battlecondition_148
+GROUP_BTL_ARRIVE_BEACH Empty, uses b_mission_029
+GROUP_BTL_GO_BEACH Empty, uses b_mission_030
+GROUP_BTL_CRUSH_KZU Empty, uses b_mission_036
+GROUP_BTL_CRUSH_KIN_GIN Empty, uses b_mission_038
+GROUP_BTL_CRUSH_SOMEBODY Empty, uses b_mission_049
+GROUP_BTL_CRUSH_ALL Empty, uses b_mission_050
+GROUP_BTL_GO_FIVE_SHADOW_CONF Empty, uses b_mission_007
+SLF_NO_HEAL_DODGE Substitution Gauge does not recover
+ENM_ABSORPTION_LIFE Enemy recovers Health for each attack that hits
+
+E_HEAL_LIFE_UP_005 Enemy's health continuously recover (+5%)
+E_HEAL_LIFE_UP_010 Enemy's health continuously recover (+10%)
+E_HEAL_LIFE_UP_015 Enemy's health continuously recover (+15%)
+E_HEAL_LIFE_UP_020 Enemy's health continuously recover (+20%)
+E_HEAL_LIFE_UP_025 Enemy's health continuously recover (+25%)
+E_HEAL_LIFE_UP_030 Enemy's health continuously recover (+30%)
+E_HEAL_LIFE_UP_035 Enemy's health continuously recover (+35%)
+E_HEAL_LIFE_UP_040 Enemy's health continuously recover (+40%)
+E_HEAL_LIFE_UP_045 Enemy's health continuously recover (+45%)
+E_HEAL_LIFE_UP_050 Enemy's health continuously recover (+50%)
+E_HEAL_LIFE_UP_055 Enemy's health continuously recover (+55%)
+E_HEAL_LIFE_UP_060 Enemy's health continuously recover (+60%)
+E_HEAL_LIFE_UP_065 Enemy's health continuously recover (+65%)
+E_HEAL_LIFE_UP_070 Enemy's health continuously recover (+70%)
+E_HEAL_LIFE_UP_075 Enemy's health continuously recover (+75%)
+E_HEAL_LIFE_UP_080 Enemy's health continuously recover (+80%)
+E_HEAL_LIFE_UP_085 Enemy's health continuously recover (+85%)
+E_HEAL_LIFE_UP_090 Enemy's health continuously recover (+90%)
+E_HEAL_LIFE_UP_095 Enemy's health continuously recover (+95%)
+E_HEAL_LIFE_UP_100 Enemy's health continuously recover (+100%)
+E_HEAL_LIFE_UP_105 Enemy's health continuously recover (+105%)
+E_HEAL_LIFE_UP_110 Enemy's health continuously recover (+110%)
+E_HEAL_LIFE_UP_115 Enemy's health continuously recover (+115%)
+E_HEAL_LIFE_UP_120 Enemy's health continuously recover (+120%)
+E_HEAL_LIFE_UP_125 Enemy's health continuously recover (+125%)
+E_HEAL_LIFE_UP_130 Enemy's health continuously recover (+130%)
+E_HEAL_LIFE_UP_135 Enemy's health continuously recover (+135%)
+E_HEAL_LIFE_UP_140 Enemy's health continuously recover (+140%)
+E_HEAL_LIFE_UP_145 Enemy's health continuously recover (+145%)
+E_HEAL_LIFE_UP_150 Enemy's health continuously recover (+150%)
+E_HEAL_CHAKRA_LIFE Enemy health and chakra continuously recover
+
+S_AWAKE_MINATO Battle with Minato in Awakened state
+N_AWAKE_KAKASHI Battle with Kakashi's Awakening disabled
+N_LEADER_CHANGE Battle without the ability to change leader
+BOSS_COUNTER Free yourself from your bonds and counterattack
+ATK_UP_THREE_TIMES Both sides get a 3x attack boost
+ATK_UP_LEADER_CHANGE Both fighters performing a leader change will result in a temporary attack power-up
+---------------------------------------------------------TASKS-------------------------------------------------------
+
+FINISH_PAIR_SKILL Finish an opponent off with a Combination Secret Technique
+FINISH_RING_OUT Win by forcing the opponent from the ring
+FINISH_THROW Finish an opponent off with a throw
+FINISH_CRASH_WALL Finish an opponent off by slamming them into the wall
+CLEAR_SAVE_LIFE_50 Win with more than 50% health left
+CLEAR_SAVE_LIFE_70 Win with more than 70% health left
+COUNT_USE_SKILL_02 Use Ninjutsu 2 time(s)
+COUNT_USE_SKILL_04 Use Ninjutsu 4 time(s)
+COUNT_USE_SKILL_06 Use Ninjutsu 6 time(s)
+COUNT_USE_SKILL_08 Use Ninjutsu 8 time(s)
+COUNT_USE_SKILL_10 Use Ninjutsu 10 time(s)
+COUNT_USE_SKILL_15 Use Ninjutsu 15 time(s)
+ARMOUR_BREAK_002 Destroy an opponent's costume 2 times
+COUNT_CHARGE_CHAKRADASH_001 Connect with chakra dash 1 time(s)
+COUNT_LEADER_CHANGE_003 Change leader 3 times
+COUNT_THROWSKILL_002 Connect with throw 2 time(s)
+COUNT_SKILL_SUPPORTL_001 Use 1st support 1 time(s)
+COUNT_SKILL_SUPPORTR_001 Use 2nd support 1 time(s)
+COUNT_ALL_CHARA_SKILL Connect with all three teammates' ninjutsu 1 time(s) each
+COUNT_SPECIAL_SUPPORT_004 Connect with support 4 time(s)
+COUNT_MIDDLERANGE_ATTACK_001 Connect with Tilt 1 time(s)
+NOT_HIT_THROW Don't let your opponent hit you with a single throw
+COUNT_KILL_SUPPORT_ATTACK Defeat 1 Limbo Perfect Susano'o with a support attack
+CLEAR_CHARA_INDEX_1 Achieve victory with Obito Uchiha as your leader
+BOSS1_1_GET_WEAPON Acquire the sword
+BOSS1_1_BREAK_WEAPON Destroy Madara Uchiha's weapon
+BOSS1_4_GET_SWORD Acquire Susano'o's blade
+BOSS1_4_ARMOUR_BREAK Destroy Susano'o's armor up to Level 4
+BOSS1_4_WEAPON_GET Acquire Susano'o's blade
+BOSS1_4_BREAK_ARM Destroy one of Susano'o's back arms
+BOSS1_4_AVOID_BODY_PRESS Dodge Kurama (Majestic Attire: Susano'o)'s Body Press
+BOSS1_4_BLOCKING_TAIL_BEAST_BALL Prevent Kurama (Majestic Attire: Susano'o) from firing a large Tailed Beast Bomb
+BOSS2_1_CHARGE_SKILL
+BOSS2A_1_KILL_CHARGE_SKILL_010 Defeat 10 Mahiru's clones with Kakashi Hatake's Ninjutsu
+BOSS2A_1_KILL_CHARGE_SKILL_020 Defeat 20 Mahiru clones with Kakashi Hatake's charged Ninjutsu
+BOSS2A_1_KILL_SKILL_RIN_L_002 Defeat 2 Mahiru clones with Rin Nohara's Ninjutsu
+BOSS2A_1_KILL_SKILL_RIN_L_005 Defeat 5 Mahiru's clones with Rin Nohara's Ninjutsu
+BOSS2A_1_KILL_SKILL_MINATO_R_003 Defeat 3 Mahiru's clones with Minato Namikaze's Ninjuts
+BOSS2A_1_KILL_ENEMY_005 Destroy over 5 Mahiru clones
+BOSS2A_1_KILL_ENEMY_030 Destroy over 30 Mahiru clones
+BOSS2A_1_KILL_ENEMY_040 Destroy over 40 Mahiru clones
+BOSS2A_1_KILL_ENEMY_050 Destroy over 50 Mahiru clones
+BOSS2A_1_KILL_ENEMY_060 Destroy over 60 Mahiru clones
+BOSS2A_1_KILL_ENEMY_080 Destroy over 80 Mahiru clones
+BOSS2C_1_HIT_QUESTION
+BOSS2C_1_KILL_ENEMY_SKILL_003 Defeat White Zetsus with Ninjutsu 3 times
+BOSS2C_1_KILL_ENEMY_30 Defeat over 30 
+BOSS2C_1_KILL_ENEMY_40 Defeat over 40 White Zetsus
+BOSS2C_1_KILL_ENEMY_50 Defeat over 50 White Zetsus
+BOSS2C_1_KILL_ENEMY_70 Defeat over 70 White Zetsus
+BOSS2C_1_KILL_ENEMY_100 Defeat over 100  White Zetsus
+BOSS2C_1_ALLKILL_ENEMY Defeat all White Zetsus
+BOSS2C_1_SUCCESS_1_QUIZ Answer 1 Guruguru quizzes correctly
+BOSS2C_1_SUCCESS_ALL_QUIZ Answer all of Guruguru's quizzes correctly
+BOSS2C_2_KILL_ENEMY_SKILL_003 Defeat over 3 Mist Ninjas with Ninjutsu
+BOSS2C_2_KILL_ENEMY_SKILL_005 Defeat over 5 Mist Ninjas with Ninjutsu
+BOSS2C_2_KILL_ENEMY_50 Defeat over 50 Mist Ninjas
+BOSS2C_2_KILL_ENEMY_75 Defeat over 75 Mist Ninjas
+BOSS2C_2_KILL_ENEMY_80 Defeat over 80 Mist Ninjas
+BOSS2C_2_KILL_ENEMY_100 Defeat over 100 Mist Ninjas
+BOSS2C_2_KILL_ENEMY_120 Defeat over 120 Mist Ninjas
+BOSS2C_2_SPECIAL_KILL_003 Defeat 3 Mist Ninja with Finish Attack
+BOSS3_1_HIT_SKILL_SUPPORTBOTH Connect with Suigetsu Hozuki and Jugo's Ninjutsu 1 times each
+BOSS4_1_BRAKE_EYES_030 Destroy 30 Ten Tails' eyes
+BOSS4_1_BRAKE_EYES_040 Destroy 40 Ten Tails' eyes
+BOSS4_1_BRAKE_EYES_050 Destroy 50 Ten Tails' eyes
+BOSS4_1_BRAKE_EYES_060 Destroy 60 Ten Tails' eyes
+BOSS4_1_BRAKE_EYES_075 Destroy 75 Ten Tails' eyes
+BOSS4_1_HIT_SUPPORT_001 Hit the center eye with Gyuki's Support Ninjutsu 1 time(s)
+BOSS4_1_HIT_SUPPORT_003 Hit the center eye with Gyuki's Support Ninjutsu 3 time(s)
+BOSS4_1_ALL_BREAK
+BOSS4_2_CLEAR
+BOSS5_SUPPORTSKILL_AODA Connect with Aoda's Ninjutsu 1 time(s)
+BOSS5_SUPPORTSKILL_KATHUYU Connect with Katsuyu's Ninjutsu 1 time(s)
+BOSS5_GROUP_BREAK_BOTHARM Destroy both of the Giant Ten Tails Clone's arms
+BOSS5_GROUP_KILL_ENEMY_5000 Destroy 5000 Small Ten Tails Clones
+BOSS5_GROUP_KILL_ENEMY_7500 Destroy 7500 Small Ten Tails Clones
+BOSS5_GROUP_KILL_ENEMY_10000 Destroy 10000 Small Ten Tails Clones
+BOSS6A_1_HIT_SKILL_ISOU_002 Defeat enemy with Ninjutsu
+BOSS6_3_WEAPON_BREAK
+BOSS9_2_KILL_004 Defeat Limbo Perfect Susano'o 4 times
+BOSS9_2_KILL_005 Defeat Limbo Perfect Susano'o 5 times
+BOSS9_2_KILL_008 Defeat Limbo Perfect Susano'o 8 times
+BOSS9_2_KILL_010 Defeat Limbo Perfect Susano'o 10 times
+BOSS9_2_KILL_012 Defeat Limbo Perfect Susano'o 12 times
+BOSS9_2_KILL_015 Defeat Limbo Perfect Susano'o 15 times
+BOSS9_2_ALL_KILL Win after defeating all the Limbo Perfect Susano'os
+COUNT_SUPPORTATTACK_KILLRINBO_001 Defeat 1 Limbo Perfect Susano'o with a support attack
+BOSS10_BREAK_TAIL_8 Destroy 8 of Kaguya's tails
+BOSS10_BREAK_TAIL_14 Destroy 14 of Kaguya's tails
+BOSS10_2_BREAK_ALL_TAIL Destroy all of Kaguya's tails
+BOSS10_BREAK_ALL_FACE Destroy all of the Tailed Beast faces
+BOSS11_1_NOT_HIT_WALLSKILL
+COUNT_SKILL_LEADER_001
+COUNT_SPSKILL_LEADER_001 Connect with Naruto Uzumaki's Secret Technique 1 time(s)
+COUNT_PAIRSKILL_001 Connect with Combination Secret Technique 1 time(s)
+COUNT_ATEMI_001 Connect with counterattack 1 time(s)
+COUNT_ATEMI_002 Connect with counterattack 2 time(s)
+COUNT_ATEMI_003 Connect with counterattack 3 time(s)
+COUNT_SPSKILL_SUPPORTL_001 Connect with Suigetsu Hozuki's Secret Technique 1 time(s)
+COUNT_SPSKILL_SUPPORTR_001 Connect with Jugo's Secret Technique 1 time(s)
+COUNT_WALLSKILL_003 Connect with 3 wall-based Ninjutsu attacks
+COUNT_SECRETACTION_001 Activate 1 Secret Actions
+COUNT_SECRETACTION_003 Activate 3 Secret Actions
+COUNT_SECRETACTION_008 Activate 8 Secret Actions
+SUCCESS_ALL_AVOID Succeed with all afterimage actions
+COUNT_HIT_SUPORT_SKILL_002 Connect with Ninjutsu of 1st or 2nd support 2 time(s)
+COUNT_COMBO_OVER_15 Connect with a 15-hit combo
+COUNT_SKILL_KAKASHI_001 Connect with Kakashi Hatake's Ninjutsu 1 time(s)
+COUNT_SKILL_GUY_L_001 Connect with Might Guy's Ninjutsu 1 time(s)
+COUNT_SPSKILL_SUIGETSU_L_001 Connect with Suigetsu Hozuki's Secret Technique 1 time(s)
+COUNT_SPSKILL_JYUGO_R_001 Connect with Jugo's Secret Technique 1 time(s)
+COUNT_SKILL_MINATO_L_001 Connect with Minato Namikaze's Ninjutsu 1 time(s)
+COUNT_SKILL_OROCHIMARU_001 Connect with Orochimaru's Ninjutsu 1 time(s)
+LIMIT_DODGE_004 Win by using 4 or less Substitutions
+COUNT_AWAKE_001 Perform an Awakening
+EXECUTE_SECRETACTION_ALL Activate all the Secret Actions
+EXECUTE_SECRETFACTOR Activate the Secret Factor
+DEFEAT_THE_MADARA Destroy Madara Uchiha!
+DEFEAT_THE_KYUBI Destroy Nine Tails (Susano'o Equipped)!
+DEFEAT_THE_TOBI Destroy Tobi!
+DEFEAT_THE_MAHIRU Destroy Mahiru!
+DEFEAT_THE_TAISEKI Destroy Taiseki!
+DEFEAT_THE_KAKKOU Destroy Kakkou!
+DEFEAT_THE_KAKKOU_TAISEKI Defeat Kakkou and Taiseki!
+DEFEAT_THE_GURUGURU Destroy Guruguru!
+DEFEAT_THE_KIRI_NINJA Destroy Mist Ninja!
+DEFEAT_THE_MINATO Destroy Minato Namikaze!
+DEFEAT_THE_OBITO Destroy Obito Uchiha!
+DEFEAT_THE_JYUBI Destroy Ten Tails!
+DEFEAT_THE_OROCHIMARU Destroy Orochimaru!
+DEFEAT_THE_HOKAGE Destroy Past Hokages!
+DEFEAT_THE_JYUBI_COPY Destroy Ten Tails Clone!
+DEFEAT_THE_ITACHI Destroy Itachi Uchiha!
+DEFEAT_THE_SUSANO Destroy Perfect Form Susano'o!
+DEFEAT_THE_KAGUYA Destroy Kaguya Otsutsuki!
+DEFEAT_THE_SASUKE Destroy Sasuke Uchiha!
+ARRIVE_JYUBI Reach the Ten Tails!
+DEFEAT_THE_UNKNOWN Destroy Unknown Enemy!
+DEFEAT_THE_KONOHAMARU Destroy Konohamaru Sarutobi!
+DEFEAT_THE_YURUI Destroy Yurui!
+DEFEAT_THE_SIKADAI Destroy Shikadai Nara!
+DEFEAT_THE_MOMOKIN Defeat Momoshiki and Kinshiki!
+DEFEAT_THE_MOMOSIKI Destroy Momoshiki!
+DEFEAT_THE_GAARA Destroy Gaara of the Sand!
+DEFEAT_THE_NARUTO Destroy Naruto Uzumaki!
+DEFEAT_THE_KINSIKI Destroy Kinshiki!
+SUCCESS_AVOID_001 Succeed with 1 afterimage actions
+SUCCESS_AVOID_002 Succeed with 2 afterimage actions
+COUNT_SKILL_NARUTO_001 Connect with Naruto Uzumaki's Ninjutsu 1 time(s)
+COUNT_SKILL__KAKASHI_L_001 Connect with Kakashi Hatake's Ninjutsu 1 time(s)
+COUNT_SKILL_GUY_R_001 Connect with Might Guy's Ninjutsu 1 time(s)u
+COUNT_DROP_ENEMY_WALL_001 Drop one enemy who's climbing on a wall to the ground
+COUNT_SPSKILL_SASUKE_001 Connect with Sasuke Uchiha's Ninjutsu 1 time(s)
+COUNT_SKILL_SUIGETSU_L_001 Connect with Suigetsu Hozuki's Ninjutsu 1 time(s)
+COUNT_SKILL_JYUGO_R_001 Connect with Jugo's Ninjutsu 1 time(s)
+COUNT_SPSKILL_NARUTO_001 Connect with Naruto Uzumaki's Secret Technique 1 time(s)
+COUNT_SPSKILL_SASUKE_L_001 Connect with Sasuke Uchiha's Secret Technique 1 time(s)
+COUNT_SKILL_SASUKE_L_001 Connect with Sasuke Uchiha's Ninjutsu 1 time(s)
+COUNT_SKILL_SASUKE_L_002 Connect with Sasuke Uchiha's Ninjutsu 2 time(s)
+COUNT_SKILL_NARUTO_002 Connect with Naruto Uzumaki's Ninjutsu 2 time(s)
+COUNT_SKILL_SAKURA_R_001 Connect with Sakura Haruno's Ninjutsu 1 time(s)
+COUNT_SKILL_OBITO_L_001 Connect with Obito Uchiha's Ninjutsu 1 time(s)
+COUNT_SKILL_KAKASI_L_001 Connect with Kakashi Hatake's Ninjutsu 1 time(s)
+COUNT_SKILL_BEE_L_001 Connect with Killer Bee's Ninjutsu 1 time(s)
+COUNT_SKILL_TOBIRAMA_L_001 Connect with Tobirama's Ninjutsu 1 time(s)
+COUNT_WALLSKILL_001 Connect with 1 wall-based Ninjutsu attacks
+COUNT_THROWSKILL_001 Connect with throw 1 time(s)
+COUNT_SKILL_HIRUZEN_L_001 Connect with Hiruzen's Ninjutsu 1 time(s)
+COUNT_SKILL_HIRUZEN_R_001 Connect with Hiruzen's Ninjutsu 1 time(s)</value>
+  </data>
+</root>

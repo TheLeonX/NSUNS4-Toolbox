@@ -1,0 +1,243 @@
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\bin\Debug\NSUNS4 Character Manager.exe
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\bin\Debug\NSUNS4 Character Manager.pdb
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\bin\Debug\System.dll
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\bin\Debug\System.Drawing.dll
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\bin\Debug\System.Windows.Forms.dll
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4-Character-Manager.csprojAssemblyReference.cache
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Main.resources
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tool_DuelPlayerParamEditor.resources
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tool_RosterEditor.resources
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tool_SpcloadEditor.resources
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4-Character-Manager.csproj.GenerateResource.cache
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4-Character-Manager.csproj.CoreCompileInputs.cache
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4-Character-Manager.csproj.CopyComplete
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4 Character Manager.exe
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4 Character Manager.pdb
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tool_PlayerSettingParamEditor.resources
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tool_AddCostume.resources
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tool_AddCharacter.resources
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tool_SkillCustomizeParamEditor.resources
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Functions.Tool_ExportCostume.resources
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_TextureReplacer.resources
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\Properties.Resources.resources
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tool_CharacodeEditor.resources
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tool_DuelPlayerParamEditor_Costumes.resources
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tool_RosterEditor_PositionData.resources
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tool_UnlockCharaTotalEditor.resources
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_PathList.resources
+C:\Users\santi\Documentos\GitHub\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_MovesetCoder.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\bin\Debug\NSUNS4 Character Manager.exe
+E:\Desktop\MS Projects\ns4charactermanager-1.6\bin\Debug\NSUNS4 Character Manager.pdb
+E:\Desktop\MS Projects\ns4charactermanager-1.6\bin\Debug\Microsoft.WindowsAPICodePack.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.6\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.6\bin\Debug\System.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.6\bin\Debug\System.Drawing.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.6\bin\Debug\System.Windows.Forms.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4-Character-Manager.csprojAssemblyReference.cache
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Functions.Tool_ExportCostume.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Main.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Tool_AddCharacter.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Tool_AddCostume.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_PathList.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_TextureReplacer.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Tool_CharacodeEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Tool_DuelPlayerParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Tool_DuelPlayerParamEditor_Costumes.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_IconEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_MovesetCoder.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Tool_PlayerSettingParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Tool_RosterEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Tool_RosterEditor_PositionData.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Tool_SkillCustomizeParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Tool_SpcloadEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Tool_UnlockCharaTotalEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\Properties.Resources.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4-Character-Manager.csproj.GenerateResource.cache
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4-Character-Manager.csproj.CoreCompileInputs.cache
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4-Character-Manager.csproj.CopyComplete
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4 Character Manager.exe
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4 Character Manager.pdb
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_AwakeAuraEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_SpSkillCustomizeParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.6\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_XfbinHeaderEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\bin\Debug\NSUNS4 Character Manager.exe
+E:\Desktop\MS Projects\ns4charactermanager-1.7\bin\Debug\NSUNS4 Character Manager.pdb
+E:\Desktop\MS Projects\ns4charactermanager-1.7\bin\Debug\Microsoft.WindowsAPICodePack.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.7\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.7\bin\Debug\System.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.7\bin\Debug\System.Drawing.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.7\bin\Debug\System.Windows.Forms.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4-Character-Manager.csprojAssemblyReference.cache
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Functions.Tool_ExportCostume.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Main.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Tool_AddCharacter.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Tool_AddCostume.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_PathList.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_TextureReplacer.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_AwakeAuraEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Tool_CharacodeEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Tool_DuelPlayerParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Tool_DuelPlayerParamEditor_Costumes.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_IconEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_MovesetCoder.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Tool_PlayerSettingParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Tool_RosterEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Tool_RosterEditor_PositionData.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Tool_SkillCustomizeParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Tool_SpcloadEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_SpSkillCustomizeParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Tool_UnlockCharaTotalEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_XfbinHeaderEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\Properties.Resources.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4-Character-Manager.csproj.GenerateResource.cache
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4-Character-Manager.csproj.CoreCompileInputs.cache
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4-Character-Manager.csproj.CopyComplete
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4 Character Manager.exe
+E:\Desktop\MS Projects\ns4charactermanager-1.7\obj\Debug\NSUNS4 Character Manager.pdb
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\bin\Debug\NSUNS4 Character Manager.exe
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\bin\Debug\NSUNS4 Character Manager.pdb
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\bin\Debug\Microsoft.WindowsAPICodePack.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\bin\Debug\System.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\bin\Debug\System.Drawing.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\bin\Debug\System.Windows.Forms.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4-Character-Manager.csprojAssemblyReference.cache
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Functions.Tool_ExportCostume.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Main.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Tool_AddCharacter.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Tool_AddCostume.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_nus3bankEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_PathList.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_TextureReplacer.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_AwakeAuraEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Tool_CharacodeEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Tool_DuelPlayerParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Tool_DuelPlayerParamEditor_Costumes.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_IconEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_MovesetCoder.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Tool_PlayerSettingParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Tool_RosterEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Tool_RosterEditor_PositionData.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Tool_SkillCustomizeParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Tool_SpcloadEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_SpSkillCustomizeParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Tool_UnlockCharaTotalEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_XfbinHeaderEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\Properties.Resources.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4-Character-Manager.csproj.GenerateResource.cache
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4-Character-Manager.csproj.CoreCompileInputs.cache
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4-Character-Manager.csproj.CopyComplete
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4 Character Manager.exe
+E:\Desktop\MS Projects\ns4charactermanager-1.7.5b\obj\Debug\NSUNS4 Character Manager.pdb
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\bin\Debug\NSUNS4 Character Manager.exe
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\bin\Debug\NSUNS4 Character Manager.pdb
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\bin\Debug\Microsoft.WindowsAPICodePack.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\bin\Debug\System.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\bin\Debug\System.Drawing.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\bin\Debug\System.Windows.Forms.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4-Character-Manager.csprojAssemblyReference.cache
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Functions.Tool_ExportCostume.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Main.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Tool_AddCharacter.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Tool_AddCostume.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_nus3bankEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_PathList.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_TextureReplacer.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_AwakeAuraEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Tool_CharacodeEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Tool_DuelPlayerParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Tool_DuelPlayerParamEditor_Costumes.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_IconEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_MovesetCoder.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Tool_PlayerSettingParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Tool_RosterEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Tool_RosterEditor_PositionData.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Tool_SkillCustomizeParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Tool_SpcloadEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_SpSkillCustomizeParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Tool_UnlockCharaTotalEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_XfbinHeaderEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\Properties.Resources.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4-Character-Manager.csproj.GenerateResource.cache
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4-Character-Manager.csproj.CoreCompileInputs.cache
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4-Character-Manager.csproj.CopyComplete
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4 Character Manager.exe
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4 Character Manager.pdb
+E:\Desktop\MS Projects\ns4charactermanager-1.8.1\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_StageInfoEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\bin\Debug\NSUNS4 Character Manager.exe
+E:\Desktop\MS Projects\ns4charactermanager-1.9\bin\Debug\NSUNS4 Character Manager.pdb
+E:\Desktop\MS Projects\ns4charactermanager-1.9\bin\Debug\Microsoft.WindowsAPICodePack.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.9\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.9\bin\Debug\System.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.9\bin\Debug\System.Drawing.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.9\bin\Debug\System.Windows.Forms.dll
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4-Character-Manager.csprojAssemblyReference.cache
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Functions.Tool_ExportCostume.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Main.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tool_AddCharacter.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tool_AddCostume.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_nus3bankEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_PathList.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_StageInfoEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_TextureReplacer.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_afterAttachObject.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_AwakeAuraEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tool_CharacodeEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tool_DuelPlayerParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tool_DuelPlayerParamEditor_Costumes.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_IconEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_MovesetCoder.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tool_PlayerSettingParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tool_RosterEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tool_RosterEditor_PositionData.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tool_SpcloadEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_SpSkillCustomizeParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tool_UnlockCharaTotalEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_XfbinHeaderEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\Properties.Resources.resources
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4-Character-Manager.csproj.GenerateResource.cache
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4-Character-Manager.csproj.CoreCompileInputs.cache
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4-Character-Manager.csproj.CopyComplete
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4 Character Manager.exe
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4 Character Manager.pdb
+E:\Desktop\MS Projects\ns4charactermanager-1.9\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_SkillCustomizeParamEditor_new.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\bin\Debug\NSUNS4 Character Manager.exe
+E:\Desktop\MS Projects\ns4charactermanager-2.0\bin\Debug\NSUNS4 Character Manager.pdb
+E:\Desktop\MS Projects\ns4charactermanager-2.0\bin\Debug\Microsoft.WindowsAPICodePack.dll
+E:\Desktop\MS Projects\ns4charactermanager-2.0\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+E:\Desktop\MS Projects\ns4charactermanager-2.0\bin\Debug\System.dll
+E:\Desktop\MS Projects\ns4charactermanager-2.0\bin\Debug\System.Drawing.dll
+E:\Desktop\MS Projects\ns4charactermanager-2.0\bin\Debug\System.Windows.Forms.dll
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4-Character-Manager.csprojAssemblyReference.cache
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Functions.Tool_ExportCostume.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Main.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tool_AddCharacter.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tool_AddCostume.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_nus3bankEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_PathList.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_StageInfoEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_TextureReplacer.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_afterAttachObject.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_AwakeAuraEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tool_CharacodeEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tool_DuelPlayerParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tool_DuelPlayerParamEditor_Costumes.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_IconEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_MovesetCoder.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tool_PlayerSettingParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tool_RosterEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tool_RosterEditor_PositionData.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_SkillCustomizeParamEditor_new.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tool_SpcloadEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_SpSkillCustomizeParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tool_UnlockCharaTotalEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_XfbinHeaderEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\Properties.Resources.resources
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4-Character-Manager.csproj.GenerateResource.cache
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4-Character-Manager.csproj.CoreCompileInputs.cache
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4-Character-Manager.csproj.CopyComplete
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4 Character Manager.exe
+E:\Desktop\MS Projects\ns4charactermanager-2.0\obj\Debug\NSUNS4 Character Manager.pdb
