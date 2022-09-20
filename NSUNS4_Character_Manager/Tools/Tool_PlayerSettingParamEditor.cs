@@ -886,14 +886,17 @@ namespace NSUNS4_Character_Manager
 			}
 		}
 
-		public void SaveFileAs()
+		public void SaveFileAs(string basepath = "")
 		{
 			SaveFileDialog s = new SaveFileDialog();
 			{
 				s.DefaultExt = ".xfbin";
 				s.Filter = "*.xfbin|*.xfbin";
 			}
-			s.ShowDialog();
+			if (basepath != "")
+				s.FileName = basepath;
+			else
+				s.ShowDialog();
 			if (!(s.FileName != ""))
 			{
 				return;
@@ -911,7 +914,8 @@ namespace NSUNS4_Character_Manager
 				FilePath = s.FileName;
 			}
 			File.WriteAllBytes(FilePath, ConvertToFile());
-			MessageBox.Show("File saved to " + FilePath + ".");
+			if (basepath == "")
+				MessageBox.Show("File saved to " + FilePath + ".");
 		}
 
 		private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)

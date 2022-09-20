@@ -28,6 +28,16 @@ namespace NSUNS4_Character_Manager.Functions {
         public bool afterAttachObjectExist = false;
         private void Tool_ExportCharacter_Load(object sender, EventArgs e) {
             // Open Characode
+            
+            if (Main.chaPath == "[null]" || !File.Exists(Main.chaPath)) {
+                Main.chaPath = Directory.GetCurrentDirectory() + "\\systemFiles\\characode.bin.xfbin";
+            }
+            if (Main.dppPath == "[null]" || !File.Exists(Main.dppPath)) {
+                Main.dppPath = Directory.GetCurrentDirectory() + "\\systemFiles\\duelPlayerParam.xfbin";
+            }
+            if (Main.pspPath == "[null]" || !File.Exists(Main.pspPath)) {
+                Main.pspPath = Directory.GetCurrentDirectory() + "\\systemFiles\\playerSettingParam.bin.xfbin";
+            }
             Tool_CharacodeEditor CharacodeFile = new Tool_CharacodeEditor();
             CharacodeFile.OpenFile(Main.chaPath);
 
@@ -266,7 +276,108 @@ namespace NSUNS4_Character_Manager.Functions {
                 }
             }
             if (dppExist) {
+                Tool_DuelPlayerParamEditor DppFile = new Tool_DuelPlayerParamEditor();
+                DppFile.OpenFile(dppPath);
+                for (int i = 0; i < DppFile.EntryCount; i++) {
+                    if (!DppFile.BinName[i].Contains(SaveCharacode)) {
+                        DppFile.BinPath.RemoveAt(i);
+                        DppFile.BinName.RemoveAt(i);
+                        DppFile.Data.RemoveAt(i);
+                        DppFile.CharaList.RemoveAt(i);
+                        DppFile.CostumeList.RemoveAt(i);
+                        DppFile.AwkCostumeList.RemoveAt(i);
+                        DppFile.DefaultAssist1.RemoveAt(i);
+                        DppFile.DefaultAssist2.RemoveAt(i);
+                        DppFile.AwkAction.RemoveAt(i);
+                        DppFile.ItemList.RemoveAt(i);
+                        DppFile.ItemCount.RemoveAt(i);
+                        DppFile.Partner.RemoveAt(i);
+                        DppFile.SettingList.RemoveAt(i);
+                        DppFile.Setting2List.RemoveAt(i);
+                        DppFile.EnableAwaSkillList.RemoveAt(i);
+                        DppFile.VictoryAngleList.RemoveAt(i);
+                        DppFile.VictoryPosList.RemoveAt(i);
+                        DppFile.VictoryUnknownList.RemoveAt(i);
+                        DppFile.AwaSettingList.RemoveAt(i);
+                        i--;
+                        DppFile.EntryCount--;
+                    }
+                        
+                }
+                if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + dppPath.Substring(dppPath.IndexOf("data_win32\\") + 11)))) {
+                    Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + dppPath.Substring(dppPath.IndexOf("data_win32\\") + 11)));
+                }
+                DppFile.SaveFileAs(SaveDirectory + "\\" + dppPath.Substring(dppPath.IndexOf("data_win32\\") + 11));
+            }
+            if (pspExist) {
+                Tool_PlayerSettingParamEditor PspFile = new Tool_PlayerSettingParamEditor();
+                PspFile.OpenFile(pspPath);
+                for (int i = 0; i < PspFile.EntryCount; i++) {
+                    if (Main.b_byteArrayToInt(PspFile.CharacodeList[i]) != CharacodeID) {
+                        PspFile.PresetList.RemoveAt(i);
+                        PspFile.CharacodeList.RemoveAt(i);
+                        PspFile.OptValueA.RemoveAt(i);
+                        PspFile.CharacterList.RemoveAt(i);
+                        PspFile.OptValueB.RemoveAt(i);
+                        PspFile.OptValueC.RemoveAt(i);
+                        PspFile.c_cha_a_List.RemoveAt(i);
+                        PspFile.c_cha_b_List.RemoveAt(i);
+                        PspFile.OptValueD.RemoveAt(i);
+                        PspFile.OptValueE.RemoveAt(i);
+                        i--;
+                        PspFile.EntryCount--;
+                    }
 
+                }
+                if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf("data_win32\\") + 11)))) {
+                    Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf("data_win32\\") + 11)));
+                }
+                PspFile.SaveFileAs(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf("data_win32\\") + 11));
+            }
+            if (cspExist) {
+                Tool_RosterEditor CspFile = new Tool_RosterEditor();
+                Tool_PlayerSettingParamEditor PspFile = new Tool_PlayerSettingParamEditor();
+                CspFile.OpenFile(cspPath);
+                if (pspExist)
+                    PspFile.OpenFile(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf("data_win32\\") + 11));
+                else
+                    PspFile.OpenFile(Main.pspPath);
+                List<string> CharacterList = new List<string>();
+                List<int> PageList = new List<int>();
+                List<int> PositionList = new List<int>();
+                List<int> CostumeList = new List<int>();
+                List<string> ChaList = new List<string>();
+                List<string> AccessoryList = new List<string>();
+                List<string> NewIdList = new List<string>();
+                List<byte[]> GibberishBytes = new List<byte[]>();
+                for (int x = 0; x < PspFile.EntryCount; x++) {
+                    for (int i = 0; i < CspFile.EntryCount; i++) {
+                        if (PspFile.CharacterList[x] == CspFile.CharacterList[i] && Main.b_byteArrayToInt(PspFile.CharacodeList[x]) == CharacodeID) {
+                            CharacterList.Add(CspFile.CharacterList[i]);
+                            PageList.Add(CspFile.PageList[i]);
+                            PositionList.Add(CspFile.PositionList[i]);
+                            CostumeList.Add(CspFile.CostumeList[i]);
+                            ChaList.Add(CspFile.ChaList[i]);
+                            AccessoryList.Add(CspFile.AccessoryList[i]);
+                            NewIdList.Add(CspFile.NewIdList[i]);
+                            GibberishBytes.Add(CspFile.GibberishBytes[i]);
+                        }
+
+                    }
+                }
+                CspFile.EntryCount = CharacterList.Count;
+                CspFile.CharacterList = CharacterList;
+                CspFile.PageList = PageList;
+                CspFile.PositionList = PositionList;
+                CspFile.CostumeList = CostumeList;
+                CspFile.ChaList = ChaList;
+                CspFile.AccessoryList = AccessoryList;
+                CspFile.NewIdList = NewIdList;
+                CspFile.GibberishBytes = GibberishBytes;
+                if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + cspPath.Substring(cspPath.IndexOf("data_win32\\") + 11)))) {
+                    Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + cspPath.Substring(cspPath.IndexOf("data_win32\\") + 11)));
+                }
+                CspFile.SaveFileAs(SaveDirectory + "\\" + cspPath.Substring(cspPath.IndexOf("data_win32\\") + 11));
             }
             foreach (FileInfo file in Files) {
                 if (File.Exists(Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf("data_win32\\") + 11))) {
@@ -279,6 +390,12 @@ namespace NSUNS4_Character_Manager.Functions {
 
         }
 
+        public void ExpertExport(int CharacodeID) {
+            FolderBrowserDialog f = new FolderBrowserDialog();
+            f.ShowDialog();
+            SaveDirectory = f.SelectedPath + "\\" + SaveCharacode + "\\data_win32";
+            DirectoryInfo di = Directory.CreateDirectory(SaveDirectory);
+        }
         public void CopyFiles(string targetPath, string originalDataWin32, string newDataWin32) {
             if (File.Exists(originalDataWin32)) {
                 if (!Directory.Exists(targetPath)) {
@@ -288,12 +405,8 @@ namespace NSUNS4_Character_Manager.Functions {
             }
         }
 
-        public void ExpertExport(int CharacodeID) {
-            FolderBrowserDialog f = new FolderBrowserDialog();
-            f.ShowDialog();
-            SaveDirectory = f.SelectedPath + "\\" + SaveCharacode + "\\data_win32";
-            DirectoryInfo di = Directory.CreateDirectory(SaveDirectory);
+        private void Tool_ExportCharacter_FormClosed(object sender, FormClosedEventArgs e) {
+            Main.LoadConfig();
         }
-
     }
 }

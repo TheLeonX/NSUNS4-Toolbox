@@ -30,7 +30,7 @@ namespace NSUNS4_Character_Manager
         private ToolStripMenuItem addCostumeToolStripMenuItem;
         private ToolStripMenuItem addNewCharacterToolStripMenuItem;
         PrivateFontCollection pfc = new PrivateFontCollection();
-        public string ConfigPath = AppDomain.CurrentDomain.BaseDirectory + "\\config.txt";
+        public static string ConfigPath = AppDomain.CurrentDomain.BaseDirectory + "\\config.txt";
         public static string datawin32Path = "[null]";
         public static string chaPath = "[null]";
         public static string dppPath = "[null]";
@@ -148,7 +148,7 @@ namespace NSUNS4_Character_Manager
             MessageBox.Show("Config file saved.");
         }
 
-        void LoadConfig()
+        public static void LoadConfig()
         {
             string[] cfg = File.ReadAllLines(ConfigPath);
             if (cfg.Length > 0) datawin32Path = cfg[0];
@@ -1609,14 +1609,8 @@ namespace NSUNS4_Character_Manager
                 MessageBox.Show("For using that function, you need to select your data_win32 directory with mod");
                 return;
             }
-            if (chaPath == "[null]" || !File.Exists(chaPath)) {
-                chaPath = Directory.GetCurrentDirectory() + "\\characode.bin.xfbin";
-            }
-            if (dppPath == "[null]" || !File.Exists(dppPath)) {
-                dppPath = Directory.GetCurrentDirectory() + "\\duelPlayerParam.xfbin";
-            }
             Functions.Tool_ExportCharacter s = new Functions.Tool_ExportCharacter();
-            s.Show();
+            s.ShowDialog();
         }
     }
 }

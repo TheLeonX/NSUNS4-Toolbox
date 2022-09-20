@@ -897,10 +897,17 @@ namespace NSUNS4_Character_Manager
 			FileOpen = false;
 		}
 
-		public void SaveFileAs()
+		public void SaveFileAs(string basepath = "")
 		{
 			SaveFileDialog s = new SaveFileDialog();
-			s.ShowDialog();
+			{
+				s.DefaultExt = ".xfbin";
+				s.Filter = "*.xfbin|*.xfbin";
+			}
+			if (basepath != "")
+				s.FileName = basepath;
+			else
+				s.ShowDialog();
 			if (!(s.FileName != ""))
 			{
 				return;
@@ -918,7 +925,8 @@ namespace NSUNS4_Character_Manager
 				FilePath = s.FileName;
 			}
 			File.WriteAllBytes(FilePath, ConvertToFile());
-			MessageBox.Show("File saved to " + FilePath + ".");
+			if (basepath == "")
+				MessageBox.Show("File saved to " + FilePath + ".");
 		}
 
 		public void AddEntry()

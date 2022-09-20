@@ -80,6 +80,7 @@ namespace NSUNS4_Character_Manager.Functions {
             this.MinimizeBox = false;
             this.Name = "Tool_ExportCharacter";
             this.Text = "Export Character";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Tool_ExportCharacter_FormClosed);
             this.Load += new System.EventHandler(this.Tool_ExportCharacter_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
