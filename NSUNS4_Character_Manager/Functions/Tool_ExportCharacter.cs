@@ -266,8 +266,6 @@ namespace NSUNS4_Character_Manager.Functions {
                 }
             }
             if (dppExist) {
-                Tool_DuelPlayerParamEditor DppFile = new Tool_DuelPlayerParamEditor();
-                DppFile.OpenFile(dppPath);
 
             }
             foreach (FileInfo file in Files) {
