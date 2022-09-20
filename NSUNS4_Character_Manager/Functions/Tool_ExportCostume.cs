@@ -77,5 +77,9 @@ namespace NSUNS4_Character_Manager.Functions
                 MessageBox.Show("Costume exported as .ns4 file.");
             }
         }
+
+        private void Tool_ExportCostume_Load(object sender, EventArgs e) {
+
+        }
     }
 }

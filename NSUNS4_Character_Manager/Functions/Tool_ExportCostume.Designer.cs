@@ -105,6 +105,7 @@
             this.Name = "Tool_ExportCostume";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Export";
+            this.Load += new System.EventHandler(this.Tool_ExportCostume_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -22,16 +22,20 @@ namespace NSUNS4_Character_Manager
         string prmName = "";
         bool fileOpen = false;
         byte[] fileBytes = new byte[0];
-        int entryCount = 0;
-        List<string> pathList = new List<string>();
-        List<string> nameList = new List<string>();
-        List<byte> typeList = new List<byte>();
-        List<byte[]> loadcondList = new List<byte[]>();
+        public int entryCount = 0;
+        public List<string> pathList = new List<string>();
+        public List<string> nameList = new List<string>();
+        public List<byte> typeList = new List<byte>();
+        public List<byte[]> loadcondList = new List<byte[]>();
 
-        void OpenFile()
+        public void OpenFile(string basepath = "")
         {
             OpenFileDialog o = new OpenFileDialog();
-            o.ShowDialog();
+            if (basepath != "") {
+                o.FileName = basepath;
+            } else {
+                o.ShowDialog();
+            }
 
             if (o.FileName == "" || File.Exists(o.FileName) == false) return;
             fileName = o.FileName;

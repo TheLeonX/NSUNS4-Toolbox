@@ -11,6 +11,7 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -23,7 +24,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -75,6 +75,12 @@
   <ItemGroup>
     <Compile Include="NSUNS4_Character_Manager.Properties\Resources.cs" />
     <Compile Include="NSUNS4_Character_Manager.Properties\Settings.cs" />
+    <Compile Include="NSUNS4_Character_Manager\Functions\Tool_ExportCharacter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Functions\Tool_ExportCharacter.Designer.cs">
+      <DependentUpon>Tool_ExportCharacter.cs</DependentUpon>
+    </Compile>
     <Compile Include="NSUNS4_Character_Manager\Functions\Tool_ExportCostume.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,6 +254,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="NSUNS4_Character_Manager\Functions\Tool_ExportCharacter.resx">
+      <DependentUpon>Tool_ExportCharacter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Functions\Tool_ExportCostume.resx">
       <DependentUpon>Tool_ExportCostume.cs</DependentUpon>
     </EmbeddedResource>

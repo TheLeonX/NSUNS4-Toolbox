@@ -48,17 +48,17 @@
             // 
             // w_base
             // 
-            this.w_base.Location = new System.Drawing.Point(13, 30);
+            this.w_base.Location = new System.Drawing.Point(10, 31);
             this.w_base.Name = "w_base";
-            this.w_base.Size = new System.Drawing.Size(229, 23);
+            this.w_base.Size = new System.Drawing.Size(232, 23);
             this.w_base.TabIndex = 1;
             // 
             // w_model
             // 
-            this.w_model.Location = new System.Drawing.Point(13, 75);
+            this.w_model.Location = new System.Drawing.Point(10, 75);
             this.w_model.MaxLength = 7;
             this.w_model.Name = "w_model";
-            this.w_model.Size = new System.Drawing.Size(229, 23);
+            this.w_model.Size = new System.Drawing.Size(232, 23);
             this.w_model.TabIndex = 3;
             // 
             // label2
@@ -74,7 +74,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(10, 148);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(229, 34);
+            this.button1.Size = new System.Drawing.Size(232, 34);
             this.button1.TabIndex = 4;
             this.button1.Text = "Add costume";
             this.button1.UseVisualStyleBackColor = true;
@@ -85,7 +85,7 @@
             this.awaModel.Location = new System.Drawing.Point(10, 119);
             this.awaModel.MaxLength = 7;
             this.awaModel.Name = "awaModel";
-            this.awaModel.Size = new System.Drawing.Size(229, 23);
+            this.awaModel.Size = new System.Drawing.Size(232, 23);
             this.awaModel.TabIndex = 6;
             // 
             // label3

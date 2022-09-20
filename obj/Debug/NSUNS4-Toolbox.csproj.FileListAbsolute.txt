@@ -90,7 +90,6 @@ E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\Microsoft.WindowsAPICodePac
 E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\System.dll
 E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\System.Drawing.dll
 E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\System.Windows.Forms.dll
-E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4-Toolbox.csprojAssemblyReference.cache
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Functions.Tool_ExportCostume.resources
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Main.resources
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tool_AddCharacter.resources
@@ -128,3 +127,5 @@ E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4-Toolbox.csproj.CopyC
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4 Toolbox.exe
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4 Toolbox.pdb
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_battleParamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4-Toolbox.csproj.AssemblyReference.cache
+E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Functions.Tool_ExportCharacter.resources

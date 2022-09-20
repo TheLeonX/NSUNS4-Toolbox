@@ -31,7 +31,7 @@ namespace NSUNS4_Character_Manager
         private ToolStripMenuItem addNewCharacterToolStripMenuItem;
         PrivateFontCollection pfc = new PrivateFontCollection();
         public string ConfigPath = AppDomain.CurrentDomain.BaseDirectory + "\\config.txt";
-        public string datawin32Path = "[null]";
+        public static string datawin32Path = "[null]";
         public static string chaPath = "[null]";
         public static string dppPath = "[null]";
         public static string pspPath = "[null]";
@@ -1022,13 +1022,13 @@ namespace NSUNS4_Character_Manager
             // 
             // button12
             // 
-            this.button12.Enabled = false;
             this.button12.Location = new System.Drawing.Point(5, 35);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(310, 30);
             this.button12.TabIndex = 16;
             this.button12.Text = "Export (.ns4) character";
             this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button13
             // 
@@ -1602,6 +1602,21 @@ namespace NSUNS4_Character_Manager
             messageInfoPath = datawin32Path + "\\message";
 
             SaveConfig();
+        }
+
+        private void button12_Click(object sender, EventArgs e) {
+            if (datawin32Path == "[null]" || datawin32Path == "") {
+                MessageBox.Show("For using that function, you need to select your data_win32 directory with mod");
+                return;
+            }
+            if (chaPath == "[null]" || !File.Exists(chaPath)) {
+                chaPath = Directory.GetCurrentDirectory() + "\\characode.bin.xfbin";
+            }
+            if (dppPath == "[null]" || !File.Exists(dppPath)) {
+                dppPath = Directory.GetCurrentDirectory() + "\\duelPlayerParam.xfbin";
+            }
+            Functions.Tool_ExportCharacter s = new Functions.Tool_ExportCharacter();
+            s.Show();
         }
     }
 }
