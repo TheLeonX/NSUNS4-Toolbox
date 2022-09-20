@@ -39,6 +39,15 @@ namespace NSUNS4_Character_Manager.Functions {
             if (Main.pspPath == "[null]" || !File.Exists(Main.pspPath)) {
                 Main.pspPath = Directory.GetCurrentDirectory() + "\\systemFiles\\playerSettingParam.bin.xfbin";
             }
+            if (Main.skillCustomizePath == "[null]" || !File.Exists(Main.skillCustomizePath)) {
+                Main.skillCustomizePath = Directory.GetCurrentDirectory() + "\\systemFiles\\skillCustomizeParam.bin.xfbin";
+            }
+            if (Main.spSkillCustomizePath == "[null]" || !File.Exists(Main.spSkillCustomizePath)) {
+                Main.spSkillCustomizePath = Directory.GetCurrentDirectory() + "\\systemFiles\\spSkillCustomizeParam.bin.xfbin";
+            }
+            if (Main.awakeAuraPath == "[null]" || !File.Exists(Main.awakeAuraPath)) {
+                Main.awakeAuraPath = Directory.GetCurrentDirectory() + "\\systemFiles\\awakeAura.xfbin";
+            }
             Tool_CharacodeEditor CharacodeFile = new Tool_CharacodeEditor();
             CharacodeFile.OpenFile(Main.chaPath);
 
@@ -49,8 +58,10 @@ namespace NSUNS4_Character_Manager.Functions {
 
         private void button1_Click(object sender, EventArgs e) {
             int x = listBox1.SelectedIndex;
+            Tool_CharacodeEditor CharacodeFile = new Tool_CharacodeEditor();
+            CharacodeFile.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\characode.bin.xfbin");
             if (x!=-1) {
-                if (x>=0 && x<0xE7) {
+                if (x>=0 && x<=CharacodeFile.CharacterCount) {
                     SaveCharacode = listBox1.Items[x].ToString();
                     LiteExport(x + 1);
                 }
@@ -305,10 +316,12 @@ namespace NSUNS4_Character_Manager.Functions {
                     }
                         
                 }
-                if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + dppPath.Substring(dppPath.IndexOf("data_win32\\") + 11)))) {
-                    Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + dppPath.Substring(dppPath.IndexOf("data_win32\\") + 11)));
+                if (DppFile.EntryCount != 0) {
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + dppPath.Substring(dppPath.IndexOf("data_win32\\") + 11)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + dppPath.Substring(dppPath.IndexOf("data_win32\\") + 11)));
+                    }
+                    DppFile.SaveFileAs(SaveDirectory + "\\" + dppPath.Substring(dppPath.IndexOf("data_win32\\") + 11));
                 }
-                DppFile.SaveFileAs(SaveDirectory + "\\" + dppPath.Substring(dppPath.IndexOf("data_win32\\") + 11));
             }
             if (pspExist) {
                 Tool_PlayerSettingParamEditor PspFile = new Tool_PlayerSettingParamEditor();
@@ -330,10 +343,13 @@ namespace NSUNS4_Character_Manager.Functions {
                     }
 
                 }
-                if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf("data_win32\\") + 11)))) {
-                    Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf("data_win32\\") + 11)));
+                if (PspFile.EntryCount != 0) {
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf("data_win32\\") + 11)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf("data_win32\\") + 11)));
+                    }
+                    PspFile.SaveFileAs(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf("data_win32\\") + 11));
                 }
-                PspFile.SaveFileAs(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf("data_win32\\") + 11));
+                
             }
             if (cspExist) {
                 Tool_RosterEditor CspFile = new Tool_RosterEditor();
@@ -375,10 +391,12 @@ namespace NSUNS4_Character_Manager.Functions {
                 CspFile.AccessoryList = AccessoryList;
                 CspFile.NewIdList = NewIdList;
                 CspFile.GibberishBytes = GibberishBytes;
-                if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + cspPath.Substring(cspPath.IndexOf("data_win32\\") + 11)))) {
-                    Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + cspPath.Substring(cspPath.IndexOf("data_win32\\") + 11)));
+                if (CspFile.EntryCount != 0) {
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + cspPath.Substring(cspPath.IndexOf("data_win32\\") + 11)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + cspPath.Substring(cspPath.IndexOf("data_win32\\") + 11)));
+                    }
+                    CspFile.SaveFileAs(SaveDirectory + "\\" + cspPath.Substring(cspPath.IndexOf("data_win32\\") + 11));
                 }
-                CspFile.SaveFileAs(SaveDirectory + "\\" + cspPath.Substring(cspPath.IndexOf("data_win32\\") + 11));
             }
             if (skillCustomizeExist) {
                 Tool_SkillCustomizeParamEditor_new skillCustomizeFile = new Tool_SkillCustomizeParamEditor_new();
@@ -446,10 +464,12 @@ namespace NSUNS4_Character_Manager.Functions {
                         skillCustomizeFile.EntryCount--;
                     }
                 }
-                if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + skillCustomizePath.Substring(skillCustomizePath.IndexOf("data_win32\\") + 11)))) {
-                    Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + skillCustomizePath.Substring(skillCustomizePath.IndexOf("data_win32\\") + 11)));
+                if (skillCustomizeFile.EntryCount != 0) {
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + skillCustomizePath.Substring(skillCustomizePath.IndexOf("data_win32\\") + 11)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + skillCustomizePath.Substring(skillCustomizePath.IndexOf("data_win32\\") + 11)));
+                    }
+                    skillCustomizeFile.SaveFileAs(SaveDirectory + "\\" + skillCustomizePath.Substring(skillCustomizePath.IndexOf("data_win32\\") + 11));
                 }
-                skillCustomizeFile.SaveFileAs(SaveDirectory + "\\" + skillCustomizePath.Substring(skillCustomizePath.IndexOf("data_win32\\") + 11));
             }
             if (spskillCustomizeExist) {
                 Tool_SpSkillCustomizeParamEditor spSkillCustomizeFile = new Tool_SpSkillCustomizeParamEditor();
@@ -478,10 +498,143 @@ namespace NSUNS4_Character_Manager.Functions {
                         x--;
                     }
                 }
-                if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + spskillCustomizePath.Substring(spskillCustomizePath.IndexOf("data_win32\\") + 11)))) {
-                    Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + spskillCustomizePath.Substring(spskillCustomizePath.IndexOf("data_win32\\") + 11)));
+                if (spSkillCustomizeFile.EntryCount != 0) {
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + spskillCustomizePath.Substring(spskillCustomizePath.IndexOf("data_win32\\") + 11)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + spskillCustomizePath.Substring(spskillCustomizePath.IndexOf("data_win32\\") + 11)));
+                    }
+                    spSkillCustomizeFile.SaveFileAs(SaveDirectory + "\\" + spskillCustomizePath.Substring(spskillCustomizePath.IndexOf("data_win32\\") + 11));
+                }  
+            }
+            if (awakeAuraExist) {
+                Tool_AwakeAuraEditor awakeAuraFile = new Tool_AwakeAuraEditor();
+                awakeAuraFile.OpenFile(awakeAuraPath);
+                for (int x = 0; x<awakeAuraFile.EntryCount; x++) {
+                    if (SaveCharacode != awakeAuraFile.CharacodeList[x]) {
+                        awakeAuraFile.CharacodeList.RemoveAt(x);
+                        awakeAuraFile.SkillFileList.RemoveAt(x);
+                        awakeAuraFile.EffectList.RemoveAt(x);
+                        awakeAuraFile.MainBoneList.RemoveAt(x);
+                        awakeAuraFile.SecondBoneList.RemoveAt(x);
+                        awakeAuraFile.AwakeModeValue_false_List.RemoveAt(x);
+                        awakeAuraFile.AwakeModeValue_true_List.RemoveAt(x);
+                        awakeAuraFile.SecondBoneValue_1_List.RemoveAt(x);
+                        awakeAuraFile.SecondBoneValue_2_List.RemoveAt(x);
+                        awakeAuraFile.SecondBoneValue_3_List.RemoveAt(x);
+                        awakeAuraFile.ConstantValue_List.RemoveAt(x);
+                        awakeAuraFile.EntryCount--;
+                        x--;
+                    }
                 }
-                spSkillCustomizeFile.SaveFileAs(SaveDirectory + "\\" + spskillCustomizePath.Substring(spskillCustomizePath.IndexOf("data_win32\\") + 11));
+                if (awakeAuraFile.EntryCount!=0) {
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + awakeAuraPath.Substring(awakeAuraPath.IndexOf("data_win32\\") + 11)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + awakeAuraPath.Substring(awakeAuraPath.IndexOf("data_win32\\") + 11)));
+                    }
+                    awakeAuraFile.SaveFileAs(SaveDirectory + "\\" + awakeAuraPath.Substring(awakeAuraPath.IndexOf("data_win32\\") + 11));
+                }
+            }
+            if (iconExist) {
+                Tool_IconEditor iconFile = new Tool_IconEditor();
+                Tool_PlayerSettingParamEditor PspFile = new Tool_PlayerSettingParamEditor();
+                iconFile.OpenFile(iconPath);
+                if (pspExist)
+                    PspFile.OpenFile(SaveDirectory + "\\" + pspPath.Substring(pspPath.IndexOf("data_win32\\") + 11));
+                else
+                    PspFile.OpenFile(Main.pspPath);
+                List<byte[]> CharacodeList = new List<byte[]>();
+                List<byte[]> CostumeList = new List<byte[]>();
+                List<string> NameList = new List<string>();
+                List<string> ExNinjutsuList = new List<string>();
+                List<string> IconList = new List<string>();
+                List<string> AwaIconList = new List<string>();
+                for (int i = 0; i<PspFile.EntryCount; i++) {
+                    for (int x = 0; x<iconFile.EntryCount; x++) {
+                        if (Main.b_byteArrayToInt(iconFile.CharacodeList[x]) == CharacodeID && PspFile.OptValueA[i] == Main.b_byteArrayToInt(iconFile.CostumeList[x])) {
+                            CharacodeList.Add(iconFile.CharacodeList[x]);
+                            CostumeList.Add(iconFile.CostumeList[x]);
+                            NameList.Add(iconFile.NameList[x]);
+                            ExNinjutsuList.Add(iconFile.ExNinjutsuList[x]);
+                            IconList.Add(iconFile.IconList[x]);
+                            AwaIconList.Add(iconFile.AwaIconList[x]);
+                        }
+                    }
+                }
+                iconFile.CharacodeList = CharacodeList;
+                iconFile.CostumeList = CostumeList;
+                iconFile.NameList = NameList;
+                iconFile.ExNinjutsuList = ExNinjutsuList;
+                iconFile.IconList = IconList;
+                iconFile.AwaIconList = AwaIconList;
+                iconFile.EntryCount = CharacodeList.Count;
+                if (iconFile.EntryCount != 0) {
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + iconPath.Substring(iconPath.IndexOf("data_win32\\") + 11)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + iconPath.Substring(iconPath.IndexOf("data_win32\\") + 11)));
+                    }
+                    iconFile.SaveFileAs(SaveDirectory + "\\" + iconPath.Substring(iconPath.IndexOf("data_win32\\") + 11));
+                }
+            }
+            if (appearanceAnmExist) {
+                Tool_appearenceAnmEditor appearanceAnmFile = new Tool_appearenceAnmEditor();
+                appearanceAnmFile.OpenFile(appearanceAnmPath);
+                for (int x = 0; x< appearanceAnmFile.EntryCount; x++) {
+                    if (Main.b_byteArrayToInt(appearanceAnmFile.CharacodeList[x]) != CharacodeID) {
+                        appearanceAnmFile.CharacodeList.RemoveAt(x);
+                        appearanceAnmFile.MeshList.RemoveAt(x);
+                        appearanceAnmFile.SlotList.RemoveAt(x);
+                        appearanceAnmFile.TypeSectionList.RemoveAt(x);
+                        appearanceAnmFile.EnableDisableList.RemoveAt(x);
+                        appearanceAnmFile.NormalStateList.RemoveAt(x);
+                        appearanceAnmFile.AwakeningStateList.RemoveAt(x);
+                        appearanceAnmFile.ReverseSectionList.RemoveAt(x);
+                        appearanceAnmFile.EnableDisableCutNCList.RemoveAt(x);
+                        appearanceAnmFile.EnableDisableUltList.RemoveAt(x);
+                        appearanceAnmFile.EnableDisableWinList.RemoveAt(x);
+                        appearanceAnmFile.EnableDisableArmorBreakList.RemoveAt(x);
+                        appearanceAnmFile.TimingAwakeList.RemoveAt(x);
+                        appearanceAnmFile.TransparenceList.RemoveAt(x);
+                        appearanceAnmFile.EntryCount--;
+                        x--;
+                    }
+                }
+                if (appearanceAnmFile.EntryCount != 0) {
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + appearanceAnmPath.Substring(appearanceAnmPath.IndexOf("data_win32\\") + 11)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + appearanceAnmPath.Substring(appearanceAnmPath.IndexOf("data_win32\\") + 11)));
+                    }
+                    appearanceAnmFile.SaveFileAs(SaveDirectory + "\\" + appearanceAnmPath.Substring(appearanceAnmPath.IndexOf("data_win32\\") + 11));
+                }
+            }
+            if (afterAttachObjectExist) {
+                Tool_afterAttachObject afterAttachObjectFile = new Tool_afterAttachObject();
+                afterAttachObjectFile.OpenFile(afterAttachObjectPath);
+                for (int x = 0; x<afterAttachObjectFile.EntryCount; x++) {
+                    if (afterAttachObjectFile.characode1List[x] != SaveCharacode) {
+                        afterAttachObjectFile.characode1List.RemoveAt(x);
+                        afterAttachObjectFile.characode2List.RemoveAt(x);
+                        afterAttachObjectFile.pathList.RemoveAt(x);
+                        afterAttachObjectFile.meshList.RemoveAt(x);
+                        afterAttachObjectFile.bone1List.RemoveAt(x);
+                        afterAttachObjectFile.bone2List.RemoveAt(x);
+                        afterAttachObjectFile.value1List.RemoveAt(x);
+                        afterAttachObjectFile.value2List.RemoveAt(x);
+                        afterAttachObjectFile.value3List.RemoveAt(x);
+                        afterAttachObjectFile.XPosList.RemoveAt(x);
+                        afterAttachObjectFile.YPosList.RemoveAt(x);
+                        afterAttachObjectFile.ZPosList.RemoveAt(x);
+                        afterAttachObjectFile.XRotList.RemoveAt(x);
+                        afterAttachObjectFile.YRotList.RemoveAt(x);
+                        afterAttachObjectFile.ZRotList.RemoveAt(x);
+                        afterAttachObjectFile.XScaleList.RemoveAt(x);
+                        afterAttachObjectFile.YScaleList.RemoveAt(x);
+                        afterAttachObjectFile.ZScaleList.RemoveAt(x);
+                        afterAttachObjectFile.EntryCount--;
+                        x--;
+                    }
+                }
+                if (afterAttachObjectFile.EntryCount != 0) {
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\" + afterAttachObjectPath.Substring(afterAttachObjectPath.IndexOf("data_win32\\") + 11)))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\" + afterAttachObjectPath.Substring(afterAttachObjectPath.IndexOf("data_win32\\") + 11)));
+                    }
+                    afterAttachObjectFile.SaveFileAs(SaveDirectory + "\\" + afterAttachObjectPath.Substring(afterAttachObjectPath.IndexOf("data_win32\\") + 11));
+                }
             }
             foreach (FileInfo file in Files) {
                 if (File.Exists(Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf("data_win32\\") + 11))) {
@@ -490,7 +643,12 @@ namespace NSUNS4_Character_Manager.Functions {
                 }
             }
 
-
+            FileStream fParameter = new FileStream(f.SelectedPath + "\\" + SaveCharacode + "\\characode.txt", FileMode.Create, FileAccess.Write);
+            StreamWriter m_WriterParameter = new StreamWriter(fParameter);
+            m_WriterParameter.BaseStream.Seek(0, SeekOrigin.End);
+            m_WriterParameter.Write(CharacodeID);
+            m_WriterParameter.Flush();
+            m_WriterParameter.Close();
             MessageBox.Show(SaveCharacode + " lite exported successfuly!");
         }
 

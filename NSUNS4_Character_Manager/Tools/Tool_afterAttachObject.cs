@@ -55,7 +55,7 @@ namespace NSUNS4_Character_Manager.Tools
         }
 
 
-        void OpenFile(string basepath = "")
+        public void OpenFile(string basepath = "")
         {
             OpenFileDialog o = new OpenFileDialog();
             {
@@ -588,14 +588,17 @@ namespace NSUNS4_Character_Manager.Tools
             }
         }
 
-        public void SaveFileAs()
+        public void SaveFileAs(string basepath = "")
         {
             SaveFileDialog s = new SaveFileDialog();
             {
                 s.DefaultExt = ".xfbin";
                 s.Filter = "*.xfbin|*.xfbin";
             }
-            s.ShowDialog();
+            if (basepath != "")
+                s.FileName = basepath;
+            else
+                s.ShowDialog();
             if (!(s.FileName != ""))
             {
                 return;
@@ -613,7 +616,8 @@ namespace NSUNS4_Character_Manager.Tools
                 FilePath = s.FileName;
             }
             File.WriteAllBytes(FilePath, ConvertToFile());
-            MessageBox.Show("File saved to " + FilePath + ".");
+            if (basepath == "")
+                MessageBox.Show("File saved to " + FilePath + ".");
         }
         public byte[] ConvertToFile()
         {
