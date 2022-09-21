@@ -1605,7 +1605,11 @@ namespace NSUNS4_Character_Manager
         }
 
         private void button12_Click(object sender, EventArgs e) {
-            if (datawin32Path == "[null]" || datawin32Path == "") {
+            FolderBrowserDialog f = new FolderBrowserDialog();
+            f.ShowDialog();
+            if (f.SelectedPath != "")
+                datawin32Path = f.SelectedPath;
+            else {
                 MessageBox.Show("For using that function, you need to select your data_win32 directory with mod");
                 return;
             }

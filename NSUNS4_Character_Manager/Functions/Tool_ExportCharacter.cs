@@ -63,7 +63,7 @@ namespace NSUNS4_Character_Manager.Functions {
             if (x!=-1) {
                 bool contain = false;
                 for (int i = 0; i< CharacodeFile.CharacterCount; i++) {
-                    if (CharacodeFile.CharacterList[x].Contains(listBox1.Items[x].ToString())) {
+                    if (CharacodeFile.CharacterList[i].Contains(listBox1.Items[x].ToString())) {
                         SaveCharacode = listBox1.Items[x].ToString();
                         ExportCharacter(x + 1);
                         contain = true;
@@ -101,6 +101,8 @@ namespace NSUNS4_Character_Manager.Functions {
             string iconPath = "";
             string appearanceAnmPath = "";
             string afterAttachObjectPath = "";
+            string moddingAPIPath = Main.datawin32Path.Replace(d.Name, "moddingapi\\mods");
+
             foreach (FileInfo file in Files) {
                 if (file.FullName.Contains("spcload\\" + SaveCharacode + "prm_load.bin.xfbin")) {
                     prmLoadExist = true;
@@ -662,21 +664,83 @@ namespace NSUNS4_Character_Manager.Functions {
                 }
             }
 
+            //moddingAPI files
+            if (Directory.Exists(moddingAPIPath)) {
+                List<string> partnerSlotParamPaths = new List<string>();
+                List<string> specialCondParamPaths = new List<string>();
+                DirectoryInfo moddingAPI_d = new DirectoryInfo(@moddingAPIPath);
+                FileInfo[] moddingAPI_Files = moddingAPI_d.GetFiles("*.xfbin", SearchOption.AllDirectories);
+                foreach (FileInfo file in moddingAPI_Files) {
+                    if (file.FullName.Contains("partnerSlotParam.xfbin")) {
+                        partnerSlotParamPaths.Add(file.FullName);
+                    }
+                    else if (file.FullName.Contains("specialCondParam.xfbin")) {
+                        specialCondParamPaths.Add(file.FullName);
+                    }
+                }
+                if (specialCondParamPaths.Count > 0) {
+                    for (int x = 0; x < specialCondParamPaths.Count; x++) {
+                        byte[] FileBytes = File.ReadAllBytes(specialCondParamPaths[x]);
+                        int EntryCount = FileBytes.Length / 0x20;
+
+                        for (int z = 0; z< EntryCount; z++) {
+                            long _ptr = 0x20 * z;
+                            string ConditionName = Main.b_ReadString2(FileBytes, (int)_ptr);
+                            int CondCharacodeID = Main.b_ReadIntFromTwoBytes(FileBytes, (int)_ptr + 0x17);
+                            if (CondCharacodeID == CharacodeID) {
+                                byte[] Section = new byte[0x20];
+                                Section = Main.b_ReplaceString(Section, ConditionName, 0);
+                                Section = Main.b_ReplaceBytes(Section, BitConverter.GetBytes(CondCharacodeID), 0x17);
+                                if (!Directory.Exists(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode)) {
+                                    Directory.CreateDirectory(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode);
+                                }
+                                File.WriteAllBytes(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode + "\\specialCondParam.xfbin", Section);
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (partnerSlotParamPaths.Count > 0) {
+                    for (int x = 0; x < partnerSlotParamPaths.Count; x++) {
+                        byte[] FileBytes = File.ReadAllBytes(partnerSlotParamPaths[x]);
+                        int EntryCount = FileBytes.Length / 0x20;
+
+                        for (int z = 0; z < EntryCount; z++) {
+                            long _ptr = 0x20 * z;
+                            string ConditionName = Main.b_ReadString2(FileBytes, (int)_ptr);
+                            int CondCharacodeID = Main.b_ReadIntFromTwoBytes(FileBytes, (int)_ptr + 0x17);
+                            if (CondCharacodeID == CharacodeID) {
+                                byte[] Section = new byte[0x20];
+                                Section = Main.b_ReplaceString(Section, ConditionName, 0);
+                                Section = Main.b_ReplaceBytes(Section, BitConverter.GetBytes(CondCharacodeID), 0x17);
+                                if (!Directory.Exists(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode)) {
+                                    Directory.CreateDirectory(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode);
+                                }
+                                File.WriteAllBytes(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode + "\\partnerSlotParam.xfbin", Section);
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (partnerSlotParamPaths.Count > 0 || specialCondParamPaths.Count > 0) {
+                    FileStream ffParameter = new FileStream(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode + "\\info.txt", FileMode.Create, FileAccess.Write);
+                    StreamWriter mm_WriterParameter = new StreamWriter(ffParameter);
+                    mm_WriterParameter.BaseStream.Seek(0, SeekOrigin.End);
+                    mm_WriterParameter.Write("Exported character " + SaveCharacode + "| | Unknown");
+                    mm_WriterParameter.Flush();
+                    mm_WriterParameter.Close();
+                }
+            }
+            
             FileStream fParameter = new FileStream(f.SelectedPath + "\\" + SaveCharacode + "\\characode.txt", FileMode.Create, FileAccess.Write);
             StreamWriter m_WriterParameter = new StreamWriter(fParameter);
             m_WriterParameter.BaseStream.Seek(0, SeekOrigin.End);
             m_WriterParameter.Write(CharacodeID);
             m_WriterParameter.Flush();
             m_WriterParameter.Close();
-            MessageBox.Show(SaveCharacode + " lite exported successfuly!");
+            MessageBox.Show(SaveCharacode + " exported successfuly!");
         }
 
-        public void ExpertExport(int CharacodeID) {
-            FolderBrowserDialog f = new FolderBrowserDialog();
-            f.ShowDialog();
-            SaveDirectory = f.SelectedPath + "\\" + SaveCharacode + "\\data_win32";
-            DirectoryInfo di = Directory.CreateDirectory(SaveDirectory);
-        }
         public void CopyFiles(string targetPath, string originalDataWin32, string newDataWin32) {
             if (File.Exists(originalDataWin32)) {
                 if (!Directory.Exists(targetPath)) {
@@ -688,6 +752,15 @@ namespace NSUNS4_Character_Manager.Functions {
 
         private void Tool_ExportCharacter_FormClosed(object sender, FormClosedEventArgs e) {
             Main.LoadConfig();
+        }
+
+        private void Search_Click(object sender, EventArgs e) {
+            for (int i = 0; i<listBox1.Items.Count; i++) {
+                if (listBox1.Items[i].ToString().Contains(Search_TB.Text)) {
+                    listBox1.SelectedIndex = i;
+                    break;
+                }
+            }
         }
     }
 }
