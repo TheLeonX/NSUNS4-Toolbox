@@ -194,28 +194,30 @@ namespace NSUNS4_Character_Manager
 			}
 		}
 
-		public void SaveFileAs()
-		{
+		public void SaveFileAs(string basepath = "") {
 			SaveFileDialog s = new SaveFileDialog();
-			s.ShowDialog();
-			if (!(s.FileName != ""))
 			{
+				s.DefaultExt = ".xfbin";
+				s.Filter = "*.xfbin|*.xfbin";
+			}
+			if (basepath != "")
+				s.FileName = basepath;
+			else
+				s.ShowDialog();
+			if (!(s.FileName != "")) {
 				return;
 			}
-			if (s.FileName == FilePath)
-			{
-				if (File.Exists(FilePath + ".backup"))
-				{
+			if (s.FileName == FilePath) {
+				if (File.Exists(FilePath + ".backup")) {
 					File.Delete(FilePath + ".backup");
 				}
 				File.Copy(FilePath, FilePath + ".backup");
-			}
-			else
-			{
+			} else {
 				FilePath = s.FileName;
 			}
 			File.WriteAllBytes(FilePath, ConvertToFile());
-			MessageBox.Show("File saved to " + FilePath + ".");
+			if (basepath == "")
+				MessageBox.Show("File saved to " + FilePath + ".");
 		}
 
 		public void CloseFile()

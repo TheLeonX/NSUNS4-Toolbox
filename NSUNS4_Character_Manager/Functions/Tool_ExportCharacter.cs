@@ -726,7 +726,7 @@ namespace NSUNS4_Character_Manager.Functions {
                     FileStream ffParameter = new FileStream(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode + "\\info.txt", FileMode.Create, FileAccess.Write);
                     StreamWriter mm_WriterParameter = new StreamWriter(ffParameter);
                     mm_WriterParameter.BaseStream.Seek(0, SeekOrigin.End);
-                    mm_WriterParameter.Write("Exported character " + SaveCharacode + "| | Unknown");
+                    mm_WriterParameter.Write("Exported character " + SaveCharacode + "| |Unknown");
                     mm_WriterParameter.Flush();
                     mm_WriterParameter.Close();
                 }

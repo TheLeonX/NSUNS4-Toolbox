@@ -77,6 +77,7 @@ namespace NSUNS4_Character_Manager
         private LinkLabel linkLabel2;
         private ToolStripMenuItem infoToolStripMenuItem;
         private ToolStripMenuItem addingCharacterWoReplacingToolStripMenuItem;
+        private Button button25;
         public byte[] PRMEditorCopiedSection;
         public byte[] TheValue
         {
@@ -811,6 +812,7 @@ namespace NSUNS4_Character_Manager
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.button25 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -879,19 +881,19 @@ namespace NSUNS4_Character_Manager
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(5, 6);
+            this.button6.Location = new System.Drawing.Point(0, 0);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(610, 30);
+            this.button6.Size = new System.Drawing.Size(309, 36);
             this.button6.TabIndex = 6;
-            this.button6.Text = "Import (.ns4) file";
+            this.button6.Text = "Import (.ns4) costume";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(314, 35);
+            this.button7.Location = new System.Drawing.Point(308, 0);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(301, 30);
+            this.button7.Size = new System.Drawing.Size(310, 36);
             this.button7.TabIndex = 7;
             this.button7.Text = "Export (.ns4) costume";
             this.button7.UseVisualStyleBackColor = true;
@@ -1022,11 +1024,11 @@ namespace NSUNS4_Character_Manager
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(5, 35);
+            this.button12.Location = new System.Drawing.Point(308, 34);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(310, 30);
             this.button12.TabIndex = 16;
-            this.button12.Text = "Export (.ns4) character";
+            this.button12.Text = "Export character";
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
@@ -1255,6 +1257,7 @@ namespace NSUNS4_Character_Manager
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button25);
             this.tabPage2.Controls.Add(this.button6);
             this.tabPage2.Controls.Add(this.button12);
             this.tabPage2.Controls.Add(this.button7);
@@ -1291,6 +1294,16 @@ namespace NSUNS4_Character_Manager
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "ModdingAPI";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // button25
+            // 
+            this.button25.Location = new System.Drawing.Point(0, 34);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(309, 30);
+            this.button25.TabIndex = 17;
+            this.button25.Text = "Import character";
+            this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
             // 
             // Main
             // 
@@ -1615,6 +1628,18 @@ namespace NSUNS4_Character_Manager
             }
             Functions.Tool_ExportCharacter s = new Functions.Tool_ExportCharacter();
             s.ShowDialog();
+        }
+
+        private void button25_Click(object sender, EventArgs e) {
+            if (Directory.Exists(datawin32Path) || (datawin32Path != "[null]" && datawin32Path !="")) {
+                Functions.Tool_ImportCharacter s = new Functions.Tool_ImportCharacter();
+                s.ShowDialog();
+            }
+            else {
+                MessageBox.Show("For using that function, you need to select your data_win32 directory with mod");
+                return;
+            }
+            
         }
     }
 }

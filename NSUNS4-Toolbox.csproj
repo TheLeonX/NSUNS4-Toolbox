@@ -87,6 +87,12 @@
     <Compile Include="NSUNS4_Character_Manager\Functions\Tool_ExportCostume.Designer.cs">
       <DependentUpon>Tool_ExportCostume.cs</DependentUpon>
     </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Functions\Tool_ImportCharacter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Functions\Tool_ImportCharacter.Designer.cs">
+      <DependentUpon>Tool_ImportCharacter.cs</DependentUpon>
+    </Compile>
     <Compile Include="NSUNS4_Character_Manager\Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -259,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Functions\Tool_ExportCostume.resx">
       <DependentUpon>Tool_ExportCostume.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NSUNS4_Character_Manager\Functions\Tool_ImportCharacter.resx">
+      <DependentUpon>Tool_ImportCharacter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
