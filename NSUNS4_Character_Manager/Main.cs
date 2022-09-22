@@ -170,7 +170,7 @@ namespace NSUNS4_Character_Manager
             if (cfg.Length > 15) episodeParamPath = cfg[15];
             if (cfg.Length > 16) episodeMovieParamPath = cfg[16];
             if (cfg.Length > 17) messageInfoPath = cfg[17];
-            MessageBox.Show("Loaded paths.");
+            //MessageBox.Show("Loaded paths.");
         }
 
         // Add costume
@@ -1620,8 +1620,20 @@ namespace NSUNS4_Character_Manager
         private void button12_Click(object sender, EventArgs e) {
             FolderBrowserDialog f = new FolderBrowserDialog();
             f.ShowDialog();
-            if (f.SelectedPath != "")
+            if (f.SelectedPath != "") {
                 datawin32Path = f.SelectedPath;
+                chaPath = datawin32Path + "\\spc\\characode.bin.xfbin";
+                dppPath = datawin32Path + "\\spc\\duelPlayerParam.xfbin";
+                pspPath = datawin32Path + "\\spc\\WIN64\\playerSettingParam.bin.xfbin";
+                cspPath = datawin32Path + "\\ui\\max\\select\\WIN64\\characterSelectParam.xfbin";
+                iconPath = datawin32Path + "\\spc\\WIN64\\player_icon.xfbin";
+                awakeAuraPath = datawin32Path + "\\spc\\WIN64\\awakeAura.xfbin";
+                skillCustomizePath = datawin32Path + "\\spc\\WIN64\\skillCustomizeParam.xfbin";
+                spSkillCustomizePath = datawin32Path + "\\spc\\WIN64\\spSkillCustomizeParam.xfbin";
+                afterAttachObjectPath = datawin32Path + "\\spc\\WIN64\\afterAttachObject.xfbin";
+                appearanceAnmPath = datawin32Path + "\\spc\\WIN64\\appearanceAnm.xfbin";
+            }
+                
             else {
                 MessageBox.Show("For using that function, you need to select your data_win32 directory with mod");
                 return;
