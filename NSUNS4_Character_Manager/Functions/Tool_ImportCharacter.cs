@@ -29,6 +29,7 @@ namespace NSUNS4_Character_Manager.Functions {
         string originalIconPath = Directory.GetCurrentDirectory() + "\\systemFiles\\player_icon.xfbin";
         string originalCspPath = Directory.GetCurrentDirectory() + "\\systemFiles\\characterSelectParam.xfbin";
         string originalPspPath = Directory.GetCurrentDirectory() + "\\systemFiles\\playerSettingParam.bin.xfbin";
+        string originalcmnparamPath = Directory.GetCurrentDirectory() + "\\systemFiles\\cmnparam.xfbin";
         private void importToolStripMenuItem_Click(object sender, EventArgs e) {
             FolderBrowserDialog f = new FolderBrowserDialog();
             f.ShowDialog();
@@ -139,6 +140,7 @@ namespace NSUNS4_Character_Manager.Functions {
                     string afterAttachObjectPath = "";
                     string partnerSlotParamPath = "";
                     string specialCondParamPath = "";
+                    string cmnparamPath = "";
                     bool dppExist = false;
                     bool pspExist = false;
                     bool cspExist = false;
@@ -150,6 +152,7 @@ namespace NSUNS4_Character_Manager.Functions {
                     bool afterAttachObjectExist = false;
                     bool partnerSlotParamExist = false;
                     bool specialCondParamExist = false;
+                    bool cmnparamExist = false;
                     foreach (FileInfo file in Files) {
                         if (file.FullName.Contains("spc\\duelPlayerParam.xfbin")) {
                             dppExist = true;
@@ -268,6 +271,16 @@ namespace NSUNS4_Character_Manager.Functions {
                         } else {
                             originalChaExist = false;
                             originalPathCharacode = "";
+                        }
+                    }
+                    foreach (FileInfo file in Files) {
+                        if (file.FullName.Contains("sound\\cmnparam.xfbin")) {
+                            cmnparamExist = true;
+                            cmnparamPath = file.FullName;
+                            break;
+                        } else {
+                            cmnparamExist = false;
+                            cmnparamPath = "";
                         }
                     }
                     if (originalChaExist) {
@@ -897,6 +910,61 @@ namespace NSUNS4_Character_Manager.Functions {
                             }
                             afterAttachObjectOriginalFile.SaveFileAs(Main.datawin32Path + "\\spc\\WIN64\\afterAttachObject.xfbin");
                         }
+                        if (cmnparamExist) {
+                            Tool_cmnparamEditor cmnparamModFile = new Tool_cmnparamEditor();
+                            Tool_cmnparamEditor cmnparamOriginalFile = new Tool_cmnparamEditor();
+                            cmnparamModFile.OpenFile(cmnparamPath);
+                            if (File.Exists(Main.cmnparamPath))
+                                cmnparamOriginalFile.OpenFile(Main.cmnparamPath);
+                            else {
+                                cmnparamOriginalFile.OpenFile(originalcmnparamPath);
+                            }
+                            if (ReplaceCharacterList[i]) {
+                                for (int c = 0; c < cmnparamOriginalFile.EntryCount_Player; c++) {
+                                    if (cmnparamOriginalFile.Player_Characode_List[c].Contains(d.Name)) {
+                                        cmnparamOriginalFile.Player_PlFileName_List[c] = cmnparamModFile.Player_PlFileName_List[0];
+                                        cmnparamOriginalFile.Player_PlAwaFileName_List[c] = cmnparamModFile.Player_PlAwaFileName_List[0];
+                                        cmnparamOriginalFile.Player_PlAwa2FileName_List[c] = cmnparamModFile.Player_PlAwa2FileName_List[0];
+                                        cmnparamOriginalFile.Player_EvName_List[c] = cmnparamModFile.Player_EvName_List[0];
+                                        cmnparamOriginalFile.Player_UJEvName_List[c] = cmnparamModFile.Player_UJEvName_List[0];
+                                        cmnparamOriginalFile.Player_UJ_1_CutInName_List[c] = cmnparamModFile.Player_UJ_1_CutInName_List[0];
+                                        cmnparamOriginalFile.Player_UJ_1_AtkName_List[c] = cmnparamModFile.Player_UJ_1_AtkName_List[0];
+                                        cmnparamOriginalFile.Player_UJ_2_CutInName_List[c] = cmnparamModFile.Player_UJ_2_CutInName_List[0];
+                                        cmnparamOriginalFile.Player_UJ_2_AtkName_List[c] = cmnparamModFile.Player_UJ_2_AtkName_List[0];
+                                        cmnparamOriginalFile.Player_UJ_3_CutInName_List[c] = cmnparamModFile.Player_UJ_3_CutInName_List[0];
+                                        cmnparamOriginalFile.Player_UJ_3_AtkName_List[c] = cmnparamModFile.Player_UJ_3_AtkName_List[0];
+                                        cmnparamOriginalFile.Player_UJ_Alt_CutInName_List[c] = cmnparamModFile.Player_UJ_Alt_CutInName_List[0];
+                                        cmnparamOriginalFile.Player_UJ_Alt_AtkName_List[c] = cmnparamModFile.Player_UJ_Alt_AtkName_List[0];
+                                        cmnparamOriginalFile.Player_PartnerCharacode_List[c] = cmnparamModFile.Player_PartnerCharacode_List[0];
+                                        cmnparamOriginalFile.Player_PartnerAwaCharacode_List[c] = cmnparamModFile.Player_PartnerAwaCharacode_List[0];
+                                    }
+
+                                }
+
+                            } else {
+                                cmnparamOriginalFile.Player_Characode_List.Add(cmnparamModFile.Player_Characode_List[0]);
+                                cmnparamOriginalFile.Player_PlFileName_List.Add(cmnparamModFile.Player_PlFileName_List[0]);
+                                cmnparamOriginalFile.Player_PlAwaFileName_List.Add(cmnparamModFile.Player_PlAwaFileName_List[0]);
+                                cmnparamOriginalFile.Player_PlAwa2FileName_List.Add(cmnparamModFile.Player_PlAwa2FileName_List[0]);
+                                cmnparamOriginalFile.Player_EvName_List.Add(cmnparamModFile.Player_EvName_List[0]);
+                                cmnparamOriginalFile.Player_UJEvName_List.Add(cmnparamModFile.Player_UJEvName_List[0]);
+                                cmnparamOriginalFile.Player_UJ_1_CutInName_List.Add(cmnparamModFile.Player_UJ_1_CutInName_List[0]);
+                                cmnparamOriginalFile.Player_UJ_1_AtkName_List.Add(cmnparamModFile.Player_UJ_1_AtkName_List[0]);
+                                cmnparamOriginalFile.Player_UJ_2_CutInName_List.Add(cmnparamModFile.Player_UJ_2_CutInName_List[0]);
+                                cmnparamOriginalFile.Player_UJ_2_AtkName_List.Add(cmnparamModFile.Player_UJ_2_AtkName_List[0]);
+                                cmnparamOriginalFile.Player_UJ_3_CutInName_List.Add(cmnparamModFile.Player_UJ_3_CutInName_List[0]);
+                                cmnparamOriginalFile.Player_UJ_3_AtkName_List.Add(cmnparamModFile.Player_UJ_3_AtkName_List[0]);
+                                cmnparamOriginalFile.Player_UJ_Alt_CutInName_List.Add(cmnparamModFile.Player_UJ_Alt_CutInName_List[0]);
+                                cmnparamOriginalFile.Player_UJ_Alt_AtkName_List.Add(cmnparamModFile.Player_UJ_Alt_AtkName_List[0]);
+                                cmnparamOriginalFile.Player_PartnerCharacode_List.Add(cmnparamModFile.Player_PartnerCharacode_List[0]);
+                                cmnparamOriginalFile.Player_PartnerAwaCharacode_List.Add(cmnparamModFile.Player_PartnerAwaCharacode_List[0]);
+                                cmnparamOriginalFile.EntryCount_Player++;
+                            }
+                            if (!Directory.Exists(Main.datawin32Path + "\\sound")) {
+                                Directory.CreateDirectory(Main.datawin32Path + "\\sound");
+                            }
+                            cmnparamOriginalFile.SaveFileAs(Main.datawin32Path + "\\sound\\cmnparam.xfbin");
+                        }
                         string root_path = Main.datawin32Path.Replace(d_or.Name, "");
                         if (specialCondParamExist) {
                             CopyFiles(root_path + "\\moddingapi\\mods\\" + d.Name, specialCondParamPath, root_path + "\\moddingapi\\mods\\" + d.Name + "\\specialCondParam.xfbin");
@@ -920,7 +988,7 @@ namespace NSUNS4_Character_Manager.Functions {
                             mm_WriterParameter.Close();
                         }
                         foreach (FileInfo file in Files) {
-                            if (!file.Name.Contains("duelPlayerParam") && !file.Name.Contains("awakeAura") && !file.Name.Contains("appearanceAnm") && !file.Name.Contains("afterAttachObject") && !file.Name.Contains("characterSelectParam") && !file.Name.Contains("playerSettingParam") && !file.Name.Contains("skillCustomizeParam") && !file.Name.Contains("spSkillCustomizeParam") && !file.Name.Contains("player_icon")) {
+                            if (!file.Name.Contains("cmnparam") && !file.Name.Contains("duelPlayerParam") && !file.Name.Contains("awakeAura") && !file.Name.Contains("appearanceAnm") && !file.Name.Contains("afterAttachObject") && !file.Name.Contains("characterSelectParam") && !file.Name.Contains("playerSettingParam") && !file.Name.Contains("skillCustomizeParam") && !file.Name.Contains("spSkillCustomizeParam") && !file.Name.Contains("player_icon")) {
                                 if (!file.FullName.Contains("moddingapi"))
                                     CopyFiles(Path.GetDirectoryName(Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength)), file.FullName, Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength));
                             }

@@ -27,27 +27,9 @@ namespace NSUNS4_Character_Manager.Functions {
         public bool awakeAuraExist = false;
         public bool appearanceAnmExist = false;
         public bool afterAttachObjectExist = false;
+        public bool cmnparamExist = false;
         private void Tool_ExportCharacter_Load(object sender, EventArgs e) {
             // Open Characode
-            
-            //if (Main.chaPath == "[null]" || !File.Exists(Main.chaPath)) {
-            //    Main.chaPath = Directory.GetCurrentDirectory() + "\\systemFiles\\characode.bin.xfbin";
-            //}
-            //if (Main.dppPath == "[null]" || !File.Exists(Main.dppPath)) {
-            //    Main.dppPath = Directory.GetCurrentDirectory() + "\\systemFiles\\duelPlayerParam.xfbin";
-            //}
-            //if (Main.pspPath == "[null]" || !File.Exists(Main.pspPath)) {
-            //    Main.pspPath = Directory.GetCurrentDirectory() + "\\systemFiles\\playerSettingParam.bin.xfbin";
-            //}
-            //if (Main.skillCustomizePath == "[null]" || !File.Exists(Main.skillCustomizePath)) {
-            //    Main.skillCustomizePath = Directory.GetCurrentDirectory() + "\\systemFiles\\skillCustomizeParam.bin.xfbin";
-            //}
-            //if (Main.spSkillCustomizePath == "[null]" || !File.Exists(Main.spSkillCustomizePath)) {
-            //    Main.spSkillCustomizePath = Directory.GetCurrentDirectory() + "\\systemFiles\\spSkillCustomizeParam.bin.xfbin";
-            //}
-            //if (Main.awakeAuraPath == "[null]" || !File.Exists(Main.awakeAuraPath)) {
-            //    Main.awakeAuraPath = Directory.GetCurrentDirectory() + "\\systemFiles\\awakeAura.xfbin";
-            //}
             Tool_CharacodeEditor CharacodeFile = new Tool_CharacodeEditor();
             if (File.Exists(Main.chaPath))
                 CharacodeFile.OpenFile(Main.chaPath);
@@ -103,6 +85,7 @@ namespace NSUNS4_Character_Manager.Functions {
             string iconPath = "";
             string appearanceAnmPath = "";
             string afterAttachObjectPath = "";
+            string cmnparamPath = "";
             string moddingAPIPath = Main.datawin32Path.Replace(d.Name, "moddingapi\\mods");
 
             foreach (FileInfo file in Files) {
@@ -204,6 +187,16 @@ namespace NSUNS4_Character_Manager.Functions {
                 } else {
                     afterAttachObjectExist = false;
                     afterAttachObjectPath = "";
+                }
+            }
+            foreach (FileInfo file in Files) {
+                if (file.FullName.Contains("sound\\cmnparam.xfbin")) {
+                    cmnparamExist = true;
+                    cmnparamPath = file.FullName;
+                    break;
+                } else {
+                    cmnparamExist = false;
+                    cmnparamPath = "";
                 }
             }
             if (prmLoadExist) {
@@ -407,10 +400,10 @@ namespace NSUNS4_Character_Manager.Functions {
                 CspFile.NewIdList = NewIdList;
                 CspFile.GibberishBytes = GibberishBytes;
                 if (CspFile.EntryCount != 0) {
-                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\ui\\max\\select\\WIN64"))) {
-                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\ui\\max\\select\\WIN64"));
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\ui\\max\\select\\WIN64\\"))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\ui\\max\\select\\WIN64\\"));
                     }
-                    CspFile.SaveFileAs(SaveDirectory + "\\ui\\max\\select\\WIN64\\skillCustomizeParam.xfbin");
+                    CspFile.SaveFileAs(SaveDirectory + "\\ui\\max\\select\\WIN64\\characterSelectParam.xfbin");
                 }
             }
             if (skillCustomizeExist) {
@@ -519,6 +512,38 @@ namespace NSUNS4_Character_Manager.Functions {
                     }
                     spSkillCustomizeFile.SaveFileAs(SaveDirectory + "\\spc\\WIN64\\spSkillCustomizeParam.xfbin");
                 }  
+            }
+            if (cmnparamExist) {
+                Tool_cmnparamEditor cmnparamFile = new Tool_cmnparamEditor();
+                cmnparamFile.OpenFile(cmnparamPath);
+                for (int x = 0; x < cmnparamFile.EntryCount_Player; x++) {
+                    if (cmnparamFile.Player_Characode_List[x] != SaveCharacode) {
+                        cmnparamFile.Player_Characode_List.RemoveAt(x);
+                        cmnparamFile.Player_PlFileName_List.RemoveAt(x);
+                        cmnparamFile.Player_PlAwaFileName_List.RemoveAt(x);
+                        cmnparamFile.Player_PlAwa2FileName_List.RemoveAt(x);
+                        cmnparamFile.Player_EvName_List.RemoveAt(x);
+                        cmnparamFile.Player_UJEvName_List.RemoveAt(x);
+                        cmnparamFile.Player_UJ_1_CutInName_List.RemoveAt(x);
+                        cmnparamFile.Player_UJ_1_AtkName_List.RemoveAt(x);
+                        cmnparamFile.Player_UJ_2_CutInName_List.RemoveAt(x);
+                        cmnparamFile.Player_UJ_2_AtkName_List.RemoveAt(x);
+                        cmnparamFile.Player_UJ_3_CutInName_List.RemoveAt(x);
+                        cmnparamFile.Player_UJ_3_AtkName_List.RemoveAt(x);
+                        cmnparamFile.Player_UJ_Alt_CutInName_List.RemoveAt(x);
+                        cmnparamFile.Player_UJ_Alt_AtkName_List.RemoveAt(x);
+                        cmnparamFile.Player_PartnerCharacode_List.RemoveAt(x);
+                        cmnparamFile.Player_PartnerAwaCharacode_List.RemoveAt(x);
+                        cmnparamFile.EntryCount_Player--;
+                        x--;
+                    }
+                }
+                if (cmnparamFile.EntryCount_Player != 0) {
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\sound\\"))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\sound\\"));
+                    }
+                    cmnparamFile.SaveFileAs(SaveDirectory + "\\sound\\cmnparam.xfbin");
+                }
             }
             Tool_AwakeAuraEditor awakeAuraFile = new Tool_AwakeAuraEditor();
             if (awakeAuraExist)
