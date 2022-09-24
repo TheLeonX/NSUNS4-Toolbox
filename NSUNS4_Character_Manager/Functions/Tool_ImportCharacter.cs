@@ -114,15 +114,15 @@ namespace NSUNS4_Character_Manager.Functions {
             if (CharacterPathList.Count > 0) {
                 for (int i = 0; i< CharacterPathList.Count; i++) {
 
-
-                    DirectoryInfo cha_d = new DirectoryInfo(CharacterPathList[i]);
-                    FileInfo[] cha_Files = cha_d.GetFiles("*.txt", SearchOption.AllDirectories);
-
                     DirectoryInfo d = new DirectoryInfo(CharacterPathList[i]);
+
+                    FileInfo[] cha_Files = d.GetFiles("*.txt", SearchOption.AllDirectories);
                     FileInfo[] Files = d.GetFiles("*.xfbin", SearchOption.AllDirectories);
+                    FileInfo[] cpk_Files = d.GetFiles("*.cpk", SearchOption.AllDirectories);
 
                     DirectoryInfo d_or = new DirectoryInfo(Main.datawin32Path);
-
+                    List<string> cpk_paths = new List<string>();
+                    List<string> cpk_names = new List<string>();
                     string dataWinFolder = d_or.Name + "\\";
                     int dataWinFolderLength = dataWinFolder.Length;
                     bool originalChaExist = false;
@@ -261,6 +261,13 @@ namespace NSUNS4_Character_Manager.Functions {
                         } else {
                             specialCondParamExist = false;
                             specialCondParamPath = "";
+                        }
+                    }
+                    foreach (FileInfo file in cpk_Files) {
+                        if (file.FullName.Contains(d.Name)) {
+                            cpk_paths.Add(file.FullName);
+                            cpk_names.Add(file.Name);
+                            break;
                         }
                     }
                     foreach (FileInfo file in cha_Files) {
@@ -979,7 +986,16 @@ namespace NSUNS4_Character_Manager.Functions {
                             partnerSlotParamFile = Main.b_ReplaceBytes(partnerSlotParamFile, BitConverter.GetBytes(CharacodeID), 0x17);
                             File.WriteAllBytes(root_path + "\\moddingapi\\mods\\" + d.Name + "\\partnerSlotParam.xfbin", partnerSlotParamFile);
                         }
-                        if (specialCondParamExist || specialCondParamExist) {
+                        if (cpk_paths.Count >0) {
+                            for (int c = 0; c<cpk_paths.Count; c++) {
+                                CopyFiles(root_path + "\\moddingapi\\mods\\" + d.Name, cpk_paths[c], root_path + "\\moddingapi\\mods\\" + d.Name + "\\" + cpk_names[c]);
+                                if (File.Exists(cpk_paths[c]+".info")) {
+                                    CopyFiles(root_path + "\\moddingapi\\mods\\" + d.Name, cpk_paths[c] + ".info", root_path + "\\moddingapi\\mods\\" + d.Name + "\\" + cpk_names[c] + ".info");
+
+                                }
+                            }
+                        }
+                        if (specialCondParamExist || specialCondParamExist || cpk_paths.Count > 0) {
                             FileStream ffParameter = new FileStream(root_path + "\\moddingapi\\mods\\" + d.Name + "\\info.txt", FileMode.Create, FileAccess.Write);
                             StreamWriter mm_WriterParameter = new StreamWriter(ffParameter);
                             mm_WriterParameter.BaseStream.Seek(0, SeekOrigin.End);

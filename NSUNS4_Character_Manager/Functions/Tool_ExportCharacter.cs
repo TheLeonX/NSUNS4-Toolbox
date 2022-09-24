@@ -75,6 +75,9 @@ namespace NSUNS4_Character_Manager.Functions {
             string dataWinFolder = d.Name + "\\";
             int dataWinFolderLength = dataWinFolder.Length;
             FileInfo[] Files = d.GetFiles("*.xfbin", SearchOption.AllDirectories);
+
+            
+
             string prmLoadPath = "";
             string dppPath = "";
             string cspPath = "";
@@ -87,6 +90,8 @@ namespace NSUNS4_Character_Manager.Functions {
             string afterAttachObjectPath = "";
             string cmnparamPath = "";
             string moddingAPIPath = Main.datawin32Path.Replace(d.Name, "moddingapi\\mods");
+
+            
 
             foreach (FileInfo file in Files) {
                 if (file.FullName.Contains("spcload\\" + SaveCharacode + "prm_load.bin.xfbin")) {
@@ -701,8 +706,12 @@ namespace NSUNS4_Character_Manager.Functions {
             if (Directory.Exists(moddingAPIPath)) {
                 List<string> partnerSlotParamPaths = new List<string>();
                 List<string> specialCondParamPaths = new List<string>();
+                List<string> cpkPaths = new List<string>();
+                List<string> cpkNames = new List<string>();
                 DirectoryInfo moddingAPI_d = new DirectoryInfo(@moddingAPIPath);
                 FileInfo[] moddingAPI_Files = moddingAPI_d.GetFiles("*.xfbin", SearchOption.AllDirectories);
+                FileInfo[] cpk_Files = moddingAPI_d.GetFiles("*.cpk", SearchOption.AllDirectories);
+
                 foreach (FileInfo file in moddingAPI_Files) {
                     if (file.FullName.Contains("partnerSlotParam.xfbin")) {
                         partnerSlotParamPaths.Add(file.FullName);
@@ -710,6 +719,12 @@ namespace NSUNS4_Character_Manager.Functions {
                     else if (file.FullName.Contains("specialCondParam.xfbin")) {
                         specialCondParamPaths.Add(file.FullName);
                     }
+                }
+                foreach (FileInfo file in cpk_Files) {
+                    if (file.FullName.Contains(SaveCharacode)) {
+                        cpkPaths.Add(file.FullName);
+                        cpkNames.Add(file.Name);
+                    } 
                 }
                 if (specialCondParamPaths.Count > 0) {
                     for (int x = 0; x < specialCondParamPaths.Count; x++) {
@@ -752,6 +767,19 @@ namespace NSUNS4_Character_Manager.Functions {
                                 File.WriteAllBytes(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode + "\\partnerSlotParam.xfbin", Section);
                                 break;
                             }
+                        }
+                    }
+                }
+                if (cpkPaths.Count >0) {
+                    if (!Directory.Exists(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode)) {
+                        Directory.CreateDirectory(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode);
+                    }
+                    for (int c = 0; c<cpkPaths.Count;c++) {
+                        CopyFiles(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode, cpkPaths[c], f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode +"\\"+cpkNames[c]);
+
+                        if (File.Exists(cpkPaths[c]+".info")) {
+                            CopyFiles(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode, cpkPaths[c] + ".info", f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode + "\\" + cpkNames[c] + ".info");
+
                         }
                     }
                 }
