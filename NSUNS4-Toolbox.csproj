@@ -167,6 +167,12 @@
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_CharacodeEditor.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_cmnparamEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_cmnparamEditor.Designer.cs">
+      <DependentUpon>Tool_cmnparamEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_DSP_ItemList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -307,6 +313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_CharacodeEditor.resx">
       <DependentUpon>Tool_CharacodeEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_cmnparamEditor.resx">
+      <DependentUpon>Tool_cmnparamEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_DSP_ItemList.resx">
       <DependentUpon>Tool_DSP_ItemList.cs</DependentUpon>

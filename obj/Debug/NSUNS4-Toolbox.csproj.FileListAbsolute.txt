@@ -130,3 +130,4 @@ E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.To
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4-Toolbox.csproj.AssemblyReference.cache
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Functions.Tool_ExportCharacter.resources
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Functions.Tool_ImportCharacter.resources
+E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_cmnparamEditor.resources

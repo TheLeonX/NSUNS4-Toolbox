@@ -49,6 +49,7 @@ namespace NSUNS4_Character_Manager
         public static string episodeParamPath = "[null]";
         public static string episodeMovieParamPath = "[null]";
         public static string messageInfoPath = "[null]";
+        public static string cmnparamPath = "[null]";
         private Button button9;
         private Button button10;
         private Button button11;
@@ -78,6 +79,7 @@ namespace NSUNS4_Character_Manager
         private ToolStripMenuItem infoToolStripMenuItem;
         private ToolStripMenuItem addingCharacterWoReplacingToolStripMenuItem;
         private Button button25;
+        private Button button26;
         public byte[] PRMEditorCopiedSection;
         public byte[] TheValue
         {
@@ -102,6 +104,7 @@ namespace NSUNS4_Character_Manager
         void CreateConfig()
         {
             List<string> cfg = new List<string>();
+            cfg.Add("[null]");
             cfg.Add("[null]");
             cfg.Add("[null]");
             cfg.Add("[null]");
@@ -145,6 +148,7 @@ namespace NSUNS4_Character_Manager
             cfg.Add(episodeParamPath);
             cfg.Add(episodeMovieParamPath);
             cfg.Add(messageInfoPath);
+            cfg.Add(cmnparamPath);
             File.WriteAllLines(ConfigPath, cfg.ToArray());
             MessageBox.Show("Config file saved.");
         }
@@ -170,6 +174,7 @@ namespace NSUNS4_Character_Manager
             if (cfg.Length > 15) episodeParamPath = cfg[15];
             if (cfg.Length > 16) episodeMovieParamPath = cfg[16];
             if (cfg.Length > 17) messageInfoPath = cfg[17];
+            if (cfg.Length > 18) cmnparamPath = cfg[18];
             //MessageBox.Show("Loaded paths.");
         }
 
@@ -810,9 +815,10 @@ namespace NSUNS4_Character_Manager
             this.button23 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button25 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.button25 = new System.Windows.Forms.Button();
+            this.button26 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1014,9 +1020,9 @@ namespace NSUNS4_Character_Manager
             // button11
             // 
             this.button11.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.button11.Location = new System.Drawing.Point(3, 227);
+            this.button11.Location = new System.Drawing.Point(3, 262);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(299, 38);
+            this.button11.Size = new System.Drawing.Size(597, 38);
             this.button11.TabIndex = 14;
             this.button11.Text = "Prm Moveset Editor";
             this.button11.UseVisualStyleBackColor = true;
@@ -1178,6 +1184,7 @@ namespace NSUNS4_Character_Manager
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button26);
             this.tabPage3.Controls.Add(this.button1);
             this.tabPage3.Controls.Add(this.button5);
             this.tabPage3.Controls.Add(this.button15);
@@ -1269,6 +1276,16 @@ namespace NSUNS4_Character_Manager
             this.tabPage2.Text = "For players";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // button25
+            // 
+            this.button25.Location = new System.Drawing.Point(0, 34);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(309, 30);
+            this.button25.TabIndex = 17;
+            this.button25.Text = "Import character";
+            this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
+            // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
@@ -1295,15 +1312,16 @@ namespace NSUNS4_Character_Manager
             this.linkLabel2.Text = "ModdingAPI";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
-            // button25
+            // button26
             // 
-            this.button25.Location = new System.Drawing.Point(0, 34);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(309, 30);
-            this.button25.TabIndex = 17;
-            this.button25.Text = "Import character";
-            this.button25.UseVisualStyleBackColor = true;
-            this.button25.Click += new System.EventHandler(this.button25_Click);
+            this.button26.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.button26.Location = new System.Drawing.Point(3, 227);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(299, 38);
+            this.button26.TabIndex = 29;
+            this.button26.Text = "Player Sound Settings (cmnparam editor)";
+            this.button26.UseVisualStyleBackColor = true;
+            this.button26.Click += new System.EventHandler(this.button26_Click);
             // 
             // Main
             // 
@@ -1613,6 +1631,7 @@ namespace NSUNS4_Character_Manager
             episodeParamPath = datawin32Path + "\\rpg\\param\\WIN64\\episodeParam.bin.xfbin";
             episodeMovieParamPath = datawin32Path + "\\rpg\\param\\WIN64\\episodeMovieParam.bin.xfbin";
             messageInfoPath = datawin32Path + "\\message";
+            cmnparamPath = datawin32Path + "\\sound\\cmnparam.xfbin";
 
             SaveConfig();
         }
@@ -1632,6 +1651,7 @@ namespace NSUNS4_Character_Manager
                 spSkillCustomizePath = datawin32Path + "\\spc\\WIN64\\spSkillCustomizeParam.xfbin";
                 afterAttachObjectPath = datawin32Path + "\\spc\\WIN64\\afterAttachObject.xfbin";
                 appearanceAnmPath = datawin32Path + "\\spc\\WIN64\\appearanceAnm.xfbin";
+                cmnparamPath = datawin32Path + "\\sound\\cmnparam.xfbin";
             }
                 
             else {
@@ -1652,6 +1672,11 @@ namespace NSUNS4_Character_Manager
                 return;
             }
             
+        }
+
+        private void button26_Click(object sender, EventArgs e) {
+            Tool_cmnparamEditor t = new Tool_cmnparamEditor();
+            t.Show();
         }
     }
 }
