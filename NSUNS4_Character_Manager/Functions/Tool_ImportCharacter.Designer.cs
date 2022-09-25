@@ -182,6 +182,7 @@ namespace NSUNS4_Character_Manager.Functions {
             this.Name = "Tool_ImportCharacter";
             this.Text = "Import Character";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Tool_ImportCharacter_FormClosed);
+            this.Load += new System.EventHandler(this.Tool_ImportCharacter_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

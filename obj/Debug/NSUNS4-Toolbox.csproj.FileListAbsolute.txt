@@ -131,3 +131,4 @@ E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4-Toolbox.csproj.Assem
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Functions.Tool_ExportCharacter.resources
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Functions.Tool_ImportCharacter.resources
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_cmnparamEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_damageeffEditor.resources

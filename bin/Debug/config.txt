@@ -17,3 +17,6 @@ E:\Steam(2)\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4\data_win32\
 E:\Steam(2)\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4\data_win32\rpg\param\WIN64\episodeMovieParam.bin.xfbin
 E:\Steam(2)\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4\data_win32\message
 E:\Steam(2)\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4\data_win32\sound\cmnparam.xfbin
+E:\Steam(2)\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4\data_win32\spc\effectprm.bin.xfbin
+E:\Steam(2)\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4\data_win32\spc\damageeff.bin.xfbin
+E:\Steam(2)\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4\data_win32\spc\conditionprm.bin.xfbin

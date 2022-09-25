@@ -50,6 +50,9 @@ namespace NSUNS4_Character_Manager
         public static string episodeMovieParamPath = "[null]";
         public static string messageInfoPath = "[null]";
         public static string cmnparamPath = "[null]";
+        public static string effectprmPath = "[null]";
+        public static string damageeffPath = "[null]";
+        public static string conditionprmPath = "[null]";
         private Button button9;
         private Button button10;
         private Button button11;
@@ -80,6 +83,8 @@ namespace NSUNS4_Character_Manager
         private ToolStripMenuItem addingCharacterWoReplacingToolStripMenuItem;
         private Button button25;
         private Button button26;
+        private Button button28;
+        private Button button27;
         public byte[] PRMEditorCopiedSection;
         public byte[] TheValue
         {
@@ -104,6 +109,9 @@ namespace NSUNS4_Character_Manager
         void CreateConfig()
         {
             List<string> cfg = new List<string>();
+            cfg.Add("[null]");
+            cfg.Add("[null]");
+            cfg.Add("[null]");
             cfg.Add("[null]");
             cfg.Add("[null]");
             cfg.Add("[null]");
@@ -149,6 +157,9 @@ namespace NSUNS4_Character_Manager
             cfg.Add(episodeMovieParamPath);
             cfg.Add(messageInfoPath);
             cfg.Add(cmnparamPath);
+            cfg.Add(effectprmPath);
+            cfg.Add(damageeffPath);
+            cfg.Add(conditionprmPath);
             File.WriteAllLines(ConfigPath, cfg.ToArray());
             MessageBox.Show("Config file saved.");
         }
@@ -175,6 +186,9 @@ namespace NSUNS4_Character_Manager
             if (cfg.Length > 16) episodeMovieParamPath = cfg[16];
             if (cfg.Length > 17) messageInfoPath = cfg[17];
             if (cfg.Length > 18) cmnparamPath = cfg[18];
+            if (cfg.Length > 19) effectprmPath = cfg[19];
+            if (cfg.Length > 20) damageeffPath = cfg[20];
+            if (cfg.Length > 21) conditionprmPath = cfg[21];
             //MessageBox.Show("Loaded paths.");
         }
 
@@ -809,6 +823,7 @@ namespace NSUNS4_Character_Manager
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button26 = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.button24 = new System.Windows.Forms.Button();
@@ -818,7 +833,8 @@ namespace NSUNS4_Character_Manager
             this.button25 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.button26 = new System.Windows.Forms.Button();
+            this.button27 = new System.Windows.Forms.Button();
+            this.button28 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -897,7 +913,7 @@ namespace NSUNS4_Character_Manager
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(308, 0);
+            this.button7.Location = new System.Drawing.Point(-2, 34);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(310, 36);
             this.button7.TabIndex = 7;
@@ -915,7 +931,7 @@ namespace NSUNS4_Character_Manager
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(626, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(624, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -1020,7 +1036,7 @@ namespace NSUNS4_Character_Manager
             // button11
             // 
             this.button11.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.button11.Location = new System.Drawing.Point(3, 262);
+            this.button11.Location = new System.Drawing.Point(3, 300);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(597, 38);
             this.button11.TabIndex = 14;
@@ -1030,9 +1046,9 @@ namespace NSUNS4_Character_Manager
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(308, 34);
+            this.button12.Location = new System.Drawing.Point(306, 34);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(310, 30);
+            this.button12.Size = new System.Drawing.Size(310, 36);
             this.button12.TabIndex = 16;
             this.button12.Text = "Export character";
             this.button12.UseVisualStyleBackColor = true;
@@ -1152,7 +1168,7 @@ namespace NSUNS4_Character_Manager
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(626, 565);
+            this.tabControl1.Size = new System.Drawing.Size(624, 565);
             this.tabControl1.TabIndex = 31;
             // 
             // tabPage1
@@ -1162,7 +1178,7 @@ namespace NSUNS4_Character_Manager
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(618, 539);
+            this.tabPage1.Size = new System.Drawing.Size(616, 539);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "For modders";
             // 
@@ -1179,11 +1195,13 @@ namespace NSUNS4_Character_Manager
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(612, 533);
+            this.tabControl2.Size = new System.Drawing.Size(610, 533);
             this.tabControl2.TabIndex = 31;
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button28);
+            this.tabPage3.Controls.Add(this.button27);
             this.tabPage3.Controls.Add(this.button26);
             this.tabPage3.Controls.Add(this.button1);
             this.tabPage3.Controls.Add(this.button5);
@@ -1202,10 +1220,21 @@ namespace NSUNS4_Character_Manager
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(604, 507);
+            this.tabPage3.Size = new System.Drawing.Size(602, 507);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Character Managment";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button26
+            // 
+            this.button26.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.button26.Location = new System.Drawing.Point(3, 227);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(299, 38);
+            this.button26.TabIndex = 29;
+            this.button26.Text = "Player Sound Settings\r\n(cmnparam.xfbin editor)";
+            this.button26.UseVisualStyleBackColor = true;
+            this.button26.Click += new System.EventHandler(this.button26_Click);
             // 
             // tabPage4
             // 
@@ -1271,16 +1300,16 @@ namespace NSUNS4_Character_Manager
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(618, 539);
+            this.tabPage2.Size = new System.Drawing.Size(616, 539);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "For players";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // button25
             // 
-            this.button25.Location = new System.Drawing.Point(0, 34);
+            this.button25.Location = new System.Drawing.Point(307, 0);
             this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(309, 30);
+            this.button25.Size = new System.Drawing.Size(309, 36);
             this.button25.TabIndex = 17;
             this.button25.Text = "Import character";
             this.button25.UseVisualStyleBackColor = true;
@@ -1312,22 +1341,32 @@ namespace NSUNS4_Character_Manager
             this.linkLabel2.Text = "ModdingAPI";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
-            // button26
+            // button27
             // 
-            this.button26.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.button26.Location = new System.Drawing.Point(3, 227);
-            this.button26.Name = "button26";
-            this.button26.Size = new System.Drawing.Size(299, 38);
-            this.button26.TabIndex = 29;
-            this.button26.Text = "Player Sound Settings (cmnparam editor)";
-            this.button26.UseVisualStyleBackColor = true;
-            this.button26.Click += new System.EventHandler(this.button26_Click);
+            this.button27.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.button27.Location = new System.Drawing.Point(3, 264);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(299, 38);
+            this.button27.TabIndex = 30;
+            this.button27.Text = "Hit Effect Editor\r\n(damageeff.bin.xfbin)";
+            this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.button27_Click);
+            // 
+            // button28
+            // 
+            this.button28.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.button28.Location = new System.Drawing.Point(301, 264);
+            this.button28.Name = "button28";
+            this.button28.Size = new System.Drawing.Size(299, 38);
+            this.button28.TabIndex = 31;
+            this.button28.Text = "Hit Effect List Editor\r\n(effectprm.bin.xfbin)";
+            this.button28.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(626, 589);
+            this.ClientSize = new System.Drawing.Size(624, 589);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.tabControl1);
@@ -1632,6 +1671,9 @@ namespace NSUNS4_Character_Manager
             episodeMovieParamPath = datawin32Path + "\\rpg\\param\\WIN64\\episodeMovieParam.bin.xfbin";
             messageInfoPath = datawin32Path + "\\message";
             cmnparamPath = datawin32Path + "\\sound\\cmnparam.xfbin";
+            effectprmPath = datawin32Path + "\\spc\\effectprm.bin.xfbin";
+            damageeffPath = datawin32Path + "\\spc\\damageeff.bin.xfbin";
+            conditionprmPath = datawin32Path + "\\spc\\conditionprm.bin.xfbin";
 
             SaveConfig();
         }
@@ -1652,6 +1694,9 @@ namespace NSUNS4_Character_Manager
                 afterAttachObjectPath = datawin32Path + "\\spc\\WIN64\\afterAttachObject.xfbin";
                 appearanceAnmPath = datawin32Path + "\\spc\\WIN64\\appearanceAnm.xfbin";
                 cmnparamPath = datawin32Path + "\\sound\\cmnparam.xfbin";
+                effectprmPath = datawin32Path + "\\spc\\effectprm.bin.xfbin";
+                damageeffPath = datawin32Path + "\\spc\\damageeff.bin.xfbin";
+                conditionprmPath = datawin32Path + "\\spc\\conditionprm.bin.xfbin";
             }
                 
             else {
@@ -1676,6 +1721,11 @@ namespace NSUNS4_Character_Manager
 
         private void button26_Click(object sender, EventArgs e) {
             Tool_cmnparamEditor t = new Tool_cmnparamEditor();
+            t.Show();
+        }
+
+        private void button27_Click(object sender, EventArgs e) {
+            Tool_damageeffEditor t = new Tool_damageeffEditor();
             t.Show();
         }
     }

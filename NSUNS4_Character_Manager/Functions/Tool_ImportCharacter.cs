@@ -55,9 +55,56 @@ namespace NSUNS4_Character_Manager.Functions {
                             replace = true;
                         }
                     }
+                    int NewPage = 0;
+                    int NewPos = 0;
                     ReplaceCharacterList.Add(replace);
-                    PageList.Add(0);
-                    SlotList.Add(0);
+                    //if (!replace && File.Exists(f.SelectedPath+ "\\data_win32\\ui\\max\\select\\WIN64\\characterSelectParam.xfbin")) {
+                    //    Tool_RosterEditor CspFile = new Tool_RosterEditor();
+                    //    if (File.Exists(Main.cspPath))
+                    //        CspFile.OpenFile(Main.cspPath);
+                    //    else {
+                    //        CspFile.OpenFile(originalCspPath);
+                    //    }
+                    //    NewPage = 1;
+
+                    //    do {
+                    //        NewPos++;
+                    //        if (NewPos == CspFile.PositionList.Max()) {
+                    //            NewPos = 1;
+                    //            NewPage++;
+                    //        }
+
+                    //    }
+                    //    while (Tool_RosterEditor.SearchSlotIndex(CspFile.PageList, CspFile.PositionList, CspFile.CostumeList, NewPage, NewPos, 1, CspFile.EntryCount) != -1);
+
+                    //    if (SlotList.Count > 0) {
+                    //        int count = 0;
+                    //        for (int k = 0; k < SlotList.Count;k++) {
+                    //            if (SlotList[k] != 0)
+                    //                count++;
+                    //        }
+                    //        for (int l = 0; l < count; l++) {
+                    //            NewPos++;
+                    //            if (NewPos == CspFile.PositionList.Max()) {
+                    //                NewPos = 1;
+                    //                NewPage++;
+                    //            }
+                    //        }
+                    //        do {
+                    //            NewPos++;
+                    //            if (NewPos == CspFile.PositionList.Max()) {
+                    //                NewPos = 1;
+                    //                NewPage++;
+                    //            }
+
+                    //        }
+                    //        while (Tool_RosterEditor.SearchSlotIndex(CspFile.PageList, CspFile.PositionList, CspFile.CostumeList, NewPage, NewPos, 1, CspFile.EntryCount) != -1);
+                    //    }
+                    //}
+                    
+
+                    PageList.Add(NewPage);
+                    SlotList.Add(NewPos);
                 }
                 else {
                     MessageBox.Show("Invalid character");
@@ -927,6 +974,7 @@ namespace NSUNS4_Character_Manager.Functions {
                                 cmnparamOriginalFile.OpenFile(originalcmnparamPath);
                             }
                             if (ReplaceCharacterList[i]) {
+                                bool found = false;
                                 for (int c = 0; c < cmnparamOriginalFile.EntryCount_Player; c++) {
                                     if (cmnparamOriginalFile.Player_Characode_List[c].Contains(d.Name)) {
                                         cmnparamOriginalFile.Player_PlFileName_List[c] = cmnparamModFile.Player_PlFileName_List[0];
@@ -944,8 +992,29 @@ namespace NSUNS4_Character_Manager.Functions {
                                         cmnparamOriginalFile.Player_UJ_Alt_AtkName_List[c] = cmnparamModFile.Player_UJ_Alt_AtkName_List[0];
                                         cmnparamOriginalFile.Player_PartnerCharacode_List[c] = cmnparamModFile.Player_PartnerCharacode_List[0];
                                         cmnparamOriginalFile.Player_PartnerAwaCharacode_List[c] = cmnparamModFile.Player_PartnerAwaCharacode_List[0];
+                                        found = true;
+                                        break;
                                     }
 
+                                }
+                                if (!found) {
+                                    cmnparamOriginalFile.Player_Characode_List.Add(cmnparamModFile.Player_Characode_List[0]);
+                                    cmnparamOriginalFile.Player_PlFileName_List.Add(cmnparamModFile.Player_PlFileName_List[0]);
+                                    cmnparamOriginalFile.Player_PlAwaFileName_List.Add(cmnparamModFile.Player_PlAwaFileName_List[0]);
+                                    cmnparamOriginalFile.Player_PlAwa2FileName_List.Add(cmnparamModFile.Player_PlAwa2FileName_List[0]);
+                                    cmnparamOriginalFile.Player_EvName_List.Add(cmnparamModFile.Player_EvName_List[0]);
+                                    cmnparamOriginalFile.Player_UJEvName_List.Add(cmnparamModFile.Player_UJEvName_List[0]);
+                                    cmnparamOriginalFile.Player_UJ_1_CutInName_List.Add(cmnparamModFile.Player_UJ_1_CutInName_List[0]);
+                                    cmnparamOriginalFile.Player_UJ_1_AtkName_List.Add(cmnparamModFile.Player_UJ_1_AtkName_List[0]);
+                                    cmnparamOriginalFile.Player_UJ_2_CutInName_List.Add(cmnparamModFile.Player_UJ_2_CutInName_List[0]);
+                                    cmnparamOriginalFile.Player_UJ_2_AtkName_List.Add(cmnparamModFile.Player_UJ_2_AtkName_List[0]);
+                                    cmnparamOriginalFile.Player_UJ_3_CutInName_List.Add(cmnparamModFile.Player_UJ_3_CutInName_List[0]);
+                                    cmnparamOriginalFile.Player_UJ_3_AtkName_List.Add(cmnparamModFile.Player_UJ_3_AtkName_List[0]);
+                                    cmnparamOriginalFile.Player_UJ_Alt_CutInName_List.Add(cmnparamModFile.Player_UJ_Alt_CutInName_List[0]);
+                                    cmnparamOriginalFile.Player_UJ_Alt_AtkName_List.Add(cmnparamModFile.Player_UJ_Alt_AtkName_List[0]);
+                                    cmnparamOriginalFile.Player_PartnerCharacode_List.Add(cmnparamModFile.Player_PartnerCharacode_List[0]);
+                                    cmnparamOriginalFile.Player_PartnerAwaCharacode_List.Add(cmnparamModFile.Player_PartnerAwaCharacode_List[0]);
+                                    cmnparamOriginalFile.EntryCount_Player++;
                                 }
 
                             } else {
@@ -1029,6 +1098,10 @@ namespace NSUNS4_Character_Manager.Functions {
 
         private void Tool_ImportCharacter_FormClosed(object sender, FormClosedEventArgs e) {
             Main.LoadConfig();
+        }
+
+        private void Tool_ImportCharacter_Load(object sender, EventArgs e) {
+
         }
     }
 }

@@ -15,9 +15,7 @@ namespace NSUNS4_Character_Manager.Tools {
             InitializeComponent();
         }
         public bool FileOpen = false;
-
         public string FilePath = "";
-
         public byte[] fileBytes = new byte[0];
 
         public int EntryCount_TUJ = 0;
