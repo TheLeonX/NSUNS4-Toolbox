@@ -823,6 +823,8 @@ namespace NSUNS4_Character_Manager
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button28 = new System.Windows.Forms.Button();
+            this.button27 = new System.Windows.Forms.Button();
             this.button26 = new System.Windows.Forms.Button();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
@@ -833,8 +835,6 @@ namespace NSUNS4_Character_Manager
             this.button25 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.button27 = new System.Windows.Forms.Button();
-            this.button28 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1225,6 +1225,28 @@ namespace NSUNS4_Character_Manager
             this.tabPage3.Text = "Character Managment";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // button28
+            // 
+            this.button28.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.button28.Location = new System.Drawing.Point(301, 264);
+            this.button28.Name = "button28";
+            this.button28.Size = new System.Drawing.Size(299, 38);
+            this.button28.TabIndex = 31;
+            this.button28.Text = "Hit Effect List Editor\r\n(effectprm.bin.xfbin)";
+            this.button28.UseVisualStyleBackColor = true;
+            this.button28.Click += new System.EventHandler(this.button28_Click);
+            // 
+            // button27
+            // 
+            this.button27.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.button27.Location = new System.Drawing.Point(3, 264);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(299, 38);
+            this.button27.TabIndex = 30;
+            this.button27.Text = "Hit Effect Editor\r\n(damageeff.bin.xfbin)";
+            this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.button27_Click);
+            // 
             // button26
             // 
             this.button26.Font = new System.Drawing.Font("Segoe UI", 8.5F);
@@ -1242,7 +1264,7 @@ namespace NSUNS4_Character_Manager
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(604, 507);
+            this.tabPage4.Size = new System.Drawing.Size(602, 507);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Stage Managment";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1254,7 +1276,7 @@ namespace NSUNS4_Character_Manager
             this.tabPage5.Controls.Add(this.button22);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(604, 507);
+            this.tabPage5.Size = new System.Drawing.Size(602, 507);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "Story Mode Managment";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1286,7 +1308,7 @@ namespace NSUNS4_Character_Manager
             this.tabPage6.Controls.Add(this.button18);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(604, 507);
+            this.tabPage6.Size = new System.Drawing.Size(602, 507);
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Other tools";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1340,27 +1362,6 @@ namespace NSUNS4_Character_Manager
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "ModdingAPI";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
-            // 
-            // button27
-            // 
-            this.button27.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.button27.Location = new System.Drawing.Point(3, 264);
-            this.button27.Name = "button27";
-            this.button27.Size = new System.Drawing.Size(299, 38);
-            this.button27.TabIndex = 30;
-            this.button27.Text = "Hit Effect Editor\r\n(damageeff.bin.xfbin)";
-            this.button27.UseVisualStyleBackColor = true;
-            this.button27.Click += new System.EventHandler(this.button27_Click);
-            // 
-            // button28
-            // 
-            this.button28.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.button28.Location = new System.Drawing.Point(301, 264);
-            this.button28.Name = "button28";
-            this.button28.Size = new System.Drawing.Size(299, 38);
-            this.button28.TabIndex = 31;
-            this.button28.Text = "Hit Effect List Editor\r\n(effectprm.bin.xfbin)";
-            this.button28.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
@@ -1726,6 +1727,11 @@ namespace NSUNS4_Character_Manager
 
         private void button27_Click(object sender, EventArgs e) {
             Tool_damageeffEditor t = new Tool_damageeffEditor();
+            t.Show();
+        }
+
+        private void button28_Click(object sender, EventArgs e) {
+            Tool_effectprmEditor t = new Tool_effectprmEditor();
             t.Show();
         }
     }

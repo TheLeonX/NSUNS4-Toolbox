@@ -197,6 +197,12 @@
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_DuelPlayerParamEditor_settings.Designer.cs">
       <DependentUpon>Tool_DuelPlayerParamEditor_settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_effectprmEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_effectprmEditor.Designer.cs">
+      <DependentUpon>Tool_effectprmEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_IconEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -337,6 +343,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_DuelPlayerParamEditor_settings.resx">
       <DependentUpon>Tool_DuelPlayerParamEditor_settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_effectprmEditor.resx">
+      <DependentUpon>Tool_effectprmEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_IconEditor.resx">
       <DependentUpon>Tool_IconEditor.cs</DependentUpon>
