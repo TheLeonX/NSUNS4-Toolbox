@@ -306,6 +306,7 @@ namespace NSUNS4_Character_Manager.Tools
                         else
                         {
                             MessageBox.Show("Wrong format/length of PL_ANM section");
+                            break;
                         }
                     }
                     while (PL_ANM_Section.Length >= 0x58);
@@ -1506,7 +1507,7 @@ namespace NSUNS4_Character_Manager.Tools
 
                 }
 
-                MessageBox.Show("Code was generated!");
+                
             }
             else
             {
@@ -2271,6 +2272,7 @@ namespace NSUNS4_Character_Manager.Tools
             {
                 button2.Enabled = true;
             }
+            MessageBox.Show("Code was generated!");
         }
 
         private void GenerateJoJoASBRCode() {
@@ -2771,6 +2773,7 @@ namespace NSUNS4_Character_Manager.Tools
             if (ConvertedSection.Length != 0 && PRMFileOpened == true) {
                 button2.Enabled = true;
             }
+            MessageBox.Show("Code was generated!");
         }
         private void button4_Click(object sender, EventArgs e)
         {

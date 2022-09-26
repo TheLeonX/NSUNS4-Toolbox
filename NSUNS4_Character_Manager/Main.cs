@@ -85,6 +85,7 @@ namespace NSUNS4_Character_Manager
         private Button button26;
         private Button button28;
         private Button button27;
+        private Button button29;
         public byte[] PRMEditorCopiedSection;
         public byte[] TheValue
         {
@@ -835,6 +836,7 @@ namespace NSUNS4_Character_Manager
             this.button25 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.button29 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1036,9 +1038,9 @@ namespace NSUNS4_Character_Manager
             // button11
             // 
             this.button11.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.button11.Location = new System.Drawing.Point(3, 300);
+            this.button11.Location = new System.Drawing.Point(301, 300);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(597, 38);
+            this.button11.Size = new System.Drawing.Size(299, 38);
             this.button11.TabIndex = 14;
             this.button11.Text = "Prm Moveset Editor";
             this.button11.UseVisualStyleBackColor = true;
@@ -1200,6 +1202,7 @@ namespace NSUNS4_Character_Manager
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button29);
             this.tabPage3.Controls.Add(this.button28);
             this.tabPage3.Controls.Add(this.button27);
             this.tabPage3.Controls.Add(this.button26);
@@ -1362,6 +1365,17 @@ namespace NSUNS4_Character_Manager
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "ModdingAPI";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // button29
+            // 
+            this.button29.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.button29.Location = new System.Drawing.Point(3, 300);
+            this.button29.Name = "button29";
+            this.button29.Size = new System.Drawing.Size(299, 38);
+            this.button29.TabIndex = 32;
+            this.button29.Text = "Character Condition Editor\r\n(conditionprm.bin.xfbin)";
+            this.button29.UseVisualStyleBackColor = true;
+            this.button29.Click += new System.EventHandler(this.button29_Click);
             // 
             // Main
             // 
@@ -1732,6 +1746,11 @@ namespace NSUNS4_Character_Manager
 
         private void button28_Click(object sender, EventArgs e) {
             Tool_effectprmEditor t = new Tool_effectprmEditor();
+            t.Show();
+        }
+
+        private void button29_Click(object sender, EventArgs e) {
+            Tool_conditionprmEditor t = new Tool_conditionprmEditor();
             t.Show();
         }
     }
