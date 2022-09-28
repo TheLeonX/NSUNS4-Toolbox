@@ -53,6 +53,7 @@ namespace NSUNS4_Character_Manager
         private Label label3;
         private Label label4;
         private NumericUpDown numericUpDown6;
+        private Button button4;
         private NumericUpDown numericUpDown2;
 
 		public Tool_UnlockCharaTotalEditor()
@@ -147,7 +148,7 @@ namespace NSUNS4_Character_Manager
 			ListBox1.SelectedIndex = ListBox1.Items.Count - 1;
 			EntryCount++;
 		}
-		public void AddID2()
+		public void AddID2(bool skip = true)
 		{
 			
 			for (int x = -1; x < numericUpDown3.Value; x++)
@@ -185,10 +186,14 @@ namespace NSUNS4_Character_Manager
 				{
 					toAdd = toAdd + sectionBytes[c].ToString("X2") + " ";
 				}
-				ListBox1.Items.Add(toAdd);
-				ListBox1.SelectedIndex = ListBox1.Items.Count - 1;
+				if (skip) {
+					ListBox1.Items.Add(toAdd);
+					ListBox1.SelectedIndex = ListBox1.Items.Count - 1;
+				}
+				
 				EntryCount++;
 			}
+			MessageBox.Show("Finished");
 		}
 		public void RemoveID(int Index)
 		{
@@ -792,6 +797,7 @@ namespace NSUNS4_Character_Manager
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
+            this.button4 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -838,35 +844,35 @@ namespace NSUNS4_Character_Manager
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newCharacodeFileToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openCharacodeToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.closeToolStripMenuItem.Text = "Close File";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -929,7 +935,7 @@ namespace NSUNS4_Character_Manager
             // 
             this.button3.Location = new System.Drawing.Point(359, 135);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(355, 22);
+            this.button3.Size = new System.Drawing.Size(355, 29);
             this.button3.TabIndex = 11;
             this.button3.Text = "Add unlock  sections for specific range";
             this.button3.UseVisualStyleBackColor = true;
@@ -939,7 +945,7 @@ namespace NSUNS4_Character_Manager
             // 
             this.numericUpDown3.Location = new System.Drawing.Point(648, 108);
             this.numericUpDown3.Maximum = new decimal(new int[] {
-            1000,
+            65534,
             0,
             0,
             0});
@@ -994,7 +1000,7 @@ namespace NSUNS4_Character_Manager
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(609, 167);
+            this.label4.Location = new System.Drawing.Point(609, 174);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 15);
             this.label4.TabIndex = 18;
@@ -1003,7 +1009,7 @@ namespace NSUNS4_Character_Manager
             // numericUpDown6
             // 
             this.numericUpDown6.Hexadecimal = true;
-            this.numericUpDown6.Location = new System.Drawing.Point(648, 163);
+            this.numericUpDown6.Location = new System.Drawing.Point(648, 170);
             this.numericUpDown6.Maximum = new decimal(new int[] {
             255,
             0,
@@ -1018,11 +1024,23 @@ namespace NSUNS4_Character_Manager
             0,
             0});
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(639, 199);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 19;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // Tool_UnlockCharaTotalEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(731, 390);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.numericUpDown6);
             this.Controls.Add(this.numericUpDown4);
@@ -1075,6 +1093,14 @@ namespace NSUNS4_Character_Manager
         private void Tool_UnlockCharaTotalEditor_Load(object sender, EventArgs e) {
 			if (File.Exists(Main.unlPath)) {
 				OpenFile(Main.unlPath);
+			}
+		}
+
+        private void button4_Click(object sender, EventArgs e) {
+			if (FileOpen) {
+				AddID2(false);
+			} else {
+				MessageBox.Show("No file loaded...");
 			}
 		}
     }

@@ -547,8 +547,7 @@ namespace NSUNS4_Character_Manager.Tools
             int x = listBox1.SelectedIndex;
             if (x > -1 && x < listBox1.Items.Count)
             {
-                Characode_v1.Value = CharacodeList[x][0];
-                Characode_v2.Value = CharacodeList[x][1];
+                Characode_v1.Value = Main.b_byteArrayToInt(CharacodeList[x]);
                 Skill1_tb.Text = Skill1List[x];
                 Skill2_tb.Text = Skill2List[x];
                 Skill3_tb.Text = Skill3List[x];
@@ -613,13 +612,7 @@ namespace NSUNS4_Character_Manager.Tools
             int x = listBox1.SelectedIndex;
             if (x > -1 && x < listBox1.Items.Count)
             {
-                CharacodeList[x] = new byte[4]
-                {
-                    Convert.ToByte(Characode_v1.Value),
-                    Convert.ToByte(Characode_v2.Value),
-                    0x00,
-                    0x00
-                };      
+                CharacodeList[x] = BitConverter.GetBytes((int)Characode_v1.Value);      
                 Skill1List[x] = Skill1_tb.Text;
                 Skill2List[x] = Skill2_tb.Text;
                 Skill3List[x] = Skill3_tb.Text;

@@ -39,9 +39,7 @@ namespace NSUNS4_Character_Manager
 		private Button RemoveButton;
 		private Label label1;
 		private NumericUpDown pid0;
-		private NumericUpDown pid1;
     	private Label label2;
-		private NumericUpDown cid1;
 		private NumericUpDown cid0;
 		private Label label3;
 		private TextBox cname;
@@ -215,23 +213,19 @@ namespace NSUNS4_Character_Manager
 
         public void AddID()
         {
-            // Generate new preset ID
-            int maxPid = 0;
-            for (int pid = 0; pid < EntryCount; pid++)
-            {
-                int thisPid = ((int)PresetList[pid][0] * 0x1) + ((int)PresetList[pid][1] * 0x100);
-                if (thisPid > maxPid) maxPid = thisPid;
-            }
-            maxPid++;
-            byte[] PresetID = BitConverter.GetBytes(maxPid);
+			// Generate new preset ID
+			List<int> PresetID_List = new List<int>();
+			for (int j = 0; j < EntryCount; j++) {
+				PresetID_List.Add(Main.b_byteArrayToInt(PresetList[j]));
+			}
+			int new_presetID = 0;
+			do {
+				new_presetID++;
+			}
+			while (PresetID_List.Contains(new_presetID));
+			byte[] PresetID = BitConverter.GetBytes(new_presetID);
 
-            byte[] CharacodeID = new byte[4]
-            {
-                (byte)cid0.Value,
-                (byte)cid1.Value,
-                0,
-                0
-            };
+			byte[] CharacodeID = BitConverter.GetBytes((int)cid0.Value);
 
             int OptA = (int)opta.Value;
             string CharacterID = cname.Text;
@@ -300,21 +294,8 @@ namespace NSUNS4_Character_Manager
 			int x = ListBox1.SelectedIndex;
 			if (x > -1)
 			{
-				byte[] PresetID = new byte[4]
-				{
-					(byte)pid0.Value,
-					(byte)pid1.Value,
-					0,
-					0
-				};
-				byte[] CharacodeID = new byte[4]
-				{
-					(byte)cid0.Value,
-					(byte)cid1.Value,
-					0,
-					0
-				};
-
+				byte[] PresetID = BitConverter.GetBytes((int)pid0.Value);
+				byte[] CharacodeID = BitConverter.GetBytes((int)cid0.Value);
 				int OptA = (int)opta.Value;
 				string CharacterID = cname.Text;
 				int OptB = (int)optb.Value;
@@ -923,10 +904,8 @@ namespace NSUNS4_Character_Manager
 			int x = ListBox1.SelectedIndex;
 			if (x > -1 && x < ListBox1.Items.Count)
 			{
-				pid0.Value = PresetList[x][0];
-				pid1.Value = PresetList[x][1];
-				cid0.Value = CharacodeList[x][0];
-				cid1.Value = CharacodeList[x][1];
+				pid0.Value = Main.b_byteArrayToInt(PresetList[x]);
+				cid0.Value = Main.b_byteArrayToInt(CharacodeList[x]);
 				opta.Value = OptValueA[x];
 				cname.Text = CharacterList[x];
 				optb.Value = OptValueB[x];
@@ -1073,9 +1052,7 @@ namespace NSUNS4_Character_Manager
             this.RemoveButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pid0 = new System.Windows.Forms.NumericUpDown();
-            this.pid1 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.cid1 = new System.Windows.Forms.NumericUpDown();
             this.cid0 = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.cname = new System.Windows.Forms.TextBox();
@@ -1098,8 +1075,6 @@ namespace NSUNS4_Character_Manager
             this.Search = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pid0)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pid1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cid0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.opta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.optb)).BeginInit();
@@ -1113,9 +1088,9 @@ namespace NSUNS4_Character_Manager
             this.ListBox1.Font = new System.Drawing.Font("Segoe UI", 9.5F);
             this.ListBox1.FormattingEnabled = true;
             this.ListBox1.ItemHeight = 17;
-            this.ListBox1.Location = new System.Drawing.Point(12, 30);
+            this.ListBox1.Location = new System.Drawing.Point(3, 30);
             this.ListBox1.Name = "ListBox1";
-            this.ListBox1.Size = new System.Drawing.Size(374, 463);
+            this.ListBox1.Size = new System.Drawing.Size(383, 463);
             this.ListBox1.TabIndex = 0;
             this.ListBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
             // 
@@ -1126,7 +1101,7 @@ namespace NSUNS4_Character_Manager
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(607, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(593, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -1181,28 +1156,28 @@ namespace NSUNS4_Character_Manager
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(397, 533);
+            this.AddButton.Location = new System.Drawing.Point(3, 499);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(198, 23);
+            this.AddButton.Size = new System.Drawing.Size(199, 23);
             this.AddButton.TabIndex = 2;
-            this.AddButton.Text = "Create new entry with this data";
+            this.AddButton.Text = "Copy";
             this.AddButton.UseVisualStyleBackColor = true;
             this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // RemoveButton
             // 
-            this.RemoveButton.Location = new System.Drawing.Point(12, 504);
+            this.RemoveButton.Location = new System.Drawing.Point(203, 499);
             this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(374, 23);
+            this.RemoveButton.Size = new System.Drawing.Size(183, 23);
             this.RemoveButton.TabIndex = 3;
-            this.RemoveButton.Text = "Remove selected entry";
+            this.RemoveButton.Text = "Delete";
             this.RemoveButton.UseVisualStyleBackColor = true;
             this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(392, 37);
+            this.label1.Location = new System.Drawing.Point(386, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(142, 15);
             this.label1.TabIndex = 5;
@@ -1211,69 +1186,43 @@ namespace NSUNS4_Character_Manager
             // pid0
             // 
             this.pid0.Hexadecimal = true;
-            this.pid0.Location = new System.Drawing.Point(395, 53);
+            this.pid0.Location = new System.Drawing.Point(389, 47);
             this.pid0.Maximum = new decimal(new int[] {
-            255,
+            65535,
             0,
             0,
             0});
             this.pid0.Name = "pid0";
-            this.pid0.Size = new System.Drawing.Size(97, 23);
+            this.pid0.Size = new System.Drawing.Size(201, 23);
             this.pid0.TabIndex = 6;
             this.pid0.ValueChanged += new System.EventHandler(this.pid0_ValueChanged);
-            // 
-            // pid1
-            // 
-            this.pid1.Hexadecimal = true;
-            this.pid1.Location = new System.Drawing.Point(498, 53);
-            this.pid1.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.pid1.Name = "pid1";
-            this.pid1.Size = new System.Drawing.Size(97, 23);
-            this.pid1.TabIndex = 6;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(392, 84);
+            this.label2.Location = new System.Drawing.Point(386, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(168, 15);
             this.label2.TabIndex = 7;
             this.label2.Text = "Characode ID (Example: C8 00)";
             // 
-            // cid1
-            // 
-            this.cid1.Hexadecimal = true;
-            this.cid1.Location = new System.Drawing.Point(498, 100);
-            this.cid1.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.cid1.Name = "cid1";
-            this.cid1.Size = new System.Drawing.Size(97, 23);
-            this.cid1.TabIndex = 8;
-            // 
             // cid0
             // 
             this.cid0.Hexadecimal = true;
-            this.cid0.Location = new System.Drawing.Point(395, 100);
+            this.cid0.Location = new System.Drawing.Point(389, 94);
             this.cid0.Maximum = new decimal(new int[] {
-            255,
+            65535,
             0,
             0,
             0});
             this.cid0.Name = "cid0";
-            this.cid0.Size = new System.Drawing.Size(97, 23);
+            this.cid0.Size = new System.Drawing.Size(201, 23);
             this.cid0.TabIndex = 9;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(394, 176);
+            this.label3.Location = new System.Drawing.Point(388, 170);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(166, 15);
             this.label3.TabIndex = 10;
@@ -1281,15 +1230,15 @@ namespace NSUNS4_Character_Manager
             // 
             // cname
             // 
-            this.cname.Location = new System.Drawing.Point(396, 193);
+            this.cname.Location = new System.Drawing.Point(390, 187);
             this.cname.MaxLength = 15;
             this.cname.Name = "cname";
-            this.cname.Size = new System.Drawing.Size(200, 23);
+            this.cname.Size = new System.Drawing.Size(199, 23);
             this.cname.TabIndex = 11;
             // 
             // cchaa
             // 
-            this.cchaa.Location = new System.Drawing.Point(395, 336);
+            this.cchaa.Location = new System.Drawing.Point(389, 330);
             this.cchaa.MaxLength = 15;
             this.cchaa.Name = "cchaa";
             this.cchaa.Size = new System.Drawing.Size(200, 23);
@@ -1298,7 +1247,7 @@ namespace NSUNS4_Character_Manager
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(393, 319);
+            this.label4.Location = new System.Drawing.Point(387, 313);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(176, 15);
             this.label4.TabIndex = 12;
@@ -1306,16 +1255,16 @@ namespace NSUNS4_Character_Manager
             // 
             // cchab
             // 
-            this.cchab.Location = new System.Drawing.Point(395, 385);
+            this.cchab.Location = new System.Drawing.Point(389, 379);
             this.cchab.MaxLength = 15;
             this.cchab.Name = "cchab";
-            this.cchab.Size = new System.Drawing.Size(200, 23);
+            this.cchab.Size = new System.Drawing.Size(201, 23);
             this.cchab.TabIndex = 15;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(393, 368);
+            this.label5.Location = new System.Drawing.Point(387, 362);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(175, 15);
             this.label5.TabIndex = 14;
@@ -1323,18 +1272,18 @@ namespace NSUNS4_Character_Manager
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(395, 504);
+            this.SaveButton.Location = new System.Drawing.Point(390, 500);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(200, 23);
+            this.SaveButton.Size = new System.Drawing.Size(200, 46);
             this.SaveButton.TabIndex = 16;
-            this.SaveButton.Text = "Save selected entry";
+            this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
             this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // opta
             // 
             this.opta.Hexadecimal = true;
-            this.opta.Location = new System.Drawing.Point(396, 148);
+            this.opta.Location = new System.Drawing.Point(390, 142);
             this.opta.Maximum = new decimal(new int[] {
             -1,
             0,
@@ -1352,7 +1301,7 @@ namespace NSUNS4_Character_Manager
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(393, 132);
+            this.label6.Location = new System.Drawing.Point(387, 126);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(95, 15);
             this.label6.TabIndex = 17;
@@ -1361,7 +1310,7 @@ namespace NSUNS4_Character_Manager
             // optb
             // 
             this.optb.Hexadecimal = true;
-            this.optb.Location = new System.Drawing.Point(397, 239);
+            this.optb.Location = new System.Drawing.Point(391, 233);
             this.optb.Maximum = new decimal(new int[] {
             -1,
             0,
@@ -1379,7 +1328,7 @@ namespace NSUNS4_Character_Manager
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(394, 271);
+            this.label7.Location = new System.Drawing.Point(388, 265);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(121, 15);
             this.label7.TabIndex = 19;
@@ -1388,7 +1337,7 @@ namespace NSUNS4_Character_Manager
             // optc
             // 
             this.optc.Hexadecimal = true;
-            this.optc.Location = new System.Drawing.Point(397, 287);
+            this.optc.Location = new System.Drawing.Point(391, 281);
             this.optc.Maximum = new decimal(new int[] {
             -1,
             0,
@@ -1406,7 +1355,7 @@ namespace NSUNS4_Character_Manager
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(394, 223);
+            this.label8.Location = new System.Drawing.Point(388, 217);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(91, 15);
             this.label8.TabIndex = 21;
@@ -1415,7 +1364,7 @@ namespace NSUNS4_Character_Manager
             // opte
             // 
             this.opte.Hexadecimal = true;
-            this.opte.Location = new System.Drawing.Point(396, 475);
+            this.opte.Location = new System.Drawing.Point(390, 469);
             this.opte.Maximum = new decimal(new int[] {
             -1,
             0,
@@ -1433,7 +1382,7 @@ namespace NSUNS4_Character_Manager
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(393, 459);
+            this.label9.Location = new System.Drawing.Point(387, 453);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(166, 15);
             this.label9.TabIndex = 25;
@@ -1442,7 +1391,7 @@ namespace NSUNS4_Character_Manager
             // optd
             // 
             this.optd.Hexadecimal = true;
-            this.optd.Location = new System.Drawing.Point(396, 433);
+            this.optd.Location = new System.Drawing.Point(390, 427);
             this.optd.Maximum = new decimal(new int[] {
             -1,
             0,
@@ -1460,7 +1409,7 @@ namespace NSUNS4_Character_Manager
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(393, 417);
+            this.label10.Location = new System.Drawing.Point(387, 411);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(190, 15);
             this.label10.TabIndex = 23;
@@ -1468,17 +1417,17 @@ namespace NSUNS4_Character_Manager
             // 
             // Search_TB
             // 
-            this.Search_TB.Location = new System.Drawing.Point(12, 533);
+            this.Search_TB.Location = new System.Drawing.Point(3, 524);
             this.Search_TB.MaxLength = 15;
             this.Search_TB.Name = "Search_TB";
-            this.Search_TB.Size = new System.Drawing.Size(243, 23);
+            this.Search_TB.Size = new System.Drawing.Size(199, 23);
             this.Search_TB.TabIndex = 28;
             // 
             // Search
             // 
-            this.Search.Location = new System.Drawing.Point(260, 533);
+            this.Search.Location = new System.Drawing.Point(203, 524);
             this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(126, 23);
+            this.Search.Size = new System.Drawing.Size(183, 23);
             this.Search.TabIndex = 27;
             this.Search.Text = "Search Character ID";
             this.Search.UseVisualStyleBackColor = true;
@@ -1488,7 +1437,7 @@ namespace NSUNS4_Character_Manager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(607, 567);
+            this.ClientSize = new System.Drawing.Size(593, 549);
             this.Controls.Add(this.Search_TB);
             this.Controls.Add(this.Search);
             this.Controls.Add(this.opte);
@@ -1508,10 +1457,8 @@ namespace NSUNS4_Character_Manager
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cname);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.cid1);
             this.Controls.Add(this.cid0);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.pid1);
             this.Controls.Add(this.pid0);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.RemoveButton);
@@ -1529,8 +1476,6 @@ namespace NSUNS4_Character_Manager
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pid0)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pid1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cid0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.opta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.optb)).EndInit();

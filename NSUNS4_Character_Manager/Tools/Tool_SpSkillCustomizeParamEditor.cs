@@ -71,8 +71,7 @@ namespace NSUNS4_Character_Manager.Tools
             int x = listBox1.SelectedIndex;
             if (x > -1 && x < listBox1.Items.Count)
             {
-                char01.Value = CharacodeList[x][0];
-                char02.Value = CharacodeList[x][1];
+                char01.Value = Main.b_byteArrayToInt(CharacodeList[x]);
 
                 ULT1_CUC_v.Value = (Decimal)spl1_chUsageCountValueListFloat[x];
                 ULT2_CUC_v.Value = (Decimal)spl2_chUsageCountValueListFloat[x];
@@ -391,13 +390,7 @@ namespace NSUNS4_Character_Manager.Tools
         public void AddID()
         {
             // Generate new preset ID
-            byte[] Characode = new byte[4]
-            {
-                (byte)char01.Value,
-                (byte)char02.Value,
-                0,
-                0
-            };
+            byte[] Characode = BitConverter.GetBytes((int)char01.Value);
             
             float spl1_chUsageCountValueFloat = (float)ULT1_CUC_v.Value;
             float spl2_chUsageCountValueFloat = (float)ULT2_CUC_v.Value;
@@ -463,13 +456,7 @@ namespace NSUNS4_Character_Manager.Tools
             int x = listBox1.SelectedIndex;
             if (x > -1)
             {
-                byte[] Characode = new byte[4]
-            {
-                (byte)char01.Value,
-                (byte)char02.Value,
-                0,
-                0
-            };
+                byte[] Characode = BitConverter.GetBytes((int)char01.Value);
                 float spl1_chUsageCountValueFloat = (float)ULT1_CUC_v.Value;
                 float spl2_chUsageCountValueFloat = (float)ULT2_CUC_v.Value;
                 float spl3_chUsageCountValueFloat = (float)ULT3_CUC_v.Value;
@@ -617,143 +604,87 @@ namespace NSUNS4_Character_Manager.Tools
             {
                 Spl1NamePointer.Add(file.Count);
                 int nameLength3 = spl1_NameList[x2].Length;
-                if (spl1_NameList[x2] == "")
+                if (spl1_NameList[x2] != "")
                 {
-                    nameLength3 = 0;
-                }
-                else
-                {
-                    for (int a17 = 0; a17 < nameLength3; a17++)
-                    {
+                    for (int a17 = 0; a17 < nameLength3; a17++) {
                         file.Add((byte)spl1_NameList[x2][a17]);
                     }
-                    for (int a16 = nameLength3; a16 < nameLength3+1; a16++)
-                    {
+                    for (int a16 = nameLength3; a16 < nameLength3 + 1; a16++) {
                         file.Add(0);
                     }
                     o_d = BitConverter.GetBytes(spl1_PriorList[x2]);
-                    for (int a8 = 0; a8 < 4; a8++)
-                    {
+                    for (int a8 = 0; a8 < 4; a8++) {
                         file[320 + 112 * x2 + 56 + a8] = o_d[a8];
                     }
                 }
                 
                 Spl2NamePointer.Add(file.Count);
                 int nameLength4 = spl2_NameList[x2].Length;
-                if (spl2_NameList[x2] == "")
+                if (spl2_NameList[x2] != "")
                 {
-                    nameLength3 = 0;
-                }
-                else
-                {
-                    for (int a17 = 0; a17 < nameLength4; a17++)
-                    {
+                    for (int a17 = 0; a17 < nameLength4; a17++) {
                         file.Add((byte)spl2_NameList[x2][a17]);
                     }
-                    for (int a16 = nameLength4; a16 < nameLength4+1; a16++)
-                    {
+                    for (int a16 = nameLength4; a16 < nameLength4 + 1; a16++) {
                         file.Add(0);
                     }
                     o_d = BitConverter.GetBytes(spl2_PriorList[x2]);
-                    for (int a8 = 0; a8 < 4; a8++)
-                    {
+                    for (int a8 = 0; a8 < 4; a8++) {
                         file[320 + 112 * x2 + 72 + a8] = o_d[a8];
                     }
-
                 }
+                
                 Spl3NamePointer.Add(file.Count);
                 int nameLength5 = spl3_NameList[x2].Length;
-                if (spl3_NameList[x2] == "")
+                if (spl3_NameList[x2] != "")
                 {
-                    nameLength3 = 0;
-                }
-                else
-                {
-                    for (int a17 = 0; a17 < nameLength5; a17++)
-                    {
+                    for (int a17 = 0; a17 < nameLength5; a17++) {
                         file.Add((byte)spl3_NameList[x2][a17]);
                     }
-                    for (int a16 = nameLength5; a16 < nameLength5+1; a16++)
-                    {
+                    for (int a16 = nameLength5; a16 < nameLength5 + 1; a16++) {
                         file.Add(0);
                     }
                     o_d = BitConverter.GetBytes(spl3_PriorList[x2]);
-                    for (int a8 = 0; a8 < 4; a8++)
-                    {
+                    for (int a8 = 0; a8 < 4; a8++) {
                         file[320 + 112 * x2 + 88 + a8] = o_d[a8];
                     }
                 }
                 Spl4NamePointer.Add(file.Count);
                 nameLength5 = spl4_NameList[x2].Length;
-                if (spl4_NameList[x2] == "")
+                if (spl4_NameList[x2] != "")
                 {
-                    nameLength3 = 0;
-                }
-                else
-                {
-                    for (int a17 = 0; a17 < nameLength5; a17++)
-                    {
+                    for (int a17 = 0; a17 < nameLength5; a17++) {
                         file.Add((byte)spl4_NameList[x2][a17]);
                     }
-                    for (int a16 = nameLength5; a16 < nameLength5 + 1; a16++)
-                    {
+                    for (int a16 = nameLength5; a16 < nameLength5 + 1; a16++) {
                         file.Add(0);
                     }
                     o_d = BitConverter.GetBytes(spl4_PriorList[x2]);
-                    for (int a8 = 0; a8 < 4; a8++)
-                    {
+                    for (int a8 = 0; a8 < 4; a8++) {
                         file[320 + 112 * x2 + 104 + a8] = o_d[a8];
                     }
                 }
                 int newPointer3 = Spl1NamePointer[x2] - 320 - 112 * x2 - 48;
                 byte[] ptrBytes3 = BitConverter.GetBytes(newPointer3);
-                if (spl1_NameList[x2] == "")
+                if (spl1_NameList[x2] != "")
                 {
-
-                    for (int a7 = 0; a7 < 4; a7++)
-                    {
-                        file[320 + 112 * x2 + 48 + a7] = 0;
-                    }
-                }
-                else
-                {
-                    for (int a7 = 0; a7 < 4; a7++)
-                    {
+                    for (int a7 = 0; a7 < 4; a7++) {
                         file[320 + 112 * x2 + 48 + a7] = ptrBytes3[a7];
                     }
                 }
                 newPointer3 = Spl2NamePointer[x2] - 320 - 112 * x2 - 64;
                 ptrBytes3 = BitConverter.GetBytes(newPointer3);
-                if (spl2_NameList[x2] == "")
+                if (spl2_NameList[x2] != "")
                 {
-
-                    for (int a7 = 0; a7 < 4; a7++)
-                    {
-                        file[320 + 112 * x2 + 64 + a7] = 0;
-                    }
-                }
-                else
-                {
-                    for (int a7 = 0; a7 < 4; a7++)
-                    {
+                    for (int a7 = 0; a7 < 4; a7++) {
                         file[320 + 112 * x2 + 64 + a7] = ptrBytes3[a7];
                     }
                 }
                 newPointer3 = Spl3NamePointer[x2] - 320 - 112 * x2 - 80;
                 ptrBytes3 = BitConverter.GetBytes(newPointer3);
-                if (spl3_NameList[x2] == "")
+                if (spl3_NameList[x2] != "")
                 {
-
-                    for (int a7 = 0; a7 < 4; a7++)
-                    {
-                        file[320 + 112 * x2 + 80 + a7] = 0;
-                    }
-                }
-                else
-                {
-
-                    for (int a7 = 0; a7 < 4; a7++)
-                    {
+                    for (int a7 = 0; a7 < 4; a7++) {
                         file[320 + 112 * x2 + 80 + a7] = ptrBytes3[a7];
                     }
                 }
@@ -761,17 +692,7 @@ namespace NSUNS4_Character_Manager.Tools
                 ptrBytes3 = BitConverter.GetBytes(newPointer3);
                 if (spl4_NameList[x2] == "")
                 {
-
-                    for (int a7 = 0; a7 < 4; a7++)
-                    {
-                        file[320 + 112 * x2 + 96 + a7] = 0;
-                    }
-                }
-                else
-                {
-
-                    for (int a7 = 0; a7 < 4; a7++)
-                    {
+                    for (int a7 = 0; a7 < 4; a7++) {
                         file[320 + 112 * x2 + 96 + a7] = ptrBytes3[a7];
                     }
                 }
@@ -807,14 +728,9 @@ namespace NSUNS4_Character_Manager.Tools
                 {
                     file[320 + 112 * x2 + 20 + a8] = o_f[a8];
                 }
-                
-                
-                
-
             }
             int FileSize3 = file.Count - 304;
             byte[] sizeBytes3 = BitConverter.GetBytes(FileSize3);
-            int FileSize2 = file.Count - 288 + 4;
             byte[] sizeBytes2 = BitConverter.GetBytes(FileSize3 + 4);
             for (int a20 = 0; a20 < 4; a20++)
             {

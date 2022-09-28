@@ -405,7 +405,7 @@ namespace NSUNS4_Character_Manager
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 390);
+            this.button2.Location = new System.Drawing.Point(13, 384);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(274, 23);
             this.button2.TabIndex = 2;
@@ -417,7 +417,7 @@ namespace NSUNS4_Character_Manager
             // 
             this.button1.Location = new System.Drawing.Point(119, 361);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(167, 23);
+            this.button1.Size = new System.Drawing.Size(168, 23);
             this.button1.TabIndex = 3;
             this.button1.Text = "Add new ID";
             this.button1.UseVisualStyleBackColor = true;
@@ -488,22 +488,22 @@ namespace NSUNS4_Character_Manager
             this.textBox1.Location = new System.Drawing.Point(15, 361);
             this.textBox1.MaxLength = 8;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
+            this.textBox1.Size = new System.Drawing.Size(104, 23);
             this.textBox1.TabIndex = 5;
             // 
             // Search_TB
             // 
-            this.Search_TB.Location = new System.Drawing.Point(13, 419);
+            this.Search_TB.Location = new System.Drawing.Point(13, 406);
             this.Search_TB.MaxLength = 15;
             this.Search_TB.Name = "Search_TB";
-            this.Search_TB.Size = new System.Drawing.Size(102, 23);
+            this.Search_TB.Size = new System.Drawing.Size(106, 23);
             this.Search_TB.TabIndex = 38;
             // 
             // Search
             // 
-            this.Search.Location = new System.Drawing.Point(119, 419);
+            this.Search.Location = new System.Drawing.Point(119, 406);
             this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(167, 23);
+            this.Search.Size = new System.Drawing.Size(168, 23);
             this.Search.TabIndex = 37;
             this.Search.Text = "Search ID";
             this.Search.UseVisualStyleBackColor = true;
@@ -513,7 +513,7 @@ namespace NSUNS4_Character_Manager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(295, 450);
+            this.ClientSize = new System.Drawing.Size(295, 433);
             this.Controls.Add(this.Search_TB);
             this.Controls.Add(this.Search);
             this.Controls.Add(this.textBox1);

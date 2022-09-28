@@ -81,7 +81,7 @@ namespace NSUNS4_Character_Manager.Tools
         public List<List<byte[]>> plAnmList = new List<List<byte[]>>();
         public List<List<List<byte[]>>> movementList = new List<List<List<byte[]>>>();
 
-        void OpenFile(string loadPath = "")
+        public void OpenFile(string loadPath = "")
         {
             editCollisionOfPlayerToolStripMenuItem.Enabled = false;
             if (loadPath == "")
@@ -951,7 +951,7 @@ namespace NSUNS4_Character_Manager.Tools
                 t_dmgid.Text = damageid;
 
                 index = 0x82;
-                int selectedhit = section[index];
+                int selectedhit = Main.b_ReadIntFromTwoBytes(section,index);
                 if (selectedhit == 65535) selectedhit = -1;
                 t_hiteffect.SelectedIndex = selectedhit;
 
@@ -1816,27 +1816,30 @@ namespace NSUNS4_Character_Manager.Tools
         }
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (fileOpen)
-            {
-                SaveFileDialog s = new SaveFileDialog();
-                s.ShowDialog();
+            SaveFileAs();
+        }
 
-                if (s.FileName != "")
+        public void SaveFileAs(string basepath = "") {
+            if (fileOpen) {
+                SaveFileDialog s = new SaveFileDialog();
                 {
+                    s.DefaultExt = ".xfbin";
+                    s.Filter = "*.xfbin|*.xfbin";
+                }
+                if (basepath != "")
+                    s.FileName = basepath;
+                else
+                    s.ShowDialog();
+
+                if (s.FileName != "") {
                     filePath = s.FileName;
                     File.WriteAllBytes(filePath, GenerateFile());
-                    MessageBox.Show("File saved to " + filePath);
+                    if (basepath == "")
+                        MessageBox.Show("File saved to " + filePath);
                 }
-            }
-            else
-            {
+            } else {
                 MessageBox.Show("You need to open file first!");
             }
-
-            //byte[] bottomheader = new byte[0x10];
-            //bottomheader[7] = 0x6;
-            //bottomheader[9] = 0x63;
-            //newBytes = Main.b_AddBytes(newBytes, bottomheader);
         }
 
         private void t_add_Click(object sender, EventArgs e)

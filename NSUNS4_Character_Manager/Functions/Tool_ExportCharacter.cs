@@ -17,17 +17,7 @@ namespace NSUNS4_Character_Manager.Functions {
         }
         public string SaveDirectory = "";
         public string SaveCharacode = "";
-        public bool prmLoadExist = false;
-        public bool dppExist = false;
-        public bool pspExist = false;
-        public bool cspExist = false;
-        public bool skillCustomizeExist = false;
-        public bool spskillCustomizeExist = false;
-        public bool iconExist = false;
-        public bool awakeAuraExist = false;
-        public bool appearanceAnmExist = false;
-        public bool afterAttachObjectExist = false;
-        public bool cmnparamExist = false;
+        
         private void Tool_ExportCharacter_Load(object sender, EventArgs e) {
             // Open Characode
             Tool_CharacodeEditor CharacodeFile = new Tool_CharacodeEditor();
@@ -46,13 +36,8 @@ namespace NSUNS4_Character_Manager.Functions {
             CharacodeFile.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\characode.bin.xfbin");
             if (x!=-1) {
                 bool contain = false;
-                for (int i = 0; i< CharacodeFile.CharacterCount; i++) {
-                    if (CharacodeFile.CharacterList[i].Contains(listBox1.Items[x].ToString())) {
-                        SaveCharacode = listBox1.Items[x].ToString();
-                        ExportCharacter(x + 1);
-                        contain = true;
-                        break;
-                    }
+                if (CharacodeFile.CharacterList.Contains(listBox1.Items[x].ToString())) {
+                    contain = true;
                 }
                 if (!contain) {
                     if (File.Exists(Main.chaPath) && File.Exists(Main.dppPath) && File.Exists(Main.pspPath) && File.Exists(Main.skillCustomizePath) && File.Exists(Main.spSkillCustomizePath)) {
@@ -61,6 +46,10 @@ namespace NSUNS4_Character_Manager.Functions {
                     } else {
                         MessageBox.Show("Unable to export, this character isnt exist in current game, it requires characode, playerSettingParam, characterSelectParam, duelPlayerParam, skillCustomizeParam and spSkillCustomizeParam files.");
                     }
+                }
+                else {
+                    SaveCharacode = listBox1.Items[x].ToString();
+                    ExportCharacter(x + 1);
                 }
             }
         }
@@ -71,13 +60,30 @@ namespace NSUNS4_Character_Manager.Functions {
             SaveDirectory = f.SelectedPath+"\\"+ SaveCharacode + "\\data_win32";
             Directory.CreateDirectory(SaveDirectory);
 
-            DirectoryInfo d = new DirectoryInfo(@Main.datawin32Path);
+            DirectoryInfo d = new DirectoryInfo(Main.datawin32Path);
             string dataWinFolder = d.Name + "\\";
             int dataWinFolderLength = dataWinFolder.Length;
             FileInfo[] Files = d.GetFiles("*.xfbin", SearchOption.AllDirectories);
 
-            
 
+
+            DirectoryInfo icon_d = new DirectoryInfo(Main.datawin32Path+"\\ui\\flash\\OTHER\\");
+            FileInfo[] icon_Files = icon_d.GetFiles("*.xfbin", SearchOption.AllDirectories);
+            bool prmExist = false;
+            bool prmLoadExist = false;
+            bool dppExist = false;
+            bool pspExist = false;
+            bool cspExist = false;
+            bool skillCustomizeExist = false;
+            bool spskillCustomizeExist = false;
+            bool iconExist = false;
+            bool awakeAuraExist = false;
+            bool appearanceAnmExist = false;
+            bool afterAttachObjectExist = false;
+            bool cmnparamExist = false;
+            bool damageeffExist = false;
+            bool effectprmExist = false;
+            string prmPath = "";
             string prmLoadPath = "";
             string dppPath = "";
             string cspPath = "";
@@ -89,6 +95,8 @@ namespace NSUNS4_Character_Manager.Functions {
             string appearanceAnmPath = "";
             string afterAttachObjectPath = "";
             string cmnparamPath = "";
+            string damageeffPath = "";
+            string effectprmPath = "";
             string moddingAPIPath = Main.datawin32Path.Replace(d.Name, "moddingapi\\mods");
 
             
@@ -105,6 +113,26 @@ namespace NSUNS4_Character_Manager.Functions {
                 }
             }
             foreach (FileInfo file in Files) {
+                if (file.FullName.Contains(SaveCharacode + "prm.bin.xfbin")) {
+                    prmExist = true;
+                    prmPath = file.FullName;
+                    break;
+                } else {
+                    prmExist = false;
+                    prmPath = "";
+                }
+            }
+            foreach (FileInfo file in Files) {
+                if (file.FullName.Contains("spcload\\" + SaveCharacode + "prm_load.bin.xfbin")) {
+                    prmLoadExist = true;
+                    prmLoadPath = file.FullName;
+                    break;
+                } else {
+                    prmLoadExist = false;
+                    prmLoadPath = "";
+                }
+            }
+            foreach (FileInfo file in Files) {
                 if (file.FullName.Contains("spc\\duelPlayerParam.xfbin")) {
                     dppExist = true;
                     dppPath = file.FullName;
@@ -112,6 +140,26 @@ namespace NSUNS4_Character_Manager.Functions {
                 } else {
                     dppExist = false;
                     dppPath = "";
+                }
+            }
+            foreach (FileInfo file in Files) {
+                if (file.FullName.Contains("spc\\damageeff.bin.xfbin")) {
+                    damageeffExist = true;
+                    damageeffPath = file.FullName;
+                    break;
+                } else {
+                    damageeffExist = false;
+                    damageeffPath = "";
+                }
+            }
+            foreach (FileInfo file in Files) {
+                if (file.FullName.Contains("spc\\effectprm.bin.xfbin")) {
+                    effectprmExist = true;
+                    effectprmPath = file.FullName;
+                    break;
+                } else {
+                    effectprmExist = false;
+                    effectprmPath = "";
                 }
             }
             foreach (FileInfo file in Files) {
@@ -204,6 +252,90 @@ namespace NSUNS4_Character_Manager.Functions {
                     cmnparamPath = "";
                 }
             }
+            if (prmExist) {
+                Tool_MovesetCoder PrmFile = new Tool_MovesetCoder();
+                PrmFile.OpenFile(prmPath);
+                if (damageeffExist) {
+                    Tool_damageeffEditor damageEffOriginalFile = new Tool_damageeffEditor();
+                    damageEffOriginalFile.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\damageeff.bin.xfbin");
+                    Tool_damageeffEditor damageEffModFile = new Tool_damageeffEditor();
+                    damageEffModFile.OpenFile(damageeffPath);
+                    List<int> HitId_List = new List<int>();
+                    List<int> ExtraHitId_List = new List<int>();
+                    List<int> ExtraSoundId_List = new List<int>();
+                    List<int> EffectPrmId_List = new List<int>();
+                    List<int> SoundId_List = new List<int>();
+                    List<int> Unknown1_List = new List<int>();
+                    List<int> Unknown2_List = new List<int>();
+                    List<int> ExtraEffectPrmId_List = new List<int>();
+                    for (int k1 = 0; k1 < PrmFile.movementList.Count; k1++) {
+                        for (int k2 = 0; k2 < PrmFile.movementList[k1].Count; k2++) {
+                            for (int k3 = 0; k3 < PrmFile.movementList[k1][k2].Count; k3++) {
+                                if (PrmFile.movementList[k1][k2][k3].Length > 0x40) {
+                                    int selectedhit = Main.b_ReadIntFromTwoBytes(PrmFile.movementList[k1][k2][k3], 0x82);
+                                    if (!damageEffOriginalFile.HitId_List.Contains(selectedhit)) {
+                                        for (int c = 0; c < damageEffModFile.EntryCount; c++) {
+                                            if (damageEffModFile.HitId_List[c] == selectedhit && !HitId_List.Contains(selectedhit)) {
+                                                HitId_List.Add(damageEffModFile.HitId_List[c]);
+                                                ExtraHitId_List.Add(damageEffModFile.ExtraHitId_List[c]);
+                                                ExtraSoundId_List.Add(damageEffModFile.ExtraSoundId_List[c]);
+                                                EffectPrmId_List.Add(damageEffModFile.EffectPrmId_List[c]);
+                                                SoundId_List.Add(damageEffModFile.SoundId_List[c]);
+                                                Unknown1_List.Add(damageEffModFile.Unknown1_List[c]);
+                                                Unknown2_List.Add(damageEffModFile.Unknown2_List[c]);
+                                                ExtraEffectPrmId_List.Add(damageEffModFile.ExtraEffectPrmId_List[c]);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    damageEffModFile.HitId_List = HitId_List;
+                    damageEffModFile.ExtraHitId_List = ExtraHitId_List;
+                    damageEffModFile.ExtraSoundId_List = ExtraSoundId_List;
+                    damageEffModFile.EffectPrmId_List = EffectPrmId_List;
+                    damageEffModFile.SoundId_List = SoundId_List;
+                    damageEffModFile.Unknown1_List = Unknown1_List;
+                    damageEffModFile.Unknown2_List = Unknown2_List;
+                    damageEffModFile.ExtraEffectPrmId_List = ExtraEffectPrmId_List;
+                    damageEffModFile.EntryCount = HitId_List.Count;
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\spc\\"))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\spc\\"));
+                    }
+                    damageEffModFile.SaveFileAs(SaveDirectory + "\\spc\\damageeff.bin.xfbin");
+                    if (effectprmExist) {
+                        List<int> EffectPrmID_List = new List<int>();
+                        List<int> EffectPrmType_List = new List<int>();
+                        List<string> EffectPrmPath_List = new List<string>();
+                        List<string> EffectPrmAnm_List = new List<string>();
+                        Tool_effectprmEditor EffectPrmModFile = new Tool_effectprmEditor();
+                        EffectPrmModFile.OpenFile(effectprmPath);
+
+                        for (int c = 0; c < EffectPrmModFile.EntryCount; c++) {
+                            for (int j = 0; j < damageEffModFile.EntryCount; j++) {
+                                if (damageEffModFile.EffectPrmId_List[j] == EffectPrmModFile.EffectPrmID_List[c] && !EffectPrmID_List.Contains(damageEffModFile.EffectPrmId_List[j])) {
+                                    EffectPrmID_List.Add(EffectPrmModFile.EffectPrmID_List[c]);
+                                    EffectPrmType_List.Add(EffectPrmModFile.EffectPrmType_List[c]);
+                                    EffectPrmPath_List.Add(EffectPrmModFile.EffectPrmPath_List[c]);
+                                    EffectPrmAnm_List.Add(EffectPrmModFile.EffectPrmAnm_List[c]);
+                                }
+                            }
+
+                        }
+                        EffectPrmModFile.EffectPrmID_List = EffectPrmID_List;
+                        EffectPrmModFile.EffectPrmType_List = EffectPrmType_List;
+                        EffectPrmModFile.EffectPrmPath_List = EffectPrmPath_List;
+                        EffectPrmModFile.EffectPrmAnm_List = EffectPrmAnm_List;
+                        EffectPrmModFile.EntryCount = EffectPrmID_List.Count;
+                        if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\spc\\"))) {
+                            Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\spc\\"));
+                        }
+                        EffectPrmModFile.SaveFileAs(SaveDirectory + "\\spc\\effectprm.bin.xfbin");
+                    }
+                }
+
+            }
             if (prmLoadExist) {
                 Tool_SpcloadEditor SpcloadFile = new Tool_SpcloadEditor();
                 SpcloadFile.OpenFile(prmLoadPath);
@@ -289,11 +421,13 @@ namespace NSUNS4_Character_Manager.Functions {
 
                     }
                     if (names.Count == 0) {
-                        CopyFiles(SaveDirectory + "\\" + SpcloadFile.pathList[i], Main.datawin32Path + "\\" + SpcloadFile.pathList[i] + "\\" + name + ".xfbin", SaveDirectory + "\\" + SpcloadFile.pathList[i] + "\\" + name + ".xfbin");
+                        if (File.Exists(Main.datawin32Path + "\\" + SpcloadFile.pathList[i] + "\\" + name + ".xfbin"))
+                            CopyFiles(SaveDirectory + "\\" + SpcloadFile.pathList[i], Main.datawin32Path + "\\" + SpcloadFile.pathList[i] + "\\" + name + ".xfbin", SaveDirectory + "\\" + SpcloadFile.pathList[i] + "\\" + name + ".xfbin");
                     }
                     else {
                         for (int x = 0; x< names.Count; x++) {
-                            CopyFiles(SaveDirectory + "\\" + SpcloadFile.pathList[i], Main.datawin32Path + "\\" + SpcloadFile.pathList[i] + "\\" + names[x] + ".xfbin", SaveDirectory + "\\" + SpcloadFile.pathList[i] + "\\" + names[x] + ".xfbin");
+                            if (File.Exists(Main.datawin32Path + "\\" + SpcloadFile.pathList[i] + "\\" + names[x] + ".xfbin"))
+                                CopyFiles(SaveDirectory + "\\" + SpcloadFile.pathList[i], Main.datawin32Path + "\\" + SpcloadFile.pathList[i] + "\\" + names[x] + ".xfbin", SaveDirectory + "\\" + SpcloadFile.pathList[i] + "\\" + names[x] + ".xfbin");
                         }
                     }
 
@@ -618,14 +752,19 @@ namespace NSUNS4_Character_Manager.Functions {
                 Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\spc\\WIN64\\"));
             }
             iconFile.SaveFileAs(SaveDirectory + "\\spc\\WIN64\\player_icon.xfbin");
-
-            foreach (FileInfo file in Files) {
-                if (File.Exists(Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength))) {
-                    for (int z = 0; z < CharacodeList.Count; z++) {
-                        if (file.Name.Contains(NameList[z]) || file.Name.Contains(ExNinjutsuList[z]) || file.Name.Contains(IconList[z]) || file.Name.Contains(AwaIconList[z]))
-                            CopyFiles(Path.GetDirectoryName(SaveDirectory + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength)), Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength), SaveDirectory + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength));
+            List<string> iconPaths = new List<string>();
+            List<string> iconNames = new List<string>();
+            foreach (FileInfo file in icon_Files) {
+                iconPaths.Add(file.FullName.ToString());
+                iconNames.Add(file.Name.ToString());
+                }
+            for (int z =0; z<CharacodeList.Count; z++) {
+                for (int h=0; h<iconPaths.Count; h++) {
+                    if ((iconNames[h].Contains(NameList[z]) && NameList[z] != "") || (iconNames[h].Contains(ExNinjutsuList[z]) && ExNinjutsuList[z] != "") || (iconNames[h].Contains(IconList[z]) && IconList[z] != "") || (iconNames[h].Contains(AwaIconList[z]) && AwaIconList[z] != "")) {
+                        CopyFiles(Path.GetDirectoryName(SaveDirectory + "\\" + iconPaths[h].Substring(iconPaths[h].IndexOf(dataWinFolder) + dataWinFolderLength)), iconPaths[h], SaveDirectory + "\\" + iconPaths[h].Substring(iconPaths[h].IndexOf(dataWinFolder) + dataWinFolderLength));
                     }
                 }
+                
             }
             //AppearanceANM
             Tool_appearenceAnmEditor appearanceAnmFile = new Tool_appearenceAnmEditor();

@@ -215,8 +215,7 @@ namespace NSUNS4_Character_Manager.Tools
 			int x = listBox1.SelectedIndex;
 			if (x > -1 && x < listBox1.Items.Count)
 			{
-				Characode_v1.Value = CharacodeList[x][0];
-				Characode_v2.Value = CharacodeList[x][1];
+				Characode_v1.Value = Main.b_byteArrayToInt(CharacodeList[x]);
 				MeshName_tb.Text = MeshList[x];
 				if (TypeSectionList[x] == false)
                 {
@@ -273,13 +272,7 @@ namespace NSUNS4_Character_Manager.Tools
 				if (listBox1.SelectedIndex != -1)
 				{
 					int i = listBox1.SelectedIndex;
-					byte[] Characode_new = new byte[4]
-							{
-						(byte)Characode_v1.Value,
-						(byte)Characode_v2.Value,
-						0,
-						0
-							};
+					byte[] Characode_new = BitConverter.GetBytes((int)Characode_v1.Value);
 					bool[] Slot_new = new bool[20];
 					Slot_new[0] = Slot_1_cb.Checked;
 					Slot_new[1] = Slot_2_cb.Checked;
@@ -355,13 +348,7 @@ namespace NSUNS4_Character_Manager.Tools
 				{
 					int i = listBox1.SelectedIndex;
 
-					byte[] Characode_new = new byte[4]
-					{
-						(byte)Characode_v1.Value,
-						(byte)Characode_v2.Value,
-						0,
-						0
-					};
+					byte[] Characode_new = BitConverter.GetBytes((int)Characode_v1.Value);
 					bool[] Slot_new = new bool[20];
 					SlotList[i].CopyTo(Slot_new, 0);
 					List<bool> Slot_newList = new List<bool>();
@@ -752,5 +739,35 @@ namespace NSUNS4_Character_Manager.Tools
 			}
 			return file.ToArray();
 		}
-	}
+		public static int SearchSlotIndex(List<byte[]> CharacodeList, int CharacodeID_f, int Count) {
+			byte[] char_code = BitConverter.GetBytes(CharacodeID_f);
+			int value = 0;
+			for (int x = 0; x < Count; x++) {
+				if ((CharacodeList[x][0] == char_code[0]) && (CharacodeList[x][1] == char_code[1])) {
+					for (int z = x; z < Count; z++) {
+						if (Main.b_byteArrayToInt(CharacodeList[z]) == CharacodeID_f) {
+							return z;
+						} else {
+							value = -1;
+						}
+					}
+					return value;
+				} else {
+					value = -1;
+				}
+			}
+			return value;
+		}
+		private void button6_Click(object sender, EventArgs e) {
+			if (FileOpen) {
+				if (SearchSlotIndex(CharacodeList, (int)Characode1_cb.Value, EntryCount) != -1) {
+					listBox1.SelectedIndex = SearchSlotIndex(CharacodeList, (int)Characode1_cb.Value, EntryCount);
+				} else {
+					MessageBox.Show("Section with that position slot doesn't exist in file");
+				}
+			} else {
+				MessageBox.Show("Open file before trying to search section");
+			}
+		}
+    }
 }

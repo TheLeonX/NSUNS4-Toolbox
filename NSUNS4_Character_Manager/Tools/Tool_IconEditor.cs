@@ -200,8 +200,7 @@ namespace NSUNS4_Character_Manager.Tools
             int x = listBox1.SelectedIndex;
             if (x > -1 && x < listBox1.Items.Count)
             {
-                pid0.Value = CharacodeList[x][0];
-                pid1.Value = CharacodeList[x][1];
+                pid0.Value = Main.b_byteArrayToInt(CharacodeList[x]);
                 opta.Value = CostumeList[x][0];
                 IconName.Text = IconList[x];
                 AwaIconName.Text = AwaIconList[x];
@@ -296,13 +295,7 @@ namespace NSUNS4_Character_Manager.Tools
         public void AddID()
         {
             // Generate new preset ID
-            byte[] Characode = new byte[4]
-            {
-                (byte)pid0.Value,
-                (byte)pid1.Value,
-                0,
-                0
-            };
+            byte[] Characode = BitConverter.GetBytes((int)pid0.Value);
             byte[] Costume = new byte[4]
             {
                 (byte)((byte)opta.Value + 1),
@@ -347,13 +340,7 @@ namespace NSUNS4_Character_Manager.Tools
             int x = listBox1.SelectedIndex;
             if (x > -1)
             {
-                byte[] Characode = new byte[4]
-                {
-                    (byte)pid0.Value,
-                    (byte)pid1.Value,
-                    0,
-                    0
-                };
+                byte[] Characode = BitConverter.GetBytes((int)pid0.Value);
                 byte[] Costume = new byte[4]
                 {
                     (byte)opta.Value,
@@ -704,15 +691,9 @@ namespace NSUNS4_Character_Manager.Tools
         {
             
         }
-        public static int SearchSlotIndex(List<byte[]> CharacodeList, List<byte[]> CostumeList, int CharacodeID_f, int CharacodeID_f2, int Costume, int Count)
+        public static int SearchSlotIndex(List<byte[]> CharacodeList, List<byte[]> CostumeList, int CharacodeID_f,  int Costume, int Count)
         {
-            byte[] char_code = new byte[4]
-            {
-                (byte)CharacodeID_f,
-                (byte)CharacodeID_f2,
-                0x00,
-                0x00
-            };
+            byte[] char_code = BitConverter.GetBytes(CharacodeID_f);
             int value = 0;
             for (int x = 0; x < Count; x++)
             {
@@ -743,9 +724,9 @@ namespace NSUNS4_Character_Manager.Tools
         {
             if (FileOpen)
             {
-                if (SearchSlotIndex(CharacodeList, CostumeList, (int)Characode1_cb.Value, (int)Characode2_cb.Value, (int)costume_cb.Value, EntryCount) != -1)
+                if (SearchSlotIndex(CharacodeList, CostumeList, (int)Characode1_cb.Value, (int)costume_cb.Value, EntryCount) != -1)
                 {
-                    listBox1.SelectedIndex = SearchSlotIndex(CharacodeList, CostumeList, (int)Characode1_cb.Value, (int)Characode2_cb.Value, (int)costume_cb.Value, EntryCount);
+                    listBox1.SelectedIndex = SearchSlotIndex(CharacodeList, CostumeList, (int)Characode1_cb.Value, (int)costume_cb.Value, EntryCount);
                 }
                 else
                 {

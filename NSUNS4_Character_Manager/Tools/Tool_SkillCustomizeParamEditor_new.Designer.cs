@@ -85,7 +85,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.Characode_v1 = new System.Windows.Forms.NumericUpDown();
-            this.Characode_v2 = new System.Windows.Forms.NumericUpDown();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.search_value = new System.Windows.Forms.NumericUpDown();
@@ -137,7 +136,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Skill2_CUCC_v)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Skill1_CUCC_v)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Characode_v1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Characode_v2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.search_value)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.v_sklawa_prior)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.v_skl6_prior)).BeginInit();
@@ -168,7 +166,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(12, 31);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(212, 342);
+            this.listBox1.Size = new System.Drawing.Size(212, 420);
             this.listBox1.TabIndex = 2;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -624,11 +622,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 383);
+            this.button1.Location = new System.Drawing.Point(12, 451);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(212, 23);
+            this.button1.Size = new System.Drawing.Size(98, 23);
             this.button1.TabIndex = 155;
-            this.button1.Text = "Add new entry with that data";
+            this.button1.Text = "Copy";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -636,7 +634,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.label14.Location = new System.Drawing.Point(230, 39);
+            this.label14.Location = new System.Drawing.Point(230, 33);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(64, 15);
             this.label14.TabIndex = 156;
@@ -645,44 +643,31 @@
             // Characode_v1
             // 
             this.Characode_v1.Hexadecimal = true;
-            this.Characode_v1.Location = new System.Drawing.Point(304, 37);
+            this.Characode_v1.Location = new System.Drawing.Point(304, 31);
             this.Characode_v1.Maximum = new decimal(new int[] {
-            255,
+            65535,
             0,
             0,
             0});
             this.Characode_v1.Name = "Characode_v1";
-            this.Characode_v1.Size = new System.Drawing.Size(53, 23);
+            this.Characode_v1.Size = new System.Drawing.Size(498, 23);
             this.Characode_v1.TabIndex = 157;
-            // 
-            // Characode_v2
-            // 
-            this.Characode_v2.Hexadecimal = true;
-            this.Characode_v2.Location = new System.Drawing.Point(362, 37);
-            this.Characode_v2.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.Characode_v2.Name = "Characode_v2";
-            this.Characode_v2.Size = new System.Drawing.Size(53, 23);
-            this.Characode_v2.TabIndex = 158;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 412);
+            this.button2.Location = new System.Drawing.Point(112, 451);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 23);
+            this.button2.Size = new System.Drawing.Size(112, 23);
             this.button2.TabIndex = 159;
-            this.button2.Text = "Remove entry";
+            this.button2.Text = "Delete";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(115, 412);
+            this.button3.Location = new System.Drawing.Point(225, 475);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(109, 23);
+            this.button3.Size = new System.Drawing.Size(577, 23);
             this.button3.TabIndex = 160;
             this.button3.Text = "Save entry";
             this.button3.UseVisualStyleBackColor = true;
@@ -691,7 +676,7 @@
             // search_value
             // 
             this.search_value.Hexadecimal = true;
-            this.search_value.Location = new System.Drawing.Point(12, 441);
+            this.search_value.Location = new System.Drawing.Point(12, 475);
             this.search_value.Maximum = new decimal(new int[] {
             65535,
             0,
@@ -704,9 +689,9 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(115, 441);
+            this.button4.Location = new System.Drawing.Point(112, 475);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(109, 23);
+            this.button4.Size = new System.Drawing.Size(112, 23);
             this.button4.TabIndex = 162;
             this.button4.Text = "Search characode";
             this.button4.UseVisualStyleBackColor = true;
@@ -1068,7 +1053,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 476);
+            this.ClientSize = new System.Drawing.Size(808, 504);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label20);
@@ -1104,7 +1089,6 @@
             this.Controls.Add(this.search_value);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.Characode_v2);
             this.Controls.Add(this.Characode_v1);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.button1);
@@ -1181,7 +1165,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.Skill2_CUCC_v)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Skill1_CUCC_v)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Characode_v1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Characode_v2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.search_value)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.v_sklawa_prior)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.v_skl6_prior)).EndInit();
@@ -1268,7 +1251,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.NumericUpDown Characode_v1;
-        private System.Windows.Forms.NumericUpDown Characode_v2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.NumericUpDown search_value;

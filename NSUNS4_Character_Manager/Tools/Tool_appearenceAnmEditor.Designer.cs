@@ -69,7 +69,6 @@
             this.Win_v = new System.Windows.Forms.CheckBox();
             this.Characode_v1 = new System.Windows.Forms.NumericUpDown();
             this.label8 = new System.Windows.Forms.Label();
-            this.Characode_v2 = new System.Windows.Forms.NumericUpDown();
             this.Reverse_v = new System.Windows.Forms.CheckBox();
             this.Slot_20_cb = new System.Windows.Forms.CheckBox();
             this.Transparence_v = new System.Windows.Forms.NumericUpDown();
@@ -82,11 +81,14 @@
             this.Timing_v = new System.Windows.Forms.NumericUpDown();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.Characode1_cb = new System.Windows.Forms.NumericUpDown();
+            this.button6 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Characode_v1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Characode_v2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Transparence_v)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Timing_v)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Characode1_cb)).BeginInit();
             this.SuspendLayout();
             // 
             // listBox1
@@ -96,7 +98,7 @@
             this.listBox1.Location = new System.Drawing.Point(10, 48);
             this.listBox1.Name = "listBox1";
             this.listBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.listBox1.Size = new System.Drawing.Size(361, 459);
+            this.listBox1.Size = new System.Drawing.Size(361, 433);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -477,12 +479,12 @@
             this.Characode_v1.Hexadecimal = true;
             this.Characode_v1.Location = new System.Drawing.Point(473, 38);
             this.Characode_v1.Maximum = new decimal(new int[] {
-            255,
+            65535,
             0,
             0,
             0});
             this.Characode_v1.Name = "Characode_v1";
-            this.Characode_v1.Size = new System.Drawing.Size(123, 23);
+            this.Characode_v1.Size = new System.Drawing.Size(263, 23);
             this.Characode_v1.TabIndex = 43;
             this.Characode_v1.ValueChanged += new System.EventHandler(this.numericUpDown6_ValueChanged);
             // 
@@ -496,20 +498,6 @@
             this.label8.Size = new System.Drawing.Size(87, 17);
             this.label8.TabIndex = 44;
             this.label8.Text = "Characode ID";
-            // 
-            // Characode_v2
-            // 
-            this.Characode_v2.Hexadecimal = true;
-            this.Characode_v2.Location = new System.Drawing.Point(601, 38);
-            this.Characode_v2.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.Characode_v2.Name = "Characode_v2";
-            this.Characode_v2.Size = new System.Drawing.Size(135, 23);
-            this.Characode_v2.TabIndex = 45;
-            this.Characode_v2.ValueChanged += new System.EventHandler(this.numericUpDown7_ValueChanged);
             // 
             // Reverse_v
             // 
@@ -593,7 +581,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(9, 513);
+            this.button2.Location = new System.Drawing.Point(9, 486);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(180, 23);
             this.button2.TabIndex = 54;
@@ -603,7 +591,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(195, 513);
+            this.button3.Location = new System.Drawing.Point(195, 486);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(176, 23);
             this.button3.TabIndex = 55;
@@ -649,11 +637,46 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(13, 515);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(64, 15);
+            this.label11.TabIndex = 61;
+            this.label11.Text = "Characode";
+            // 
+            // Characode1_cb
+            // 
+            this.Characode1_cb.Hexadecimal = true;
+            this.Characode1_cb.Location = new System.Drawing.Point(83, 513);
+            this.Characode1_cb.Maximum = new decimal(new int[] {
+            65535,
+            0,
+            0,
+            0});
+            this.Characode1_cb.Name = "Characode1_cb";
+            this.Characode1_cb.Size = new System.Drawing.Size(106, 23);
+            this.Characode1_cb.TabIndex = 60;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(195, 513);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(176, 23);
+            this.button6.TabIndex = 59;
+            this.button6.Text = "Search";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Tool_appearenceAnmEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(748, 546);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.Characode1_cb);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.Timing_v);
@@ -666,7 +689,6 @@
             this.Controls.Add(this.Transparence_v);
             this.Controls.Add(this.Slot_20_cb);
             this.Controls.Add(this.Reverse_v);
-            this.Controls.Add(this.Characode_v2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.Characode_v1);
             this.Controls.Add(this.Win_v);
@@ -713,9 +735,9 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Characode_v1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Characode_v2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Transparence_v)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Timing_v)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Characode1_cb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -764,7 +786,6 @@
         private System.Windows.Forms.CheckBox Win_v;
         private System.Windows.Forms.NumericUpDown Characode_v1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.NumericUpDown Characode_v2;
         private System.Windows.Forms.CheckBox Reverse_v;
         private System.Windows.Forms.CheckBox Slot_20_cb;
         private System.Windows.Forms.NumericUpDown Transparence_v;
@@ -777,5 +798,8 @@
         private System.Windows.Forms.NumericUpDown Timing_v;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown Characode1_cb;
+        private System.Windows.Forms.Button button6;
     }
 }

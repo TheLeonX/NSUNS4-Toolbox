@@ -37,7 +37,6 @@
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.opta = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
-            this.pid1 = new System.Windows.Forms.NumericUpDown();
             this.pid0 = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.IconName = new System.Windows.Forms.TextBox();
@@ -57,14 +56,11 @@
             this.costume_cb = new System.Windows.Forms.NumericUpDown();
             this.Characode1_cb = new System.Windows.Forms.NumericUpDown();
             this.button5 = new System.Windows.Forms.Button();
-            this.Characode2_cb = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.opta)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pid0)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.costume_cb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Characode1_cb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Characode2_cb)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -95,21 +91,21 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.saveAsToolStripMenuItem.Text = "Save as";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -117,7 +113,7 @@
             // 
             this.closeToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.closeToolStripMenuItem.Text = "Close file";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click_1);
             // 
@@ -159,30 +155,17 @@
             this.label6.TabIndex = 22;
             this.label6.Text = "Costume Slot ID:";
             // 
-            // pid1
-            // 
-            this.pid1.Hexadecimal = true;
-            this.pid1.Location = new System.Drawing.Point(380, 43);
-            this.pid1.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.pid1.Name = "pid1";
-            this.pid1.Size = new System.Drawing.Size(97, 23);
-            this.pid1.TabIndex = 20;
-            // 
             // pid0
             // 
             this.pid0.Hexadecimal = true;
             this.pid0.Location = new System.Drawing.Point(277, 43);
             this.pid0.Maximum = new decimal(new int[] {
-            255,
+            65535,
             0,
             0,
             0});
             this.pid0.Name = "pid0";
-            this.pid0.Size = new System.Drawing.Size(97, 23);
+            this.pid0.Size = new System.Drawing.Size(200, 23);
             this.pid0.TabIndex = 21;
             this.pid0.ValueChanged += new System.EventHandler(this.pid0_ValueChanged);
             // 
@@ -308,7 +291,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(164, 368);
+            this.label12.Location = new System.Drawing.Point(134, 368);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(55, 15);
             this.label12.TabIndex = 40;
@@ -325,9 +308,14 @@
             // 
             // costume_cb
             // 
-            this.costume_cb.Location = new System.Drawing.Point(219, 366);
+            this.costume_cb.Location = new System.Drawing.Point(195, 366);
+            this.costume_cb.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
             this.costume_cb.Name = "costume_cb";
-            this.costume_cb.Size = new System.Drawing.Size(52, 23);
+            this.costume_cb.Size = new System.Drawing.Size(66, 23);
             this.costume_cb.TabIndex = 38;
             // 
             // Characode1_cb
@@ -335,12 +323,12 @@
             this.Characode1_cb.Hexadecimal = true;
             this.Characode1_cb.Location = new System.Drawing.Point(76, 366);
             this.Characode1_cb.Maximum = new decimal(new int[] {
-            255,
+            65535,
             0,
             0,
             0});
             this.Characode1_cb.Name = "Characode1_cb";
-            this.Characode1_cb.Size = new System.Drawing.Size(41, 23);
+            this.Characode1_cb.Size = new System.Drawing.Size(52, 23);
             this.Characode1_cb.TabIndex = 37;
             // 
             // button5
@@ -353,25 +341,11 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // Characode2_cb
-            // 
-            this.Characode2_cb.Hexadecimal = true;
-            this.Characode2_cb.Location = new System.Drawing.Point(123, 366);
-            this.Characode2_cb.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.Characode2_cb.Name = "Characode2_cb";
-            this.Characode2_cb.Size = new System.Drawing.Size(41, 23);
-            this.Characode2_cb.TabIndex = 41;
-            // 
             // Tool_IconEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 398);
-            this.Controls.Add(this.Characode2_cb);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.costume_cb);
@@ -391,7 +365,6 @@
             this.Controls.Add(this.IconName);
             this.Controls.Add(this.opta);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.pid1);
             this.Controls.Add(this.pid0);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBox1);
@@ -406,11 +379,9 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.opta)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pid1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pid0)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.costume_cb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Characode1_cb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Characode2_cb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -427,7 +398,6 @@
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.NumericUpDown opta;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown pid1;
         private System.Windows.Forms.NumericUpDown pid0;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox IconName;
@@ -447,6 +417,5 @@
         private System.Windows.Forms.NumericUpDown costume_cb;
         private System.Windows.Forms.NumericUpDown Characode1_cb;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.NumericUpDown Characode2_cb;
     }
 }

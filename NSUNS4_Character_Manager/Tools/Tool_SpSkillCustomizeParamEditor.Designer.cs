@@ -40,7 +40,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.char02 = new System.Windows.Forms.NumericUpDown();
             this.char01 = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -64,7 +63,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.v_ult4_prior = new System.Windows.Forms.NumericUpDown();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.char02)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.char01)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ULT1_CUC_v)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ULT2_CUC_v)).BeginInit();
@@ -84,7 +82,7 @@
             this.listBox1.Location = new System.Drawing.Point(9, 38);
             this.listBox1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(203, 173);
+            this.listBox1.Size = new System.Drawing.Size(203, 186);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -96,7 +94,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(622, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(607, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -195,22 +193,6 @@
             this.label5.Text = "Chakra Usage Count";
             this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
-            // char02
-            // 
-            this.char02.Font = new System.Drawing.Font("Segoe UI", 9.5F);
-            this.char02.Hexadecimal = true;
-            this.char02.Location = new System.Drawing.Point(347, 33);
-            this.char02.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.char02.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.char02.Name = "char02";
-            this.char02.Size = new System.Drawing.Size(55, 24);
-            this.char02.TabIndex = 101;
-            this.char02.ValueChanged += new System.EventHandler(this.char02_ValueChanged);
-            // 
             // char01
             // 
             this.char01.Font = new System.Drawing.Font("Segoe UI", 9.5F);
@@ -218,12 +200,12 @@
             this.char01.Location = new System.Drawing.Point(288, 33);
             this.char01.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.char01.Maximum = new decimal(new int[] {
-            255,
+            65535,
             0,
             0,
             0});
             this.char01.Name = "char01";
-            this.char01.Size = new System.Drawing.Size(55, 24);
+            this.char01.Size = new System.Drawing.Size(311, 24);
             this.char01.TabIndex = 102;
             this.char01.ValueChanged += new System.EventHandler(this.char01_ValueChanged);
             // 
@@ -278,34 +260,34 @@
             // 
             // RemoveEntry_button
             // 
-            this.RemoveEntry_button.Location = new System.Drawing.Point(9, 245);
+            this.RemoveEntry_button.Location = new System.Drawing.Point(107, 226);
             this.RemoveEntry_button.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.RemoveEntry_button.Name = "RemoveEntry_button";
-            this.RemoveEntry_button.Size = new System.Drawing.Size(107, 29);
+            this.RemoveEntry_button.Size = new System.Drawing.Size(105, 28);
             this.RemoveEntry_button.TabIndex = 125;
-            this.RemoveEntry_button.Text = "Remove Entry";
+            this.RemoveEntry_button.Text = "Delete";
             this.RemoveEntry_button.UseVisualStyleBackColor = true;
             this.RemoveEntry_button.Click += new System.EventHandler(this.RemoveEntry_button_Click);
             // 
             // SaveEntry_button
             // 
-            this.SaveEntry_button.Location = new System.Drawing.Point(117, 245);
+            this.SaveEntry_button.Location = new System.Drawing.Point(216, 255);
             this.SaveEntry_button.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.SaveEntry_button.Name = "SaveEntry_button";
-            this.SaveEntry_button.Size = new System.Drawing.Size(95, 29);
+            this.SaveEntry_button.Size = new System.Drawing.Size(383, 23);
             this.SaveEntry_button.TabIndex = 124;
-            this.SaveEntry_button.Text = "Save entry";
+            this.SaveEntry_button.Text = "Save";
             this.SaveEntry_button.UseVisualStyleBackColor = true;
             this.SaveEntry_button.Click += new System.EventHandler(this.SaveEntry_button_Click);
             // 
             // CreateEntry_button
             // 
-            this.CreateEntry_button.Location = new System.Drawing.Point(9, 213);
+            this.CreateEntry_button.Location = new System.Drawing.Point(9, 226);
             this.CreateEntry_button.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.CreateEntry_button.Name = "CreateEntry_button";
-            this.CreateEntry_button.Size = new System.Drawing.Size(203, 32);
+            this.CreateEntry_button.Size = new System.Drawing.Size(95, 28);
             this.CreateEntry_button.TabIndex = 123;
-            this.CreateEntry_button.Text = "Create new entry with this data";
+            this.CreateEntry_button.Text = "Copy";
             this.CreateEntry_button.UseVisualStyleBackColor = true;
             this.CreateEntry_button.Click += new System.EventHandler(this.CreateEntry_button_Click);
             // 
@@ -342,19 +324,19 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(117, 275);
+            this.button4.Location = new System.Drawing.Point(107, 255);
             this.button4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(95, 39);
+            this.button4.Size = new System.Drawing.Size(105, 23);
             this.button4.TabIndex = 164;
-            this.button4.Text = "Search characode";
+            this.button4.Text = "Search";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // search_value
             // 
             this.search_value.Hexadecimal = true;
-            this.search_value.Location = new System.Drawing.Point(9, 283);
+            this.search_value.Location = new System.Drawing.Point(9, 255);
             this.search_value.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.search_value.Maximum = new decimal(new int[] {
             65535,
@@ -362,7 +344,7 @@
             0,
             0});
             this.search_value.Name = "search_value";
-            this.search_value.Size = new System.Drawing.Size(106, 23);
+            this.search_value.Size = new System.Drawing.Size(95, 23);
             this.search_value.TabIndex = 163;
             // 
             // v_ult1_prior
@@ -467,7 +449,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(622, 318);
+            this.ClientSize = new System.Drawing.Size(607, 282);
             this.Controls.Add(this.v_ult4_prior);
             this.Controls.Add(this.ULT4_CUC_v);
             this.Controls.Add(this.Spl4_Name);
@@ -488,7 +470,6 @@
             this.Controls.Add(this.Spl2_Name);
             this.Controls.Add(this.Spl1_Name);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.char02);
             this.Controls.Add(this.char01);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label5);
@@ -508,7 +489,6 @@
             this.Load += new System.EventHandler(this.Tool_SpSkillCustomizeParamEditor_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.char02)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.char01)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ULT1_CUC_v)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ULT2_CUC_v)).EndInit();
@@ -538,7 +518,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown char02;
         private System.Windows.Forms.NumericUpDown char01;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label6;

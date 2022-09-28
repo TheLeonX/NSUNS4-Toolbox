@@ -1218,13 +1218,13 @@ namespace NSUNS4_Character_Manager
             this.ListBox1.ItemHeight = 17;
             this.ListBox1.Location = new System.Drawing.Point(13, 26);
             this.ListBox1.Name = "ListBox1";
-            this.ListBox1.Size = new System.Drawing.Size(424, 378);
+            this.ListBox1.Size = new System.Drawing.Size(424, 344);
             this.ListBox1.TabIndex = 0;
             this.ListBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1_SelectedIndexChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(444, 426);
+            this.button1.Location = new System.Drawing.Point(13, 372);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(207, 33);
             this.button1.TabIndex = 1;
@@ -1234,9 +1234,9 @@ namespace NSUNS4_Character_Manager
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 426);
+            this.button2.Location = new System.Drawing.Point(226, 372);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(424, 33);
+            this.button2.Size = new System.Drawing.Size(211, 33);
             this.button2.TabIndex = 1;
             this.button2.Text = "Remove selected slot";
             this.button2.UseVisualStyleBackColor = true;
@@ -1401,7 +1401,7 @@ namespace NSUNS4_Character_Manager
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(444, 387);
+            this.button3.Location = new System.Drawing.Point(444, 426);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(207, 33);
             this.button3.TabIndex = 14;
@@ -1430,7 +1430,7 @@ namespace NSUNS4_Character_Manager
             // 
             this.button4.Location = new System.Drawing.Point(444, 348);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(207, 33);
+            this.button4.Size = new System.Drawing.Size(207, 72);
             this.button4.TabIndex = 17;
             this.button4.Text = "Edit position data";
             this.button4.UseVisualStyleBackColor = true;
@@ -1455,7 +1455,7 @@ namespace NSUNS4_Character_Manager
             // 
             // Search
             // 
-            this.Search.Location = new System.Drawing.Point(311, 465);
+            this.Search.Location = new System.Drawing.Point(311, 409);
             this.Search.Name = "Search";
             this.Search.Size = new System.Drawing.Size(126, 23);
             this.Search.TabIndex = 20;
@@ -1465,7 +1465,7 @@ namespace NSUNS4_Character_Manager
             // 
             // Search_TB
             // 
-            this.Search_TB.Location = new System.Drawing.Point(13, 465);
+            this.Search_TB.Location = new System.Drawing.Point(13, 409);
             this.Search_TB.MaxLength = 15;
             this.Search_TB.Name = "Search_TB";
             this.Search_TB.Size = new System.Drawing.Size(294, 23);
@@ -1474,7 +1474,7 @@ namespace NSUNS4_Character_Manager
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(311, 492);
+            this.button5.Location = new System.Drawing.Point(311, 436);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(126, 23);
             this.button5.TabIndex = 23;
@@ -1484,29 +1484,29 @@ namespace NSUNS4_Character_Manager
             // 
             // Page_cb
             // 
-            this.Page_cb.Location = new System.Drawing.Point(46, 492);
+            this.Page_cb.Location = new System.Drawing.Point(46, 436);
             this.Page_cb.Name = "Page_cb";
             this.Page_cb.Size = new System.Drawing.Size(52, 23);
             this.Page_cb.TabIndex = 26;
             // 
             // Pos_cb
             // 
-            this.Pos_cb.Location = new System.Drawing.Point(142, 492);
+            this.Pos_cb.Location = new System.Drawing.Point(128, 436);
             this.Pos_cb.Name = "Pos_cb";
             this.Pos_cb.Size = new System.Drawing.Size(52, 23);
             this.Pos_cb.TabIndex = 27;
             // 
             // costume_cb
             // 
-            this.costume_cb.Location = new System.Drawing.Point(254, 492);
+            this.costume_cb.Location = new System.Drawing.Point(244, 436);
             this.costume_cb.Name = "costume_cb";
-            this.costume_cb.Size = new System.Drawing.Size(52, 23);
+            this.costume_cb.Size = new System.Drawing.Size(61, 23);
             this.costume_cb.TabIndex = 28;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(10, 497);
+            this.label10.Location = new System.Drawing.Point(12, 440);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(33, 15);
             this.label10.TabIndex = 29;
@@ -1515,7 +1515,7 @@ namespace NSUNS4_Character_Manager
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(106, 497);
+            this.label11.Location = new System.Drawing.Point(100, 439);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(26, 15);
             this.label11.TabIndex = 30;
@@ -1524,7 +1524,7 @@ namespace NSUNS4_Character_Manager
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(201, 497);
+            this.label12.Location = new System.Drawing.Point(187, 440);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(55, 15);
             this.label12.TabIndex = 31;
@@ -1534,7 +1534,7 @@ namespace NSUNS4_Character_Manager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(657, 524);
+            this.ClientSize = new System.Drawing.Size(657, 472);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
