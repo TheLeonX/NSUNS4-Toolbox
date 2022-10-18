@@ -2852,7 +2852,6 @@ namespace NSUNS4_Character_Manager.Misc
         {
             byte[] fileBytes36 = new byte[0];
             int SectionTotalLength = 0;
-            int PathSectionTotalLength = 0;
             fileBytes36 = header;
             int LengthOfStuff = 0;
             for (int y = 0; y < EntryCount; y++)

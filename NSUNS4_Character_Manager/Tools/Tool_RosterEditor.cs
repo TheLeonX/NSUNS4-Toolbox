@@ -1416,6 +1416,7 @@ namespace NSUNS4_Character_Manager
             this.t_chaid.Name = "t_chaid";
             this.t_chaid.Size = new System.Drawing.Size(207, 23);
             this.t_chaid.TabIndex = 16;
+            this.t_chaid.TextChanged += new System.EventHandler(this.t_chaid_TextChanged);
             // 
             // label6
             // 
@@ -1646,6 +1647,10 @@ namespace NSUNS4_Character_Manager
 
         private void Search_TB_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void t_chaid_TextChanged(object sender, EventArgs e) {
 
         }
     }

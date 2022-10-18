@@ -148,6 +148,26 @@ namespace NSUNS4_Character_Manager
 			ListBox1.SelectedIndex = ListBox1.Items.Count - 1;
 			EntryCount++;
 		}
+		public void AddID_Importer(int PresetID, int type) {
+			byte[] presetID = BitConverter.GetBytes(PresetID);
+			byte[] sectionBytes = new byte[12]
+			{
+				presetID[0],
+				presetID[1],
+				0,
+				0,
+				1,
+				0,
+				0,
+				0,
+				(byte)type,
+				0,
+				0,
+				0
+			};
+			EntryList.Add(sectionBytes.ToList());
+			EntryCount++;
+		}
 		public void AddID2(bool skip = true)
 		{
 			
@@ -605,10 +625,17 @@ namespace NSUNS4_Character_Manager
 			}
 		}
 
-		public void SaveFileAs()
+		public void SaveFileAs(string basepath = "")
 		{
 			SaveFileDialog s = new SaveFileDialog();
-			s.ShowDialog();
+			{
+				s.DefaultExt = ".xfbin";
+				s.Filter = "*.xfbin|*.xfbin";
+			}
+			if (basepath != "")
+				s.FileName = basepath;
+			else
+				s.ShowDialog();
 			if (!(s.FileName != ""))
 			{
 				return;
@@ -626,7 +653,8 @@ namespace NSUNS4_Character_Manager
 				FilePath = s.FileName;
 			}
 			File.WriteAllBytes(FilePath, ConvertToFile());
-			MessageBox.Show("File saved to " + FilePath + ".");
+			if (basepath == "")
+				MessageBox.Show("File saved to " + FilePath + ".");
 		}
 
 		public void CloseFile()

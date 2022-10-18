@@ -74,7 +74,8 @@
             "Naruto Storm 4",
             "Hack Versus",
             "JoJo ASB",
-            "JoJo EOH"});
+            "JoJo EOH",
+            "JoJo ASBR"});
             this.comboBox1.Location = new System.Drawing.Point(13, 41);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(363, 21);

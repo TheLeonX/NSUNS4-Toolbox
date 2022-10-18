@@ -53,6 +53,7 @@ namespace NSUNS4_Character_Manager
         public static string effectprmPath = "[null]";
         public static string damageeffPath = "[null]";
         public static string conditionprmPath = "[null]";
+        public static string damageprmPath = "[null]";
         private Button button9;
         private Button button10;
         private Button button11;
@@ -95,6 +96,7 @@ namespace NSUNS4_Character_Manager
         private LinkLabel linkLabel8;
         private LinkLabel linkLabel9;
         private LinkLabel linkLabel10;
+        private Button button13;
         public byte[] PRMEditorCopiedSection;
         public byte[] TheValue
         {
@@ -119,6 +121,7 @@ namespace NSUNS4_Character_Manager
         void CreateConfig()
         {
             List<string> cfg = new List<string>();
+            cfg.Add("[null]");
             cfg.Add("[null]");
             cfg.Add("[null]");
             cfg.Add("[null]");
@@ -170,6 +173,7 @@ namespace NSUNS4_Character_Manager
             cfg.Add(effectprmPath);
             cfg.Add(damageeffPath);
             cfg.Add(conditionprmPath);
+            cfg.Add(damageprmPath);
             File.WriteAllLines(ConfigPath, cfg.ToArray());
             MessageBox.Show("Config file saved.");
         }
@@ -199,6 +203,7 @@ namespace NSUNS4_Character_Manager
             if (cfg.Length > 19) effectprmPath = cfg[19];
             if (cfg.Length > 20) damageeffPath = cfg[20];
             if (cfg.Length > 21) conditionprmPath = cfg[21];
+            if (cfg.Length > 22) damageprmPath = cfg[22];
             //MessageBox.Show("Loaded paths.");
         }
 
@@ -275,22 +280,19 @@ namespace NSUNS4_Character_Manager
         }
         public static int b_byteArrayToInt(byte[] actual)
         {
-            int a = 0;
+
             return actual[0] + actual[1] * 256 + actual[2] * 65536 + actual[3] * 16777216;
         }
         public static int b_byteArrayToIntTwoBytes(byte[] actual)
         {
-            int a = 0;
             return actual[0] + actual[1] * 256;
         }
         public static int b_byteArrayToIntRevTwoBytes(byte[] actual)
         {
-            int a = 0;
             return actual[3] + actual[2] * 256;
         }
         public static int b_byteArrayToIntRev(byte[] actual)
         {
-            int a = 0;
             return actual[3] + actual[2] * 256 + actual[1] * 65536 + actual[0] * 16777216;
         }
 
@@ -313,7 +315,7 @@ namespace NSUNS4_Character_Manager
 
         public static float b_ReadFloat(byte[] actual, int index)
         {
-            float a = -1f;
+
             return BitConverter.ToSingle(actual, index);
         }
 
@@ -556,7 +558,6 @@ namespace NSUNS4_Character_Manager
         {
             int actualIndex = index;
             byte[] actualBytes = new byte[bytes.Length];
-            bool found = false;
             bool f = false;
 
             int foundIndex = -1;
@@ -578,7 +579,6 @@ namespace NSUNS4_Character_Manager
 
                 if (f)
                 {
-                    found = true;
                     foundIndex = a;
                     a = actual.Length;
                 }
@@ -624,7 +624,6 @@ namespace NSUNS4_Character_Manager
         {
             int actualIndex = index;
             char[] actualString = new char[str.Length];
-            bool found = false;
             bool f = false;
 
             int foundIndex = -1;
@@ -646,7 +645,6 @@ namespace NSUNS4_Character_Manager
 
                 if (f)
                 {
-                    found = true;
                     foundIndex = a;
                     a = actual.Length;
                 }
@@ -841,20 +839,21 @@ namespace NSUNS4_Character_Manager
             this.button24 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.linkLabel10 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel8 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel7 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.button25 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel5 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel6 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel7 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel8 = new System.Windows.Forms.LinkLabel();
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel10 = new System.Windows.Forms.LinkLabel();
+            this.button13 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1210,6 +1209,7 @@ namespace NSUNS4_Character_Manager
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button13);
             this.tabPage3.Controls.Add(this.button29);
             this.tabPage3.Controls.Add(this.button28);
             this.tabPage3.Controls.Add(this.button27);
@@ -1342,6 +1342,107 @@ namespace NSUNS4_Character_Manager
             this.tabPage6.Text = "Other tools";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // linkLabel10
+            // 
+            this.linkLabel10.AutoSize = true;
+            this.linkLabel10.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.linkLabel10.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel10.Location = new System.Drawing.Point(4, 139);
+            this.linkLabel10.Name = "linkLabel10";
+            this.linkLabel10.Size = new System.Drawing.Size(80, 15);
+            this.linkLabel10.TabIndex = 41;
+            this.linkLabel10.TabStop = true;
+            this.linkLabel10.Text = "CPK Repacker";
+            this.linkLabel10.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel10_LinkClicked);
+            // 
+            // linkLabel8
+            // 
+            this.linkLabel8.AutoSize = true;
+            this.linkLabel8.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.linkLabel8.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel8.Location = new System.Drawing.Point(4, 154);
+            this.linkLabel8.Name = "linkLabel8";
+            this.linkLabel8.Size = new System.Drawing.Size(70, 15);
+            this.linkLabel8.TabIndex = 40;
+            this.linkLabel8.TabStop = true;
+            this.linkLabel8.Text = "Xfbin Parser";
+            this.linkLabel8.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel8_LinkClicked);
+            // 
+            // linkLabel7
+            // 
+            this.linkLabel7.AutoSize = true;
+            this.linkLabel7.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.linkLabel7.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel7.Location = new System.Drawing.Point(4, 123);
+            this.linkLabel7.Name = "linkLabel7";
+            this.linkLabel7.Size = new System.Drawing.Size(84, 15);
+            this.linkLabel7.TabIndex = 39;
+            this.linkLabel7.TabStop = true;
+            this.linkLabel7.Text = "NUT Tools GUI";
+            this.linkLabel7.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel7_LinkClicked);
+            // 
+            // linkLabel6
+            // 
+            this.linkLabel6.AutoSize = true;
+            this.linkLabel6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.linkLabel6.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel6.Location = new System.Drawing.Point(4, 108);
+            this.linkLabel6.Name = "linkLabel6";
+            this.linkLabel6.Size = new System.Drawing.Size(62, 15);
+            this.linkLabel6.TabIndex = 38;
+            this.linkLabel6.TabStop = true;
+            this.linkLabel6.Text = "NUT Tools";
+            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
+            // 
+            // linkLabel5
+            // 
+            this.linkLabel5.AutoSize = true;
+            this.linkLabel5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.linkLabel5.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel5.Location = new System.Drawing.Point(4, 78);
+            this.linkLabel5.Name = "linkLabel5";
+            this.linkLabel5.Size = new System.Drawing.Size(142, 15);
+            this.linkLabel5.TabIndex = 37;
+            this.linkLabel5.TabStop = true;
+            this.linkLabel5.Text = "010 Editor Xfbin Template";
+            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
+            // 
+            // linkLabel4
+            // 
+            this.linkLabel4.AutoSize = true;
+            this.linkLabel4.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.linkLabel4.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel4.Location = new System.Drawing.Point(4, 63);
+            this.linkLabel4.Name = "linkLabel4";
+            this.linkLabel4.Size = new System.Drawing.Size(59, 15);
+            this.linkLabel4.TabIndex = 36;
+            this.linkLabel4.TabStop = true;
+            this.linkLabel4.Text = "010 Editor";
+            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.label2.Location = new System.Drawing.Point(3, 44);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(135, 19);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "List of external tools:";
+            // 
+            // linkLabel3
+            // 
+            this.linkLabel3.AutoSize = true;
+            this.linkLabel3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.linkLabel3.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel3.Location = new System.Drawing.Point(4, 93);
+            this.linkLabel3.Name = "linkLabel3";
+            this.linkLabel3.Size = new System.Drawing.Size(120, 15);
+            this.linkLabel3.TabIndex = 34;
+            this.linkLabel3.TabStop = true;
+            this.linkLabel3.Text = "ACE Editor (acb/awb)";
+            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.label1);
@@ -1356,6 +1457,15 @@ namespace NSUNS4_Character_Manager
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "For players";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(0, 83);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 15);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Experimental:";
             // 
             // button25
             // 
@@ -1393,103 +1503,6 @@ namespace NSUNS4_Character_Manager
             this.linkLabel2.Text = "ModdingAPI";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 83);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 15);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Experimental:";
-            // 
-            // linkLabel3
-            // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.linkLabel3.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel3.Location = new System.Drawing.Point(4, 93);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(120, 15);
-            this.linkLabel3.TabIndex = 34;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "ACE Editor (acb/awb)";
-            this.linkLabel3.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel3_LinkClicked);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.label2.Location = new System.Drawing.Point(3, 44);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(135, 19);
-            this.label2.TabIndex = 35;
-            this.label2.Text = "List of external tools:";
-            // 
-            // linkLabel4
-            // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.linkLabel4.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel4.Location = new System.Drawing.Point(4, 63);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(59, 15);
-            this.linkLabel4.TabIndex = 36;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "010 Editor";
-            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
-            // 
-            // linkLabel5
-            // 
-            this.linkLabel5.AutoSize = true;
-            this.linkLabel5.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.linkLabel5.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel5.Location = new System.Drawing.Point(4, 78);
-            this.linkLabel5.Name = "linkLabel5";
-            this.linkLabel5.Size = new System.Drawing.Size(142, 15);
-            this.linkLabel5.TabIndex = 37;
-            this.linkLabel5.TabStop = true;
-            this.linkLabel5.Text = "010 Editor Xfbin Template";
-            this.linkLabel5.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel5_LinkClicked);
-            // 
-            // linkLabel6
-            // 
-            this.linkLabel6.AutoSize = true;
-            this.linkLabel6.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.linkLabel6.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel6.Location = new System.Drawing.Point(4, 108);
-            this.linkLabel6.Name = "linkLabel6";
-            this.linkLabel6.Size = new System.Drawing.Size(62, 15);
-            this.linkLabel6.TabIndex = 38;
-            this.linkLabel6.TabStop = true;
-            this.linkLabel6.Text = "NUT Tools";
-            this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
-            // 
-            // linkLabel7
-            // 
-            this.linkLabel7.AutoSize = true;
-            this.linkLabel7.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.linkLabel7.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel7.Location = new System.Drawing.Point(4, 123);
-            this.linkLabel7.Name = "linkLabel7";
-            this.linkLabel7.Size = new System.Drawing.Size(84, 15);
-            this.linkLabel7.TabIndex = 39;
-            this.linkLabel7.TabStop = true;
-            this.linkLabel7.Text = "NUT Tools GUI";
-            this.linkLabel7.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel7_LinkClicked);
-            // 
-            // linkLabel8
-            // 
-            this.linkLabel8.AutoSize = true;
-            this.linkLabel8.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.linkLabel8.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel8.Location = new System.Drawing.Point(4, 154);
-            this.linkLabel8.Name = "linkLabel8";
-            this.linkLabel8.Size = new System.Drawing.Size(70, 15);
-            this.linkLabel8.TabIndex = 40;
-            this.linkLabel8.TabStop = true;
-            this.linkLabel8.Text = "Xfbin Parser";
-            this.linkLabel8.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel8_LinkClicked);
-            // 
             // linkLabel9
             // 
             this.linkLabel9.AutoSize = true;
@@ -1503,18 +1516,17 @@ namespace NSUNS4_Character_Manager
             this.linkLabel9.Text = "CC2\'s game Files";
             this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
             // 
-            // linkLabel10
+            // button13
             // 
-            this.linkLabel10.AutoSize = true;
-            this.linkLabel10.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.linkLabel10.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel10.Location = new System.Drawing.Point(4, 139);
-            this.linkLabel10.Name = "linkLabel10";
-            this.linkLabel10.Size = new System.Drawing.Size(80, 15);
-            this.linkLabel10.TabIndex = 41;
-            this.linkLabel10.TabStop = true;
-            this.linkLabel10.Text = "CPK Repacker";
-            this.linkLabel10.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel10_LinkClicked);
+            this.button13.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.button13.Location = new System.Drawing.Point(3, 337);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(299, 38);
+            this.button13.TabIndex = 33;
+            this.button13.Text = "DamagePrm Editor";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Visible = false;
+            this.button13.Click += new System.EventHandler(this.button13_Click_1);
             // 
             // Main
             // 
@@ -1831,6 +1843,7 @@ namespace NSUNS4_Character_Manager
             effectprmPath = datawin32Path + "\\spc\\effectprm.bin.xfbin";
             damageeffPath = datawin32Path + "\\spc\\damageeff.bin.xfbin";
             conditionprmPath = datawin32Path + "\\spc\\conditionprm.bin.xfbin";
+            damageprmPath = datawin32Path + "\\spc\\damageprm.bin.xfbin";
 
             SaveConfig();
         }
@@ -1854,6 +1867,8 @@ namespace NSUNS4_Character_Manager
                 effectprmPath = datawin32Path + "\\spc\\effectprm.bin.xfbin";
                 damageeffPath = datawin32Path + "\\spc\\damageeff.bin.xfbin";
                 conditionprmPath = datawin32Path + "\\spc\\conditionprm.bin.xfbin";
+                damageprmPath = datawin32Path + "\\spc\\damageprm.bin.xfbin";
+                messageInfoPath = datawin32Path + "\\message";
             }
                 
             else {
@@ -1926,6 +1941,11 @@ namespace NSUNS4_Character_Manager
 
         private void linkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
             System.Diagnostics.Process.Start("https://drive.google.com/open?id=1LuWQlqgo4KIT_HdhGQu6-Jcjj-jvICTf ");
+        }
+
+        private void button13_Click_1(object sender, EventArgs e) {
+            Tool_damageprmEditor t = new Tool_damageprmEditor();
+            t.Show();
         }
     }
 }

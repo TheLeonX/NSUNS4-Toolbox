@@ -19,6 +19,7 @@ namespace NSUNS4_Character_Manager.Functions {
         public List<bool> ReplaceCharacterList = new List<bool>();
         public List<int> PageList = new List<int>();
         public List<int> SlotList = new List<int>();
+        public List<bool> EnableButtons = new List<bool>();
         string originalChaPath = Directory.GetCurrentDirectory() + "\\systemFiles\\characode.bin.xfbin";
         string originalDppPath = Directory.GetCurrentDirectory() + "\\systemFiles\\duelPlayerParam.xfbin";
         string originalafterAttachObjectPath = Directory.GetCurrentDirectory() + "\\systemFiles\\afterAttachObject.xfbin";
@@ -32,6 +33,9 @@ namespace NSUNS4_Character_Manager.Functions {
         string originalcmnparamPath = Directory.GetCurrentDirectory() + "\\systemFiles\\cmnparam.xfbin";
         string originaleffectprmPath = Directory.GetCurrentDirectory() + "\\systemFiles\\effectprm.bin.xfbin";
         string originaldamageeffPath = Directory.GetCurrentDirectory() + "\\systemFiles\\damageeff.bin.xfbin";
+        string originaldamageprmPath = Directory.GetCurrentDirectory() + "\\systemFiles\\damageprm.bin.xfbin";
+        string originalUnlockCharaTotalPath = Directory.GetCurrentDirectory() + "\\systemFiles\\unlockCharaTotal.bin.xfbin";
+        string originalMessagePath = Directory.GetCurrentDirectory() + "\\systemFiles\\message";
         private void importToolStripMenuItem_Click(object sender, EventArgs e) {
             FolderBrowserDialog f = new FolderBrowserDialog();
             f.ShowDialog();
@@ -51,15 +55,25 @@ namespace NSUNS4_Character_Manager.Functions {
                     Tool_CharacodeEditor CharacodeFile = new Tool_CharacodeEditor();
                     CharacodeFile.OpenFile(Main.chaPath);
                     bool replace = false;
+                    bool EnableButton = true;
                     for (int x = 0; x < CharacodeFile.CharacterCount; x++) {
                         if (CharacodeFile.CharacterList[x].Contains(d.Name)) {
                             MessageBox.Show("This character will replace exist character");
                             replace = true;
+                            EnableButton = false;
+                        }
+                        
+                    }
+                    if (!replace) {
+                        if (!File.Exists(f.SelectedPath + "\\data_win32\\ui\\max\\select\\WIN64\\characterSelectParam.xfbin")) {
+                            MessageBox.Show("This character will not replace exist character, but you can't add him in roster");
+                            EnableButton = false;
                         }
                     }
                     int NewPage = 0;
                     int NewPos = 0;
                     ReplaceCharacterList.Add(replace);
+                    EnableButtons.Add(EnableButton);
                     //if (!replace && File.Exists(f.SelectedPath+ "\\data_win32\\ui\\max\\select\\WIN64\\characterSelectParam.xfbin")) {
                     //    Tool_RosterEditor CspFile = new Tool_RosterEditor();
                     //    if (File.Exists(Main.cspPath))
@@ -103,7 +117,7 @@ namespace NSUNS4_Character_Manager.Functions {
                     //        while (Tool_RosterEditor.SearchSlotIndex(CspFile.PageList, CspFile.PositionList, CspFile.CostumeList, NewPage, NewPos, 1, CspFile.EntryCount) != -1);
                     //    }
                     //}
-                    
+
 
                     PageList.Add(NewPage);
                     SlotList.Add(NewPos);
@@ -129,7 +143,7 @@ namespace NSUNS4_Character_Manager.Functions {
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e) {
             int x = listBox1.SelectedIndex;
             if (x != -1) {
-                if (ReplaceCharacterList[x]) {
+                if (ReplaceCharacterList[x] || !EnableButtons[x]) {
                     numericUpDown1.Enabled = false;
                     numericUpDown2.Enabled = false;
                     button2.Enabled = false;
@@ -198,6 +212,8 @@ namespace NSUNS4_Character_Manager.Functions {
                     string effectprmPath = "";
                     string prmPath = "";
                     string gfx_charselPath = "";
+                    string damageprmPath = "";
+                    string messagePathList = "";
                     bool dppExist = false;
                     bool pspExist = false;
                     bool cspExist = false;
@@ -214,6 +230,8 @@ namespace NSUNS4_Character_Manager.Functions {
                     bool effectprmExist = false;
                     bool prmExist = false;
                     bool gfx_charselExist = false;
+                    bool damageprmExist = false;
+                    List<bool> messageExistList = new List<bool>();
                     foreach (FileInfo file in Files) {
                         if (file.FullName.Contains(d.Name +"prm.bin.xfbin")) {
                             prmExist = true;
@@ -232,6 +250,16 @@ namespace NSUNS4_Character_Manager.Functions {
                         } else {
                             dppExist = false;
                             dppPath = "";
+                        }
+                    }
+                    foreach (FileInfo file in Files) {
+                        if (file.FullName.Contains("spc\\damageprm.bin.xfbin")) {
+                            damageprmExist = true;
+                            damageprmPath = file.FullName;
+                            break;
+                        } else {
+                            damageprmExist = false;
+                            damageprmPath = "";
                         }
                     }
                     foreach (FileInfo file in Files) {
@@ -391,6 +419,21 @@ namespace NSUNS4_Character_Manager.Functions {
                             gfx_charselPath = "";
                         }
                     }
+                    for (int l = 0; l<Program.LANG.Length; l++) {
+                        messageExistList.Add(false);
+                    }
+                    for (int l = 0; l < Program.LANG.Length; l++) {
+                        foreach (FileInfo file in Files) {
+                            if (file.FullName.Contains("message\\WIN64\\" + Program.LANG[l] + "\\messageInfo.bin.xfbin")) {
+                                messageExistList[l] = true;
+                                messagePathList = file.FullName;
+                                break;
+                            } else {
+                                messageExistList[l] = false;
+                            }
+                        }
+                    }
+                    
                     if (originalChaExist) {
                         int OldCharacode = Convert.ToInt32(File.ReadAllText(originalPathCharacode));
                         //characode
@@ -413,7 +456,46 @@ namespace NSUNS4_Character_Manager.Functions {
                                 }
                             }
                         }
+                        else {
+                            CharacodeID = OldCharacode;
+                        }
+                        string root_path = Main.datawin32Path.Replace(d_or.Name, "");
+                        if (specialCondParamExist) {
+                            CopyFiles(root_path + "\\moddingapi\\mods\\" + d.Name, specialCondParamPath, root_path + "\\moddingapi\\mods\\" + d.Name + "\\specialCondParam.xfbin");
+                            byte[] specialCondParamFile = File.ReadAllBytes(root_path + "\\moddingapi\\mods\\" + d.Name + "\\specialCondParam.xfbin");
+                            specialCondParamFile = Main.b_ReplaceBytes(specialCondParamFile, BitConverter.GetBytes(CharacodeID), 0x17);
+                            File.WriteAllBytes(root_path + "\\moddingapi\\mods\\" + d.Name + "\\specialCondParam.xfbin", specialCondParamFile);
 
+                        }
+                        if (partnerSlotParamExist) {
+                            CopyFiles(root_path + "\\moddingapi\\mods\\" + d.Name, partnerSlotParamPath, root_path + "\\moddingapi\\mods\\" + d.Name + "\\partnerSlotParam.xfbin");
+                            byte[] partnerSlotParamFile = File.ReadAllBytes(root_path + "\\moddingapi\\mods\\" + d.Name + "\\partnerSlotParam.xfbin");
+                            partnerSlotParamFile = Main.b_ReplaceBytes(partnerSlotParamFile, BitConverter.GetBytes(CharacodeID), 0x17);
+                            File.WriteAllBytes(root_path + "\\moddingapi\\mods\\" + d.Name + "\\partnerSlotParam.xfbin", partnerSlotParamFile);
+                        }
+                        if (cpk_paths.Count > 0) {
+                            for (int c = 0; c < cpk_paths.Count; c++) {
+                                CopyFiles(root_path + "\\moddingapi\\mods\\" + d.Name, cpk_paths[c], root_path + "\\moddingapi\\mods\\" + d.Name + "\\" + cpk_names[c]);
+                                if (File.Exists(cpk_paths[c] + ".info")) {
+                                    CopyFiles(root_path + "\\moddingapi\\mods\\" + d.Name, cpk_paths[c] + ".info", root_path + "\\moddingapi\\mods\\" + d.Name + "\\" + cpk_names[c] + ".info");
+
+                                }
+                            }
+                        }
+                        if (specialCondParamExist || partnerSlotParamExist || cpk_paths.Count > 0) {
+                            FileStream ffParameter = new FileStream(root_path + "\\moddingapi\\mods\\" + d.Name + "\\info.txt", FileMode.Create, FileAccess.Write);
+                            StreamWriter mm_WriterParameter = new StreamWriter(ffParameter);
+                            mm_WriterParameter.BaseStream.Seek(0, SeekOrigin.End);
+                            mm_WriterParameter.Write("Exported character " + d.Name + "| |Unknown");
+                            mm_WriterParameter.Flush();
+                            mm_WriterParameter.Close();
+                        }
+                        foreach (FileInfo file in Files) {
+                            if (!file.Name.Contains("characode") && !file.Name.Contains("cmnparam") && !file.Name.Contains("duelPlayerParam") && !file.Name.Contains("awakeAura") && !file.Name.Contains("appearanceAnm") && !file.Name.Contains("afterAttachObject") && !file.Name.Contains("characterSelectParam") && !file.Name.Contains("playerSettingParam") && !file.Name.Contains("skillCustomizeParam") && !file.Name.Contains("spSkillCustomizeParam") && !file.Name.Contains("player_icon") && !file.Name.Contains("damageeff") && !file.Name.Contains("effectprm") && !file.Name.Contains("conditionprm") && !file.Name.Contains("damageprm") && !file.Name.Contains("unlockCharaTotal") && !file.Name.Contains("messageInfo")) {
+                                if (!file.FullName.Contains("moddingapi"))
+                                    CopyFiles(Path.GetDirectoryName(Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength)), file.FullName, Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength));
+                            }
+                        }
                         if (dppExist) {
                             Tool_DuelPlayerParamEditor DppModFile = new Tool_DuelPlayerParamEditor();
                             Tool_DuelPlayerParamEditor DppOriginalFile = new Tool_DuelPlayerParamEditor();
@@ -530,6 +612,18 @@ namespace NSUNS4_Character_Manager.Functions {
                                         PspOriginalFile.OptValueD.Add(PspModFile.OptValueD[y]);
                                         PspOriginalFile.OptValueE.Add(PspModFile.OptValueE[y]);
                                         PspOriginalFile.EntryCount++;
+
+                                        Tool_UnlockCharaTotalEditor UnlockCharaTotalOriginalFile = new Tool_UnlockCharaTotalEditor();
+                                        if (File.Exists(Main.unlPath))
+                                            UnlockCharaTotalOriginalFile.OpenFile(Main.unlPath);
+                                        else {
+                                            UnlockCharaTotalOriginalFile.OpenFile(originalUnlockCharaTotalPath);
+                                        }
+                                        UnlockCharaTotalOriginalFile.AddID_Importer(new_presetID, 1);
+                                        if (!Directory.Exists(Main.datawin32Path + "\\duel\\WIN64")) {
+                                            Directory.CreateDirectory(Main.datawin32Path + "\\duel\\WIN64");
+                                        }
+                                        UnlockCharaTotalOriginalFile.SaveFileAs(Main.datawin32Path + "\\duel\\WIN64\\unlockCharaTotal.bin.xfbin");
                                     }
                                 }
                             } else {
@@ -560,6 +654,17 @@ namespace NSUNS4_Character_Manager.Functions {
                                     PspOriginalFile.OptValueD.Add(PspModFile.OptValueD[y]);
                                     PspOriginalFile.OptValueE.Add(PspModFile.OptValueE[y]);
                                     PspOriginalFile.EntryCount++;
+                                    Tool_UnlockCharaTotalEditor UnlockCharaTotalOriginalFile = new Tool_UnlockCharaTotalEditor();
+                                    if (File.Exists(Main.unlPath))
+                                        UnlockCharaTotalOriginalFile.OpenFile(Main.unlPath);
+                                    else {
+                                        UnlockCharaTotalOriginalFile.OpenFile(originalUnlockCharaTotalPath);
+                                    }
+                                    UnlockCharaTotalOriginalFile.AddID_Importer(new_presetID, 1);
+                                    if (!Directory.Exists(Main.datawin32Path + "\\duel\\WIN64")) {
+                                        Directory.CreateDirectory(Main.datawin32Path + "\\duel\\WIN64");
+                                    }
+                                    UnlockCharaTotalOriginalFile.SaveFileAs(Main.datawin32Path + "\\duel\\WIN64\\unlockCharaTotal.bin.xfbin");
                                 }
                             }
                             if (!Directory.Exists(Main.datawin32Path + "\\spc\\WIN64")) {
@@ -1101,52 +1206,11 @@ namespace NSUNS4_Character_Manager.Functions {
                                 Directory.CreateDirectory(Main.datawin32Path + "\\sound");
                             }
                             cmnparamOriginalFile.SaveFileAs(Main.datawin32Path + "\\sound\\cmnparam.xfbin");
-                        }
-                        
-
-                        string root_path = Main.datawin32Path.Replace(d_or.Name, "");
-                        if (specialCondParamExist) {
-                            CopyFiles(root_path + "\\moddingapi\\mods\\" + d.Name, specialCondParamPath, root_path + "\\moddingapi\\mods\\" + d.Name + "\\specialCondParam.xfbin");
-                            byte[] specialCondParamFile = File.ReadAllBytes(root_path + "\\moddingapi\\mods\\" + d.Name + "\\specialCondParam.xfbin");
-                            specialCondParamFile = Main.b_ReplaceBytes(specialCondParamFile, BitConverter.GetBytes(CharacodeID), 0x17);
-                            File.WriteAllBytes(root_path + "\\moddingapi\\mods\\" + d.Name + "\\specialCondParam.xfbin", specialCondParamFile);
-
-                        }
-                        if (partnerSlotParamExist) {
-                            CopyFiles(root_path + "\\moddingapi\\mods\\" + d.Name, partnerSlotParamPath, root_path + "\\moddingapi\\mods\\" + d.Name + "\\partnerSlotParam.xfbin");
-                            byte[] partnerSlotParamFile = File.ReadAllBytes(root_path + "\\moddingapi\\mods\\" + d.Name + "\\partnerSlotParam.xfbin");
-                            partnerSlotParamFile = Main.b_ReplaceBytes(partnerSlotParamFile, BitConverter.GetBytes(CharacodeID), 0x17);
-                            File.WriteAllBytes(root_path + "\\moddingapi\\mods\\" + d.Name + "\\partnerSlotParam.xfbin", partnerSlotParamFile);
-                        }
-                        if (cpk_paths.Count >0) {
-                            for (int c = 0; c<cpk_paths.Count; c++) {
-                                CopyFiles(root_path + "\\moddingapi\\mods\\" + d.Name, cpk_paths[c], root_path + "\\moddingapi\\mods\\" + d.Name + "\\" + cpk_names[c]);
-                                if (File.Exists(cpk_paths[c]+".info")) {
-                                    CopyFiles(root_path + "\\moddingapi\\mods\\" + d.Name, cpk_paths[c] + ".info", root_path + "\\moddingapi\\mods\\" + d.Name + "\\" + cpk_names[c] + ".info");
-
-                                }
-                            }
-                        }
-                        if (specialCondParamExist || specialCondParamExist || cpk_paths.Count > 0) {
-                            FileStream ffParameter = new FileStream(root_path + "\\moddingapi\\mods\\" + d.Name + "\\info.txt", FileMode.Create, FileAccess.Write);
-                            StreamWriter mm_WriterParameter = new StreamWriter(ffParameter);
-                            mm_WriterParameter.BaseStream.Seek(0, SeekOrigin.End);
-                            mm_WriterParameter.Write("Exported character " + d.Name + "| |Unknown");
-                            mm_WriterParameter.Flush();
-                            mm_WriterParameter.Close();
-                        }
-                        foreach (FileInfo file in Files) {
-                            if (!file.Name.Contains("cmnparam") && !file.Name.Contains("duelPlayerParam") && !file.Name.Contains("awakeAura") && !file.Name.Contains("appearanceAnm") && !file.Name.Contains("afterAttachObject") && !file.Name.Contains("characterSelectParam") && !file.Name.Contains("playerSettingParam") && !file.Name.Contains("skillCustomizeParam") && !file.Name.Contains("spSkillCustomizeParam") && !file.Name.Contains("player_icon") && !file.Name.Contains("damageeff") && !file.Name.Contains("effectprm") && !file.Name.Contains("conditionprm") && !file.Name.Contains("damageprm")) {
-                                if (!file.FullName.Contains("moddingapi"))
-                                    CopyFiles(Path.GetDirectoryName(Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength)), file.FullName, Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength));
-                            }
-                        }
+                        }                             
                         if (prmExist && damageeffExist) {
-                            Tool_damageeffEditor damageeffFile = new Tool_damageeffEditor();
                             Tool_damageeffEditor damageeffOriginalFile = new Tool_damageeffEditor();
                             Tool_damageeffEditor damageeffModFile = new Tool_damageeffEditor();
                             damageeffModFile.OpenFile(damageeffPath);
-                            damageeffFile.OpenFile(originaldamageeffPath);
                             if (File.Exists(Main.damageeffPath))
                                 damageeffOriginalFile.OpenFile(Main.damageeffPath);
                             else {
@@ -1167,8 +1231,10 @@ namespace NSUNS4_Character_Manager.Functions {
 
                                 for (int j = 0; j < effectprmModFile.EntryCount; j++) {
                                     OldEffectIds.Add(effectprmModFile.EffectPrmID_List[j]);
-                                    NewEffectIds.Add(effectprmOriginalFile.EffectPrmID_List.Max() + 1 + j);
-                                    effectprmModFile.EffectPrmID_List[j] = effectprmOriginalFile.EffectPrmID_List.Max() + 1 + j;
+                                    NewEffectIds.Add(effectprmOriginalFile.EffectPrmID_List.Max() + 1);
+                                    effectprmModFile.EffectPrmID_List[j] = effectprmOriginalFile.EffectPrmID_List.Max() + 1;
+                                    //NewEffectIds.Add(effectprmOriginalFile.EffectPrmID_List.Max() + 1 + j);
+                                    //effectprmModFile.EffectPrmID_List[j] = effectprmOriginalFile.EffectPrmID_List.Max() + 1 + j;
                                     effectprmOriginalFile.EffectPrmID_List.Add(effectprmModFile.EffectPrmID_List[j]);
                                     effectprmOriginalFile.EffectPrmPath_List.Add(effectprmModFile.EffectPrmPath_List[j]);
                                     effectprmOriginalFile.EffectPrmAnm_List.Add(effectprmModFile.EffectPrmAnm_List[j]);
@@ -1196,10 +1262,11 @@ namespace NSUNS4_Character_Manager.Functions {
                                 OldHitIds.Add(damageeffModFile.HitId_List[c]);
                                 NewHitIds.Add(maxValue + 1);
                                 damageeffOriginalFile.HitId_List.Add(maxValue + 1);
+                                //NewHitIds.Add(maxValue + 1 + c);
+                                //damageeffOriginalFile.HitId_List.Add(maxValue + 1 + c);
                                 if (OldHitIds.Contains(damageeffModFile.ExtraHitId_List[c])) {
                                     for (int s = 0; s<OldHitIds.Count; s++) {
                                         damageeffModFile.ExtraHitId_List[c] = NewHitIds[s];
-                                        break;
                                     }
                                 }
                                 else {
@@ -1242,6 +1309,57 @@ namespace NSUNS4_Character_Manager.Functions {
                             }
                             PrmFile.SaveFileAs(Main.datawin32Path + "\\" + prmPath.Substring(prmPath.IndexOf(dataWinFolder) + dataWinFolderLength));
                         }
+                        if (damageprmExist) {
+                            Tool_damageprmEditor damageprmModFile = new Tool_damageprmEditor();
+                            Tool_damageprmEditor damageprmOriginalFile = new Tool_damageprmEditor();
+                            damageprmModFile.OpenFile(damageprmPath);
+                            if (File.Exists(Main.damageprmPath))
+                                damageprmOriginalFile.OpenFile(Main.damageprmPath);
+                            else {
+                                damageprmOriginalFile.OpenFile(originaldamageprmPath);
+                            }
+                            for (int c = 0; c<damageprmModFile.EntryCount; c++) {
+                                if (!damageprmOriginalFile.DamagePrm_NameID_List.Contains(damageprmModFile.DamagePrm_NameID_List[c])) {
+                                    damageprmOriginalFile.DamagePrm_NameID_List.Add(damageprmModFile.DamagePrm_NameID_List[c]);
+                                    damageprmOriginalFile.DamagePrm_Values_List.Add(damageprmModFile.DamagePrm_Values_List[c]);
+                                    damageprmOriginalFile.EntryCount++;
+                                }
+                                else {
+                                    if (BitConverter.ToString(damageprmOriginalFile.DamagePrm_Values_List[damageprmOriginalFile.DamagePrm_NameID_List.IndexOf(damageprmModFile.DamagePrm_NameID_List[c])]) != BitConverter.ToString(damageprmModFile.DamagePrm_Values_List[c])) {
+                                        damageprmOriginalFile.DamagePrm_Values_List[damageprmOriginalFile.DamagePrm_NameID_List.IndexOf(damageprmModFile.DamagePrm_NameID_List[c])] = damageprmModFile.DamagePrm_Values_List[c];
+                                    }
+                                }
+                            }
+                            if (!Directory.Exists(Main.datawin32Path + "\\spc")) {
+                                Directory.CreateDirectory(Main.datawin32Path + "\\spc");
+                            }
+                            damageprmOriginalFile.SaveFileAs(Main.datawin32Path + "\\spc\\damageprm.bin.xfbin");
+                        }
+                        if (messageExistList.Contains(true)) {
+                            Tool_MessageInfoEditor MessageModFile = new Tool_MessageInfoEditor();
+                            Tool_MessageInfoEditor MessageOriginalFile = new Tool_MessageInfoEditor();
+                            MessageModFile.OpenFilesStart(messagePathList.Remove(messagePathList.IndexOf("\\WIN64"), messagePathList.Length - messagePathList.IndexOf("\\WIN64")));
+                            if (File.Exists(Main.messageInfoPath))
+                                MessageOriginalFile.OpenFilesStart(Main.messageInfoPath);
+                            else {
+                                MessageOriginalFile.OpenFilesStart(originalMessagePath);
+                            }
+                            for (int l =0; l<Program.LANG.Length;l++) {
+                                for (int c=0; c<MessageModFile.CRC32CodesList[l].Count; c++) {
+                                    MessageOriginalFile.CRC32CodesList[l].Add(MessageModFile.CRC32CodesList[l][c]);
+                                    MessageOriginalFile.MainTextsList[l].Add(MessageModFile.MainTextsList[l][c]);
+                                    MessageOriginalFile.ExtraTextsList[l].Add(MessageModFile.ExtraTextsList[l][c]);
+                                    MessageOriginalFile.ACBFilesList[l].Add(MessageModFile.ACBFilesList[l][c]);
+                                    MessageOriginalFile.CueIDsList[l].Add(MessageModFile.CueIDsList[l][c]);
+                                    MessageOriginalFile.VoiceOnlysList[l].Add(MessageModFile.VoiceOnlysList[l][c]);
+                                    MessageOriginalFile.EntryCounts[l]++;
+                                }
+                                if (!Directory.Exists(Main.datawin32Path + "\\message\\WIN64\\"+Program.LANG[l])) {
+                                    Directory.CreateDirectory(Main.datawin32Path + "\\message\\WIN64\\" + Program.LANG[l]);
+                                }
+                            }
+                            MessageOriginalFile.SaveFilesAs(Main.datawin32Path + "\\message");
+                        }
 
                         DirectoryInfo backup_d = new DirectoryInfo(Main.datawin32Path);
                         FileInfo[] backup_Files = backup_d.GetFiles("*.backup", SearchOption.AllDirectories);
@@ -1265,6 +1383,14 @@ namespace NSUNS4_Character_Manager.Functions {
 
         private void Tool_ImportCharacter_Load(object sender, EventArgs e) {
 
+        }
+
+        private void modCrashingInGameToolStripMenuItem_Click(object sender, EventArgs e) {
+            MessageBox.Show("Make sure you installed ModdingAPI. Without that, characters w/o replace will not work");
+        }
+
+        private void howToImportVIDEOTUTORIALToolStripMenuItem_Click(object sender, EventArgs e) {
+            System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=SePl4PCTLbs");
         }
     }
 }

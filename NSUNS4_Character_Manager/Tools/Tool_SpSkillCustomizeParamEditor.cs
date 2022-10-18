@@ -23,8 +23,6 @@ namespace NSUNS4_Character_Manager.Tools
 
         public string FilePath = "";
 
-        string allBytes = "";
-
         public byte[] fileBytes = new byte[0];
 
         public int EntryCount = 0;
@@ -690,7 +688,7 @@ namespace NSUNS4_Character_Manager.Tools
                 }
                 newPointer3 = Spl4NamePointer[x2] - 320 - 112 * x2 - 96;
                 ptrBytes3 = BitConverter.GetBytes(newPointer3);
-                if (spl4_NameList[x2] == "")
+                if (spl4_NameList[x2] != "")
                 {
                     for (int a7 = 0; a7 < 4; a7++) {
                         file[320 + 112 * x2 + 96 + a7] = ptrBytes3[a7];

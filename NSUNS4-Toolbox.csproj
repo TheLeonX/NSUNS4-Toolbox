@@ -185,6 +185,12 @@
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_damageeffEditor.Designer.cs">
       <DependentUpon>Tool_damageeffEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_damageprmEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_damageprmEditor.Designer.cs">
+      <DependentUpon>Tool_damageprmEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_DSP_ItemList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -340,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_damageeffEditor.resx">
       <DependentUpon>Tool_damageeffEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_damageprmEditor.resx">
+      <DependentUpon>Tool_damageprmEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_DSP_ItemList.resx">
       <DependentUpon>Tool_DSP_ItemList.cs</DependentUpon>

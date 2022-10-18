@@ -134,3 +134,4 @@ E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.To
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_damageeffEditor.resources
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_effectprmEditor.resources
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_conditionprmEditor.resources
+E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_damageprmEditor.resources

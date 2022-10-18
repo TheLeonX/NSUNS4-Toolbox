@@ -761,7 +761,7 @@ namespace NSUNS4_Character_Manager.Tools
                 File.WriteAllBytes(filePath[index], ConvertToFile(index));
             }
         }
-        public void SaveFilesAs()
+        public void SaveFilesAs(string basepath = "")
         {
             bool foundFile = false;
             for (int i = 0; i < OpenedFile.Count; i++)
@@ -778,7 +778,10 @@ namespace NSUNS4_Character_Manager.Tools
             else
             {
                 FolderBrowserDialog s = new FolderBrowserDialog();
-                s.ShowDialog();
+                if (basepath == "")
+                    s.ShowDialog();
+                else
+                    s.SelectedPath = basepath;
                 List<string> newPaths = new List<string>();
                 for (int i = 0; i < OpenedFile.Count; i++)
                 {
@@ -795,8 +798,8 @@ namespace NSUNS4_Character_Manager.Tools
                         newPaths.Add("");
                     }
                 }
-
-                MessageBox.Show("Files succsesfully saved!");
+                if (basepath == "")
+                    MessageBox.Show("Files succsesfully saved!");
             }
         }
         public byte[] ConvertToFile(int ListIndex)

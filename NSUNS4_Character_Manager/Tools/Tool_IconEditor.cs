@@ -21,15 +21,8 @@ namespace NSUNS4_Character_Manager.Tools
         }
 
         public bool FileOpen = false;
-
         public string FilePath = "";
-
-        public List<string> AwakeAuraList = new List<string>();
-
-        string allBytes = "";
-
         public byte[] fileBytes = new byte[0];
-
         public int EntryCount = 0;
 
 

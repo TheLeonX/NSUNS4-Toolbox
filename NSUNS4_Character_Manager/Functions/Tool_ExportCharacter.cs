@@ -17,6 +17,7 @@ namespace NSUNS4_Character_Manager.Functions {
         }
         public string SaveDirectory = "";
         public string SaveCharacode = "";
+        public List<string> CharacterMessageIds = new List<string>();
         
         private void Tool_ExportCharacter_Load(object sender, EventArgs e) {
             // Open Characode
@@ -67,8 +68,8 @@ namespace NSUNS4_Character_Manager.Functions {
 
 
 
-            DirectoryInfo icon_d = new DirectoryInfo(Main.datawin32Path+"\\ui\\flash\\OTHER\\");
-            FileInfo[] icon_Files = icon_d.GetFiles("*.xfbin", SearchOption.AllDirectories);
+            //DirectoryInfo icon_d = new DirectoryInfo(Main.datawin32Path+"\\ui\\flash\\OTHER\\");
+            //FileInfo[] icon_Files = icon_d.GetFiles("*.xfbin", SearchOption.AllDirectories);
             bool prmExist = false;
             bool prmLoadExist = false;
             bool dppExist = false;
@@ -83,6 +84,8 @@ namespace NSUNS4_Character_Manager.Functions {
             bool cmnparamExist = false;
             bool damageeffExist = false;
             bool effectprmExist = false;
+            bool damageprmExist = false;
+            List<bool> messageFolderExist = new List<bool>();
             string prmPath = "";
             string prmLoadPath = "";
             string dppPath = "";
@@ -97,6 +100,8 @@ namespace NSUNS4_Character_Manager.Functions {
             string cmnparamPath = "";
             string damageeffPath = "";
             string effectprmPath = "";
+            string damageprmPath = "";
+            List<string> messageFolderPath = new List<string>();
             string moddingAPIPath = Main.datawin32Path.Replace(d.Name, "moddingapi\\mods");
 
             
@@ -252,6 +257,34 @@ namespace NSUNS4_Character_Manager.Functions {
                     cmnparamPath = "";
                 }
             }
+            foreach (FileInfo file in Files) {
+                if (file.FullName.Contains("spc\\damageprm.bin.xfbin")) {
+                    damageprmExist = true;
+                    damageprmPath = file.FullName;
+                    break;
+                } else {
+                    damageprmExist = false;
+                    damageprmPath = "";
+                }
+            }
+            for (int l = 0; l < Program.LANG.Length; l++) {
+                messageFolderExist.Add(false);
+                messageFolderPath.Add("");
+            }
+            for (int l = 0; l<Program.LANG.Length; l++) {
+                foreach (FileInfo file in Files) {
+                    if (file.FullName.Contains("message\\WIN64\\" + Program.LANG[l] + "\\messageInfo.bin.xfbin")) {
+                        messageFolderExist[l] = true;
+                        messageFolderPath[l] = file.FullName;
+                        break;
+                    }
+                    else {
+                        messageFolderExist[l] = false;
+                        messageFolderPath[l] = "";
+                    }
+                }
+            }
+
             if (prmExist) {
                 Tool_MovesetCoder PrmFile = new Tool_MovesetCoder();
                 PrmFile.OpenFile(prmPath);
@@ -433,6 +466,49 @@ namespace NSUNS4_Character_Manager.Functions {
 
                 }
             }
+            if (damageprmExist) {
+                Tool_damageprmEditor damageprmOriginalFile = new Tool_damageprmEditor();
+                damageprmOriginalFile.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\damageprm.bin.xfbin");
+                Tool_damageprmEditor damageprmSaveFile = new Tool_damageprmEditor();
+                damageprmSaveFile.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\damageprm.bin.empty.xfbin");
+                Tool_damageprmEditor damageprmFile = new Tool_damageprmEditor();
+                damageprmFile.OpenFile(damageprmPath);
+                for (int i = 0; i< damageprmFile.EntryCount; i++) {
+                    if (!damageprmOriginalFile.DamagePrm_NameID_List.Contains(damageprmFile.DamagePrm_NameID_List[i])) {
+                        damageprmSaveFile.DamagePrm_NameID_List.Add(damageprmFile.DamagePrm_NameID_List[i]);
+                        damageprmSaveFile.DamagePrm_Values_List.Add(damageprmFile.DamagePrm_Values_List[i]);
+                        damageprmSaveFile.EntryCount++;
+                    }
+                    else {
+                        if (BitConverter.ToString(damageprmOriginalFile.DamagePrm_Values_List[damageprmOriginalFile.DamagePrm_NameID_List.IndexOf(damageprmFile.DamagePrm_NameID_List[i])]) != BitConverter.ToString(damageprmFile.DamagePrm_Values_List[i])) {
+                            if (checkBox1.Checked) {
+                                damageprmSaveFile.DamagePrm_NameID_List.Add(damageprmFile.DamagePrm_NameID_List[i]);
+                                damageprmSaveFile.DamagePrm_Values_List.Add(damageprmFile.DamagePrm_Values_List[i]);
+                                damageprmSaveFile.EntryCount++;
+                            }
+                            else {
+                                int Count = 0;
+                                for (int u = 0; u< damageprmOriginalFile.EntryCount; u++) {
+                                    if (damageprmOriginalFile.DamagePrm_NameID_List[u] == damageprmFile.DamagePrm_NameID_List[i])
+                                        Count++;
+                                }
+                                if (Count == 1) {
+                                    damageprmSaveFile.DamagePrm_NameID_List.Add(damageprmFile.DamagePrm_NameID_List[i]);
+                                    damageprmSaveFile.DamagePrm_Values_List.Add(damageprmFile.DamagePrm_Values_List[i]);
+                                    damageprmSaveFile.EntryCount++;
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+                if (damageprmSaveFile.EntryCount != 0) {
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\spc\\"))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\spc\\"));
+                    }
+                    damageprmSaveFile.SaveFileAs(SaveDirectory + "\\spc\\damageprm.bin.xfbin");
+                }
+            }
             if (dppExist) {
                 Tool_DuelPlayerParamEditor DppFile = new Tool_DuelPlayerParamEditor();
                 DppFile.OpenFile(dppPath);
@@ -490,6 +566,10 @@ namespace NSUNS4_Character_Manager.Functions {
                     }
 
                 }
+                for (int i = 0; i < PspFile.EntryCount; i++) {
+                    CharacterMessageIds.Add(PspFile.c_cha_a_List[i]);
+                    CharacterMessageIds.Add(PspFile.c_cha_b_List[i]);
+                }
                 if (PspFile.EntryCount != 0) {
                     if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\spc\\WIN64\\"))) {
                         Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\spc\\WIN64\\"));
@@ -538,6 +618,9 @@ namespace NSUNS4_Character_Manager.Functions {
                 CspFile.AccessoryList = AccessoryList;
                 CspFile.NewIdList = NewIdList;
                 CspFile.GibberishBytes = GibberishBytes;
+                for (int i = 0; i < CspFile.EntryCount; i++) {
+                    CharacterMessageIds.Add(CspFile.ChaList[i]);
+                }
                 if (CspFile.EntryCount != 0) {
                     if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\ui\\max\\select\\WIN64\\"))) {
                         Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\ui\\max\\select\\WIN64\\"));
@@ -611,6 +694,28 @@ namespace NSUNS4_Character_Manager.Functions {
                         skillCustomizeFile.EntryCount--;
                     }
                 }
+                for (int i = 0; i < skillCustomizeFile.EntryCount; i++) {
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill1List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill2List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill3List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill4List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill5List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill6List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.SkillAwaList[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill1_ex_List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill2_ex_List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill3_ex_List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill4_ex_List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill5_ex_List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill6_ex_List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.SkillAwa_ex_List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill1_air_List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill2_air_List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill3_air_List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill4_air_List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill5_air_List[i]);
+                    CharacterMessageIds.Add(skillCustomizeFile.Skill6_air_List[i]);
+                }
                 if (skillCustomizeFile.EntryCount != 0) {
                     if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\spc\\WIN64"))) {
                         Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\spc\\WIN64\\"));
@@ -644,6 +749,12 @@ namespace NSUNS4_Character_Manager.Functions {
                         spSkillCustomizeFile.EntryCount--;
                         x--;
                     }
+                }
+                for (int i = 0; i < spSkillCustomizeFile.EntryCount; i++) {
+                    CharacterMessageIds.Add(spSkillCustomizeFile.spl1_NameList[i]);
+                    CharacterMessageIds.Add(spSkillCustomizeFile.spl2_NameList[i]);
+                    CharacterMessageIds.Add(spSkillCustomizeFile.spl3_NameList[i]);
+                    CharacterMessageIds.Add(spSkillCustomizeFile.spl4_NameList[i]);
                 }
                 if (spSkillCustomizeFile.EntryCount != 0) {
                     if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\spc\\WIN64"))) {
@@ -754,10 +865,12 @@ namespace NSUNS4_Character_Manager.Functions {
             iconFile.SaveFileAs(SaveDirectory + "\\spc\\WIN64\\player_icon.xfbin");
             List<string> iconPaths = new List<string>();
             List<string> iconNames = new List<string>();
-            foreach (FileInfo file in icon_Files) {
-                iconPaths.Add(file.FullName.ToString());
-                iconNames.Add(file.Name.ToString());
+            foreach (FileInfo file in Files) {
+                if (file.FullName.Contains("\\ui\\flash\\OTHER\\")) {
+                    iconPaths.Add(file.FullName.ToString());
+                    iconNames.Add(file.Name.ToString());
                 }
+            }
             for (int z =0; z<CharacodeList.Count; z++) {
                 for (int h=0; h<iconPaths.Count; h++) {
                     if ((iconNames[h].Contains(NameList[z]) && NameList[z] != "") || (iconNames[h].Contains(ExNinjutsuList[z]) && ExNinjutsuList[z] != "") || (iconNames[h].Contains(IconList[z]) && IconList[z] != "") || (iconNames[h].Contains(AwaIconList[z]) && AwaIconList[z] != "")) {
@@ -832,6 +945,60 @@ namespace NSUNS4_Character_Manager.Functions {
                 Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\spc\\WIN64\\"));
             }
             afterAttachObjectFile.SaveFileAs(SaveDirectory + "\\spc\\WIN64\\afterAttachObject.xfbin");
+            //MessageInfo
+            if (CharacterMessageIds.Count > 0 && messageFolderExist.Contains(true)) {
+                for (int i = 0; i < CharacterMessageIds.Count; i++) {
+                    if (CharacterMessageIds[i] == "") {
+                        CharacterMessageIds.RemoveAt(i);
+                        i--;
+                    }
+                }
+                Tool_MessageInfoEditor MessageInfoFile = new Tool_MessageInfoEditor();
+                MessageInfoFile.OpenFilesStart(Main.messageInfoPath);
+                List<List<byte[]>> CRC32CodesList = new List<List<byte[]>>();
+                List<List<byte[]>> MainTextsList = new List<List<byte[]>>();
+                List<List<byte[]>> ExtraTextsList = new List<List<byte[]>>();
+                List<List<int>> ACBFilesList = new List<List<int>>();
+                List<List<int>> CueIDsList = new List<List<int>>();
+                List<List<int>> VoiceOnlysList = new List<List<int>>();
+                for (int l = 0; l < Program.LANG.Length; l++) {
+                    List<string> UsedMessageIDs = new List<string>();
+                    CRC32CodesList.Add(new List<byte[]>());
+                    MainTextsList.Add(new List<byte[]>());
+                    ExtraTextsList.Add(new List<byte[]>());
+                    ACBFilesList.Add(new List<int>());
+                    CueIDsList.Add(new List<int>());
+                    VoiceOnlysList.Add(new List<int>());
+                    for (int x = 0; x< MessageInfoFile.CRC32CodesList[l].Count; x++) {
+                        if (MessageInfoFile.CRC32CodesList[l].Count != 0) {
+                            for (int i = 0; i < CharacterMessageIds.Count; i++) {
+                                if (BitConverter.ToString(MessageInfoFile.CRC32CodesList[l][x]) == BitConverter.ToString(Main.crc32(CharacterMessageIds[i])) && !UsedMessageIDs.Contains(CharacterMessageIds[i])) {
+                                    CRC32CodesList[l].Add(MessageInfoFile.CRC32CodesList[l][x]);
+                                    MainTextsList[l].Add(MessageInfoFile.MainTextsList[l][x]);
+                                    ExtraTextsList[l].Add(MessageInfoFile.ExtraTextsList[l][x]);
+                                    ACBFilesList[l].Add(-1);
+                                    CueIDsList[l].Add(-1);
+                                    VoiceOnlysList[l].Add(MessageInfoFile.VoiceOnlysList[l][x]);
+                                    UsedMessageIDs.Add(CharacterMessageIds[i]);
+                                }
+                            }
+                        }
+                    }
+                    MessageInfoFile.EntryCounts[l] = CRC32CodesList[l].Count;
+                }
+                MessageInfoFile.CRC32CodesList = CRC32CodesList;
+                MessageInfoFile.MainTextsList = MainTextsList;
+                MessageInfoFile.ExtraTextsList = ExtraTextsList;
+                MessageInfoFile.ACBFilesList = ACBFilesList;
+                MessageInfoFile.CueIDsList = CueIDsList;
+                MessageInfoFile.VoiceOnlysList = VoiceOnlysList;
+                for (int l = 0; l < Program.LANG.Length; l++) {
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\message\\WIN64\\" + Program.LANG[l]))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\message\\WIN64\\" + Program.LANG[l]));
+                    }
+                }
+                MessageInfoFile.SaveFilesAs(SaveDirectory + "\\message");
+            }           
 
             //Copy all files with characode
             foreach (FileInfo file in Files) {
@@ -954,6 +1121,18 @@ namespace NSUNS4_Character_Manager.Functions {
                     break;
                 }
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void missingSoundsToolStripMenuItem_Click(object sender, EventArgs e) {
+            MessageBox.Show("For fixing that issue, you need to pack sound files in CPK archive and put that archive in moddingAPI folder of mod before exporting (name of CPK have to contain characode in name, for example: 5nrt_assets.cpk)");
+        }
+
+        private void howToExportVIDEOTUTORIALToolStripMenuItem_Click(object sender, EventArgs e) {
+            System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=6MV6XkE6WS4");
         }
     }
 }

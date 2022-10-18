@@ -124,229 +124,64 @@ namespace NSUNS4_Character_Manager.Tools
                 verSection.Add(actualSection.ToArray());
                 //File.WriteAllBytes(filePath + "_" + x.ToString(), actualSection.ToArray());
             }
+            List<string> NamesList = new List<string>();
             //Effect data
-            int EffectPos = -1;
-            int motDMG = XfbinParser.FindString(fileBytes, "prm_motcmn", 0);
-            int awaSec = XfbinParser.FindString(fileBytes, "prm_awa", 0);
-            if (motDMG==-1 && awaSec!=-1)
+            NamesList = XfbinParser.GetNameList(fileBytes);
+            int EffectIndex = 0;
+            int EffectIndexCounter = -1;
+            do {
+                EffectIndex++;
+                EffectIndexCounter = NamesList[EffectIndex - 1].IndexOf("prm_sklslot");
+            }
+            while (EffectIndexCounter == -1);
+            byte[] EffectEntry = new byte[8]
             {
-                byte[] EffectEntry = new byte[8]
-            {
-                0x00,
-                0x00,
-                0x00,
-                0x07,
-                0x00,
-                0x63,
-                0x00,
-                0x00
+                    0x00,
+                    0x00,
+                    0x00,
+                    (byte)EffectIndex,
+                    0x00,
+                    0x63,
+                    0x00,
+                    0x00
             };
-                EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
-                //MessageBox.Show(EffectPos.ToString("X2"));
-                if (EffectPos == -1)
+            int EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
+            //MessageBox.Show(EffectPos.ToString("X2"));
+            if (EffectPos == -1) {
+                EffectEntry = new byte[6]
                 {
-                    EffectEntry = new byte[6]
-                    {
-                0x00,
-                0x00,
-                0x00,
-                0x07,
-                0x00,
-                0x63
-                    };
-                    EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
-                }
-                if (EffectPos == -1)
-                {
-                    EffectEntry = new byte[6]
-                    {
-                0x00,
-                0x00,
-                0x00,
-                0x07,
-                0x00,
-                0x79
-                    };
-                    EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
-                }
-                if (EffectPos == -1)
-                {
-                    EffectEntry = new byte[6]
-                    {
-                0x00,
-                0x00,
-                0x00,
-                0x07,
-                0x00,
-                0x7A
-                    };
-                    EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
-                }
-            }
-            else if (motDMG != -1 && awaSec != -1)
-            {
-                byte[] EffectEntry = new byte[8]
-                {
-                    0x00,
-                    0x00,
-                    0x00,
-                    0x08,
-                    0x00,
-                    0x63,
-                    0x00,
-                    0x00
-                };
-                EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
-                //MessageBox.Show(EffectPos.ToString("X2"));
-                if (EffectPos == -1)
-                {
-                    EffectEntry = new byte[6]
-                    {
                         0x00,
                         0x00,
                         0x00,
-                        0x08,
+                        (byte)EffectIndex,
                         0x00,
                         0x63
-                    };
-                    EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
-                }
-                if (EffectPos == -1)
-                {
-                    EffectEntry = new byte[6]
-                    {
-                        0x00,
-                        0x00,
-                        0x00,
-                        0x08,
-                        0x00,
-                        0x79
-                    };
-                    EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
-                }
-                if (EffectPos == -1)
-                {
-                    EffectEntry = new byte[6]
-                    {
-                        0x00,
-                        0x00,
-                        0x00,
-                        0x08,
-                        0x00,
-                        0x7A
-                    };
-                    EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
-                }
-            }
-            else if (motDMG != -1 && awaSec == -1)
-            {
-                byte[] EffectEntry = new byte[8]
-                {
-                    0x00,
-                    0x00,
-                    0x00,
-                    0x07,
-                    0x00,
-                    0x63,
-                    0x00,
-                    0x00
                 };
                 EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
-                //MessageBox.Show(EffectPos.ToString("X2"));
-                if (EffectPos == -1)
+            }
+            if (EffectPos == -1) {
+                EffectEntry = new byte[6]
                 {
-                    EffectEntry = new byte[6]
-                    {
                         0x00,
                         0x00,
                         0x00,
-                        0x07,
-                        0x00,
-                        0x63
-                    };
-                    EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
-                }
-                if (EffectPos == -1)
-                {
-                    EffectEntry = new byte[6]
-                    {
-                        0x00,
-                        0x00,
-                        0x00,
-                        0x07,
+                        (byte)EffectIndex,
                         0x00,
                         0x79
-                    };
-                    EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
-                }
-                if (EffectPos == -1)
-                {
-                    EffectEntry = new byte[6]
-                    {
-                        0x00,
-                        0x00,
-                        0x00,
-                        0x07,
-                        0x00,
-                        0x7A
-                    };
-                    EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
-                }
-            }
-            else if (motDMG == -1 && awaSec == -1)
-            {
-                byte[] EffectEntry = new byte[8]
-                {
-                    0x00,
-                    0x00,
-                    0x00,
-                    0x06,
-                    0x00,
-                    0x63,
-                    0x00,
-                    0x00
                 };
                 EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
-                //MessageBox.Show(EffectPos.ToString("X2"));
-                if (EffectPos == -1)
+            }
+            if (EffectPos == -1) {
+                EffectEntry = new byte[6]
                 {
-                    EffectEntry = new byte[6]
-                    {
                         0x00,
                         0x00,
                         0x00,
-                        0x06,
-                        0x00,
-                        0x63
-                    };
-                    EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
-                }
-                if (EffectPos == -1)
-                {
-                    EffectEntry = new byte[6]
-                    {
-                        0x00,
-                        0x00,
-                        0x00,
-                        0x06,
-                        0x00,
-                        0x79
-                    };
-                    EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
-                }
-                if (EffectPos == -1)
-                {
-                    EffectEntry = new byte[6]
-                    {
-                        0x00,
-                        0x00,
-                        0x00,
-                        0x06,
+                        (byte)EffectIndex,
                         0x00,
                         0x7A
-                    };
-                    EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
-                }
+                };
+                EffectPos = XfbinParser.FindBytes(fileBytes, EffectEntry, 0);
             }
             if (EffectPos != -1)
             {
@@ -377,12 +212,19 @@ namespace NSUNS4_Character_Manager.Tools
                 }
 
                 //Hit Collision data
+                int HitIndex = 0;
+                int HitIndexCounter = -1;
+                do {
+                    HitIndex++;
+                    HitIndexCounter = NamesList[HitIndex - 1].IndexOf("prm_hit");
+                }
+                while (HitIndexCounter == -1);
                 byte[] CollisionEntry = new byte[8]
                 {
                     0x00,
                     0x00,
                     0x00,
-                    0x03,
+                    (byte)HitIndex,
                     0x00,
                     0x63,
                     0x00,
@@ -396,7 +238,7 @@ namespace NSUNS4_Character_Manager.Tools
                         0x00,
                         0x00,
                         0x00,
-                        0x03,
+                        (byte)HitIndex,
                         0x00,
                         0x63
                     };
@@ -409,7 +251,7 @@ namespace NSUNS4_Character_Manager.Tools
                         0x00,
                         0x00,
                         0x00,
-                        0x03,
+                        (byte)HitIndex,
                         0x00,
                         0x79
                     };
@@ -422,7 +264,7 @@ namespace NSUNS4_Character_Manager.Tools
                         0x00,
                         0x00,
                         0x00,
-                        0x03,
+                        (byte)HitIndex,
                         0x00,
                         0x7A
                     };
@@ -475,88 +317,117 @@ namespace NSUNS4_Character_Manager.Tools
             }
             //MessageBox.Show(EffectPos.ToString("X2"));
             // List all anm sections
-            motDMG = XfbinParser.FindString(fileBytes, "prm_motcmn", 0);
-            awaSec = XfbinParser.FindString(fileBytes, "prm_awa", 0);
-            if (motDMG == -1 && awaSec !=-1)
-            {
-                string[] sectionnames_loc =
-                {
-                    "Awakening",
-                    "Base",
-                    "Jutsu",
-                    "Ultimate Jutsu",
-                    "Expansion A",
-                    "Expansion B",
-                    "Expansion C",
-                    "Expansion D",
-                    "Expansion E",
-                    "Expansion F",
-                    "Expansion G",
-                    "Expansion H",
-                    "Expansion I"
-                };
-                sectionnames = sectionnames_loc;
-            }
-            else if (motDMG != -1 && awaSec != -1)
-            {
-                string[] sectionnames_loc =
-                {
-                    "Awakening",
-                    "Base",
-                    "Damage animations",
-                    "Jutsu",
-                    "Ultimate Jutsu",
-                    "Expansion A",
-                    "Expansion B",
-                    "Expansion C",
-                    "Expansion D",
-                    "Expansion E",
-                    "Expansion F",
-                    "Expansion G",
-                    "Expansion H",
-                    "Expansion I"
-                };
-                sectionnames = sectionnames_loc;
-            }
-            else if (motDMG != -1 && awaSec == -1)
-            {
-                string[] sectionnames_loc =
-                {
-                    "Base",
-                    "Damage animations",
-                    "Jutsu",
-                    "Ultimate Jutsu",
-                    "Expansion A",
-                    "Expansion B",
-                    "Expansion C",
-                    "Expansion D",
-                    "Expansion E",
-                    "Expansion F",
-                    "Expansion G",
-                    "Expansion H",
-                    "Expansion I"
-                };
-                sectionnames = sectionnames_loc;
-            }
-            else if (motDMG == -1 && awaSec == -1)
-            {
-                string[] sectionnames_loc =
-                {
-                    "Base",
-                    "Jutsu",
-                    "Ultimate Jutsu",
-                    "Expansion A",
-                    "Expansion B",
-                    "Expansion C",
-                    "Expansion D",
-                    "Expansion E",
-                    "Expansion G",
-                    "Expansion H",
-                    "Expansion I"
-                };
-                sectionnames = sectionnames_loc;
-            }
+            int motDMG = XfbinParser.FindString(fileBytes, "prm_motcmn", 0);
+            int awaSec = XfbinParser.FindString(fileBytes, "prm_awa", 0);
+            int bossSec = XfbinParser.FindString(fileBytes, "prm_boss", 0);
 
+            int BossIndex = 0;
+            if (awaSec != -1 && bossSec != -1) {
+                int BossIndexCounter = -1;
+                do {
+                    BossIndex++;
+                    BossIndexCounter = NamesList[BossIndex - 1].IndexOf("prm_boss");
+                }
+                while (BossIndexCounter == -1);
+            }
+            
+
+            if (motDMG == -1 && awaSec !=-1 && (BossIndex > 8 || bossSec == -1))
+            {
+                string[] sectionnames_loc =
+                {
+                    "Awakening",
+                    "Base",
+                    "Jutsu",
+                    "Ultimate Jutsu",
+                    "Expansion A",
+                    "Expansion B",
+                    "Expansion C",
+                    "Expansion D",
+                    "Expansion E",
+                    "Expansion F",
+                    "Expansion G",
+                    "Expansion H",
+                    "Expansion I"
+                };
+                sectionnames = sectionnames_loc;
+            }
+            else if (motDMG != -1 && awaSec != -1 && (BossIndex > 8 || bossSec == -1))
+            {
+                string[] sectionnames_loc =
+                {
+                    "Awakening",
+                    "Base",
+                    "Damage animations",
+                    "Jutsu",
+                    "Ultimate Jutsu",
+                    "Expansion A",
+                    "Expansion B",
+                    "Expansion C",
+                    "Expansion D",
+                    "Expansion E",
+                    "Expansion F",
+                    "Expansion G",
+                    "Expansion H",
+                    "Expansion I"
+                };
+                sectionnames = sectionnames_loc;
+            }
+            else if (motDMG != -1 && awaSec == -1 && (BossIndex > 8 || bossSec == -1))
+            {
+                string[] sectionnames_loc =
+                {
+                    "Base",
+                    "Damage animations",
+                    "Jutsu",
+                    "Ultimate Jutsu",
+                    "Expansion A",
+                    "Expansion B",
+                    "Expansion C",
+                    "Expansion D",
+                    "Expansion E",
+                    "Expansion F",
+                    "Expansion G",
+                    "Expansion H",
+                    "Expansion I"
+                };
+                sectionnames = sectionnames_loc;
+            }
+            else if (motDMG == -1 && awaSec == -1 && (BossIndex > 8 || bossSec == -1))
+            {
+                string[] sectionnames_loc =
+                {
+                    "Base",
+                    "Jutsu",
+                    "Ultimate Jutsu",
+                    "Expansion A",
+                    "Expansion B",
+                    "Expansion C",
+                    "Expansion D",
+                    "Expansion E",
+                    "Expansion G",
+                    "Expansion H",
+                    "Expansion I"
+                };
+                sectionnames = sectionnames_loc;
+            }
+            else {
+                string[] sectionnames_loc =
+                {
+                    "Expansion A",
+                    "Expansion B",
+                    "Expansion C",
+                    "Expansion D",
+                    "Expansion E",
+                    "Expansion G",
+                    "Expansion H",
+                    "Expansion I",
+                    "Expansion J",
+                    "Expansion K",
+                    "Expansion L"
+                };
+                sectionnames = sectionnames_loc;
+            }
             for (int a = 0; a < verList.Count; a++)
             {
                 listBox1.Items.Add(sectionnames[a]);

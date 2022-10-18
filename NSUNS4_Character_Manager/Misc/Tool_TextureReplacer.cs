@@ -108,7 +108,6 @@ namespace NSUNS4_Character_Manager.Misc
             fileBytes = File.ReadAllBytes(filePath);
 
             int fileStart = XfbinParser.GetFileSectionIndex(fileBytes);
-            int textureCount = 0;
 
             ntp3Indices = Main.b_FindBytesList(fileBytes, Encoding.ASCII.GetBytes("NTP3"), fileStart);
 

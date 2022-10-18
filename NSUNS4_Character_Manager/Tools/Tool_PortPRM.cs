@@ -1356,6 +1356,142 @@ namespace NSUNS4_Character_Manager.Tools
                     }
                     
                 }
+                if (comboBox1.Text == "JoJo ASBR") {
+                    byte[] PL_ANM_Section = Main.b_StringToBytes(textBox5.Text);
+                    do {
+                        sectionCount = Main.b_ReadIntFromTwoBytes(PL_ANM_Section, 0x6C);
+                        if (PL_ANM_Section.Length >= 0x9C + 0xC8 * sectionCount) {
+                            int totalsize = 0x9C;
+                            for (int i = 0; i < sectionCount; i++) {
+                                int seclength = 0xC8;
+                                int function = Main.b_ReadIntFromTwoBytes(PL_ANM_Section, totalsize + 0x34);
+
+                                FunctionTimingList.Add(Main.b_ReadIntFromTwoBytes(PL_ANM_Section, totalsize + 0x30));
+                                FunctionIDList.Add(Main.b_ReadIntFromTwoBytes(PL_ANM_Section, totalsize + 0x34));
+                                FunctionHitboxList.Add(Main.b_ReadString2(PL_ANM_Section, totalsize + 0x08));
+                                FunctionParam1List.Add(Main.b_ReadIntFromTwoBytes(PL_ANM_Section, totalsize + 0x38));
+                                FunctionParam2List.Add(Main.b_ReadIntFromTwoBytes(PL_ANM_Section, totalsize + 0x3C));
+                                FunctionParam3List.Add(Main.b_ReadIntFromTwoBytes(PL_ANM_Section, totalsize + 0x40));
+                                FunctionParam5List.Add(Main.b_ReadIntFromTwoBytes(PL_ANM_Section, totalsize + 0x44));
+                                FunctionParam6List.Add(Main.b_ReadIntFromTwoBytes(PL_ANM_Section, totalsize + 0x48));
+                                FunctionParam4List.Add(Main.b_ReadFloat(PL_ANM_Section, totalsize + 0x4C));
+                                if (comboBox1.Text == "JoJo ASBR") {
+                                    switch (function) {
+                                        case 0x20:
+                                        case 0x22:
+                                        case 0x24:
+                                        case 0x26:
+                                        case 0x28:
+                                        case 0x30:
+                                            seclength = 0x2B8;
+                                            break;
+                                        case 0x35:
+                                        case 0x36:
+                                        case 0x37:
+                                        case 0x38:
+                                            if (totalsize + 0xC8 < PL_ANM_Section.Length) {
+                                                string str = Main.b_ReadString(PL_ANM_Section, totalsize + 0xC8);
+                                                if (str.Length >= 7 && str.Substring(0, 7) == "SKL_ATK") seclength = 0x2B8;
+                                            }
+                                            break;
+                                    }
+                                }
+                                if (totalsize + 0xC8 < PL_ANM_Section.Length) {
+                                    string str = Main.b_ReadString(PL_ANM_Section, totalsize + 0xC8);
+                                    if (str.Length > 3 && (str.Substring(0, 3) == "DMG" || str.Substring(0, 3) == "DAM" || str.Substring(0, 3) == "SKL" || str.Substring(0, 3) == "SPS")) {
+                                        seclength = 0x2B8;
+                                    }
+                                }
+                                if (seclength == 0x2B8) {
+                                    FunctionDamageNameList.Add(Main.b_ReadString(PL_ANM_Section, totalsize + 0xE0));
+                                    DamageConditionList.Add(0);
+                                    DamageHitEffectList.Add(1);
+                                    DamageHorizontalPushList.Add(1);
+                                    DamageVerticalPushList.Add(1);
+                                    DamageValueList.Add(Main.b_ReadFloat(PL_ANM_Section, totalsize + 0x12C));
+                                    DamageHitCountList.Add(Main.b_ReadIntFromTwoBytes(PL_ANM_Section, totalsize + 0x150));
+                                    DamageFreezeValueList.Add(Main.b_ReadIntFromTwoBytes(PL_ANM_Section, totalsize + 0x158));
+                                    DamageHitFrequencyList.Add(Main.b_ReadIntFromTwoBytes(PL_ANM_Section, totalsize + 0x154));
+                                    DamageGuardValueList.Add(0);
+                                    DamageListEOH.Add(BitConverter.GetBytes(0));
+                                } else {
+                                    FunctionDamageNameList.Add("");
+                                    DamageConditionList.Add(0);
+                                    DamageHitEffectList.Add(0);
+                                    DamageHorizontalPushList.Add(0);
+                                    DamageVerticalPushList.Add(0);
+                                    DamageValueList.Add(0);
+                                    DamageHitCountList.Add(0);
+                                    DamageHitFrequencyList.Add(0);
+                                    DamageFreezeValueList.Add(0);
+                                    DamageGuardValueList.Add(0);
+                                    DamageListEOH.Add(BitConverter.GetBytes(0));
+                                }
+                                totalsize = totalsize + seclength;
+                                secCountForGen++;
+                            }
+                            animationName = Main.b_ReadString2(PL_ANM_Section, 0x20, 0x20);
+                            PL_ANM_Name = Main.b_ReadString2(PL_ANM_Section, 0x00, 0x20);
+                            PL_ANM_PREV_Name = "";
+                            PL_ANM_NEXT_Name = "";
+                            PL_ANM_DMG_Name = "";
+                            ListPL_ANM_Names.Add(PL_ANM_Name);
+
+                            frameSkip = Main.b_ReadIntFromTwoBytes(PL_ANM_Section, 0x58);
+                            ID_PRMFile = Main.b_ReadIntFromTwoBytes(PL_ANM_Section, 0x70);
+                            enableCubeMan = 0;
+                            enableFaceAnimation = Main.b_ReadIntFromTwoBytes(PL_ANM_Section, 0x40);
+                            reverseEnemy = 0;
+                            noFrameSkip = Main.b_ReadIntFromTwoBytes(PL_ANM_Section, 0x48);
+                            animationPositionFix = Main.b_ReadIntFromTwoBytes(PL_ANM_Section, 0x4C);
+                            directionCombo = 1;
+                            linkCondition = 0;
+                            playCondition = 0;
+                            startTime = 0;
+                            endTime = 0;
+                            triggerState = 0;
+                            button4.Enabled = true;
+                            textBox1.Text = PL_ANM_Name;
+                            textBox3.Text = PL_ANM_NEXT_Name;
+                            textBox2.Text = PL_ANM_PREV_Name;
+                            textBox4.Text = PL_ANM_DMG_Name;
+                            textBox7.Text = animationName;
+                            numericUpDown1.Value = ID_PRMFile;
+                            if (comboBox2.Text == "Naruto Storm 4")
+                                GenerateStorm4Code();
+                            if (comboBox2.Text == "JoJo ASBR")
+                                GenerateJoJoASBRCode();
+                            countOfAllMovementSections = secCountForGen;
+                            countOfSection++;
+                            if (PL_ANM_Section.Length - totalsize >= 0x9C) {
+
+                                byte[] Analysed_PL_ANM_Section = new byte[0];
+                                Analysed_PL_ANM_Section = Main.b_AddBytes(Analysed_PL_ANM_Section, PL_ANM_Section, 0, totalsize);
+                                PL_ANM_Section = Analysed_PL_ANM_Section;
+                            } else {
+                                break;
+                            }
+
+                        }
+                    }
+                    while (PL_ANM_Section.Length >= 0x9C);
+                    if (countOfSection == 1) {
+                        countOfAllMovementSections = 0;
+                        button4.Enabled = true;
+                        textBox1.Enabled = true;
+                        textBox2.Enabled = true;
+                        textBox3.Enabled = true;
+                        textBox4.Enabled = true;
+                        textBox7.Enabled = true;
+                    } else {
+                        button4.Enabled = false;
+                        textBox1.Enabled = false;
+                        textBox2.Enabled = false;
+                        textBox3.Enabled = false;
+                        textBox4.Enabled = false;
+                        textBox7.Enabled = false;
+                    }
+                }
                 if (comboBox1.Text == "Naruto Storm 4") {
                     byte[] PL_ANM_Section = Main.b_StringToBytes(textBox5.Text);
                     do {
@@ -1709,7 +1845,7 @@ namespace NSUNS4_Character_Manager.Tools
                     nameOfFunction = Program.ME_REV_S3_LIST[FunctionIDList[countOfAllMovementSections + i]];
                 else if (comboBox1.Text == "JoJo EOH")
                     nameOfFunction = Program.ME_JOJO_EOH_LIST[FunctionIDList[countOfAllMovementSections + i]];
-                else if (comboBox1.Text == "JoJo ASB")
+                else if (comboBox1.Text == "JoJo ASB" || comboBox1.Text == "JoJo ASBR")
                     nameOfFunction = Program.ME_JOJO_ASB_LIST[FunctionIDList[countOfAllMovementSections + i]];
 
                 for (int j=0; j<Program.ME_LIST.Length;j++)
@@ -1745,7 +1881,8 @@ namespace NSUNS4_Character_Manager.Tools
                         if (functionSound == 0xF1 || functionSound == 0x128)
                             portedFunction = -1;
                     }
-                    else if (comboBox1.Text == "JoJo ASB")
+
+                    else if (comboBox1.Text == "JoJo ASB" || comboBox1.Text == "JoJo ASBR")
                     {
                         if (functionSound == 0x7D || functionSound == 0x7E || functionSound == 0x7F || functionSound == 0x80 || functionSound == 0x81 || functionSound == 0xD5)
                             portedFunction = -1;
@@ -1766,7 +1903,7 @@ namespace NSUNS4_Character_Manager.Tools
                     } else if (comboBox1.Text == "JoJo EOH") {
                         if (functionSound == 0xE3 || functionSound == 0xE4)
                             portedFunction = -1;
-                    } else if (comboBox1.Text == "JoJo ASB") {
+                    } else if (comboBox1.Text == "JoJo ASB" || comboBox1.Text == "JoJo ASBR") {
                         if (functionSound == 0x6F || functionSound == 0x70 )
                             portedFunction = -1;
                     }
@@ -2121,7 +2258,7 @@ namespace NSUNS4_Character_Manager.Tools
                         FunctionSection = Main.b_AddBytes(FunctionSection, DamagePart);
                     }
                 }
-                else if (comboBox1.Text == "JoJo ASB")
+                else if (comboBox1.Text == "JoJo ASB" || comboBox1.Text == "JoJo ASBR")
                 {
                     if (function == 0x20 || function == 0x22 || function == 0x24 || function == 0x26 || function == 0x28 || function == 0x30 || FunctionDamageNameList[countOfAllMovementSections + i] != "")
                     {
@@ -2227,7 +2364,7 @@ namespace NSUNS4_Character_Manager.Tools
                             else
                                 codeWasRemoved = true;
                         }
-                        else if (comboBox1.Text == "JoJo ASB")
+                        else if (comboBox1.Text == "JoJo ASB" || comboBox1.Text == "JoJo ASBR")
                         {
                             if (function == 0x7D || function == 0x7E || function == 0x7F || function == 0x80 || function == 0x81 || function == 0xD5)
                                 codeWasRemoved = false;
@@ -2360,6 +2497,9 @@ namespace NSUNS4_Character_Manager.Tools
                     } else if (comboBox1.Text == "Naruto Storm 4") {
                         if (functionSound == 0x8D || functionSound == 0x8E || functionSound == 0x8F || functionSound == 0x90 || functionSound == 0x91 || functionSound == 0x92 || functionSound == 0x93)
                             portedFunction = -1;
+                    } else if (comboBox1.Text == "JoJo ASBR") {
+                        if (functionSound == 0x7D || functionSound == 0x7E || functionSound == 0x7F || functionSound == 0x80 || functionSound == 0x81 || functionSound == 0xD5)
+                            portedFunction = -1;
                     }
                 }
                 //--------------------------------------------BG REMOVER---------------------------------------------------------------------
@@ -2379,6 +2519,9 @@ namespace NSUNS4_Character_Manager.Tools
                             portedFunction = -1;
                     } else if (comboBox1.Text == "Naruto Storm 4") {
                         if (functionSound == 0xB0 || functionSound == 0xB1)
+                            portedFunction = -1;
+                    } else if (comboBox1.Text == "JoJo ASBR") {
+                        if (functionSound == 0x6F || functionSound == 0x70)
                             portedFunction = -1;
                     }
                 }
@@ -2697,6 +2840,46 @@ namespace NSUNS4_Character_Manager.Tools
                         DamagePart = Main.b_ReplaceBytes(DamagePart, usedBytes, 0x90);
                         FunctionSection = Main.b_AddBytes(FunctionSection, DamagePart);
                     }
+                } else if (comboBox1.Text == "JoJo ASBR") {
+                    if (function == 0x20 || function == 0x22 || function == 0x24 || function == 0x26 || function == 0x28 || function == 0x30 || FunctionDamageNameList[countOfAllMovementSections + i] != "") {
+                        byte[] DamagePart = new byte[0x1F0];
+                        DamagePart = Main.b_ReplaceBytes(DamagePart, Encoding.ASCII.GetBytes(FunctionDamageNameList[countOfAllMovementSections + i]), 0x18);
+                        //unknown 1
+                        DamagePart = Main.b_ReplaceBytes(DamagePart, new byte[2] { 0x11, 0x00 }, 0x00);
+                        //unknown 1
+                        DamagePart = Main.b_ReplaceBytes(DamagePart, new byte[2] { 0x07, 0x00 }, 0x5C);
+                        //unknown 2
+                        DamagePart = Main.b_ReplaceBytes(DamagePart, new byte[2] { 0x3C, 0x00 }, 0x68);
+                        //unknown 3
+                        DamagePart = Main.b_ReplaceBytes(DamagePart, new byte[2] { 0x15, 0x00 }, 0x6C);
+                        //unknown 4
+                        DamagePart = Main.b_ReplaceBytes(DamagePart, new byte[2] { 0x0B, 0x00 }, 0x7C);
+                        //unknown 5
+                        DamagePart = Main.b_ReplaceBytes(DamagePart, new byte[2] { 0x04, 0x00 }, 0x80);
+                        //unknown 7
+                        DamagePart = Main.b_ReplaceBytes(DamagePart, new byte[2] { 0x06, 0x00 }, 0x94);
+                        //Damage Value
+                        DamagePart = Main.b_ReplaceBytes(DamagePart, BitConverter.GetBytes(DamageValueList[countOfAllMovementSections + i]), 0x64);
+                        //Horizontal push
+                        DamagePart = Main.b_ReplaceBytes(DamagePart, BitConverter.GetBytes(DamageHorizontalPushList[countOfAllMovementSections + i]), 0x60);
+                        //Hit count
+                        sectionBytes = BitConverter.GetBytes(DamageHitCountList[countOfAllMovementSections + i]);
+                        usedBytes = new byte[2]
+                        {
+                            sectionBytes[0],
+                            sectionBytes[1]
+                        };
+                        DamagePart = Main.b_ReplaceBytes(DamagePart, usedBytes, 0x8C);
+                        //Hit Frequency
+                        sectionBytes = BitConverter.GetBytes(DamageHitFrequencyList[countOfAllMovementSections + i]);
+                        usedBytes = new byte[2]
+                        {
+                            sectionBytes[0],
+                            sectionBytes[1]
+                        };
+                        DamagePart = Main.b_ReplaceBytes(DamagePart, usedBytes, 0x90);
+                        FunctionSection = Main.b_AddBytes(FunctionSection, DamagePart);
+                    }
                 }
                 if (portedFunction != -1) {
                     JoJoASBR_GeneratedCode = Main.b_AddBytes(JoJoASBR_GeneratedCode, FunctionSection);
@@ -2742,6 +2925,11 @@ namespace NSUNS4_Character_Manager.Tools
                                 codeWasRemoved = true;
                         } else if (comboBox1.Text == "Hack Versus") {
                             codeWasRemoved = true;
+                        } else if (comboBox1.Text == "JoJo ASBR") {
+                            if (function == 0x7D || function == 0x7E || function == 0x7F || function == 0x80 || function == 0x81 || function == 0xD5)
+                                codeWasRemoved = false;
+                            else
+                                codeWasRemoved = true;
                         }
                     }
                 }

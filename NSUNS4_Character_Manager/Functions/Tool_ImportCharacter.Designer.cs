@@ -37,6 +37,9 @@ namespace NSUNS4_Character_Manager.Functions {
             this.label4 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modCrashingInGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.howToImportVIDEOTUTORIALToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -45,7 +48,8 @@ namespace NSUNS4_Character_Manager.Functions {
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.importToolStripMenuItem});
+            this.importToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(437, 24);
@@ -158,6 +162,29 @@ namespace NSUNS4_Character_Manager.Functions {
             this.label5.TabIndex = 14;
             this.label5.Text = "Don\'t edit or remove files in mod folder\r\n while you working with that tool";
             // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modCrashingInGameToolStripMenuItem,
+            this.howToImportVIDEOTUTORIALToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // modCrashingInGameToolStripMenuItem
+            // 
+            this.modCrashingInGameToolStripMenuItem.Name = "modCrashingInGameToolStripMenuItem";
+            this.modCrashingInGameToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.modCrashingInGameToolStripMenuItem.Text = "Mod crashing in game";
+            this.modCrashingInGameToolStripMenuItem.Click += new System.EventHandler(this.modCrashingInGameToolStripMenuItem_Click);
+            // 
+            // howToImportVIDEOTUTORIALToolStripMenuItem
+            // 
+            this.howToImportVIDEOTUTORIALToolStripMenuItem.Name = "howToImportVIDEOTUTORIALToolStripMenuItem";
+            this.howToImportVIDEOTUTORIALToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.howToImportVIDEOTUTORIALToolStripMenuItem.Text = "How to Import [VIDEO TUTORIAL]";
+            this.howToImportVIDEOTUTORIALToolStripMenuItem.Click += new System.EventHandler(this.howToImportVIDEOTUTORIALToolStripMenuItem_Click);
+            // 
             // Tool_ImportCharacter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -206,5 +233,8 @@ namespace NSUNS4_Character_Manager.Functions {
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modCrashingInGameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem howToImportVIDEOTUTORIALToolStripMenuItem;
     }
 }
