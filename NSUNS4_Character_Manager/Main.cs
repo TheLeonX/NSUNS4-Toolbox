@@ -97,6 +97,7 @@ namespace NSUNS4_Character_Manager
         private LinkLabel linkLabel9;
         private LinkLabel linkLabel10;
         private Button button13;
+        private LinkLabel linkLabel12;
         public byte[] PRMEditorCopiedSection;
         public byte[] TheValue
         {
@@ -830,6 +831,7 @@ namespace NSUNS4_Character_Manager
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button13 = new System.Windows.Forms.Button();
             this.button29 = new System.Windows.Forms.Button();
             this.button28 = new System.Windows.Forms.Button();
             this.button27 = new System.Windows.Forms.Button();
@@ -853,7 +855,7 @@ namespace NSUNS4_Character_Manager
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
-            this.button13 = new System.Windows.Forms.Button();
+            this.linkLabel12 = new System.Windows.Forms.LinkLabel();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1236,6 +1238,18 @@ namespace NSUNS4_Character_Manager
             this.tabPage3.Text = "Character Managment";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // button13
+            // 
+            this.button13.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.button13.Location = new System.Drawing.Point(3, 337);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(299, 38);
+            this.button13.TabIndex = 33;
+            this.button13.Text = "DamagePrm Editor";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Visible = false;
+            this.button13.Click += new System.EventHandler(this.button13_Click_1);
+            // 
             // button29
             // 
             this.button29.Font = new System.Drawing.Font("Segoe UI", 8.5F);
@@ -1325,6 +1339,7 @@ namespace NSUNS4_Character_Manager
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.linkLabel12);
             this.tabPage6.Controls.Add(this.linkLabel10);
             this.tabPage6.Controls.Add(this.linkLabel8);
             this.tabPage6.Controls.Add(this.linkLabel7);
@@ -1347,7 +1362,7 @@ namespace NSUNS4_Character_Manager
             this.linkLabel10.AutoSize = true;
             this.linkLabel10.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.linkLabel10.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel10.Location = new System.Drawing.Point(4, 139);
+            this.linkLabel10.Location = new System.Drawing.Point(3, 124);
             this.linkLabel10.Name = "linkLabel10";
             this.linkLabel10.Size = new System.Drawing.Size(80, 15);
             this.linkLabel10.TabIndex = 41;
@@ -1360,7 +1375,7 @@ namespace NSUNS4_Character_Manager
             this.linkLabel8.AutoSize = true;
             this.linkLabel8.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.linkLabel8.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel8.Location = new System.Drawing.Point(4, 154);
+            this.linkLabel8.Location = new System.Drawing.Point(3, 169);
             this.linkLabel8.Name = "linkLabel8";
             this.linkLabel8.Size = new System.Drawing.Size(70, 15);
             this.linkLabel8.TabIndex = 40;
@@ -1373,7 +1388,7 @@ namespace NSUNS4_Character_Manager
             this.linkLabel7.AutoSize = true;
             this.linkLabel7.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.linkLabel7.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel7.Location = new System.Drawing.Point(4, 123);
+            this.linkLabel7.Location = new System.Drawing.Point(4, 154);
             this.linkLabel7.Name = "linkLabel7";
             this.linkLabel7.Size = new System.Drawing.Size(84, 15);
             this.linkLabel7.TabIndex = 39;
@@ -1386,7 +1401,7 @@ namespace NSUNS4_Character_Manager
             this.linkLabel6.AutoSize = true;
             this.linkLabel6.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.linkLabel6.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel6.Location = new System.Drawing.Point(4, 108);
+            this.linkLabel6.Location = new System.Drawing.Point(4, 139);
             this.linkLabel6.Name = "linkLabel6";
             this.linkLabel6.Size = new System.Drawing.Size(62, 15);
             this.linkLabel6.TabIndex = 38;
@@ -1516,17 +1531,18 @@ namespace NSUNS4_Character_Manager
             this.linkLabel9.Text = "CC2\'s game Files";
             this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
             // 
-            // button13
+            // linkLabel12
             // 
-            this.button13.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.button13.Location = new System.Drawing.Point(3, 337);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(299, 38);
-            this.button13.TabIndex = 33;
-            this.button13.Text = "DamagePrm Editor";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Visible = false;
-            this.button13.Click += new System.EventHandler(this.button13_Click_1);
+            this.linkLabel12.AutoSize = true;
+            this.linkLabel12.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.linkLabel12.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel12.Location = new System.Drawing.Point(4, 109);
+            this.linkLabel12.Name = "linkLabel12";
+            this.linkLabel12.Size = new System.Drawing.Size(231, 15);
+            this.linkLabel12.TabIndex = 43;
+            this.linkLabel12.TabStop = true;
+            this.linkLabel12.Text = "YACpkTool (extracting and repacking CPK)";
+            this.linkLabel12.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel12_LinkClicked);
             // 
             // Main
             // 
@@ -1545,7 +1561,7 @@ namespace NSUNS4_Character_Manager
             this.MaximizeBox = false;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Naruto: Storm 4 Toolbox v5.0 (TheLeonX\'s build)";
+            this.Text = "Naruto: Storm 4 Toolbox v6.0b (TheLeonX\'s build)";
             this.Load += new System.EventHandler(this.Main_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -1940,12 +1956,20 @@ namespace NSUNS4_Character_Manager
         }
 
         private void linkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start("https://drive.google.com/open?id=1LuWQlqgo4KIT_HdhGQu6-Jcjj-jvICTf ");
+            System.Diagnostics.Process.Start("https://drive.google.com/open?id=1LuWQlqgo4KIT_HdhGQu6-Jcjj-jvICTf");
         }
 
         private void button13_Click_1(object sender, EventArgs e) {
             Tool_damageprmEditor t = new Tool_damageprmEditor();
             t.Show();
+        }
+
+        private void linkLabel12_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            System.Diagnostics.Process.Start("https://github.com/Brolijah/YACpkTool/releases/tag/v1.1b");
+        }
+
+        private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+
         }
     }
 }

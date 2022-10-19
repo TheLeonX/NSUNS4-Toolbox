@@ -367,7 +367,16 @@ namespace NSUNS4_Character_Manager.Functions {
                         EffectPrmModFile.SaveFileAs(SaveDirectory + "\\spc\\effectprm.bin.xfbin");
                     }
                 }
-
+                for (int k1 = 0; k1<PrmFile.movementList.Count; k1++) {
+                    for (int k2 = 0; k2 < PrmFile.movementList[k1].Count; k2++) {
+                        for (int k3 = 0; k3 < PrmFile.movementList[k1][k2].Count; k3++) {
+                            int function = PrmFile.movementList[k1][k2][k3][0x22] * 0x1 + PrmFile.movementList[k1][k2][k3][0x23] * 0x100;
+                            if (function == 0x96) {
+                                CharacterMessageIds.Add(Main.b_ReadString2(PrmFile.movementList[k1][k2][k3],0));
+                            }
+                        }
+                    }
+                }
             }
             if (prmLoadExist) {
                 Tool_SpcloadEditor SpcloadFile = new Tool_SpcloadEditor();
