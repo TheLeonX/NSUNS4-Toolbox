@@ -103,6 +103,12 @@
     <Compile Include="NSUNS4_Character_Manager\Misc\Tool_nus3bankEditor.Designer.cs">
       <DependentUpon>Tool_nus3bankEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Misc\Tool_nus3bankEditor_v2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Misc\Tool_nus3bankEditor_v2.Designer.cs">
+      <DependentUpon>Tool_nus3bankEditor_v2.cs</DependentUpon>
+    </Compile>
     <Compile Include="NSUNS4_Character_Manager\Misc\Tool_PathList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -310,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Misc\Tool_nus3bankEditor.resx">
       <DependentUpon>Tool_nus3bankEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NSUNS4_Character_Manager\Misc\Tool_nus3bankEditor_v2.resx">
+      <DependentUpon>Tool_nus3bankEditor_v2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Misc\Tool_PathList.resx">
       <DependentUpon>Tool_PathList.cs</DependentUpon>

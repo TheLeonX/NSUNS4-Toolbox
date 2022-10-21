@@ -1718,7 +1718,7 @@ namespace NSUNS4_Character_Manager
         private void button18_Click(object sender, EventArgs e)
         {
             MessageBox.Show("This tool can use any file, but supported only WAV, BNSF and IDSP\n\nIf you want to convert .WAV file to .BNSF,\nmake sure you .WAV file has 16bit,48000hz and mono settings or sound will not work");
-            Misc.Tool_nus3bankEditor s = new Misc.Tool_nus3bankEditor();
+            Misc.Tool_nus3bankEditor_v2 s = new Misc.Tool_nus3bankEditor_v2();
             s.Show();
         }
 
