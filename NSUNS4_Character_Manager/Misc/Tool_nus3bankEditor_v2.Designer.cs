@@ -31,6 +31,7 @@ namespace NSUNS4_Character_Manager.Misc {
             this.button5 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
             this.Overlay_v = new System.Windows.Forms.CheckBox();
             this.button10 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -79,7 +80,8 @@ namespace NSUNS4_Character_Manager.Misc {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.SoundID_dg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SoundName_dg = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button2 = new System.Windows.Forms.Button();
+            this.PlaySound_b = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Volume_v)).BeginInit();
@@ -96,6 +98,7 @@ namespace NSUNS4_Character_Manager.Misc {
             ((System.ComponentModel.ISupportInitialize)(this.FileID_v)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -175,6 +178,15 @@ namespace NSUNS4_Character_Manager.Misc {
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Sound";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(2, 23);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(403, 38);
+            this.button2.TabIndex = 85;
+            this.button2.Text = "Save";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // Overlay_v
             // 
@@ -581,6 +593,7 @@ namespace NSUNS4_Character_Manager.Misc {
             this.menuStrip1.Size = new System.Drawing.Size(780, 24);
             this.menuStrip1.TabIndex = 22;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -677,7 +690,8 @@ namespace NSUNS4_Character_Manager.Misc {
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SoundID_dg,
-            this.SoundName_dg});
+            this.SoundName_dg,
+            this.PlaySound_b});
             this.dataGridView1.Location = new System.Drawing.Point(10, 32);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
@@ -687,6 +701,7 @@ namespace NSUNS4_Character_Manager.Misc {
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView1_RowsRemoved);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
             // SoundID_dg
             // 
@@ -707,20 +722,34 @@ namespace NSUNS4_Character_Manager.Misc {
             this.SoundName_dg.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.SoundName_dg.Width = 75;
             // 
-            // button2
+            // PlaySound_b
             // 
-            this.button2.Location = new System.Drawing.Point(2, 23);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(403, 38);
-            this.button2.TabIndex = 85;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = true;
+            this.PlaySound_b.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.PlaySound_b.FillWeight = 50F;
+            this.PlaySound_b.Frozen = true;
+            this.PlaySound_b.HeaderText = "Sound";
+            this.PlaySound_b.Name = "PlaySound_b";
+            this.PlaySound_b.ReadOnly = true;
+            this.PlaySound_b.Text = "Play";
+            this.PlaySound_b.UseColumnTextForButtonValue = true;
+            this.PlaySound_b.Width = 44;
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(363, 454);
+            this.trackBar1.Maximum = 100;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(410, 45);
+            this.trackBar1.TabIndex = 25;
+            this.trackBar1.Value = 35;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // Tool_nus3bankEditor_v2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(780, 551);
+            this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label32);
             this.Controls.Add(this.label2);
@@ -737,6 +766,7 @@ namespace NSUNS4_Character_Manager.Misc {
             this.MinimizeBox = false;
             this.Name = "Tool_nus3bankEditor_v2";
             this.Text = "NUS3BANK Editor v2.0";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Tool_nus3bankEditor_v2_FormClosed);
             this.Load += new System.EventHandler(this.Tool_nus3bankEditor_v2_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -758,6 +788,7 @@ namespace NSUNS4_Character_Manager.Misc {
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -817,8 +848,10 @@ namespace NSUNS4_Character_Manager.Misc {
         private System.Windows.Forms.NumericUpDown unk2_v;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoundID_dg;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoundName_dg;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridViewButtonColumn PlaySound_b;
+        private System.Windows.Forms.TrackBar trackBar1;
     }
 }

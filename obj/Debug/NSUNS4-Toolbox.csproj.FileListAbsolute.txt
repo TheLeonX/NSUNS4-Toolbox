@@ -136,3 +136,18 @@ E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.To
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_conditionprmEditor.resources
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_damageprmEditor.resources
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_nus3bankEditor_v2.resources
+E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\NSUNS4 Toolbox.exe.config
+E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\Microsoft.Win32.Registry.dll
+E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\NAudio.Asio.dll
+E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\NAudio.Core.dll
+E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\NAudio.dll
+E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\NAudio.Midi.dll
+E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\NAudio.Wasapi.dll
+E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\NAudio.WinForms.dll
+E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\NAudio.WinMM.dll
+E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\System.Security.AccessControl.dll
+E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\System.Security.Principal.Windows.dll
+E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\Microsoft.Win32.Registry.xml
+E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\NAudio.xml
+E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\System.Security.AccessControl.xml
+E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\System.Security.Principal.Windows.xml

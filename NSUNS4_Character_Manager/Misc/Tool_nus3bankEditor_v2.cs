@@ -1,4 +1,7 @@
-﻿using System;
+﻿using NAudio.Codecs;
+using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,14 +12,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace NSUNS4_Character_Manager.Misc {
     public partial class Tool_nus3bankEditor_v2 : Form {
+        private WaveOutEvent waveOut; // or WaveOutEvent()
+        private WaveFileReader reader;
         public Tool_nus3bankEditor_v2() {
             InitializeComponent();
             tabControl1.TabPages.Remove(tabPage1);
             tabControl1.TabPages.Remove(tabPage2);
             tabControl1.TabPages.Remove(tabPage3);
+
+            
+
         }
         public bool FileOpen = false;
         public string FilePath = "";
@@ -340,7 +349,40 @@ namespace NSUNS4_Character_Manager.Misc {
             }
         }
 
+        private readonly G722CodecState _state = new G722CodecState(48000, G722Flags.SampleRate8000);
+        private readonly G722Codec _codec = new G722Codec();
+        private readonly WaveFormat _waveFormat = new WaveFormat(48000, 1);
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {
+            var senderGrid = (DataGridView)sender;
+            string path = Directory.GetCurrentDirectory();
+            if (!Directory.Exists(path + "\\temp")) {
+                Directory.CreateDirectory(path + "\\temp");
+            }
+            if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
+                e.RowIndex >= 0) {
+                if (TONE_SoundData_List[e.RowIndex].Length > 4 && TONE_SectionType_List[e.RowIndex] == 0) {
+                    Decode(TONE_SoundData_List[e.RowIndex], TONE_SoundName_List[e.RowIndex]);
+                    if (waveOut == null) {
+
+                        waveOut = new WaveOutEvent();
+                        waveOut.PlaybackStopped += OnPlaybackStopped;
+
+                    }
+                    if (reader == null) {
+                        reader = new WaveFileReader(path + "\\temp\\" + TONE_SoundName_List[e.RowIndex] + ".wav");
+                        waveOut.Init(reader);
+
+                    }
+                    waveOut.Volume = (float)trackBar1.Value/100;
+                    waveOut.Play();
+                }
+                else {
+                    if (TONE_SectionType_List[e.RowIndex] == 0)
+                        MessageBox.Show("No Sound Data");
+                    else
+                        MessageBox.Show("Can't play sound in that type of section");
+                }
+            }
             UpdateDataGrid();
         }
         void UpdateDataGrid() {
@@ -364,6 +406,39 @@ namespace NSUNS4_Character_Manager.Misc {
                 }
             }
         }
+        private void Decode(byte[] data, string name) {
+            string path = Directory.GetCurrentDirectory();
+            if (!Directory.Exists(path + "\\temp")) {
+                Directory.CreateDirectory(path + "\\temp");
+            }
+            string format = Main.b_ReadString(data, 0);
+            if (format.Length > 4) {
+                format = Main.b_ReadString(data, 0, 4);
+            }
+            if (format != "RIFF") {
+                if (!File.Exists(path + "\\temp\\" + name + "." + format)) {
+                    File.WriteAllBytes(path + "\\temp\\" + name + "." + format, data);
+                    Process p = new Process();
+                    // Redirect the output stream of the child process.
+                    p.StartInfo.UseShellExecute = false;
+                    p.StartInfo.RedirectStandardOutput = true;
+                    p.StartInfo.CreateNoWindow = true;
+                    p.StartInfo.FileName = path + "\\vgmstream\\vgmstream.exe";
+                    p.StartInfo.Arguments = "-o " + "\"" + path + "\\temp\\" + name + ".wav" + "\" " + "\"" + path + "\\temp\\" + name + "." + format + "\"";
+                    p.Start();
+                    string output = p.StandardOutput.ReadToEnd();
+                    p.WaitForExit();
+                }
+                
+            }
+            else {
+                if (!File.Exists(path + "\\temp\\" + name + ".wav")) {
+                    File.WriteAllBytes(path + "\\temp\\" + name + ".wav", data);
+                }
+
+            }
+        }
+
         private void tabPage3_Click(object sender, EventArgs e) {
 
         }
@@ -372,6 +447,8 @@ namespace NSUNS4_Character_Manager.Misc {
             int x = dataGridView1.CurrentCell.RowIndex;
             if (x!=-1) {
                 TONE_SoundData_List[x] = new byte[0];
+                TONE_SoundSize_List[x] = 0;
+                TONE_SoundPos_List[x] = 0;
                 MessageBox.Show("Sound data was deleted.");
             }
             else {
@@ -565,9 +642,19 @@ namespace NSUNS4_Character_Manager.Misc {
                 if (!(o.FileName != "") || !File.Exists(o.FileName)) {
                     return;
                 }
-
+                string path = Directory.GetCurrentDirectory();
+                if (!Directory.Exists(path + "\\temp")) {
+                    Directory.CreateDirectory(path + "\\temp");
+                }
                 string ImportSoundPath = o.FileName;
-                byte[] ImportSoundFile = File.ReadAllBytes(ImportSoundPath);
+
+                using (var reader = new WaveFileReader(ImportSoundPath)) {
+                    var newFormat = new WaveFormat(48000, 16, 1);
+                    using (var conversionStream = new WaveFormatConversionStream(newFormat, reader)) {
+                        WaveFileWriter.CreateWaveFile(path + "\\temp\\48000_output.wav", conversionStream);
+                    }
+                }
+                byte[] ImportSoundFile = File.ReadAllBytes(path + "\\temp\\48000_output.wav");
                 byte[] CleanedImportedSoundFile = new byte[0];
                 byte[] ConvertedSoundFile = new byte[0];
                 int PosOfPCM = 0;
@@ -583,10 +670,7 @@ namespace NSUNS4_Character_Manager.Misc {
                     p.StartInfo.RedirectStandardOutput = true;
                     p.StartInfo.CreateNoWindow = true;
                     p.StartInfo.FileName = "encode.exe";
-                    string path = Directory.GetCurrentDirectory();
-                    if (!Directory.Exists(path + "\\temp")) {
-                        Directory.CreateDirectory(path + "\\temp");
-                    }
+                    
                     File.WriteAllBytes(path + "\\temp\\cleaned_file.wav", CleanedImportedSoundFile);
                     p.StartInfo.Arguments = "0 " + "\"" + path + "\\temp\\cleaned_file.wav" + "\" " + "\"" + path + "\\temp\\converted_file.bnsf\"" + " 48000 14000";
                     //MessageBox.Show(p.StartInfo.Arguments);
@@ -639,7 +723,6 @@ namespace NSUNS4_Character_Manager.Misc {
                     BNSFSound = Main.b_ReplaceBytes(BNSFSound, InvertedSize2OfBNSF, 4);
                     BNSFSound = Main.b_ReplaceBytes(BNSFSound, InvertedBNSFBitrate, 24);
                     BNSFSound = Main.b_ReplaceBytes(BNSFSound, InvertedBNSFSoundLength, 28);
-                    //Directory.Delete(path + "\\temp", true);
                     TONE_SoundData_List[x] = BNSFSound;
                     TONE_SoundSize_List[x] = TONE_SoundData_List[x].Length;
                     MessageBox.Show("Sound was imported successfully to BNSF format");
@@ -649,6 +732,30 @@ namespace NSUNS4_Character_Manager.Misc {
             } else {
                 MessageBox.Show("Select sound slot.");
             }
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e) {
+
+        }
+
+        private void Tool_nus3bankEditor_v2_FormClosed(object sender, FormClosedEventArgs e) {
+            if (waveOut != null && reader != null)
+                waveOut.Stop();
+            string path = Directory.GetCurrentDirectory();
+            Directory.Delete(path + "\\temp", true);
+        }
+        private void OnPlaybackStopped(object sender, StoppedEventArgs args) {
+            waveOut.Dispose();
+            waveOut = null;
+            reader.Dispose();
+            reader = null;
+        }
+        private void dataGridView1_Click(object sender, EventArgs e) {
+
+            UpdateDataGrid();
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e) {
         }
     }
 }

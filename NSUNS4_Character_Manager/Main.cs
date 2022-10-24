@@ -841,6 +841,7 @@ namespace NSUNS4_Character_Manager
             this.button24 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.linkLabel12 = new System.Windows.Forms.LinkLabel();
             this.linkLabel10 = new System.Windows.Forms.LinkLabel();
             this.linkLabel8 = new System.Windows.Forms.LinkLabel();
             this.linkLabel7 = new System.Windows.Forms.LinkLabel();
@@ -855,7 +856,6 @@ namespace NSUNS4_Character_Manager
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel12 = new System.Windows.Forms.LinkLabel();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1357,6 +1357,19 @@ namespace NSUNS4_Character_Manager
             this.tabPage6.Text = "Other tools";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // linkLabel12
+            // 
+            this.linkLabel12.AutoSize = true;
+            this.linkLabel12.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.linkLabel12.LinkColor = System.Drawing.Color.Black;
+            this.linkLabel12.Location = new System.Drawing.Point(4, 109);
+            this.linkLabel12.Name = "linkLabel12";
+            this.linkLabel12.Size = new System.Drawing.Size(231, 15);
+            this.linkLabel12.TabIndex = 43;
+            this.linkLabel12.TabStop = true;
+            this.linkLabel12.Text = "YACpkTool (extracting and repacking CPK)";
+            this.linkLabel12.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel12_LinkClicked);
+            // 
             // linkLabel10
             // 
             this.linkLabel10.AutoSize = true;
@@ -1531,19 +1544,6 @@ namespace NSUNS4_Character_Manager
             this.linkLabel9.Text = "CC2\'s game Files";
             this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
             // 
-            // linkLabel12
-            // 
-            this.linkLabel12.AutoSize = true;
-            this.linkLabel12.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.linkLabel12.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel12.Location = new System.Drawing.Point(4, 109);
-            this.linkLabel12.Name = "linkLabel12";
-            this.linkLabel12.Size = new System.Drawing.Size(231, 15);
-            this.linkLabel12.TabIndex = 43;
-            this.linkLabel12.TabStop = true;
-            this.linkLabel12.Text = "YACpkTool (extracting and repacking CPK)";
-            this.linkLabel12.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel12_LinkClicked);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1562,6 +1562,7 @@ namespace NSUNS4_Character_Manager
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Naruto: Storm 4 Toolbox v6.0b (TheLeonX\'s build)";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.Load += new System.EventHandler(this.Main_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -1717,7 +1718,7 @@ namespace NSUNS4_Character_Manager
 
         private void button18_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This tool can use any file, but supported only WAV, BNSF and IDSP\n\nIf you want to convert .WAV file to .BNSF,\nmake sure you .WAV file has 16bit,48000hz and mono settings or sound will not work");
+            MessageBox.Show("If you want to convert .WAV file to .BNSF,\nmake sure your .WAV file has 16bit setting or sound will not work");
             Misc.Tool_nus3bankEditor_v2 s = new Misc.Tool_nus3bankEditor_v2();
             s.Show();
         }
@@ -1969,6 +1970,14 @@ namespace NSUNS4_Character_Manager
         }
 
         private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Main_FormClosed(object sender, FormClosedEventArgs e) {
 
         }
     }
