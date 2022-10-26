@@ -877,7 +877,7 @@ namespace NSUNS4_Character_Manager.Misc {
                 TONE_RandomizerUnk4_List[x] = (float)unk3_v.Value;
                 TONE_RandomizerUnk5_List[x] = (float)unk4_v.Value;
                 TONE_RandomizerUnk6_List[x] = (float)unk5_v.Value;
-                TONE_OverlaySound_List[x] = checkBox3.Checked;
+                TONE_OverlaySound_List[x] = true;
 
             } else {
                 MessageBox.Show("Select sound section");
