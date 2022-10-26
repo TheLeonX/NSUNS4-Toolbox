@@ -719,6 +719,7 @@ namespace NSUNS4_Character_Manager.Misc {
             this.trackBar1.TabIndex = 25;
             this.trackBar1.Value = 35;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
             // SoundID_dg
             // 

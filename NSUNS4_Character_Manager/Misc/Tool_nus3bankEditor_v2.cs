@@ -366,8 +366,19 @@ namespace NSUNS4_Character_Manager.Misc {
             if (senderGrid.Columns[e.ColumnIndex] is DataGridViewButtonColumn &&
                 e.RowIndex >= 0) {
                 if (TONE_SoundData_List[e.RowIndex].Length > 4 && TONE_SectionType_List[e.RowIndex] == 0) {
+                    string format = Main.b_ReadString(TONE_SoundData_List[e.RowIndex], 0);
+                    if (format.Length > 4) {
+                        format = Main.b_ReadString(TONE_SoundData_List[e.RowIndex], 0, 4);
+                    }
+                    if (format.Contains("VAG"))
+                        format = "VAG";
+                    else if (format.Contains("IDSP"))
+                        format = "IDSP";
+                    else if (format.Contains("RIFF"))
+                        format = "WAV";
+                    if (File.Exists(path + "\\temp\\" + TONE_SoundName_List[e.RowIndex] + "." + format))
+                        File.Delete(path + "\\temp\\" + TONE_SoundName_List[e.RowIndex] + "." + format);
                     Decode(TONE_SoundData_List[e.RowIndex], TONE_SoundName_List[e.RowIndex]);
-                    
                     if (waveOut == null) {
                         
                         waveOut = new WaveOutEvent();
@@ -631,8 +642,8 @@ namespace NSUNS4_Character_Manager.Misc {
                     TONE_OverlaySound_List.Add(OverlaySound);
                     dataGridView1.Rows.Add(dataGridView1.Rows.Count, SoundName);
                 }
-                dataGridView1.Rows[dataGridView1.Rows.Count].Selected = true;
-                dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count].Cells[1];
+                dataGridView1.Rows[dataGridView1.Rows.Count-1].Selected = true;
+                dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.Rows.Count - 1].Cells[1];
 
             }
         }
@@ -744,7 +755,6 @@ namespace NSUNS4_Character_Manager.Misc {
                     TONE_SoundSettings_List[x] = new byte[136] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0xB4, 0xC2, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0xB4, 0xC2, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x80, 0xBB, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0xBA, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
                     TONE_SoundData_List[x] = BNSFSound;
                     TONE_SoundSize_List[x] = TONE_SoundData_List[x].Length;
-                    MessageBox.Show("Sound was imported successfully to BNSF format");
                 }
 
                 MessageBox.Show("Sound successfully imported in BNSF format.");
@@ -810,6 +820,7 @@ namespace NSUNS4_Character_Manager.Misc {
 
                     }
                     listBox2.Items.Add("Sound");
+                    listBox2.SelectedIndex = listBox2.Items.Count-1;
 
                 } else {
                     MessageBox.Show("Select randomize section");
@@ -1157,6 +1168,11 @@ namespace NSUNS4_Character_Manager.Misc {
 
         private void tabPage2_Click(object sender, EventArgs e) {
 
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e) {
+            if (waveOut != null && reader != null)
+                waveOut.Volume = (float)trackBar1.Value / 100;
         }
     }
 }
