@@ -23,10 +23,8 @@ namespace NSUNS4_Character_Manager.Misc {
             tabControl1.TabPages.Remove(tabPage1);
             tabControl1.TabPages.Remove(tabPage2);
             tabControl1.TabPages.Remove(tabPage3);
-
-            
-
         }
+        public bool cleaning = false;
         public bool FileOpen = false;
         public string FilePath = "";
         public byte[] fileBytes = new byte[0];
@@ -163,7 +161,7 @@ namespace NSUNS4_Character_Manager.Misc {
                 //Randomizer
                 int RandomizerType = 0;
                 int RandomizerLength = 0;
-                int RandomizerUnk1 = 0;
+                int RandomizerUnk1 = -1;
                 int RandomizerSectionCount = 0;
                 List<int> Randomizer_OneSectionID = new List<int>();
                 List<int> Randomizer_OneSection_unk = new List<int>();
@@ -248,6 +246,11 @@ namespace NSUNS4_Character_Manager.Misc {
         }
 
         public void ClearFile() {
+            cleaning = true;
+            FileOpen = false;
+            FilePath = "";
+            fileBytes = new byte[0];
+            XfbinHeader = false;
             NUS3_Position = 0;
             PROP_Position = 0;
             BINF_Position = 0;
@@ -264,11 +267,11 @@ namespace NSUNS4_Character_Manager.Misc {
             TONE_SectionType_List = new List<int>();
             TONE_SectionTypeValues_List = new List<byte[]>();
             TONE_SoundName_List = new List<string>();
-            //PlaySound
             TONE_SoundPos_List = new List<int>();
             TONE_SoundSize_List = new List<int>();
-
-            //Randomizer
+            TONE_MainVolume_List = new List<float>();
+            TONE_SoundSettings_List = new List<byte[]>();
+            TONE_SoundData_List = new List<byte[]>();
             TONE_RandomizerType_List = new List<int>();
             TONE_RandomizerLength_List = new List<int>();
             TONE_RandomizerUnk1_List = new List<int>();
@@ -282,8 +285,13 @@ namespace NSUNS4_Character_Manager.Misc {
             TONE_RandomizerUnk4_List = new List<float>();
             TONE_RandomizerUnk5_List = new List<float>();
             TONE_RandomizerUnk6_List = new List<float>();
+            TONE_OverlaySound_List = new List<bool>();
+            IndexSelectedRow = 0;
+            EntryCount = 0;
+            FileID = 0;
             dataGridView1.Rows.Clear();
             listBox2.Items.Clear();
+            cleaning = false;
         }
 
         public void CloseFile() {
@@ -349,9 +357,6 @@ namespace NSUNS4_Character_Manager.Misc {
             }
         }
 
-        private readonly G722CodecState _state = new G722CodecState(48000, G722Flags.SampleRate8000);
-        private readonly G722Codec _codec = new G722Codec();
-        private readonly WaveFormat _waveFormat = new WaveFormat(48000, 1);
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) {
             var senderGrid = (DataGridView)sender;
             string path = Directory.GetCurrentDirectory();
@@ -362,8 +367,9 @@ namespace NSUNS4_Character_Manager.Misc {
                 e.RowIndex >= 0) {
                 if (TONE_SoundData_List[e.RowIndex].Length > 4 && TONE_SectionType_List[e.RowIndex] == 0) {
                     Decode(TONE_SoundData_List[e.RowIndex], TONE_SoundName_List[e.RowIndex]);
+                    
                     if (waveOut == null) {
-
+                        
                         waveOut = new WaveOutEvent();
                         waveOut.PlaybackStopped += OnPlaybackStopped;
 
@@ -383,7 +389,8 @@ namespace NSUNS4_Character_Manager.Misc {
                         MessageBox.Show("Can't play sound in that type of section");
                 }
             }
-            UpdateDataGrid();
+            if (dataGridView1.Rows.Count > 0)
+                UpdateDataGrid();
         }
         void UpdateDataGrid() {
             int x = dataGridView1.CurrentCell.RowIndex;
@@ -415,6 +422,10 @@ namespace NSUNS4_Character_Manager.Misc {
             if (format.Length > 4) {
                 format = Main.b_ReadString(data, 0, 4);
             }
+            if (format.Contains("VAG"))
+                format = "VAG";
+            else if (format.Contains("IDSP"))
+                format = "IDSP";
             if (format != "RIFF") {
                 if (!File.Exists(path + "\\temp\\" + name + "." + format)) {
                     File.WriteAllBytes(path + "\\temp\\" + name + "." + format, data);
@@ -445,8 +456,9 @@ namespace NSUNS4_Character_Manager.Misc {
 
         private void button5_Click(object sender, EventArgs e) {
             int x = dataGridView1.CurrentCell.RowIndex;
-            if (x!=-1) {
+            if (x != -1) {
                 TONE_SoundData_List[x] = new byte[0];
+                TONE_SoundSettings_List[x] = new byte[116] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0xB4, 0xC2, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0xB4, 0xC2, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
                 TONE_SoundSize_List[x] = 0;
                 TONE_SoundPos_List[x] = 0;
                 MessageBox.Show("Sound data was deleted.");
@@ -468,6 +480,7 @@ namespace NSUNS4_Character_Manager.Misc {
                 if (!(o.FileName != "") || !File.Exists(o.FileName)) {
                     return;
                 }
+                TONE_SoundSettings_List[x] = new byte[136] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0xB4, 0xC2, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0xB4, 0xC2, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x80, 0xBB, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0xBA, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
                 TONE_SoundData_List[x] = File.ReadAllBytes(o.FileName);
                 MessageBox.Show("Sound successfully imported.");
             } else {
@@ -476,51 +489,55 @@ namespace NSUNS4_Character_Manager.Misc {
         }
 
         private void dataGridView1_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e) {
-            TONE_SectionType_List.RemoveAt(IndexSelectedRow);
-            TONE_SectionTypeValues_List.RemoveAt(IndexSelectedRow);
-            TONE_SoundName_List.RemoveAt(IndexSelectedRow);
-            TONE_SoundPos_List.RemoveAt(IndexSelectedRow);
-            TONE_SoundSize_List.RemoveAt(IndexSelectedRow);
-            TONE_MainVolume_List.RemoveAt(IndexSelectedRow);
-            TONE_SoundSettings_List.RemoveAt(IndexSelectedRow);
-            TONE_SoundData_List.RemoveAt(IndexSelectedRow);
-            //Randomizer
-            TONE_RandomizerType_List.RemoveAt(IndexSelectedRow);
-            TONE_RandomizerLength_List.RemoveAt(IndexSelectedRow);
-            TONE_RandomizerUnk1_List.RemoveAt(IndexSelectedRow);
-            TONE_RandomizerSectionCount_List.RemoveAt(IndexSelectedRow);
-            TONE_RandomizerOneSection_ID_List.RemoveAt(IndexSelectedRow);
-            TONE_RandomizerOneSection_unk_List.RemoveAt(IndexSelectedRow);
-            TONE_RandomizerOneSection_PlayChance_List.RemoveAt(IndexSelectedRow);
-            TONE_RandomizerOneSection_SoundID_List.RemoveAt(IndexSelectedRow);
-            TONE_RandomizerUnk2_List.RemoveAt(IndexSelectedRow);
-            TONE_RandomizerUnk3_List.RemoveAt(IndexSelectedRow);
-            TONE_RandomizerUnk4_List.RemoveAt(IndexSelectedRow);
-            TONE_RandomizerUnk5_List.RemoveAt(IndexSelectedRow);
-            TONE_RandomizerUnk6_List.RemoveAt(IndexSelectedRow);
-            TONE_OverlaySound_List.RemoveAt(IndexSelectedRow);
+            if (!cleaning) {
+                TONE_SectionType_List.RemoveAt(IndexSelectedRow);
+                TONE_SectionTypeValues_List.RemoveAt(IndexSelectedRow);
+                TONE_SoundName_List.RemoveAt(IndexSelectedRow);
+                TONE_SoundPos_List.RemoveAt(IndexSelectedRow);
+                TONE_SoundSize_List.RemoveAt(IndexSelectedRow);
+                TONE_MainVolume_List.RemoveAt(IndexSelectedRow);
+                TONE_SoundSettings_List.RemoveAt(IndexSelectedRow);
+                TONE_SoundData_List.RemoveAt(IndexSelectedRow);
+                //Randomizer
+                TONE_RandomizerType_List.RemoveAt(IndexSelectedRow);
+                TONE_RandomizerLength_List.RemoveAt(IndexSelectedRow);
+                TONE_RandomizerUnk1_List.RemoveAt(IndexSelectedRow);
+                TONE_RandomizerSectionCount_List.RemoveAt(IndexSelectedRow);
+                TONE_RandomizerOneSection_ID_List.RemoveAt(IndexSelectedRow);
+                TONE_RandomizerOneSection_unk_List.RemoveAt(IndexSelectedRow);
+                TONE_RandomizerOneSection_PlayChance_List.RemoveAt(IndexSelectedRow);
+                TONE_RandomizerOneSection_SoundID_List.RemoveAt(IndexSelectedRow);
+                TONE_RandomizerUnk2_List.RemoveAt(IndexSelectedRow);
+                TONE_RandomizerUnk3_List.RemoveAt(IndexSelectedRow);
+                TONE_RandomizerUnk4_List.RemoveAt(IndexSelectedRow);
+                TONE_RandomizerUnk5_List.RemoveAt(IndexSelectedRow);
+                TONE_RandomizerUnk6_List.RemoveAt(IndexSelectedRow);
+                TONE_OverlaySound_List.RemoveAt(IndexSelectedRow);
 
-            for (int c = IndexSelectedRow; c<dataGridView1.Rows.Count; c++) {
-                dataGridView1.Rows[c].Cells[0].Value = c;
-            }
-            for (int c = 0; c< TONE_RandomizerOneSection_SoundID_List.Count; c++) {
-                for (int k = 0; k< TONE_RandomizerOneSection_SoundID_List[c].Count; k++) {
-                    if (TONE_RandomizerOneSection_SoundID_List[c][k] > IndexSelectedRow) {
-                        TONE_RandomizerOneSection_SoundID_List[c][k] -= 1;
+                for (int c = IndexSelectedRow; c < dataGridView1.Rows.Count; c++) {
+                    dataGridView1.Rows[c].Cells[0].Value = c;
+                }
+                for (int c = 0; c < TONE_RandomizerOneSection_SoundID_List.Count; c++) {
+                    for (int k = 0; k < TONE_RandomizerOneSection_SoundID_List[c].Count; k++) {
+                        if (TONE_RandomizerOneSection_SoundID_List[c][k] > IndexSelectedRow) {
+                            TONE_RandomizerOneSection_SoundID_List[c][k] -= 1;
+                        }
                     }
                 }
             }
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e) {
-            IndexSelectedRow = dataGridView1.CurrentCell.RowIndex;
-
+            if (!cleaning) {
+                IndexSelectedRow = dataGridView1.CurrentCell.RowIndex;
+            }
         }
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e) {
             if (FileOpen) {
-                TONE_SoundName_List[IndexSelectedRow] = dataGridView1.Rows[IndexSelectedRow].Cells[1].Value.ToString();
-                MessageBox.Show(TONE_SoundName_List[IndexSelectedRow]);
+                if (!cleaning) {
+                    TONE_SoundName_List[IndexSelectedRow] = dataGridView1.Rows[IndexSelectedRow].Cells[1].Value.ToString();
+                }
             }
         }
 
@@ -533,7 +550,8 @@ namespace NSUNS4_Character_Manager.Misc {
                 }
 
             }
-            UpdateDataGrid();
+            if (dataGridView1.Rows.Count > 0)
+                UpdateDataGrid();
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -723,6 +741,7 @@ namespace NSUNS4_Character_Manager.Misc {
                     BNSFSound = Main.b_ReplaceBytes(BNSFSound, InvertedSize2OfBNSF, 4);
                     BNSFSound = Main.b_ReplaceBytes(BNSFSound, InvertedBNSFBitrate, 24);
                     BNSFSound = Main.b_ReplaceBytes(BNSFSound, InvertedBNSFSoundLength, 28);
+                    TONE_SoundSettings_List[x] = new byte[136] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0xB4, 0xC2, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0xB4, 0xC2, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x80, 0xBB, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0xBA, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
                     TONE_SoundData_List[x] = BNSFSound;
                     TONE_SoundSize_List[x] = TONE_SoundData_List[x].Length;
                     MessageBox.Show("Sound was imported successfully to BNSF format");
@@ -742,7 +761,8 @@ namespace NSUNS4_Character_Manager.Misc {
             if (waveOut != null && reader != null)
                 waveOut.Stop();
             string path = Directory.GetCurrentDirectory();
-            Directory.Delete(path + "\\temp", true);
+            if (Directory.Exists(path + "\\temp"))
+                Directory.Delete(path + "\\temp", true);
         }
         private void OnPlaybackStopped(object sender, StoppedEventArgs args) {
             waveOut.Dispose();
@@ -752,10 +772,391 @@ namespace NSUNS4_Character_Manager.Misc {
         }
         private void dataGridView1_Click(object sender, EventArgs e) {
 
-            UpdateDataGrid();
+            if (dataGridView1.Rows.Count > 0)
+                UpdateDataGrid();
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e) {
+        }
+
+        private void button2_Click_1(object sender, EventArgs e) {
+            int x = dataGridView1.CurrentCell.RowIndex;
+            if (x!=-1) {
+                TONE_MainVolume_List[x] = (float)Volume_v.Value;
+                TONE_OverlaySound_List[x] = Overlay_v.Checked;
+            }
+            else {
+                MessageBox.Show("Select sound section");
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e) {
+            int x = dataGridView1.CurrentCell.RowIndex;
+            if (x != -1) {
+                int x2 = listBox2.SelectedIndex;
+                if (x2 != -1) {
+                    TONE_RandomizerOneSection_ID_List[x].Add(TONE_RandomizerOneSection_ID_List[x].Max() + 1);
+                    TONE_RandomizerOneSection_PlayChance_List[x].Add(TONE_RandomizerOneSection_PlayChance_List[x][x2]);
+                    TONE_RandomizerOneSection_SoundID_List[x].Add(TONE_RandomizerOneSection_SoundID_List[x][x2]);
+                    TONE_RandomizerOneSection_unk_List[x].Add(TONE_RandomizerOneSection_unk_List[x][x2]);
+                    TONE_RandomizerSectionCount_List[x]++;
+                    if (TONE_RandomizerOneSection_ID_List[x].Count > 0) {
+                        if (TONE_RandomizerOneSection_ID_List[x].Count > 1) {
+                            for (int c = 0; c > TONE_RandomizerOneSection_ID_List[x].Count; c++) {
+                                TONE_RandomizerOneSection_ID_List[x][c] = c + 1;
+                            }
+                        }
+                        TONE_RandomizerOneSection_ID_List[x][TONE_RandomizerOneSection_ID_List[x].Count-1] = 0;
+
+                    }
+                    listBox2.Items.Add("Sound");
+
+                } else {
+                    MessageBox.Show("Select randomize section");
+                }
+
+            } else {
+                MessageBox.Show("Select sound section");
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e) {
+            int x = dataGridView1.CurrentCell.RowIndex;
+            if (x != -1) {
+                int x2 = listBox2.SelectedIndex;
+                if (x2 != -1) {
+                    TONE_RandomizerOneSection_ID_List[x].RemoveAt(x2);
+                    TONE_RandomizerOneSection_PlayChance_List[x].RemoveAt(x2);
+                    TONE_RandomizerOneSection_SoundID_List[x].RemoveAt(x2);
+                    TONE_RandomizerOneSection_unk_List[x].RemoveAt(x2);
+                    listBox2.Items.RemoveAt(x2);
+                    TONE_RandomizerSectionCount_List[x]--;
+                    if (TONE_RandomizerOneSection_ID_List[x].Count > 0) {
+                        if (TONE_RandomizerOneSection_ID_List[x].Count > 1) {
+                            for (int c = 0; c > TONE_RandomizerOneSection_ID_List[x].Count - 1; c++) {
+                                TONE_RandomizerOneSection_ID_List[x][c] = c + 1;
+                            }
+                        }
+                        TONE_RandomizerOneSection_ID_List[x][TONE_RandomizerOneSection_ID_List[x].Count - 1] = 0;
+
+                    }
+
+                } else {
+                    MessageBox.Show("Select randomize section");
+                }
+
+            } else {
+                MessageBox.Show("Select sound section");
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e) {
+            int x = dataGridView1.CurrentCell.RowIndex;
+            if (x != -1) {
+                int x2 = listBox2.SelectedIndex;
+                if (x2 != -1) {
+                    TONE_RandomizerOneSection_PlayChance_List[x][x2] = (float)PlayChance_v.Value;
+                    TONE_RandomizerOneSection_SoundID_List[x][x2] = (int)SoundID_v.Value;
+                    TONE_RandomizerOneSection_unk_List[x][x2] = (int)unk1_r_v.Value;
+
+                } else {
+                    MessageBox.Show("Select randomize section");
+                }
+
+            } else {
+                MessageBox.Show("Select sound section");
+            }
+        }
+
+        private void button14_Click(object sender, EventArgs e) {
+            int x = dataGridView1.CurrentCell.RowIndex;
+            if (x != -1) {
+
+                TONE_RandomizerUnk2_List[x] = (float)unk1_v.Value;
+                TONE_RandomizerUnk3_List[x] = (float)unk2_v.Value;
+                TONE_RandomizerUnk4_List[x] = (float)unk3_v.Value;
+                TONE_RandomizerUnk5_List[x] = (float)unk4_v.Value;
+                TONE_RandomizerUnk6_List[x] = (float)unk5_v.Value;
+                TONE_OverlaySound_List[x] = checkBox3.Checked;
+
+            } else {
+                MessageBox.Show("Select sound section");
+            }
+        }
+
+        private void exportAllSoundsToolStripMenuItem_Click(object sender, EventArgs e) {
+            
+        }
+
+        private void originalFormatToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (FileOpen) {
+                FolderBrowserDialog FBD = new FolderBrowserDialog();
+                FBD.ShowDialog();
+                for (int x = 0; x < TONE_SoundData_List.Count; x++) {
+
+                    if (TONE_SectionType_List[x] != 2 && TONE_SectionType_List[x] != 1 && TONE_SoundData_List[x].Length > 4) {
+                        string name = TONE_SoundName_List[x];
+                        string format = Main.b_ReadString(TONE_SoundData_List[x], 0);
+                        if (format.Length > 4)
+                            format = Main.b_ReadString(TONE_SoundData_List[x], 0, 4);
+                        if (format.Contains("VAG"))
+                            format = "VAG";
+                        else if (format.Contains("IDSP"))
+                            format = "IDSP";
+                        else if (format == "RIFF")
+                            format = "WAV";
+                        File.WriteAllBytes(FBD.SelectedPath + "\\" + x.ToString() + "-" + name + "." + format, TONE_SoundData_List[x]);
+                    };
+                }
+                MessageBox.Show("Files saved to " + FBD.SelectedPath);
+            } else {
+                MessageBox.Show("Open NUS3BANK file");
+
+            }
+        }
+        private void wAVFormatToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (FileOpen) {
+                FolderBrowserDialog FBD = new FolderBrowserDialog();
+                FBD.ShowDialog();
+                string path = Directory.GetCurrentDirectory();
+                for (int x = 0; x < TONE_SoundData_List.Count; x++) {
+
+                    if (TONE_SectionType_List[x] != 2 && TONE_SectionType_List[x] != 1 && TONE_SoundData_List[x].Length > 4) {
+                        Decode(TONE_SoundData_List[x], TONE_SoundName_List[x]);
+                        string name = TONE_SoundName_List[x];
+                        File.Copy(path + "\\temp\\" + TONE_SoundName_List[x] + ".wav", FBD.SelectedPath + "\\" + x.ToString() + "-" + name + ".wav", true);
+                    };
+                }
+                MessageBox.Show("Files saved to " + FBD.SelectedPath);
+            }
+            else {
+                MessageBox.Show("Open NUS3BANK file");
+            }
+        }
+
+        private void batchImportingToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (FileOpen) {
+                OpenFileDialog o = new OpenFileDialog();
+                o.Multiselect = true;
+                o.ShowDialog();
+                for (int x = 0; x < o.FileNames.Length; x++) {
+                    TONE_SoundName_List.Add(Path.GetFileNameWithoutExtension(o.FileNames[x]));
+                    TONE_SectionType_List.Add(0);
+                    TONE_SectionTypeValues_List.Add(new byte[6] { 0x27, 0x84, 0x9F, 0x38, 0x00, 0x00 });
+                    TONE_SoundData_List.Add(File.ReadAllBytes(o.FileNames[x]));
+                    TONE_MainVolume_List.Add(0);
+                    TONE_OverlaySound_List.Add(true);
+                    TONE_SoundSettings_List.Add(new byte[136] { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0xB4, 0xC2, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0xB4, 0xC2, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x80, 0x3F, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x80, 0xBB, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x98, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 });
+                    TONE_RandomizerType_List.Add(0);
+                    TONE_RandomizerLength_List.Add(0);
+                    TONE_RandomizerOneSection_ID_List.Add(new List<int>());
+                    TONE_RandomizerOneSection_SoundID_List.Add(new List<int>());
+                    TONE_RandomizerOneSection_PlayChance_List.Add(new List<float>());
+                    TONE_RandomizerOneSection_unk_List.Add(new List<int>());
+                    TONE_RandomizerSectionCount_List.Add(0);
+                    TONE_RandomizerUnk1_List.Add(-1);
+                    TONE_RandomizerUnk2_List.Add(0);
+                    TONE_RandomizerUnk3_List.Add(0);
+                    TONE_RandomizerUnk4_List.Add(0);
+                    TONE_RandomizerUnk5_List.Add(1);
+                    TONE_RandomizerUnk6_List.Add(1);
+                    TONE_SoundPos_List.Add(0);
+                    TONE_SoundSize_List.Add(0);
+                    dataGridView1.Rows.Add(dataGridView1.Rows.Count, Path.GetFileNameWithoutExtension(o.FileNames[x]));
+                }
+            } else {
+                MessageBox.Show("Open NUS3BANK file");
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e) {
+            
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (FileOpen) {
+                SaveFile();
+            } else {
+                MessageBox.Show("No file loaded...");
+            }
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (FileOpen) {
+                SaveFileAs();
+            } else {
+                MessageBox.Show("No file loaded...");
+            }
+        }
+        public void SaveFile() {
+            if (FilePath != "") {
+                if (File.Exists(FilePath + ".backup")) {
+                    File.Delete(FilePath + ".backup");
+                }
+                File.Copy(FilePath, FilePath + ".backup");
+                string extension = Path.GetExtension(FilePath);
+                File.WriteAllBytes(FilePath, ConvertToFile(extension));
+                if (this.Visible) MessageBox.Show("File saved to " + FilePath + ".");
+            } else {
+                SaveFileAs();
+            }
+        }
+        public void SaveFileAs() {
+            SaveFileDialog s = new SaveFileDialog();
+            {
+                if (XfbinHeader) {
+                    s.DefaultExt = ".xfbin";
+                    s.Filter = "XFBIN files|*.xfbin|NUS3BANK files|*.NUS3BANK";
+                }
+                else {
+                    s.DefaultExt = ".NUS3BANK";
+                    s.Filter = "NUS3BANK files|*.NUS3BANK";
+                }
+            }
+            s.ShowDialog();
+            if (!(s.FileName != "")) {
+                return;
+            }
+            if (s.FileName == FilePath) {
+                if (File.Exists(FilePath + ".backup")) {
+                    File.Delete(FilePath + ".backup");
+                }
+                File.Copy(FilePath, FilePath + ".backup");
+            } else {
+                FilePath = s.FileName;
+            }
+            string extension = Path.GetExtension(s.FileName);
+            File.WriteAllBytes(FilePath, ConvertToFile(extension));
+            MessageBox.Show("File saved to " + FilePath + ".");
+        }
+        public byte[] ConvertToFile(string extension) {
+            byte[] ConvertedFile = new byte[0];
+            if (XfbinHeader && extension.Contains("xfbin"))
+                ConvertedFile = Main.b_AddBytes(ConvertedFile, Main.b_ReadByteArray(fileBytes, 0, NUS3_Position));
+            int NUS3_Length_ptr = ConvertedFile.Length;
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, Encoding.ASCII.GetBytes("NUS3"));
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, new byte[4]);
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, Main.b_ReadByteArray(fileBytes, NUS3_Position+8, 0x30));
+            int TONE_Header_Length_ptr = ConvertedFile.Length;
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, Encoding.ASCII.GetBytes("TONE"));
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, new byte[4]);
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, Main.b_ReadByteArray(fileBytes, JUNK_Position, 0x08));
+            int PACK_Header_Length_ptr = ConvertedFile.Length;
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, Encoding.ASCII.GetBytes("PACK"));
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, new byte[4]);
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, PROP_fileBytes);
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, BINF_fileBytes);
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, GRP_fileBytes);
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, DTON_fileBytes);
+            int TONE_Length_ptr = ConvertedFile.Length;
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, Encoding.ASCII.GetBytes("TONE"));
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, new byte[4]);
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, BitConverter.GetBytes(TONE_SoundName_List.Count));
+            List<int> TONE_ptr = new List<int>();
+            List<int> TONE_length = new List<int>();
+            List<int> TONE_size = new List<int>();
+            for (int x = 0; x < TONE_SoundName_List.Count; x++) {
+                TONE_ptr.Add(ConvertedFile.Length);
+                ConvertedFile = Main.b_AddBytes(ConvertedFile, new byte[8]);
+            }
+            byte[] PACK_SECTION = new byte[0];
+            for (int x = 0; x < TONE_SoundName_List.Count; x++) {
+                byte[] TONE_Section = new byte[0];
+                TONE_Section = Main.b_AddBytes(TONE_Section, new byte[4]);
+                if (TONE_SectionType_List[x] == 0) {
+                    TONE_Section = Main.b_AddBytes(TONE_Section, PlaySound_bytes);
+                    TONE_Section = Main.b_AddBytes(TONE_Section, TONE_SectionTypeValues_List[x]);
+                    TONE_Section = Main.b_AddBytes(TONE_Section, new byte[1] { (byte)(TONE_SoundName_List[x].Length+1)});
+                    TONE_Section = Main.b_AddBytes(TONE_Section, Encoding.ASCII.GetBytes(TONE_SoundName_List[x]));
+                    if (TONE_Section.Length % 4 != 0) {
+                        do {
+                            if (TONE_Section.Length % 4 != 0)
+                                TONE_Section = Main.b_AddBytes(TONE_Section, new byte[1]);
+                        }
+                        while (TONE_Section.Length % 4 != 0);
+                    }
+                    else {
+                        TONE_Section = Main.b_AddBytes(TONE_Section, new byte[4]);
+                    }
+                    TONE_Section = Main.b_AddBytes(TONE_Section, new byte[4]);
+                    TONE_Section = Main.b_AddBytes(TONE_Section, new byte[4] { 8, 0, 0, 0 });
+                    if (TONE_SoundData_List[x].Length > 4) {
+                        TONE_Section = Main.b_AddBytes(TONE_Section, BitConverter.GetBytes(PACK_SECTION.Length));
+                        TONE_Section = Main.b_AddBytes(TONE_Section, BitConverter.GetBytes(TONE_SoundData_List[x].Length));
+                        TONE_Section = Main.b_AddBytes(TONE_Section, BitConverter.GetBytes(TONE_MainVolume_List[x]));
+                        PACK_SECTION = Main.b_AddBytes(PACK_SECTION, TONE_SoundData_List[x]);
+                    }
+                    else {
+                        TONE_Section = Main.b_AddBytes(TONE_Section, new byte[12]);
+                    }
+                    TONE_Section = Main.b_AddBytes(TONE_Section, TONE_SoundSettings_List[x]);
+                    TONE_Section = Main.b_AddBytes(TONE_Section, BitConverter.GetBytes(!TONE_OverlaySound_List[x]));
+                    TONE_Section = Main.b_AddBytes(TONE_Section, new byte[3]);
+                }
+                else if (TONE_SectionType_List[x] == 1) {
+                    TONE_Section = Main.b_AddBytes(TONE_Section, Randomizer_bytes);
+                    TONE_Section = Main.b_AddBytes(TONE_Section, TONE_SectionTypeValues_List[x]);
+                    TONE_Section = Main.b_AddBytes(TONE_Section, new byte[1] { (byte)(TONE_SoundName_List[x].Length + 1) });
+                    TONE_Section = Main.b_AddBytes(TONE_Section, Encoding.ASCII.GetBytes(TONE_SoundName_List[x]));
+                    do {
+                        TONE_Section = Main.b_AddBytes(TONE_Section, new byte[1]);
+                    }
+                    while (TONE_Section.Length % 4 != 0);
+                    TONE_Section = Main.b_AddBytes(TONE_Section, new byte[4] { 1, 0, 0, 0 });
+                    int Randomizer_Length = (TONE_RandomizerSectionCount_List[x] * 0x10) + 0x08;
+                    TONE_Section = Main.b_AddBytes(TONE_Section, new byte[4] { (byte)Randomizer_Length, 0, 0, 0 });
+                    TONE_Section = Main.b_AddBytes(TONE_Section, BitConverter.GetBytes(TONE_RandomizerUnk1_List[x]));
+                    TONE_Section = Main.b_AddBytes(TONE_Section, BitConverter.GetBytes(TONE_RandomizerSectionCount_List[x]));
+                    for (int c = 0; c< TONE_RandomizerSectionCount_List[x]; c++) {
+                        if (c != TONE_RandomizerSectionCount_List[x]-1)
+                            TONE_Section = Main.b_AddBytes(TONE_Section, BitConverter.GetBytes(c+1));
+                        else
+                            TONE_Section = Main.b_AddBytes(TONE_Section, new byte[4] { 0, 0, 0, 0 });
+                        TONE_Section = Main.b_AddBytes(TONE_Section, BitConverter.GetBytes(TONE_RandomizerOneSection_unk_List[x][c]));
+                        TONE_Section = Main.b_AddBytes(TONE_Section, BitConverter.GetBytes(TONE_RandomizerOneSection_PlayChance_List[x][c]));
+                        TONE_Section = Main.b_AddBytes(TONE_Section, BitConverter.GetBytes(TONE_RandomizerOneSection_SoundID_List[x][c]));
+                    }
+                    TONE_Section = Main.b_AddBytes(TONE_Section, BitConverter.GetBytes(TONE_RandomizerUnk2_List[x]));
+                    TONE_Section = Main.b_AddBytes(TONE_Section, BitConverter.GetBytes(TONE_RandomizerUnk3_List[x]));
+                    TONE_Section = Main.b_AddBytes(TONE_Section, BitConverter.GetBytes(TONE_RandomizerUnk4_List[x]));
+                    TONE_Section = Main.b_AddBytes(TONE_Section, BitConverter.GetBytes(TONE_RandomizerUnk5_List[x]));
+                    TONE_Section = Main.b_AddBytes(TONE_Section, BitConverter.GetBytes(TONE_RandomizerUnk6_List[x]));
+                    TONE_Section = Main.b_AddBytes(TONE_Section, new byte[4] { 0, 0, 0, 0 });
+                    TONE_Section = Main.b_AddBytes(TONE_Section, new byte[3]);
+
+                } 
+                else if (TONE_SectionType_List[x] == 2) {
+                    TONE_Section = Main.b_AddBytes(TONE_Section, new byte[8] { 0x01, 0x00, 0x00, 0x00, 0xFF, 0x00, 0x00, 0x00 });
+                }
+                ConvertedFile = Main.b_AddBytes(ConvertedFile, TONE_Section);
+                TONE_length.Add(ConvertedFile.Length - TONE_Length_ptr - 0x08 - TONE_Section.Length);
+                TONE_size.Add(TONE_Section.Length);
+                ConvertedFile = Main.b_ReplaceBytes(ConvertedFile, BitConverter.GetBytes(TONE_length[x]), TONE_ptr[x]);
+                ConvertedFile = Main.b_ReplaceBytes(ConvertedFile, BitConverter.GetBytes(TONE_size[x]), TONE_ptr[x]+4);
+            }
+            ConvertedFile = Main.b_ReplaceBytes(ConvertedFile, BitConverter.GetBytes(ConvertedFile.Length- TONE_Length_ptr-0x08), TONE_Length_ptr + 4);
+            int Tone_len = ConvertedFile.Length - TONE_Length_ptr - 0x08;
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, JUNK_fileBytes);
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, Encoding.ASCII.GetBytes("PACK"));
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, BitConverter.GetBytes(PACK_SECTION.Length));
+            ConvertedFile = Main.b_AddBytes(ConvertedFile, PACK_SECTION);
+            int GRP_pos = Main.b_FindBytes(ConvertedFile, new byte[4] { 0x47, 0x52, 0x50, 0x20 }, NUS3_Length_ptr + 0x50);
+            ConvertedFile = Main.b_ReplaceBytes(ConvertedFile, BitConverter.GetBytes((int)FileID_v.Value), GRP_pos-4);
+            ConvertedFile = Main.b_ReplaceBytes(ConvertedFile, BitConverter.GetBytes(PACK_SECTION.Length), PACK_Header_Length_ptr + 4);
+            ConvertedFile = Main.b_ReplaceBytes(ConvertedFile, BitConverter.GetBytes(Tone_len), TONE_Header_Length_ptr + 4);
+            int NUS3_Size = ConvertedFile.Length - NUS3_Length_ptr - 0x08;
+            ConvertedFile = Main.b_ReplaceBytes(ConvertedFile, BitConverter.GetBytes(NUS3_Size), NUS3_Length_ptr + 4);
+            if (XfbinHeader && extension.Contains("xfbin")) {
+                ConvertedFile = Main.b_ReplaceBytes(ConvertedFile, BitConverter.GetBytes((int)FileID_v.Value), NUS3_Position - 4);
+                ConvertedFile = Main.b_ReplaceBytes(ConvertedFile, BitConverter.GetBytes(ConvertedFile.Length- NUS3_Length_ptr), NUS3_Length_ptr-4,1);
+                ConvertedFile = Main.b_ReplaceBytes(ConvertedFile, BitConverter.GetBytes(ConvertedFile.Length - NUS3_Length_ptr+4), NUS3_Length_ptr - 0x10,1);
+                ConvertedFile = Main.b_AddBytes(ConvertedFile, new byte[0x14] { 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x02, 0x00, 0x79, 0x18, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00 });
+            }
+            return ConvertedFile;
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e) {
+
         }
     }
 }

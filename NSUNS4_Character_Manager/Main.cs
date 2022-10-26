@@ -1237,6 +1237,7 @@ namespace NSUNS4_Character_Manager
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Character Managment";
             this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
             // button13
             // 
@@ -1978,6 +1979,10 @@ namespace NSUNS4_Character_Manager
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e) {
+
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e) {
 
         }
     }

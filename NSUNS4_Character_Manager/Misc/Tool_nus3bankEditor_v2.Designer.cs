@@ -51,7 +51,6 @@ namespace NSUNS4_Character_Manager.Misc {
             this.label42 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.unk2_v = new System.Windows.Forms.NumericUpDown();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.label26 = new System.Windows.Forms.Label();
             this.PlayChance_v = new System.Windows.Forms.NumericUpDown();
             this.button8 = new System.Windows.Forms.Button();
@@ -72,16 +71,17 @@ namespace NSUNS4_Character_Manager.Misc {
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportAllSoundsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.originalFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wAVFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.batchImportingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supportedFormatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label32 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.SoundID_dg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SoundName_dg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PlaySound_b = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Volume_v)).BeginInit();
@@ -143,7 +143,7 @@ namespace NSUNS4_Character_Manager.Misc {
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(3, 332);
+            this.button5.Location = new System.Drawing.Point(2, 332);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(403, 35);
             this.button5.TabIndex = 7;
@@ -187,6 +187,7 @@ namespace NSUNS4_Character_Manager.Misc {
             this.button2.TabIndex = 85;
             this.button2.Text = "Save";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // Overlay_v
             // 
@@ -200,9 +201,9 @@ namespace NSUNS4_Character_Manager.Misc {
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(3, 293);
+            this.button10.Location = new System.Drawing.Point(2, 293);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(204, 40);
+            this.button10.Size = new System.Drawing.Size(205, 40);
             this.button10.TabIndex = 49;
             this.button10.Text = "Import WAV sound and convert to BNSF";
             this.button10.UseVisualStyleBackColor = true;
@@ -212,7 +213,7 @@ namespace NSUNS4_Character_Manager.Misc {
             // 
             this.button9.Location = new System.Drawing.Point(207, 293);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(199, 40);
+            this.button9.Size = new System.Drawing.Size(198, 40);
             this.button9.TabIndex = 48;
             this.button9.Text = "Import sound with any format";
             this.button9.UseVisualStyleBackColor = true;
@@ -260,7 +261,6 @@ namespace NSUNS4_Character_Manager.Misc {
             this.tabPage2.Controls.Add(this.label42);
             this.tabPage2.Controls.Add(this.label41);
             this.tabPage2.Controls.Add(this.unk2_v);
-            this.tabPage2.Controls.Add(this.checkBox3);
             this.tabPage2.Controls.Add(this.label26);
             this.tabPage2.Controls.Add(this.PlayChance_v);
             this.tabPage2.Controls.Add(this.button8);
@@ -276,6 +276,7 @@ namespace NSUNS4_Character_Manager.Misc {
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Sound Randomizer";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // label46
             // 
@@ -393,6 +394,7 @@ namespace NSUNS4_Character_Manager.Misc {
             this.button14.TabIndex = 84;
             this.button14.Text = "Save";
             this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // unk1_r_v
             // 
@@ -442,16 +444,6 @@ namespace NSUNS4_Character_Manager.Misc {
             this.unk2_v.Size = new System.Drawing.Size(96, 20);
             this.unk2_v.TabIndex = 79;
             // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(6, 304);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(94, 17);
-            this.checkBox3.TabIndex = 78;
-            this.checkBox3.Text = "Overlay sound";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
             // label26
             // 
             this.label26.AutoSize = true;
@@ -487,6 +479,7 @@ namespace NSUNS4_Character_Manager.Misc {
             this.button8.TabIndex = 5;
             this.button8.Text = "Delete";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button7
             // 
@@ -496,6 +489,7 @@ namespace NSUNS4_Character_Manager.Misc {
             this.button7.TabIndex = 4;
             this.button7.Text = "Save";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button6
             // 
@@ -505,6 +499,7 @@ namespace NSUNS4_Character_Manager.Misc {
             this.button6.TabIndex = 3;
             this.button6.Text = "Copy";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // label1
             // 
@@ -609,26 +604,28 @@ namespace NSUNS4_Character_Manager.Misc {
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveAsToolStripMenuItem.Text = "Save as";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -642,9 +639,27 @@ namespace NSUNS4_Character_Manager.Misc {
             // 
             // exportAllSoundsToolStripMenuItem
             // 
+            this.exportAllSoundsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.originalFormatToolStripMenuItem,
+            this.wAVFormatToolStripMenuItem});
             this.exportAllSoundsToolStripMenuItem.Name = "exportAllSoundsToolStripMenuItem";
             this.exportAllSoundsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.exportAllSoundsToolStripMenuItem.Text = "Export all sounds";
+            this.exportAllSoundsToolStripMenuItem.Click += new System.EventHandler(this.exportAllSoundsToolStripMenuItem_Click);
+            // 
+            // originalFormatToolStripMenuItem
+            // 
+            this.originalFormatToolStripMenuItem.Name = "originalFormatToolStripMenuItem";
+            this.originalFormatToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.originalFormatToolStripMenuItem.Text = "Original format";
+            this.originalFormatToolStripMenuItem.Click += new System.EventHandler(this.originalFormatToolStripMenuItem_Click);
+            // 
+            // wAVFormatToolStripMenuItem
+            // 
+            this.wAVFormatToolStripMenuItem.Name = "wAVFormatToolStripMenuItem";
+            this.wAVFormatToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.wAVFormatToolStripMenuItem.Text = "WAV format";
+            this.wAVFormatToolStripMenuItem.Click += new System.EventHandler(this.wAVFormatToolStripMenuItem_Click);
             // 
             // importToolStripMenuItem
             // 
@@ -659,6 +674,7 @@ namespace NSUNS4_Character_Manager.Misc {
             this.batchImportingToolStripMenuItem.Name = "batchImportingToolStripMenuItem";
             this.batchImportingToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.batchImportingToolStripMenuItem.Text = "Batch process";
+            this.batchImportingToolStripMenuItem.Click += new System.EventHandler(this.batchImportingToolStripMenuItem_Click);
             // 
             // infoToolStripMenuItem
             // 
@@ -674,15 +690,6 @@ namespace NSUNS4_Character_Manager.Misc {
             this.supportedFormatsToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.supportedFormatsToolStripMenuItem.Text = "Supported formats";
             this.supportedFormatsToolStripMenuItem.Click += new System.EventHandler(this.supportedFormatsToolStripMenuItem_Click);
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(556, 6);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(221, 13);
-            this.label32.TabIndex = 23;
-            this.label32.Text = "All unknown values doesn\'t really do anything";
             // 
             // dataGridView1
             // 
@@ -703,24 +710,34 @@ namespace NSUNS4_Character_Manager.Misc {
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(363, 454);
+            this.trackBar1.Maximum = 100;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(410, 45);
+            this.trackBar1.TabIndex = 25;
+            this.trackBar1.Value = 35;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
             // SoundID_dg
             // 
-            this.SoundID_dg.FillWeight = 50F;
+            this.SoundID_dg.FillWeight = 40F;
             this.SoundID_dg.Frozen = true;
             this.SoundID_dg.HeaderText = "ID";
             this.SoundID_dg.Name = "SoundID_dg";
             this.SoundID_dg.ReadOnly = true;
             this.SoundID_dg.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SoundID_dg.Width = 50;
+            this.SoundID_dg.Width = 40;
             // 
             // SoundName_dg
             // 
-            this.SoundName_dg.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.SoundName_dg.Frozen = true;
             this.SoundName_dg.HeaderText = "Sound Name";
+            this.SoundName_dg.MaxInputLength = 254;
             this.SoundName_dg.Name = "SoundName_dg";
             this.SoundName_dg.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SoundName_dg.Width = 75;
+            this.SoundName_dg.Width = 200;
             // 
             // PlaySound_b
             // 
@@ -734,16 +751,6 @@ namespace NSUNS4_Character_Manager.Misc {
             this.PlaySound_b.UseColumnTextForButtonValue = true;
             this.PlaySound_b.Width = 44;
             // 
-            // trackBar1
-            // 
-            this.trackBar1.Location = new System.Drawing.Point(363, 454);
-            this.trackBar1.Maximum = 100;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(410, 45);
-            this.trackBar1.TabIndex = 25;
-            this.trackBar1.Value = 35;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
-            // 
             // Tool_nus3bankEditor_v2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -751,7 +758,6 @@ namespace NSUNS4_Character_Manager.Misc {
             this.ClientSize = new System.Drawing.Size(780, 551);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.label32);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.FileID_v);
             this.Controls.Add(this.tabControl1);
@@ -829,7 +835,6 @@ namespace NSUNS4_Character_Manager.Misc {
         private System.Windows.Forms.ToolStripMenuItem batchImportingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem supportedFormatsToolStripMenuItem;
-        private System.Windows.Forms.Label label32;
         private System.Windows.Forms.CheckBox Overlay_v;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.Label label40;
@@ -846,12 +851,13 @@ namespace NSUNS4_Character_Manager.Misc {
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.NumericUpDown unk2_v;
-        private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.ToolStripMenuItem originalFormatToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wAVFormatToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoundID_dg;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoundName_dg;
         private System.Windows.Forms.DataGridViewButtonColumn PlaySound_b;
-        private System.Windows.Forms.TrackBar trackBar1;
     }
 }
