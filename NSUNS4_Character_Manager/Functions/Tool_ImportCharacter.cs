@@ -36,6 +36,8 @@ namespace NSUNS4_Character_Manager.Functions {
         string originaldamageprmPath = Directory.GetCurrentDirectory() + "\\systemFiles\\damageprm.bin.xfbin";
         string originalUnlockCharaTotalPath = Directory.GetCurrentDirectory() + "\\systemFiles\\unlockCharaTotal.bin.xfbin";
         string originalMessagePath = Directory.GetCurrentDirectory() + "\\systemFiles\\message";
+        string originalBtlcmnPath = Directory.GetCurrentDirectory() + "\\systemFiles\\btlcmn.xfbin";
+        string originalseparamPath = Directory.GetCurrentDirectory() + "\\systemFiles\\separam.xfbin";
         private void importToolStripMenuItem_Click(object sender, EventArgs e) {
             FolderBrowserDialog f = new FolderBrowserDialog();
             f.ShowDialog();
@@ -214,6 +216,7 @@ namespace NSUNS4_Character_Manager.Functions {
                     string gfx_charselPath = "";
                     string damageprmPath = "";
                     string messagePathList = "";
+                    string btlcmnPath = "";
                     bool dppExist = false;
                     bool pspExist = false;
                     bool cspExist = false;
@@ -231,6 +234,7 @@ namespace NSUNS4_Character_Manager.Functions {
                     bool prmExist = false;
                     bool gfx_charselExist = false;
                     bool damageprmExist = false;
+                    bool btlcmnExist = false;
                     List<bool> messageExistList = new List<bool>();
                     foreach (FileInfo file in Files) {
                         if (file.FullName.Contains(d.Name +"prm.bin.xfbin")) {
@@ -409,6 +413,16 @@ namespace NSUNS4_Character_Manager.Functions {
                             cmnparamPath = "";
                         }
                     }
+                    foreach (FileInfo file in Files) {
+                        if (file.FullName.Contains("sound\\PC\\btlcmn.xfbin")) {
+                            btlcmnExist = true;
+                            btlcmnPath = file.FullName;
+                            break;
+                        } else {
+                            btlcmnExist = false;
+                            btlcmnPath = "";
+                        }
+                    }
                     foreach (FileInfo file in gfx_Files) {
                         if (file.FullName.Contains("charsel\\charsel.gfx")) {
                             gfx_charselExist = true;
@@ -491,7 +505,7 @@ namespace NSUNS4_Character_Manager.Functions {
                             mm_WriterParameter.Close();
                         }
                         foreach (FileInfo file in Files) {
-                            if (!file.Name.Contains("characode") && !file.Name.Contains("cmnparam") && !file.Name.Contains("duelPlayerParam") && !file.Name.Contains("awakeAura") && !file.Name.Contains("appearanceAnm") && !file.Name.Contains("afterAttachObject") && !file.Name.Contains("characterSelectParam") && !file.Name.Contains("playerSettingParam") && !file.Name.Contains("skillCustomizeParam") && !file.Name.Contains("spSkillCustomizeParam") && !file.Name.Contains("player_icon") && !file.Name.Contains("damageeff") && !file.Name.Contains("effectprm") && !file.Name.Contains("conditionprm") && !file.Name.Contains("damageprm") && !file.Name.Contains("unlockCharaTotal") && !file.Name.Contains("messageInfo")) {
+                            if (!file.Name.Contains("characode") && !file.Name.Contains("cmnparam") && !file.Name.Contains("duelPlayerParam") && !file.Name.Contains("awakeAura") && !file.Name.Contains("appearanceAnm") && !file.Name.Contains("afterAttachObject") && !file.Name.Contains("characterSelectParam") && !file.Name.Contains("playerSettingParam") && !file.Name.Contains("skillCustomizeParam") && !file.Name.Contains("spSkillCustomizeParam") && !file.Name.Contains("player_icon") && !file.Name.Contains("damageeff") && !file.Name.Contains("effectprm") && !file.Name.Contains("conditionprm") && !file.Name.Contains("damageprm") && !file.Name.Contains("unlockCharaTotal") && !file.Name.Contains("messageInfo") && !file.Name.Contains("btlcmn")) {
                                 if (!file.FullName.Contains("moddingapi"))
                                     CopyFiles(Path.GetDirectoryName(Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength)), file.FullName, Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength));
                             }
@@ -1360,7 +1374,62 @@ namespace NSUNS4_Character_Manager.Functions {
                             }
                             MessageOriginalFile.SaveFilesAs(Main.datawin32Path + "\\message");
                         }
-
+                        if (btlcmnExist) {
+                            Misc.Tool_nus3bankEditor_v2 BtlcmnModFile = new Misc.Tool_nus3bankEditor_v2();
+                            Misc.Tool_nus3bankEditor_v2 BtlcmnOriginalFile = new Misc.Tool_nus3bankEditor_v2();
+                            BtlcmnModFile.OpenFile(btlcmnPath);
+                            if (File.Exists(Main.datawin32Path + "\\sound\\PC\\btlcmn.xfbin"))
+                                BtlcmnOriginalFile.OpenFile(Main.datawin32Path + "\\sound\\PC\\btlcmn.xfbin");
+                            else {
+                                BtlcmnOriginalFile.OpenFile(originalBtlcmnPath);
+                            }
+                            for (int z = 0; z< BtlcmnModFile.TONE_SoundName_List.Count; z++) {
+                                BtlcmnOriginalFile.TONE_SectionType_List.Add(BtlcmnModFile.TONE_SectionType_List[z]);
+                                BtlcmnOriginalFile.TONE_SectionTypeValues_List.Add(BtlcmnModFile.TONE_SectionTypeValues_List[z]);
+                                BtlcmnOriginalFile.TONE_SoundName_List.Add(BtlcmnModFile.TONE_SoundName_List[z]);
+                                BtlcmnOriginalFile.TONE_SoundPos_List.Add(BtlcmnModFile.TONE_SoundPos_List[z]);
+                                BtlcmnOriginalFile.TONE_SoundSize_List.Add(BtlcmnModFile.TONE_SoundSize_List[z]);
+                                BtlcmnOriginalFile.TONE_MainVolume_List.Add(BtlcmnModFile.TONE_MainVolume_List[z]);
+                                BtlcmnOriginalFile.TONE_SoundSettings_List.Add(BtlcmnModFile.TONE_SoundSettings_List[z]);
+                                BtlcmnOriginalFile.TONE_SoundData_List.Add(BtlcmnModFile.TONE_SoundData_List[z]);
+                                BtlcmnOriginalFile.TONE_RandomizerType_List.Add(BtlcmnModFile.TONE_RandomizerType_List[z]);
+                                BtlcmnOriginalFile.TONE_RandomizerLength_List.Add(BtlcmnModFile.TONE_RandomizerLength_List[z]);
+                                BtlcmnOriginalFile.TONE_RandomizerUnk1_List.Add(BtlcmnModFile.TONE_RandomizerUnk1_List[z]);
+                                BtlcmnOriginalFile.TONE_RandomizerSectionCount_List.Add(BtlcmnModFile.TONE_RandomizerSectionCount_List[z]);
+                                BtlcmnOriginalFile.TONE_RandomizerOneSection_ID_List.Add(BtlcmnModFile.TONE_RandomizerOneSection_ID_List[z]);
+                                BtlcmnOriginalFile.TONE_RandomizerOneSection_unk_List.Add(BtlcmnModFile.TONE_RandomizerOneSection_unk_List[z]);
+                                BtlcmnOriginalFile.TONE_RandomizerOneSection_PlayChance_List.Add(BtlcmnModFile.TONE_RandomizerOneSection_PlayChance_List[z]);
+                                BtlcmnOriginalFile.TONE_RandomizerOneSection_SoundID_List.Add(BtlcmnModFile.TONE_RandomizerOneSection_SoundID_List[z]);
+                                BtlcmnOriginalFile.TONE_RandomizerUnk2_List.Add(BtlcmnModFile.TONE_RandomizerUnk2_List[z]);
+                                BtlcmnOriginalFile.TONE_RandomizerUnk3_List.Add(BtlcmnModFile.TONE_RandomizerUnk3_List[z]);
+                                BtlcmnOriginalFile.TONE_RandomizerUnk4_List.Add(BtlcmnModFile.TONE_RandomizerUnk4_List[z]);
+                                BtlcmnOriginalFile.TONE_RandomizerUnk5_List.Add(BtlcmnModFile.TONE_RandomizerUnk5_List[z]);
+                                BtlcmnOriginalFile.TONE_RandomizerUnk6_List.Add(BtlcmnModFile.TONE_RandomizerUnk6_List[z]);
+                                BtlcmnOriginalFile.TONE_OverlaySound_List.Add(BtlcmnModFile.TONE_OverlaySound_List[z]);
+                            }
+                            
+                            if (!Directory.Exists(Main.datawin32Path + "\\sound\\PC\\")) {
+                                Directory.CreateDirectory(Main.datawin32Path + "\\sound\\PC\\");
+                            }
+                            BtlcmnOriginalFile.SaveFileAs(Main.datawin32Path + "\\sound\\PC\\btlcmn.xfbin");
+                            byte[] separamBytes = File.ReadAllBytes(originalseparamPath);
+                            byte[] fileStart = new byte[0];
+                            fileStart = Main.b_AddBytes(fileStart, separamBytes, 0, 0, 0xE2A);
+                            fileStart = Main.b_AddBytes(fileStart,BitConverter.GetBytes((BtlcmnOriginalFile.TONE_SoundName_List.Count*0x20+6)),1);
+                            fileStart = Main.b_AddBytes(fileStart, new byte[8] { 0x00, 0x00, 0x00, 0x01, 0x00, 0x79, 0x00, 0x00 });
+                            fileStart = Main.b_AddBytes(fileStart, BitConverter.GetBytes((BtlcmnOriginalFile.TONE_SoundName_List.Count * 0x20 + 2)),1);
+                            fileStart = Main.b_AddBytes(fileStart, BitConverter.GetBytes(BtlcmnOriginalFile.TONE_SoundName_List.Count),0,0,2);
+                            for (int z = 0; z< BtlcmnOriginalFile.TONE_SoundName_List.Count; z++) {
+                                byte[] section = new byte[0x20];
+                                string name = BtlcmnOriginalFile.TONE_SoundName_List[z];
+                                if (name.Length > 31)
+                                    name = name.Substring(0, 31);
+                                section = Main.b_ReplaceBytes(section, Encoding.ASCII.GetBytes(name), 0);
+                                fileStart = Main.b_AddBytes(fileStart, section);
+                            }
+                            fileStart = Main.b_AddBytes(fileStart, separamBytes, 0, 0x815C, 0x815C+0x5DB2);
+                            File.WriteAllBytes(Main.datawin32Path + "\\sound\\separam.xfbin", fileStart);
+                        }
                         DirectoryInfo backup_d = new DirectoryInfo(Main.datawin32Path);
                         FileInfo[] backup_Files = backup_d.GetFiles("*.backup", SearchOption.AllDirectories);
                         foreach (FileInfo file in backup_Files) {

@@ -458,7 +458,7 @@ namespace NSUNS4_Character_Manager.Functions {
                     if (btlcmnFile.TONE_SoundName_List.Count > 3000) {
                         for (int z = 3000; z < btlcmnFile.TONE_SoundName_List.Count; z++) {
                             for (int c = 0; c < UsedSoundList.Count; c++) {
-                                if (btlcmnFile.TONE_SoundName_List[z] == UsedSoundList[c] && btlcmnFile.TONE_SoundData_List[z].Length != 0) {
+                                if (btlcmnFile.TONE_SoundName_List[z] == UsedSoundList[c] && btlcmnFile.TONE_SoundData_List[z].Length != 0 && btlcmnFile.TONE_SectionType_List[z] == 0) {
                                     TONE_SectionType_List.Add(btlcmnFile.TONE_SectionType_List[z]);
                                     TONE_SectionTypeValues_List.Add(btlcmnFile.TONE_SectionTypeValues_List[z]);
                                     TONE_SoundName_List.Add(btlcmnFile.TONE_SoundName_List[z]);

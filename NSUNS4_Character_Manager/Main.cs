@@ -456,10 +456,6 @@ namespace NSUNS4_Character_Manager
             }
             return output;
         }
-        internal static byte[] b_AddBytes(object p)
-        {
-            throw new NotImplementedException();
-        }
 
         public static byte[] b_AddBytes(byte[] actual, byte[] bytesToAdd, int Reverse = 0, int index = 0, int count = -1)
         {
