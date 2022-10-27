@@ -1012,7 +1012,7 @@ namespace NSUNS4_Character_Manager.Misc {
                 SaveFileAs();
             }
         }
-        public void SaveFileAs() {
+        public void SaveFileAs(string basepath = "") {
             SaveFileDialog s = new SaveFileDialog();
             {
                 if (XfbinHeader) {
@@ -1024,7 +1024,10 @@ namespace NSUNS4_Character_Manager.Misc {
                     s.Filter = "NUS3BANK files|*.NUS3BANK";
                 }
             }
-            s.ShowDialog();
+            if (basepath == "")
+                s.ShowDialog();
+            else
+                s.FileName = basepath;
             if (!(s.FileName != "")) {
                 return;
             }
@@ -1038,7 +1041,8 @@ namespace NSUNS4_Character_Manager.Misc {
             }
             string extension = Path.GetExtension(s.FileName);
             File.WriteAllBytes(FilePath, ConvertToFile(extension));
-            MessageBox.Show("File saved to " + FilePath + ".");
+            if (basepath == "")
+                MessageBox.Show("File saved to " + FilePath + ".");
         }
         public byte[] ConvertToFile(string extension) {
             byte[] ConvertedFile = new byte[0];
@@ -1173,6 +1177,28 @@ namespace NSUNS4_Character_Manager.Misc {
         private void trackBar1_ValueChanged(object sender, EventArgs e) {
             if (waveOut != null && reader != null)
                 waveOut.Volume = (float)trackBar1.Value / 100;
+        }
+
+        private void createListForSeparamToolStripMenuItem_Click(object sender, EventArgs e) {
+            if (FileOpen) {
+                byte[] separam_file = new byte[0];
+                for (int x = 0; x< TONE_SoundName_List.Count; x++) {
+                    separam_file = Main.b_AddBytes(separam_file, new byte[0x20]);
+                    string sound_name = TONE_SoundName_List[x];
+                    if (sound_name.Length > 31)
+                        sound_name = sound_name.Substring(0, 31);
+                    separam_file = Main.b_ReplaceBytes(separam_file, Encoding.ASCII.GetBytes(sound_name), 0x20 * x);
+                }
+                SaveFileDialog s = new SaveFileDialog();
+                {
+                    s.DefaultExt = ".xfbin";
+                    s.Filter = ".xfbin|.xfbin";
+                }
+                s.ShowDialog();
+                if (s.FileName != "") {
+                    File.WriteAllBytes(s.FileName, separam_file);
+                }
+            }
         }
     }
 }

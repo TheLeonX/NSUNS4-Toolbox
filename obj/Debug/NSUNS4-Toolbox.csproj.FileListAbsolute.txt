@@ -94,7 +94,6 @@ E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Fu
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Main.resources
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tool_AddCharacter.resources
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tool_AddCostume.resources
-E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_nus3bankEditor.resources
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_PathList.resources
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_StageInfoEditor.resources
 E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_TextureReplacer.resources

@@ -78,10 +78,11 @@ namespace NSUNS4_Character_Manager.Misc {
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supportedFormatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.SoundID_dg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SoundName_dg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PlaySound_b = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.createListForSeparamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Volume_v)).BeginInit();
@@ -604,35 +605,36 @@ namespace NSUNS4_Character_Manager.Misc {
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.saveAsToolStripMenuItem.Text = "Save as";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // exportToolStripMenuItem
             // 
             this.exportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exportAllSoundsToolStripMenuItem});
+            this.exportAllSoundsToolStripMenuItem,
+            this.createListForSeparamToolStripMenuItem});
             this.exportToolStripMenuItem.Name = "exportToolStripMenuItem";
             this.exportToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.exportToolStripMenuItem.Text = "Export";
@@ -643,7 +645,7 @@ namespace NSUNS4_Character_Manager.Misc {
             this.originalFormatToolStripMenuItem,
             this.wAVFormatToolStripMenuItem});
             this.exportAllSoundsToolStripMenuItem.Name = "exportAllSoundsToolStripMenuItem";
-            this.exportAllSoundsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.exportAllSoundsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.exportAllSoundsToolStripMenuItem.Text = "Export all sounds";
             this.exportAllSoundsToolStripMenuItem.Click += new System.EventHandler(this.exportAllSoundsToolStripMenuItem_Click);
             // 
@@ -710,17 +712,6 @@ namespace NSUNS4_Character_Manager.Misc {
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
-            // trackBar1
-            // 
-            this.trackBar1.Location = new System.Drawing.Point(363, 454);
-            this.trackBar1.Maximum = 100;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(410, 45);
-            this.trackBar1.TabIndex = 25;
-            this.trackBar1.Value = 35;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
-            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
-            // 
             // SoundID_dg
             // 
             this.SoundID_dg.FillWeight = 40F;
@@ -751,6 +742,24 @@ namespace NSUNS4_Character_Manager.Misc {
             this.PlaySound_b.Text = "Play";
             this.PlaySound_b.UseColumnTextForButtonValue = true;
             this.PlaySound_b.Width = 44;
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Location = new System.Drawing.Point(363, 454);
+            this.trackBar1.Maximum = 100;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(410, 45);
+            this.trackBar1.TabIndex = 25;
+            this.trackBar1.Value = 35;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
+            // 
+            // createListForSeparamToolStripMenuItem
+            // 
+            this.createListForSeparamToolStripMenuItem.Name = "createListForSeparamToolStripMenuItem";
+            this.createListForSeparamToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.createListForSeparamToolStripMenuItem.Text = "Create list for separam";
+            this.createListForSeparamToolStripMenuItem.Click += new System.EventHandler(this.createListForSeparamToolStripMenuItem_Click);
             // 
             // Tool_nus3bankEditor_v2
             // 
@@ -860,5 +869,6 @@ namespace NSUNS4_Character_Manager.Misc {
         private System.Windows.Forms.DataGridViewTextBoxColumn SoundID_dg;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoundName_dg;
         private System.Windows.Forms.DataGridViewButtonColumn PlaySound_b;
+        private System.Windows.Forms.ToolStripMenuItem createListForSeparamToolStripMenuItem;
     }
 }
