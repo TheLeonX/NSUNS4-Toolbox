@@ -309,6 +309,12 @@
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_SpSkillCustomizeParamEditor.Designer.cs">
       <DependentUpon>Tool_SpSkillCustomizeParamEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_spTypeSupportParamEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_spTypeSupportParamEditor.Designer.cs">
+      <DependentUpon>Tool_spTypeSupportParamEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_UnlockCharaTotalEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -431,6 +437,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_SpSkillCustomizeParamEditor.resx">
       <DependentUpon>Tool_SpSkillCustomizeParamEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_spTypeSupportParamEditor.resx">
+      <DependentUpon>Tool_spTypeSupportParamEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_UnlockCharaTotalEditor.resx">
       <DependentUpon>Tool_UnlockCharaTotalEditor.cs</DependentUpon>

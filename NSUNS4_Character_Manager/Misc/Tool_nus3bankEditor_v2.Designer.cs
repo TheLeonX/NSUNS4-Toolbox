@@ -73,6 +73,7 @@ namespace NSUNS4_Character_Manager.Misc {
             this.exportAllSoundsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.originalFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wAVFormatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createListForSeparamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.batchImportingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,7 +83,6 @@ namespace NSUNS4_Character_Manager.Misc {
             this.SoundName_dg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PlaySound_b = new System.Windows.Forms.DataGridViewButtonColumn();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.createListForSeparamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Volume_v)).BeginInit();
@@ -645,23 +645,30 @@ namespace NSUNS4_Character_Manager.Misc {
             this.originalFormatToolStripMenuItem,
             this.wAVFormatToolStripMenuItem});
             this.exportAllSoundsToolStripMenuItem.Name = "exportAllSoundsToolStripMenuItem";
-            this.exportAllSoundsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.exportAllSoundsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exportAllSoundsToolStripMenuItem.Text = "Export all sounds";
             this.exportAllSoundsToolStripMenuItem.Click += new System.EventHandler(this.exportAllSoundsToolStripMenuItem_Click);
             // 
             // originalFormatToolStripMenuItem
             // 
             this.originalFormatToolStripMenuItem.Name = "originalFormatToolStripMenuItem";
-            this.originalFormatToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.originalFormatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.originalFormatToolStripMenuItem.Text = "Original format";
             this.originalFormatToolStripMenuItem.Click += new System.EventHandler(this.originalFormatToolStripMenuItem_Click);
             // 
             // wAVFormatToolStripMenuItem
             // 
             this.wAVFormatToolStripMenuItem.Name = "wAVFormatToolStripMenuItem";
-            this.wAVFormatToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.wAVFormatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.wAVFormatToolStripMenuItem.Text = "WAV format";
             this.wAVFormatToolStripMenuItem.Click += new System.EventHandler(this.wAVFormatToolStripMenuItem_Click);
+            // 
+            // createListForSeparamToolStripMenuItem
+            // 
+            this.createListForSeparamToolStripMenuItem.Name = "createListForSeparamToolStripMenuItem";
+            this.createListForSeparamToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.createListForSeparamToolStripMenuItem.Text = "Create separam file for btlcmn";
+            this.createListForSeparamToolStripMenuItem.Click += new System.EventHandler(this.createListForSeparamToolStripMenuItem_Click);
             // 
             // importToolStripMenuItem
             // 
@@ -753,13 +760,6 @@ namespace NSUNS4_Character_Manager.Misc {
             this.trackBar1.Value = 35;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
-            // 
-            // createListForSeparamToolStripMenuItem
-            // 
-            this.createListForSeparamToolStripMenuItem.Name = "createListForSeparamToolStripMenuItem";
-            this.createListForSeparamToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.createListForSeparamToolStripMenuItem.Text = "Create list for separam";
-            this.createListForSeparamToolStripMenuItem.Click += new System.EventHandler(this.createListForSeparamToolStripMenuItem_Click);
             // 
             // Tool_nus3bankEditor_v2
             // 

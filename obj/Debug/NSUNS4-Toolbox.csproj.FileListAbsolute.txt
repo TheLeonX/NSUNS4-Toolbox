@@ -150,3 +150,4 @@ E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\Microsoft.Win32.Registry.xm
 E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\NAudio.xml
 E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\System.Security.AccessControl.xml
 E:\Desktop\MS Projects\ns4charactermanager\bin\Debug\System.Security.Principal.Windows.xml
+E:\Desktop\MS Projects\ns4charactermanager\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_spTypeSupportParamEditor.resources

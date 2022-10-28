@@ -1181,22 +1181,53 @@ namespace NSUNS4_Character_Manager.Misc {
 
         private void createListForSeparamToolStripMenuItem_Click(object sender, EventArgs e) {
             if (FileOpen) {
-                byte[] separam_file = new byte[0];
-                for (int x = 0; x< TONE_SoundName_List.Count; x++) {
-                    separam_file = Main.b_AddBytes(separam_file, new byte[0x20]);
-                    string sound_name = TONE_SoundName_List[x];
-                    if (sound_name.Length > 31)
-                        sound_name = sound_name.Substring(0, 31);
-                    separam_file = Main.b_ReplaceBytes(separam_file, Encoding.ASCII.GetBytes(sound_name), 0x20 * x);
+                //byte[] separam_file = new byte[0];
+                //for (int x = 0; x< TONE_SoundName_List.Count; x++) {
+                //    separam_file = Main.b_AddBytes(separam_file, new byte[0x20]);
+                //    string sound_name = TONE_SoundName_List[x];
+                //    if (sound_name.Length > 31)
+                //        sound_name = sound_name.Substring(0, 31);
+                //    separam_file = Main.b_ReplaceBytes(separam_file, Encoding.ASCII.GetBytes(sound_name), 0x20 * x);
+                //}
+                //SaveFileDialog s = new SaveFileDialog();
+                //{
+                //    s.DefaultExt = ".xfbin";
+                //    s.Filter = ".xfbin|.xfbin";
+                //}
+                //s.ShowDialog();
+                //if (s.FileName != "") {
+                //    File.WriteAllBytes(s.FileName, separam_file);
+                //}
+                if (FilePath.Contains("btlcmn") && FileID == 1) {
+                    byte[] separamBytes = File.ReadAllBytes(Directory.GetCurrentDirectory() + "\\systemFiles\\separam.xfbin");
+                    byte[] fileStart = new byte[0];
+                    fileStart = Main.b_AddBytes(fileStart, separamBytes, 0, 0, 0xE2A);
+                    fileStart = Main.b_AddBytes(fileStart, BitConverter.GetBytes((TONE_SoundName_List.Count * 0x20 + 6)), 1);
+                    fileStart = Main.b_AddBytes(fileStart, new byte[8] { 0x00, 0x00, 0x00, 0x01, 0x00, 0x79, 0x00, 0x00 });
+                    fileStart = Main.b_AddBytes(fileStart, BitConverter.GetBytes((TONE_SoundName_List.Count * 0x20 + 2)), 1);
+                    fileStart = Main.b_AddBytes(fileStart, BitConverter.GetBytes(TONE_SoundName_List.Count), 0, 0, 2);
+                    for (int z = 0; z < TONE_SoundName_List.Count; z++) {
+                        byte[] section = new byte[0x20];
+                        string name = TONE_SoundName_List[z];
+                        if (name.Length > 31)
+                            name = name.Substring(0, 31);
+                        section = Main.b_ReplaceBytes(section, Encoding.ASCII.GetBytes(name), 0);
+                        fileStart = Main.b_AddBytes(fileStart, section);
+                    }
+                    fileStart = Main.b_AddBytes(fileStart, separamBytes, 0, 0x815C, 0x815C + 0x5DB2);
+
+                    SaveFileDialog s = new SaveFileDialog();
+                    {
+                        s.DefaultExt = ".xfbin";
+                        s.Filter = ".xfbin|.xfbin";
+                    }
+                    s.ShowDialog();
+                    if (s.FileName != "") {
+                        File.WriteAllBytes(s.FileName, fileStart);
+                    }
                 }
-                SaveFileDialog s = new SaveFileDialog();
-                {
-                    s.DefaultExt = ".xfbin";
-                    s.Filter = ".xfbin|.xfbin";
-                }
-                s.ShowDialog();
-                if (s.FileName != "") {
-                    File.WriteAllBytes(s.FileName, separam_file);
+                else {
+                    MessageBox.Show("This file isn't btlcmn");
                 }
             }
         }

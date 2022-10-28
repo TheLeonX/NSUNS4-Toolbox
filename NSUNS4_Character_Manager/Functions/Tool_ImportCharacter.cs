@@ -38,6 +38,7 @@ namespace NSUNS4_Character_Manager.Functions {
         string originalMessagePath = Directory.GetCurrentDirectory() + "\\systemFiles\\message";
         string originalBtlcmnPath = Directory.GetCurrentDirectory() + "\\systemFiles\\btlcmn.xfbin";
         string originalseparamPath = Directory.GetCurrentDirectory() + "\\systemFiles\\separam.xfbin";
+        string originalspTypeSupportParamPath = Directory.GetCurrentDirectory() + "\\systemFiles\\spTypeSupport.xfbin";
         private void importToolStripMenuItem_Click(object sender, EventArgs e) {
             FolderBrowserDialog f = new FolderBrowserDialog();
             f.ShowDialog();
@@ -217,6 +218,7 @@ namespace NSUNS4_Character_Manager.Functions {
                     string damageprmPath = "";
                     string messagePathList = "";
                     string btlcmnPath = "";
+                    string spTypeSupportParamPath = "";
                     bool dppExist = false;
                     bool pspExist = false;
                     bool cspExist = false;
@@ -235,6 +237,7 @@ namespace NSUNS4_Character_Manager.Functions {
                     bool gfx_charselExist = false;
                     bool damageprmExist = false;
                     bool btlcmnExist = false;
+                    bool spTypeSupportParamExist = false;
                     List<bool> messageExistList = new List<bool>();
                     foreach (FileInfo file in Files) {
                         if (file.FullName.Contains(d.Name +"prm.bin.xfbin")) {
@@ -324,6 +327,16 @@ namespace NSUNS4_Character_Manager.Functions {
                         } else {
                             spskillCustomizeExist = false;
                             spskillCustomizePath = "";
+                        }
+                    }
+                    foreach (FileInfo file in Files) {
+                        if (file.FullName.Contains("spc\\WIN64\\spTypeSupportParam.xfbin")) {
+                            spTypeSupportParamExist = true;
+                            spTypeSupportParamPath = file.FullName;
+                            break;
+                        } else {
+                            spTypeSupportParamExist = false;
+                            spTypeSupportParamPath = "";
                         }
                     }
                     foreach (FileInfo file in Files) {
@@ -505,7 +518,7 @@ namespace NSUNS4_Character_Manager.Functions {
                             mm_WriterParameter.Close();
                         }
                         foreach (FileInfo file in Files) {
-                            if (!file.Name.Contains("characode") && !file.Name.Contains("cmnparam") && !file.Name.Contains("duelPlayerParam") && !file.Name.Contains("awakeAura") && !file.Name.Contains("appearanceAnm") && !file.Name.Contains("afterAttachObject") && !file.Name.Contains("characterSelectParam") && !file.Name.Contains("playerSettingParam") && !file.Name.Contains("skillCustomizeParam") && !file.Name.Contains("spSkillCustomizeParam") && !file.Name.Contains("player_icon") && !file.Name.Contains("damageeff") && !file.Name.Contains("effectprm") && !file.Name.Contains("conditionprm") && !file.Name.Contains("damageprm") && !file.Name.Contains("unlockCharaTotal") && !file.Name.Contains("messageInfo") && !file.Name.Contains("btlcmn")) {
+                            if (!file.Name.Contains("characode") && !file.Name.Contains("cmnparam") && !file.Name.Contains("duelPlayerParam") && !file.Name.Contains("awakeAura") && !file.Name.Contains("appearanceAnm") && !file.Name.Contains("afterAttachObject") && !file.Name.Contains("characterSelectParam") && !file.Name.Contains("playerSettingParam") && !file.Name.Contains("skillCustomizeParam") && !file.Name.Contains("spSkillCustomizeParam") && !file.Name.Contains("player_icon") && !file.Name.Contains("damageeff") && !file.Name.Contains("effectprm") && !file.Name.Contains("conditionprm") && !file.Name.Contains("damageprm") && !file.Name.Contains("unlockCharaTotal") && !file.Name.Contains("messageInfo") && !file.Name.Contains("btlcmn") && !file.Name.Contains("spTypeSupportParam")) {
                                 if (!file.FullName.Contains("moddingapi"))
                                     CopyFiles(Path.GetDirectoryName(Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength)), file.FullName, Main.datawin32Path + "\\" + file.FullName.Substring(file.FullName.IndexOf(dataWinFolder) + dataWinFolderLength));
                             }
@@ -941,6 +954,114 @@ namespace NSUNS4_Character_Manager.Functions {
                                 Directory.CreateDirectory(Main.datawin32Path + "\\spc\\WIN64");
                             }
                             spSkillCustomizeOriginalFile.SaveFileAs(Main.datawin32Path + "\\spc\\WIN64\\spSkillCustomizeParam.xfbin");
+                        }
+                        if (spTypeSupportParamExist) {
+                            Tool_spTypeSupportParamEditor spTypeSupportParamModFile = new Tool_spTypeSupportParamEditor();
+                            Tool_spTypeSupportParamEditor spTypeSupportParamOriginalFile = new Tool_spTypeSupportParamEditor();
+                            spTypeSupportParamModFile.OpenFile(spTypeSupportParamPath);
+                            if (File.Exists(Main.spTypeSupportParamPath))
+                                spTypeSupportParamOriginalFile.OpenFile(Main.spTypeSupportParamPath);
+                            else {
+                                spTypeSupportParamOriginalFile.OpenFile(originalspTypeSupportParamPath);
+                            }
+                            if (ReplaceCharacterList[i]) {
+                                for (int c = 0; c < spTypeSupportParamOriginalFile.EntryCount; c++) {
+                                    if (spTypeSupportParamOriginalFile.Characode_List[c] == spTypeSupportParamModFile.Characode_List[0]) {
+                                        spTypeSupportParamOriginalFile.Type_List[c] = spTypeSupportParamModFile.Type_List[0];
+                                        spTypeSupportParamOriginalFile.Mode_List[c] = spTypeSupportParamModFile.Mode_List[0];
+
+                                        spTypeSupportParamOriginalFile.LeftSkillName_List[c] = spTypeSupportParamModFile.LeftSkillName_List[0];
+                                        spTypeSupportParamOriginalFile.LeftSkill_unk1_List[c] = spTypeSupportParamModFile.LeftSkill_unk1_List[0];
+                                        spTypeSupportParamOriginalFile.LeftSkill_unk2_List[c] = spTypeSupportParamModFile.LeftSkill_unk2_List[0];
+                                        spTypeSupportParamOriginalFile.LeftSkill_unk3_List[c] = spTypeSupportParamModFile.LeftSkill_unk3_List[0];
+                                        spTypeSupportParamOriginalFile.LeftSkill_Unknown_List[c] = spTypeSupportParamModFile.LeftSkill_Unknown_List[0];
+                                        spTypeSupportParamOriginalFile.LeftSkill_EnableInAir_List[c] = spTypeSupportParamModFile.LeftSkill_EnableInAir_List[0];
+
+                                        spTypeSupportParamOriginalFile.RightSkillName_List[c] = spTypeSupportParamModFile.RightSkillName_List[0];
+                                        spTypeSupportParamOriginalFile.RightSkill_unk1_List[c] = spTypeSupportParamModFile.RightSkill_unk1_List[0];
+                                        spTypeSupportParamOriginalFile.RightSkill_unk2_List[c] = spTypeSupportParamModFile.RightSkill_unk2_List[0];
+                                        spTypeSupportParamOriginalFile.RightSkill_unk3_List[c] = spTypeSupportParamModFile.RightSkill_unk3_List[0];
+                                        spTypeSupportParamOriginalFile.RightSkill_Unknown_List[c] = spTypeSupportParamModFile.RightSkill_Unknown_List[0];
+                                        spTypeSupportParamOriginalFile.RightSkill_EnableInAir_List[c] = spTypeSupportParamModFile.RightSkill_EnableInAir_List[0];
+
+                                        spTypeSupportParamOriginalFile.UpSkillName_List[c] = spTypeSupportParamModFile.UpSkillName_List[0];
+                                        spTypeSupportParamOriginalFile.UpSkill_unk1_List[c] = spTypeSupportParamModFile.UpSkill_unk1_List[0];
+                                        spTypeSupportParamOriginalFile.UpSkill_unk2_List[c] = spTypeSupportParamModFile.UpSkill_unk2_List[0];
+                                        spTypeSupportParamOriginalFile.UpSkill_unk3_List[c] = spTypeSupportParamModFile.UpSkill_unk3_List[0];
+                                        spTypeSupportParamOriginalFile.UpSkill_Unknown_List[c] = spTypeSupportParamModFile.UpSkill_Unknown_List[0];
+                                        spTypeSupportParamOriginalFile.UpSkill_EnableInAir_List[c] = spTypeSupportParamModFile.UpSkill_EnableInAir_List[0];
+
+                                        spTypeSupportParamOriginalFile.DownSkillName_List[c] = spTypeSupportParamModFile.DownSkillName_List[0];
+                                        spTypeSupportParamOriginalFile.DownSkill_unk1_List[c] = spTypeSupportParamModFile.DownSkill_unk1_List[0];
+                                        spTypeSupportParamOriginalFile.DownSkill_unk2_List[c] = spTypeSupportParamModFile.DownSkill_unk2_List[0];
+                                        spTypeSupportParamOriginalFile.DownSkill_unk3_List[c] = spTypeSupportParamModFile.DownSkill_unk3_List[0];
+                                        spTypeSupportParamOriginalFile.DownSkill_Unknown_List[c] = spTypeSupportParamModFile.DownSkill_Unknown_List[0];
+                                        spTypeSupportParamOriginalFile.DownSkill_EnableInAir_List[c] = spTypeSupportParamModFile.DownSkill_EnableInAir_List[0];
+                                    } else {
+                                        spTypeSupportParamOriginalFile.Characode_List.Add(spTypeSupportParamModFile.Characode_List[0]);
+                                        spTypeSupportParamOriginalFile.Type_List.Add(spTypeSupportParamModFile.Type_List[0]);
+                                        spTypeSupportParamOriginalFile.Mode_List.Add(spTypeSupportParamModFile.Mode_List[0]);
+                                        spTypeSupportParamOriginalFile.LeftSkillName_List.Add(spTypeSupportParamModFile.LeftSkillName_List[0]);
+                                        spTypeSupportParamOriginalFile.LeftSkill_unk1_List.Add(spTypeSupportParamModFile.LeftSkill_unk1_List[0]);
+                                        spTypeSupportParamOriginalFile.LeftSkill_unk2_List.Add(spTypeSupportParamModFile.LeftSkill_unk2_List[0]);
+                                        spTypeSupportParamOriginalFile.LeftSkill_unk3_List.Add(spTypeSupportParamModFile.LeftSkill_unk3_List[0]);
+                                        spTypeSupportParamOriginalFile.LeftSkill_Unknown_List.Add(spTypeSupportParamModFile.LeftSkill_Unknown_List[0]);
+                                        spTypeSupportParamOriginalFile.LeftSkill_EnableInAir_List.Add(spTypeSupportParamModFile.LeftSkill_EnableInAir_List[0]);
+                                        spTypeSupportParamOriginalFile.RightSkillName_List.Add(spTypeSupportParamModFile.RightSkillName_List[0]);
+                                        spTypeSupportParamOriginalFile.RightSkill_unk1_List.Add(spTypeSupportParamModFile.RightSkill_unk1_List[0]);
+                                        spTypeSupportParamOriginalFile.RightSkill_unk2_List.Add(spTypeSupportParamModFile.RightSkill_unk2_List[0]);
+                                        spTypeSupportParamOriginalFile.RightSkill_unk3_List.Add(spTypeSupportParamModFile.RightSkill_unk3_List[0]);
+                                        spTypeSupportParamOriginalFile.RightSkill_Unknown_List.Add(spTypeSupportParamModFile.RightSkill_Unknown_List[0]);
+                                        spTypeSupportParamOriginalFile.RightSkill_EnableInAir_List.Add(spTypeSupportParamModFile.RightSkill_EnableInAir_List[0]);
+                                        spTypeSupportParamOriginalFile.UpSkillName_List.Add(spTypeSupportParamModFile.UpSkillName_List[0]);
+                                        spTypeSupportParamOriginalFile.UpSkill_unk1_List.Add(spTypeSupportParamModFile.UpSkill_unk1_List[0]);
+                                        spTypeSupportParamOriginalFile.UpSkill_unk2_List.Add(spTypeSupportParamModFile.UpSkill_unk2_List[0]);
+                                        spTypeSupportParamOriginalFile.UpSkill_unk3_List.Add(spTypeSupportParamModFile.UpSkill_unk3_List[0]);
+                                        spTypeSupportParamOriginalFile.UpSkill_Unknown_List.Add(spTypeSupportParamModFile.UpSkill_Unknown_List[0]);
+                                        spTypeSupportParamOriginalFile.UpSkill_EnableInAir_List.Add(spTypeSupportParamModFile.UpSkill_EnableInAir_List[0]);
+                                        spTypeSupportParamOriginalFile.DownSkillName_List.Add(spTypeSupportParamModFile.DownSkillName_List[0]);
+                                        spTypeSupportParamOriginalFile.DownSkill_unk1_List.Add(spTypeSupportParamModFile.DownSkill_unk1_List[0]);
+                                        spTypeSupportParamOriginalFile.DownSkill_unk2_List.Add(spTypeSupportParamModFile.DownSkill_unk2_List[0]);
+                                        spTypeSupportParamOriginalFile.DownSkill_unk3_List.Add(spTypeSupportParamModFile.DownSkill_unk3_List[0]);
+                                        spTypeSupportParamOriginalFile.DownSkill_Unknown_List.Add(spTypeSupportParamModFile.DownSkill_Unknown_List[0]);
+                                        spTypeSupportParamOriginalFile.DownSkill_EnableInAir_List.Add(spTypeSupportParamModFile.DownSkill_EnableInAir_List[0]);
+                                        spTypeSupportParamOriginalFile.EntryCount++;
+                                    }
+                                }
+                            } else {
+                                spTypeSupportParamOriginalFile.Characode_List.Add(CharacodeID);
+                                spTypeSupportParamOriginalFile.Type_List.Add(spTypeSupportParamModFile.Type_List[0]);
+                                spTypeSupportParamOriginalFile.Mode_List.Add(spTypeSupportParamModFile.Mode_List[0]);
+                                spTypeSupportParamOriginalFile.LeftSkillName_List.Add(spTypeSupportParamModFile.LeftSkillName_List[0]);
+                                spTypeSupportParamOriginalFile.LeftSkill_unk1_List.Add(spTypeSupportParamModFile.LeftSkill_unk1_List[0]);
+                                spTypeSupportParamOriginalFile.LeftSkill_unk2_List.Add(spTypeSupportParamModFile.LeftSkill_unk2_List[0]);
+                                spTypeSupportParamOriginalFile.LeftSkill_unk3_List.Add(spTypeSupportParamModFile.LeftSkill_unk3_List[0]);
+                                spTypeSupportParamOriginalFile.LeftSkill_Unknown_List.Add(spTypeSupportParamModFile.LeftSkill_Unknown_List[0]);
+                                spTypeSupportParamOriginalFile.LeftSkill_EnableInAir_List.Add(spTypeSupportParamModFile.LeftSkill_EnableInAir_List[0]);
+                                spTypeSupportParamOriginalFile.RightSkillName_List.Add(spTypeSupportParamModFile.RightSkillName_List[0]);
+                                spTypeSupportParamOriginalFile.RightSkill_unk1_List.Add(spTypeSupportParamModFile.RightSkill_unk1_List[0]);
+                                spTypeSupportParamOriginalFile.RightSkill_unk2_List.Add(spTypeSupportParamModFile.RightSkill_unk2_List[0]);
+                                spTypeSupportParamOriginalFile.RightSkill_unk3_List.Add(spTypeSupportParamModFile.RightSkill_unk3_List[0]);
+                                spTypeSupportParamOriginalFile.RightSkill_Unknown_List.Add(spTypeSupportParamModFile.RightSkill_Unknown_List[0]);
+                                spTypeSupportParamOriginalFile.RightSkill_EnableInAir_List.Add(spTypeSupportParamModFile.RightSkill_EnableInAir_List[0]);
+                                spTypeSupportParamOriginalFile.UpSkillName_List.Add(spTypeSupportParamModFile.UpSkillName_List[0]);
+                                spTypeSupportParamOriginalFile.UpSkill_unk1_List.Add(spTypeSupportParamModFile.UpSkill_unk1_List[0]);
+                                spTypeSupportParamOriginalFile.UpSkill_unk2_List.Add(spTypeSupportParamModFile.UpSkill_unk2_List[0]);
+                                spTypeSupportParamOriginalFile.UpSkill_unk3_List.Add(spTypeSupportParamModFile.UpSkill_unk3_List[0]);
+                                spTypeSupportParamOriginalFile.UpSkill_Unknown_List.Add(spTypeSupportParamModFile.UpSkill_Unknown_List[0]);
+                                spTypeSupportParamOriginalFile.UpSkill_EnableInAir_List.Add(spTypeSupportParamModFile.UpSkill_EnableInAir_List[0]);
+                                spTypeSupportParamOriginalFile.DownSkillName_List.Add(spTypeSupportParamModFile.DownSkillName_List[0]);
+                                spTypeSupportParamOriginalFile.DownSkill_unk1_List.Add(spTypeSupportParamModFile.DownSkill_unk1_List[0]);
+                                spTypeSupportParamOriginalFile.DownSkill_unk2_List.Add(spTypeSupportParamModFile.DownSkill_unk2_List[0]);
+                                spTypeSupportParamOriginalFile.DownSkill_unk3_List.Add(spTypeSupportParamModFile.DownSkill_unk3_List[0]);
+                                spTypeSupportParamOriginalFile.DownSkill_Unknown_List.Add(spTypeSupportParamModFile.DownSkill_Unknown_List[0]);
+                                spTypeSupportParamOriginalFile.DownSkill_EnableInAir_List.Add(spTypeSupportParamModFile.DownSkill_EnableInAir_List[0]);
+                                spTypeSupportParamOriginalFile.EntryCount++;
+                            }
+                            if (!Directory.Exists(Main.datawin32Path + "\\spc\\WIN64")) {
+                                Directory.CreateDirectory(Main.datawin32Path + "\\spc\\WIN64");
+                            }
+                            spTypeSupportParamOriginalFile.SaveFileAs(Main.datawin32Path + "\\spc\\WIN64\\spTypeSupportParam.xfbin");
                         }
                         if (awakeAuraExist) {
                             Tool_AwakeAuraEditor awakeAuraModFile = new Tool_AwakeAuraEditor();

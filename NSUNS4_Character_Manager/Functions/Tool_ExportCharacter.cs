@@ -88,6 +88,7 @@ namespace NSUNS4_Character_Manager.Functions {
             bool btlcmnExist = false;
             bool evExist = false;
             bool ev_splExist = false;
+            bool spTypeSupportParamExist = false;
             List<bool> messageFolderExist = new List<bool>();
             string prmPath = "";
             string prmLoadPath = "";
@@ -107,6 +108,7 @@ namespace NSUNS4_Character_Manager.Functions {
             string btlcmnPath = "";
             string evPath = "";
             string ev_splPath = "";
+            string spTypeSupportParamPath = "";
             List<string> messageFolderPath = new List<string>();
             string moddingAPIPath = Main.datawin32Path.Replace(d.Name, "moddingapi\\mods");
 
@@ -320,7 +322,16 @@ namespace NSUNS4_Character_Manager.Functions {
                     }
                 }
             }
-
+            foreach (FileInfo file in Files) {
+                if (file.FullName.Contains("spc\\WIN64\\spTypeSupportParam.xfbin")) {
+                    spTypeSupportParamExist = true;
+                    spTypeSupportParamPath = file.FullName;
+                    break;
+                } else {
+                    spTypeSupportParamExist = false;
+                    spTypeSupportParamPath = "";
+                }
+            }
             if (prmExist) {
                 Tool_MovesetCoder PrmFile = new Tool_MovesetCoder();
                 PrmFile.OpenFile(prmPath);
@@ -910,6 +921,55 @@ namespace NSUNS4_Character_Manager.Functions {
                     }
                     spSkillCustomizeFile.SaveFileAs(SaveDirectory + "\\spc\\WIN64\\spSkillCustomizeParam.xfbin");
                 }  
+            }
+            if (spTypeSupportParamExist) {
+                Tool_spTypeSupportParamEditor spTypeSupportParamFile = new Tool_spTypeSupportParamEditor();
+                spTypeSupportParamFile.OpenFile(spTypeSupportParamPath);
+                for (int x = 0; x < spTypeSupportParamFile.EntryCount; x++) {
+                    if (spTypeSupportParamFile.Characode_List[x] != CharacodeID) {
+                        spTypeSupportParamFile.Characode_List.RemoveAt(x);
+                        spTypeSupportParamFile.Type_List.RemoveAt(x);
+                        spTypeSupportParamFile.Mode_List.RemoveAt(x);
+                        spTypeSupportParamFile.LeftSkillName_List.RemoveAt(x);
+                        spTypeSupportParamFile.LeftSkill_unk1_List.RemoveAt(x);
+                        spTypeSupportParamFile.LeftSkill_unk2_List.RemoveAt(x);
+                        spTypeSupportParamFile.LeftSkill_unk3_List.RemoveAt(x);
+                        spTypeSupportParamFile.LeftSkill_Unknown_List.RemoveAt(x);
+                        spTypeSupportParamFile.LeftSkill_EnableInAir_List.RemoveAt(x);
+                        spTypeSupportParamFile.RightSkillName_List.RemoveAt(x);
+                        spTypeSupportParamFile.RightSkill_unk1_List.RemoveAt(x);
+                        spTypeSupportParamFile.RightSkill_unk2_List.RemoveAt(x);
+                        spTypeSupportParamFile.RightSkill_unk3_List.RemoveAt(x);
+                        spTypeSupportParamFile.RightSkill_Unknown_List.RemoveAt(x);
+                        spTypeSupportParamFile.RightSkill_EnableInAir_List.RemoveAt(x);
+                        spTypeSupportParamFile.UpSkillName_List.RemoveAt(x);
+                        spTypeSupportParamFile.UpSkill_unk1_List.RemoveAt(x);
+                        spTypeSupportParamFile.UpSkill_unk2_List.RemoveAt(x);
+                        spTypeSupportParamFile.UpSkill_unk3_List.RemoveAt(x);
+                        spTypeSupportParamFile.UpSkill_Unknown_List.RemoveAt(x);
+                        spTypeSupportParamFile.UpSkill_EnableInAir_List.RemoveAt(x);
+                        spTypeSupportParamFile.DownSkillName_List.RemoveAt(x);
+                        spTypeSupportParamFile.DownSkill_unk1_List.RemoveAt(x);
+                        spTypeSupportParamFile.DownSkill_unk2_List.RemoveAt(x);
+                        spTypeSupportParamFile.DownSkill_unk3_List.RemoveAt(x);
+                        spTypeSupportParamFile.DownSkill_Unknown_List.RemoveAt(x);
+                        spTypeSupportParamFile.DownSkill_EnableInAir_List.RemoveAt(x);
+                        spTypeSupportParamFile.EntryCount--;
+                        x--;
+                    }
+                }
+                for (int i = 0; i < spTypeSupportParamFile.EntryCount; i++) {
+                    CharacterMessageIds.Add(spTypeSupportParamFile.LeftSkillName_List[i]);
+                    CharacterMessageIds.Add(spTypeSupportParamFile.RightSkillName_List[i]);
+                    CharacterMessageIds.Add(spTypeSupportParamFile.UpSkillName_List[i]);
+                    CharacterMessageIds.Add(spTypeSupportParamFile.DownSkillName_List[i]);
+                }
+                if (spTypeSupportParamFile.EntryCount != 0) {
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\spc\\WIN64"))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\spc\\WIN64\\"));
+                    }
+                    spTypeSupportParamFile.SaveFileAs(SaveDirectory + "\\spc\\WIN64\\spTypeSupportParam.xfbin");
+                }
             }
             if (cmnparamExist) {
                 Tool_cmnparamEditor cmnparamFile = new Tool_cmnparamEditor();

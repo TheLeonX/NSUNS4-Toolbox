@@ -54,6 +54,7 @@ namespace NSUNS4_Character_Manager
         public static string damageeffPath = "[null]";
         public static string conditionprmPath = "[null]";
         public static string damageprmPath = "[null]";
+        public static string spTypeSupportParamPath = "[null]";
         private Button button9;
         private Button button10;
         private Button button11;
@@ -98,6 +99,7 @@ namespace NSUNS4_Character_Manager
         private LinkLabel linkLabel10;
         private Button button13;
         private LinkLabel linkLabel12;
+        private Button button30;
         public byte[] PRMEditorCopiedSection;
         public byte[] TheValue
         {
@@ -122,6 +124,7 @@ namespace NSUNS4_Character_Manager
         void CreateConfig()
         {
             List<string> cfg = new List<string>();
+            cfg.Add("[null]");
             cfg.Add("[null]");
             cfg.Add("[null]");
             cfg.Add("[null]");
@@ -175,6 +178,7 @@ namespace NSUNS4_Character_Manager
             cfg.Add(damageeffPath);
             cfg.Add(conditionprmPath);
             cfg.Add(damageprmPath);
+            cfg.Add(spTypeSupportParamPath);
             File.WriteAllLines(ConfigPath, cfg.ToArray());
             MessageBox.Show("Config file saved.");
         }
@@ -205,6 +209,7 @@ namespace NSUNS4_Character_Manager
             if (cfg.Length > 20) damageeffPath = cfg[20];
             if (cfg.Length > 21) conditionprmPath = cfg[21];
             if (cfg.Length > 22) damageprmPath = cfg[22];
+            if (cfg.Length > 23) spTypeSupportParamPath = cfg[23];
             //MessageBox.Show("Loaded paths.");
         }
 
@@ -852,6 +857,7 @@ namespace NSUNS4_Character_Manager
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
+            this.button30 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1207,6 +1213,7 @@ namespace NSUNS4_Character_Manager
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button30);
             this.tabPage3.Controls.Add(this.button13);
             this.tabPage3.Controls.Add(this.button29);
             this.tabPage3.Controls.Add(this.button28);
@@ -1238,7 +1245,7 @@ namespace NSUNS4_Character_Manager
             // button13
             // 
             this.button13.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.button13.Location = new System.Drawing.Point(3, 337);
+            this.button13.Location = new System.Drawing.Point(3, 372);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(299, 38);
             this.button13.TabIndex = 33;
@@ -1540,6 +1547,17 @@ namespace NSUNS4_Character_Manager
             this.linkLabel9.TabStop = true;
             this.linkLabel9.Text = "CC2\'s game Files";
             this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
+            // 
+            // button30
+            // 
+            this.button30.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.button30.Location = new System.Drawing.Point(3, 337);
+            this.button30.Name = "button30";
+            this.button30.Size = new System.Drawing.Size(299, 38);
+            this.button30.TabIndex = 34;
+            this.button30.Text = "spTypeSupportParam Editor";
+            this.button30.UseVisualStyleBackColor = true;
+            this.button30.Click += new System.EventHandler(this.button30_Click);
             // 
             // Main
             // 
@@ -1858,6 +1876,7 @@ namespace NSUNS4_Character_Manager
             damageeffPath = datawin32Path + "\\spc\\damageeff.bin.xfbin";
             conditionprmPath = datawin32Path + "\\spc\\conditionprm.bin.xfbin";
             damageprmPath = datawin32Path + "\\spc\\damageprm.bin.xfbin";
+            spTypeSupportParamPath = datawin32Path + "\\spc\\WIN64\\spTypeSupportParam.xfbin";
 
             SaveConfig();
         }
@@ -1883,6 +1902,7 @@ namespace NSUNS4_Character_Manager
                 conditionprmPath = datawin32Path + "\\spc\\conditionprm.bin.xfbin";
                 damageprmPath = datawin32Path + "\\spc\\damageprm.bin.xfbin";
                 messageInfoPath = datawin32Path + "\\message";
+                spTypeSupportParamPath = datawin32Path + "\\spc\\WIN64\\spTypeSupportParam.xfbin";
             }
                 
             else {
@@ -1980,6 +2000,11 @@ namespace NSUNS4_Character_Manager
 
         private void tabPage3_Click(object sender, EventArgs e) {
 
+        }
+
+        private void button30_Click(object sender, EventArgs e) {
+            Tool_spTypeSupportParamEditor t = new Tool_spTypeSupportParamEditor();
+            t.Show();
         }
     }
 }
