@@ -340,5 +340,9 @@ namespace NSUNS4_Character_Manager
 
             SaveFileAs();
         }
+
+        private void Tool_SpcloadEditor_Load(object sender, EventArgs e) {
+
+        }
     }
 }

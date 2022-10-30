@@ -288,6 +288,7 @@
             this.Name = "Tool_SpcloadEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Spcload Editor";
+            this.Load += new System.EventHandler(this.Tool_SpcloadEditor_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

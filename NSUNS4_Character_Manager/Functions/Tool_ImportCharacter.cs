@@ -39,6 +39,30 @@ namespace NSUNS4_Character_Manager.Functions {
         string originalBtlcmnPath = Directory.GetCurrentDirectory() + "\\systemFiles\\btlcmn.xfbin";
         string originalseparamPath = Directory.GetCurrentDirectory() + "\\systemFiles\\separam.xfbin";
         string originalspTypeSupportParamPath = Directory.GetCurrentDirectory() + "\\systemFiles\\spTypeSupport.xfbin";
+        public static string datawin32Path = "[null]";
+        public static string chaPath = "[null]";
+        public static string dppPath = "[null]";
+        public static string pspPath = "[null]";
+        public static string unlPath = "[null]";
+        public static string iconPath = "[null]";
+        public static string cspPath = "[null]";
+        public static string awakeAuraPath = "[null]";
+        public static string ougiFinishPath = "[null]";
+        public static string skillCustomizePath = "[null]";
+        public static string spSkillCustomizePath = "[null]";
+        public static string afterAttachObjectPath = "[null]";
+        public static string appearanceAnmPath = "[null]";
+        public static string stageInfoPath = "[null]";
+        public static string battleParamPath = "[null]";
+        public static string episodeParamPath = "[null]";
+        public static string episodeMovieParamPath = "[null]";
+        public static string messageInfoPath = "[null]";
+        public static string cmnparamPath = "[null]";
+        public static string effectprmPath = "[null]";
+        public static string damageeffPath = "[null]";
+        public static string conditionprmPath = "[null]";
+        public static string damageprmPath = "[null]";
+        public static string spTypeSupportParamPath = "[null]";
         private void importToolStripMenuItem_Click(object sender, EventArgs e) {
             FolderBrowserDialog f = new FolderBrowserDialog();
             f.ShowDialog();
@@ -77,6 +101,8 @@ namespace NSUNS4_Character_Manager.Functions {
                     int NewPos = 0;
                     ReplaceCharacterList.Add(replace);
                     EnableButtons.Add(EnableButton);
+                    PageList.Add(NewPage);
+                    SlotList.Add(NewPos);
                     //if (!replace && File.Exists(f.SelectedPath+ "\\data_win32\\ui\\max\\select\\WIN64\\characterSelectParam.xfbin")) {
                     //    Tool_RosterEditor CspFile = new Tool_RosterEditor();
                     //    if (File.Exists(Main.cspPath))
@@ -122,8 +148,6 @@ namespace NSUNS4_Character_Manager.Functions {
                     //}
 
 
-                    PageList.Add(NewPage);
-                    SlotList.Add(NewPos);
                 }
                 else {
                     MessageBox.Show("Invalid character");
