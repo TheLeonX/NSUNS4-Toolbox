@@ -832,6 +832,7 @@ namespace NSUNS4_Character_Manager
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button30 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button29 = new System.Windows.Forms.Button();
             this.button28 = new System.Windows.Forms.Button();
@@ -857,7 +858,6 @@ namespace NSUNS4_Character_Manager
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
-            this.button30 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1069,7 +1069,7 @@ namespace NSUNS4_Character_Manager
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(0, 134);
+            this.button12.Location = new System.Drawing.Point(0, 101);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(225, 36);
             this.button12.TabIndex = 16;
@@ -1241,6 +1241,17 @@ namespace NSUNS4_Character_Manager
             this.tabPage3.Text = "Character Managment";
             this.tabPage3.UseVisualStyleBackColor = true;
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // button30
+            // 
+            this.button30.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.button30.Location = new System.Drawing.Point(3, 337);
+            this.button30.Name = "button30";
+            this.button30.Size = new System.Drawing.Size(299, 38);
+            this.button30.TabIndex = 34;
+            this.button30.Text = "spTypeSupportParam Editor";
+            this.button30.UseVisualStyleBackColor = true;
+            this.button30.Click += new System.EventHandler(this.button30_Click);
             // 
             // button13
             // 
@@ -1501,12 +1512,13 @@ namespace NSUNS4_Character_Manager
             // 
             // button25
             // 
-            this.button25.Location = new System.Drawing.Point(0, 99);
+            this.button25.Location = new System.Drawing.Point(0, 136);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(225, 36);
             this.button25.TabIndex = 17;
             this.button25.Text = "Import character";
             this.button25.UseVisualStyleBackColor = true;
+            this.button25.Visible = false;
             this.button25.Click += new System.EventHandler(this.button25_Click);
             // 
             // linkLabel1
@@ -1548,17 +1560,6 @@ namespace NSUNS4_Character_Manager
             this.linkLabel9.Text = "CC2\'s game Files";
             this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
             // 
-            // button30
-            // 
-            this.button30.Font = new System.Drawing.Font("Segoe UI", 8.5F);
-            this.button30.Location = new System.Drawing.Point(3, 337);
-            this.button30.Name = "button30";
-            this.button30.Size = new System.Drawing.Size(299, 38);
-            this.button30.TabIndex = 34;
-            this.button30.Text = "spTypeSupportParam Editor";
-            this.button30.UseVisualStyleBackColor = true;
-            this.button30.Click += new System.EventHandler(this.button30_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1576,7 +1577,7 @@ namespace NSUNS4_Character_Manager
             this.MaximizeBox = false;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Naruto: Storm 4 Toolbox v6.2b (TheLeonX\'s build)";
+            this.Text = "Naruto: Storm 4 Toolbox v6.3b (TheLeonX\'s build)";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.Load += new System.EventHandler(this.Main_Load);
             this.menuStrip1.ResumeLayout(false);

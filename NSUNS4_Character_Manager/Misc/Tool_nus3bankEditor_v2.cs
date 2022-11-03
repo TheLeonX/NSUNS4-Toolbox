@@ -23,6 +23,7 @@ namespace NSUNS4_Character_Manager.Misc {
             tabControl1.TabPages.Remove(tabPage1);
             tabControl1.TabPages.Remove(tabPage2);
             tabControl1.TabPages.Remove(tabPage3);
+            toolStripComboBox1.SelectedIndex = 0;
         }
         public bool cleaning = false;
         public bool FileOpen = false;
@@ -919,7 +920,13 @@ namespace NSUNS4_Character_Manager.Misc {
                             format = "IDSP";
                         else if (format == "RIFF")
                             format = "WAV";
-                        File.WriteAllBytes(FBD.SelectedPath + "\\" + x.ToString() + "-" + name + "." + format, TONE_SoundData_List[x]);
+                        string path = "";
+                        if (toolStripComboBox1.SelectedIndex == 0)
+                            path = FBD.SelectedPath + "\\" + x.ToString() + "-" + name + "." + format;
+                        else if (toolStripComboBox1.SelectedIndex == 1)
+                            path = FBD.SelectedPath + "\\" + name + "." + format;
+
+                        File.WriteAllBytes(path, TONE_SoundData_List[x]);
                     };
                 }
                 MessageBox.Show("Files saved to " + FBD.SelectedPath);
@@ -938,7 +945,12 @@ namespace NSUNS4_Character_Manager.Misc {
                     if (TONE_SectionType_List[x] != 2 && TONE_SectionType_List[x] != 1 && TONE_SoundData_List[x].Length > 4) {
                         Decode(TONE_SoundData_List[x], TONE_SoundName_List[x]);
                         string name = TONE_SoundName_List[x];
-                        File.Copy(path + "\\temp\\" + TONE_SoundName_List[x] + ".wav", FBD.SelectedPath + "\\" + x.ToString() + "-" + name + ".wav", true);
+                        string exp_path = "";
+                        if (toolStripComboBox1.SelectedIndex == 0)
+                            exp_path = FBD.SelectedPath + "\\" + x.ToString() + "-" + name + ".wav";
+                        else if (toolStripComboBox1.SelectedIndex == 1)
+                            exp_path = FBD.SelectedPath + "\\" + name + ".wav";
+                        File.Copy(path + "\\temp\\" + TONE_SoundName_List[x] + ".wav", exp_path, true);
                     };
                 }
                 MessageBox.Show("Files saved to " + FBD.SelectedPath);

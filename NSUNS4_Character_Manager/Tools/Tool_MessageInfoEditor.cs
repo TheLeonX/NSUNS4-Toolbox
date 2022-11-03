@@ -33,7 +33,15 @@ namespace NSUNS4_Character_Manager.Tools
         //public int ListIndex = 0;
         private void openFilesselectFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFilesStart();
+            Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog c = new Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog();
+            c.IsFolderPicker = true;
+
+            if (c.ShowDialog() == Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogResult.Ok) {
+                if (Directory.Exists(c.FileName)) {
+                    OpenFilesStart(c.FileName);
+                }
+            }
+            
         }
 
         public void OpenFilesStart(string basepath = "") {
@@ -64,17 +72,20 @@ namespace NSUNS4_Character_Manager.Tools
             SPA_Extra_textbox.Enabled = false;
             JPN_Main_textbox.Enabled = false;
             JPN_Extra_textbox.Enabled = false;
-            FolderBrowserDialog f = new FolderBrowserDialog();
-            if (basepath != "") {
-                f.SelectedPath = basepath;
-            }
-            else {
-                f.ShowDialog();
+
+            
+
+            if (basepath == "") {
+                Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog c = new Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog();
+                c.IsFolderPicker = true;
+                if (c.ShowDialog() == Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogResult.Ok) {
+                    basepath = c.FileName;
+                }
             }
             
             bool exist = false;
             for (int i = 0; i < Program.LANG.Length; i++) {
-                string path = f.SelectedPath + "\\WIN64\\" + Program.LANG[i] + "\\messageInfo.bin.xfbin";
+                string path = basepath + "\\WIN64\\" + Program.LANG[i] + "\\messageInfo.bin.xfbin";
                 if (File.Exists(path)) {
                     exist = true;
                     OpenedFile.Add(true);
@@ -91,6 +102,7 @@ namespace NSUNS4_Character_Manager.Tools
                 return;
             }
 
+            comboBox2.SelectedIndex = -1;
             OpenFiles(FilePaths);
             if (OpenedFile[0]) {
                 ARAE_Main_textbox.Enabled = true;
@@ -145,15 +157,13 @@ namespace NSUNS4_Character_Manager.Tools
                 JPN_Main_textbox.Enabled = true;
                 JPN_Extra_textbox.Enabled = true;
             }
-            if (comboBox2.SelectedIndex == -1) {
-                for (int i = 0; i < OpenedFile.Count; i++) {
-                    if (OpenedFile[i]) {
-                        comboBox2.SelectedIndex = i;
-                        break;
-                    }
+            for (int i = 0; i < OpenedFile.Count; i++) {
+                if (OpenedFile[i]) {
+                    comboBox2.SelectedIndex = i;
+                    break;
                 }
             }
-            listBox1.SelectedIndex = 0;
+            listBox1.SelectedIndex = -1;
         }
 
         public void OpenFiles(List<string> Paths)
@@ -475,7 +485,7 @@ namespace NSUNS4_Character_Manager.Tools
             }   
             else
             {
-                MessageBox.Show("Select any section so you could get data from it");
+                AddNewSection();
             }
         }
 
@@ -500,7 +510,21 @@ namespace NSUNS4_Character_Manager.Tools
             listBox1.Items.Add(Encoding.UTF8.GetString(MainTextsList[comboBox2.SelectedIndex][MainTextsList[comboBox2.SelectedIndex].Count - 1]));
             listBox1.SelectedIndex = listBox1.Items.Count - 1;
         }
-
+        private void AddNewSection() {
+            for (int i = 0; i < FilePaths.Count; i++) {
+                if (OpenedFile[i]) {
+                    CRC32CodesList[i].Add(new byte[4] { 0xFF, 0xFF, 0xFF, 0xFF });
+                    MainTextsList[i].Add(new byte[0]);
+                    ExtraTextsList[i].Add(new byte[0]);
+                    ACBFilesList[i].Add(0);
+                    CueIDsList[i].Add(0);
+                    VoiceOnlysList[i].Add(0);
+                    EntryCounts[i]++;
+                }
+            }
+            listBox1.Items.Add(Encoding.UTF8.GetString(MainTextsList[comboBox2.SelectedIndex][MainTextsList[comboBox2.SelectedIndex].Count - 1]));
+            listBox1.SelectedIndex = listBox1.Items.Count - 1;
+        }
         private void button4_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedIndex != -1)

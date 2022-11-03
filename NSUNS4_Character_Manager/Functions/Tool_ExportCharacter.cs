@@ -66,7 +66,7 @@ namespace NSUNS4_Character_Manager.Functions {
             int dataWinFolderLength = dataWinFolder.Length;
             FileInfo[] Files = d.GetFiles("*.xfbin", SearchOption.AllDirectories);
 
-
+            CharacterMessageIds.Clear();
 
             //DirectoryInfo icon_d = new DirectoryInfo(Main.datawin32Path+"\\ui\\flash\\OTHER\\");
             //FileInfo[] icon_Files = icon_d.GetFiles("*.xfbin", SearchOption.AllDirectories);
@@ -702,7 +702,17 @@ namespace NSUNS4_Character_Manager.Functions {
                         Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\spc\\"));
                     }
                     DppFile.SaveFileAs(SaveDirectory + "\\spc\\duelPlayerParam.xfbin");
+                    if (!prmLoadExist) {
+                        for (int cos = 0; cos < 20; cos++) {
+                            if (DppFile.CostumeList[0][cos] != "" && File.Exists(Main.datawin32Path + "\\spc\\" + DppFile.CostumeList[0][cos] + "bod1.xfbin"))
+                                CopyFiles(SaveDirectory + "\\spc\\", Main.datawin32Path + "\\spc\\" + DppFile.CostumeList[0][cos] + "bod1.xfbin", SaveDirectory + "\\spc\\" + DppFile.CostumeList[0][cos] + "bod1.xfbin");
+                            if (DppFile.AwkCostumeList[0][cos] != "" && File.Exists(Main.datawin32Path + "\\spc\\" + DppFile.AwkCostumeList[0][cos] + "bod1.xfbin"))
+                                CopyFiles(SaveDirectory + "\\spc\\", Main.datawin32Path + "\\spc\\" + DppFile.AwkCostumeList[0][cos] + "bod1.xfbin", SaveDirectory + "\\spc\\" + DppFile.AwkCostumeList[0][cos] + "bod1.xfbin");
+
+                        }
+                    }
                     
+
                 }
             }
             if (pspExist) {
@@ -1177,9 +1187,9 @@ namespace NSUNS4_Character_Manager.Functions {
                     ACBFilesList.Add(new List<int>());
                     CueIDsList.Add(new List<int>());
                     VoiceOnlysList.Add(new List<int>());
-                    for (int x = 0; x< MessageInfoFile.CRC32CodesList[l].Count; x++) {
+                    for (int i = 0; i < CharacterMessageIds.Count; i++) {
                         if (MessageInfoFile.CRC32CodesList[l].Count != 0) {
-                            for (int i = 0; i < CharacterMessageIds.Count; i++) {
+                            for (int x = 0; x < MessageInfoFile.CRC32CodesList[l].Count; x++) {
                                 if (BitConverter.ToString(MessageInfoFile.CRC32CodesList[l][x]) == BitConverter.ToString(Main.crc32(CharacterMessageIds[i])) && !UsedMessageIDs.Contains(CharacterMessageIds[i])) {
                                     CRC32CodesList[l].Add(MessageInfoFile.CRC32CodesList[l][x]);
                                     MainTextsList[l].Add(MessageInfoFile.MainTextsList[l][x]);
@@ -1188,6 +1198,7 @@ namespace NSUNS4_Character_Manager.Functions {
                                     CueIDsList[l].Add(-1);
                                     VoiceOnlysList[l].Add(MessageInfoFile.VoiceOnlysList[l][x]);
                                     UsedMessageIDs.Add(CharacterMessageIds[i]);
+                                    break;
                                 }
                             }
                         }
@@ -1200,12 +1211,19 @@ namespace NSUNS4_Character_Manager.Functions {
                 MessageInfoFile.ACBFilesList = ACBFilesList;
                 MessageInfoFile.CueIDsList = CueIDsList;
                 MessageInfoFile.VoiceOnlysList = VoiceOnlysList;
+                bool create = false;
                 for (int l = 0; l < Program.LANG.Length; l++) {
-                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\message\\WIN64\\" + Program.LANG[l]))) {
-                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\message\\WIN64\\" + Program.LANG[l]));
+
+                    if (MessageInfoFile.CRC32CodesList[l].Count > 0) {
+                        create = true;
+                        if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\message\\WIN64\\" + Program.LANG[l]))) {
+                            Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\message\\WIN64\\" + Program.LANG[l]));
+                        }
                     }
+                    
                 }
-                MessageInfoFile.SaveFilesAs(SaveDirectory + "\\message");
+                if (create)
+                    MessageInfoFile.SaveFilesAs(SaveDirectory + "\\message");
             }           
 
             //Copy all files with characode

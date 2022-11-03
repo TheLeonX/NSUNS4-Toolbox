@@ -83,6 +83,7 @@ namespace NSUNS4_Character_Manager.Misc {
             this.SoundName_dg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PlaySound_b = new System.Windows.Forms.DataGridViewButtonColumn();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Volume_v)).BeginInit();
@@ -643,23 +644,24 @@ namespace NSUNS4_Character_Manager.Misc {
             // 
             this.exportAllSoundsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.originalFormatToolStripMenuItem,
-            this.wAVFormatToolStripMenuItem});
+            this.wAVFormatToolStripMenuItem,
+            this.toolStripComboBox1});
             this.exportAllSoundsToolStripMenuItem.Name = "exportAllSoundsToolStripMenuItem";
-            this.exportAllSoundsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exportAllSoundsToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
             this.exportAllSoundsToolStripMenuItem.Text = "Export all sounds";
             this.exportAllSoundsToolStripMenuItem.Click += new System.EventHandler(this.exportAllSoundsToolStripMenuItem_Click);
             // 
             // originalFormatToolStripMenuItem
             // 
             this.originalFormatToolStripMenuItem.Name = "originalFormatToolStripMenuItem";
-            this.originalFormatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.originalFormatToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.originalFormatToolStripMenuItem.Text = "Original format";
             this.originalFormatToolStripMenuItem.Click += new System.EventHandler(this.originalFormatToolStripMenuItem_Click);
             // 
             // wAVFormatToolStripMenuItem
             // 
             this.wAVFormatToolStripMenuItem.Name = "wAVFormatToolStripMenuItem";
-            this.wAVFormatToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.wAVFormatToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.wAVFormatToolStripMenuItem.Text = "WAV format";
             this.wAVFormatToolStripMenuItem.Click += new System.EventHandler(this.wAVFormatToolStripMenuItem_Click);
             // 
@@ -760,6 +762,14 @@ namespace NSUNS4_Character_Manager.Misc {
             this.trackBar1.Value = 35;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
+            // 
+            // toolStripComboBox1
+            // 
+            this.toolStripComboBox1.Items.AddRange(new object[] {
+            "Export with index",
+            "Export without index"});
+            this.toolStripComboBox1.Name = "toolStripComboBox1";
+            this.toolStripComboBox1.Size = new System.Drawing.Size(121, 23);
             // 
             // Tool_nus3bankEditor_v2
             // 
@@ -870,5 +880,6 @@ namespace NSUNS4_Character_Manager.Misc {
         private System.Windows.Forms.DataGridViewTextBoxColumn SoundName_dg;
         private System.Windows.Forms.DataGridViewButtonColumn PlaySound_b;
         private System.Windows.Forms.ToolStripMenuItem createListForSeparamToolStripMenuItem;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
     }
 }
