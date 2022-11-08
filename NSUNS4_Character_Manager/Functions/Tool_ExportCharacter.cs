@@ -58,8 +58,9 @@ namespace NSUNS4_Character_Manager.Functions {
         public void ExportCharacter(int CharacodeID) {
             FolderBrowserDialog f = new FolderBrowserDialog();
             f.ShowDialog();
-            SaveDirectory = f.SelectedPath+"\\"+ SaveCharacode + "\\data_win32";
+            SaveDirectory = f.SelectedPath+ "\\" + SaveCharacode + " - MOD\\" + SaveCharacode + "\\data_win32";
             Directory.CreateDirectory(SaveDirectory);
+            Directory.CreateDirectory(f.SelectedPath + "\\" + SaveCharacode + " - MOD\\" + SaveCharacode + "\\moddingapi\\mods\\"+ SaveCharacode);
 
             DirectoryInfo d = new DirectoryInfo(Main.datawin32Path);
             string dataWinFolder = d.Name + "\\";
@@ -540,7 +541,10 @@ namespace NSUNS4_Character_Manager.Functions {
                         name = SpcloadFile.nameList[i].Replace("<codeMotion>", SaveCharacode);
                     else if (SpcloadFile.nameList[i].Contains("<codeAwakeModel>")) {
                         Tool_DuelPlayerParamEditor DppFile = new Tool_DuelPlayerParamEditor();
-                        DppFile.OpenFile(Main.dppPath);
+                        if (File.Exists(Main.dppPath))
+                            DppFile.OpenFile(Main.dppPath);
+                        else
+                            DppFile.OpenFile(Directory.GetCurrentDirectory()+ "\\systemFiles\\duelPlayerParam.xfbin");
                         int dppIndex = 0;
                         for (int x = 0; x<DppFile.EntryCount; x++) {
                             if (DppFile.BinName[x].Contains(SaveCharacode)) {
@@ -556,7 +560,10 @@ namespace NSUNS4_Character_Manager.Functions {
                     } 
                     else if (SpcloadFile.nameList[i].Contains("<codeAwake>")) {
                         Tool_DuelPlayerParamEditor DppFile = new Tool_DuelPlayerParamEditor();
-                        DppFile.OpenFile(Main.dppPath);
+                        if (File.Exists(Main.dppPath))
+                            DppFile.OpenFile(Main.dppPath);
+                        else
+                            DppFile.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\duelPlayerParam.xfbin");
                         int dppIndex = 0;
                         for (int x = 0; x < DppFile.EntryCount; x++) {
                             if (DppFile.BinName[x].Contains(SaveCharacode)) {
@@ -569,7 +576,10 @@ namespace NSUNS4_Character_Manager.Functions {
                     } 
                     else if (SpcloadFile.nameList[i].Contains("<codeAwake2>")) {
                         Tool_DuelPlayerParamEditor DppFile = new Tool_DuelPlayerParamEditor();
-                        DppFile.OpenFile(Main.dppPath);
+                        if (File.Exists(Main.dppPath))
+                            DppFile.OpenFile(Main.dppPath);
+                        else
+                            DppFile.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\duelPlayerParam.xfbin");
                         int dppIndex = 0;
                         for (int x = 0; x < DppFile.EntryCount; x++) {
                             if (DppFile.BinName[x].Contains(SaveCharacode)) {
@@ -582,7 +592,10 @@ namespace NSUNS4_Character_Manager.Functions {
                     } 
                     else if (SpcloadFile.nameList[i].Contains("<codeAwake2Model>")) {
                         Tool_DuelPlayerParamEditor DppFile = new Tool_DuelPlayerParamEditor();
-                        DppFile.OpenFile(Main.dppPath);
+                        if (File.Exists(Main.dppPath))
+                            DppFile.OpenFile(Main.dppPath);
+                        else
+                            DppFile.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\duelPlayerParam.xfbin");
                         int dppIndex = 0;
                         for (int x = 0; x < DppFile.EntryCount; x++) {
                             if (DppFile.BinName[x].Contains(SaveCharacode)) {
@@ -598,7 +611,10 @@ namespace NSUNS4_Character_Manager.Functions {
                     } 
                     else if (SpcloadFile.nameList[i].Contains("<codeModel>")) {
                         Tool_DuelPlayerParamEditor DppFile = new Tool_DuelPlayerParamEditor();
-                        DppFile.OpenFile(Main.dppPath);
+                        if (File.Exists(Main.dppPath))
+                            DppFile.OpenFile(Main.dppPath);
+                        else
+                            DppFile.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\duelPlayerParam.xfbin");
                         int dppIndex = 0;
                         for (int x = 0; x < DppFile.EntryCount; x++) {
                             if (DppFile.BinName[x].Contains(SaveCharacode)) {
@@ -1317,13 +1333,15 @@ namespace NSUNS4_Character_Manager.Functions {
                 }
 
             }
-            
-            FileStream fParameter = new FileStream(f.SelectedPath + "\\" + SaveCharacode + "\\characode.txt", FileMode.Create, FileAccess.Write);
-            StreamWriter m_WriterParameter = new StreamWriter(fParameter);
-            m_WriterParameter.BaseStream.Seek(0, SeekOrigin.End);
-            m_WriterParameter.Write(CharacodeID);
-            m_WriterParameter.Flush();
-            m_WriterParameter.Close();
+            File.WriteAllText(f.SelectedPath + "\\" + SaveCharacode + " - MOD\\" + SaveCharacode + "\\characode.txt", CharacodeID.ToString());
+            File.WriteAllText(f.SelectedPath + "\\" + SaveCharacode + " - MOD\\Description.txt", "");
+            File.WriteAllText(f.SelectedPath + "\\" + SaveCharacode + " - MOD\\ModdingAPI.txt", "true");
+            File.WriteAllText(f.SelectedPath + "\\" + SaveCharacode + " - MOD\\Author.txt", "Unknown");
+            byte[] icon = File.ReadAllBytes(Directory.GetCurrentDirectory() + "\\systemFiles\\template_icon.png");
+
+            File.WriteAllBytes(f.SelectedPath + "\\" + SaveCharacode + " - MOD\\Icon.png", icon);
+
+
             MessageBox.Show(SaveCharacode + " exported successfuly!");
         }
 

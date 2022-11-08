@@ -2821,14 +2821,17 @@ namespace NSUNS4_Character_Manager.Misc
                 MessageBox.Show("No file loaded...");
             }
         }
-        public void SaveFileAs()
+        public void SaveFileAs(string basepath = "")
         {
             SaveFileDialog s = new SaveFileDialog();
             {
                 s.DefaultExt = ".xfbin";
                 s.Filter = "*.xfbin|*.xfbin";
             }
-            s.ShowDialog();
+            if (basepath == "")
+                s.ShowDialog();
+            else
+                s.FileName = basepath;
             if (!(s.FileName != ""))
             {
                 return;
@@ -2846,7 +2849,8 @@ namespace NSUNS4_Character_Manager.Misc
                 FilePath = s.FileName;
             }
             File.WriteAllBytes(FilePath, ConvertToFile());
-            MessageBox.Show("File saved to " + FilePath + ".");
+            if (basepath == "")
+                MessageBox.Show("File saved to " + FilePath + ".");
         }
         public byte[] ConvertToFile()
         {
@@ -3932,6 +3936,144 @@ namespace NSUNS4_Character_Manager.Misc
 
         private void MysteriousValue_ValueChanged(object sender, EventArgs e) {
 
+        }
+
+        private void exportStageToolStripMenuItem_Click(object sender, EventArgs e) {
+            int x = listBox1.SelectedIndex;
+            if (x != -1) {
+                string data_win32path = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(FilePath)));
+                Tool_StageInfoEditor stageInfoEditor = new Tool_StageInfoEditor();
+                stageInfoEditor.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\stageInfo.bin.empty.xfbin");
+                stageInfoEditor.MainStageSection.Add(MainStageSection[x]);
+                stageInfoEditor.StageNameList.Add(StageNameList[x]);
+                stageInfoEditor.c_sta_List.Add(c_sta_List[x]);
+                stageInfoEditor.BTL_NSX_List.Add(BTL_NSX_List[x]);
+                stageInfoEditor.CountOfFiles.Add(CountOfFiles[x]);
+                stageInfoEditor.CountOfMeshes.Add(CountOfMeshes[x]);
+                stageInfoEditor.MainSection_WeatherSettings.Add(MainSection_WeatherSettings[x]);
+                stageInfoEditor.MainSection_lensFlareSettings.Add(MainSection_lensFlareSettings[x]);
+                stageInfoEditor.MainSection_EnablelensFlareSettings.Add(MainSection_EnablelensFlareSettings[x]);
+                stageInfoEditor.MainSection_X_PositionLightPoint.Add(MainSection_X_PositionLightPoint[x]);
+                stageInfoEditor.MainSection_Y_PositionLightPoint.Add(MainSection_Y_PositionLightPoint[x]);
+                stageInfoEditor.MainSection_Z_PositionLightPoint.Add(MainSection_Z_PositionLightPoint[x]);
+                stageInfoEditor.MainSection_X_PositionShadow.Add(MainSection_X_PositionShadow[x]);
+                stageInfoEditor.MainSection_Y_PositionShadow.Add(MainSection_Y_PositionShadow[x]);
+                stageInfoEditor.MainSection_Z_PositionShadow.Add(MainSection_Z_PositionShadow[x]);
+                stageInfoEditor.MainSection_unk1.Add(MainSection_unk1[x]);
+                stageInfoEditor.MainSection_ShadowSetting_value1.Add(MainSection_ShadowSetting_value1[x]);
+                stageInfoEditor.MainSection_ShadowSetting_value2.Add(MainSection_ShadowSetting_value2[x]);
+                stageInfoEditor.MainSection_PowerLight.Add(MainSection_PowerLight[x]);
+                stageInfoEditor.MainSection_PowerSkyColor.Add(MainSection_PowerSkyColor[x]);
+                stageInfoEditor.MainSection_PowerGlare.Add(MainSection_PowerGlare[x]);
+                stageInfoEditor.MainSection_blur.Add(MainSection_blur[x]);
+                stageInfoEditor.MainSection_X_PositionGlarePoint.Add(MainSection_X_PositionGlarePoint[x]);
+                stageInfoEditor.MainSection_Y_PositionGlarePoint.Add(MainSection_Y_PositionGlarePoint[x]);
+                stageInfoEditor.MainSection_Z_PositionGlarePoint.Add(MainSection_Z_PositionGlarePoint[x]);
+                stageInfoEditor.MainSectionGlareVagueness.Add(MainSectionGlareVagueness[x]);
+                stageInfoEditor.MainSection_ColorGlare.Add(MainSection_ColorGlare[x]);
+                stageInfoEditor.MainSection_ColorSky.Add(MainSection_ColorSky[x]);
+                stageInfoEditor.MainSection_ColorRock.Add(MainSection_ColorRock[x]);
+                stageInfoEditor.MainSection_ColorGroundEffect.Add(MainSection_ColorGroundEffect[x]);
+                stageInfoEditor.MainSection_ColorPlayerLight.Add(MainSection_ColorPlayerLight[x]);
+                stageInfoEditor.MainSection_ColorLight.Add(MainSection_ColorLight[x]);
+                stageInfoEditor.MainSection_ColorShadow.Add(MainSection_ColorShadow[x]);
+                stageInfoEditor.MainSection_ColorUnknown.Add(MainSection_ColorUnknown[x]);
+                stageInfoEditor.MainSection_ColorUnknown2.Add(MainSection_ColorUnknown2[x]);
+                stageInfoEditor.MainSection_EnableGlareSettingValue1.Add(MainSection_EnableGlareSettingValue1[x]);
+                stageInfoEditor.MainSection_EnableGlareSettingValue2.Add(MainSection_EnableGlareSettingValue2[x]);
+                stageInfoEditor.MainSection_EnableGlareSettingValue3.Add(MainSection_EnableGlareSettingValue3[x]);
+                stageInfoEditor.GlareEnabled.Add(GlareEnabled[x]);
+                stageInfoEditor.MainSection_X_MysteriousPosition.Add(MainSection_X_MysteriousPosition[x]);
+                stageInfoEditor.MainSection_Y_MysteriousPosition.Add(MainSection_Y_MysteriousPosition[x]);
+                stageInfoEditor.MainSection_Z_MysteriousPosition.Add(MainSection_Z_MysteriousPosition[x]);
+                stageInfoEditor.MainSection_MysteriousGlareValue1.Add(MainSection_MysteriousGlareValue1[x]);
+                stageInfoEditor.MainSection_MysteriousGlareValue2.Add(MainSection_MysteriousGlareValue2[x]);
+                stageInfoEditor.MainSection_MysteriousGlareValue3.Add(MainSection_MysteriousGlareValue3[x]);
+                stageInfoEditor.MainSection_UnknownValue1.Add(MainSection_UnknownValue1[x]);
+                stageInfoEditor.MainSection_UnknownValue2.Add(MainSection_UnknownValue2[x]);
+                stageInfoEditor.MainSection_UnknownValue3.Add(MainSection_UnknownValue3[x]);
+                stageInfoEditor.SecondarySectionFilePath.Add(SecondarySectionFilePath[x]);
+                stageInfoEditor.SecondarySectionLoadPath.Add(SecondarySectionLoadPath[x]);
+                stageInfoEditor.SecondarySectionLoadMesh.Add(SecondarySectionLoadMesh[x]);
+                stageInfoEditor.SecondarySectionPositionFilePath.Add(SecondarySectionPositionFilePath[x]);
+                stageInfoEditor.SecondarySectionPosition.Add(SecondarySectionPosition[x]);
+                stageInfoEditor.SecondaryTypeSection.Add(SecondaryTypeSection[x]);
+                stageInfoEditor.SecondaryTypeAnimationSection_speed.Add(SecondaryTypeAnimationSection_speed[x]);
+                stageInfoEditor.SecondarySectionCameraValue.Add(SecondarySectionCameraValue[x]);
+                stageInfoEditor.SecondarySectionMysteriousValue.Add(SecondarySectionMysteriousValue[x]);
+                stageInfoEditor.SecondaryConst3C.Add(SecondaryConst3C[x]);
+                stageInfoEditor.SecondaryConst78.Add(SecondaryConst78[x]);
+                stageInfoEditor.SecondaryConstBreakableWallValue1.Add(SecondaryConstBreakableWallValue1[x]);
+                stageInfoEditor.SecondaryConstBreakableWallValue2.Add(SecondaryConstBreakableWallValue2[x]);
+                stageInfoEditor.SecondaryTypeBreakableWall_Effect01.Add(SecondaryTypeBreakableWall_Effect01[x]);
+                stageInfoEditor.SecondaryTypeBreakableWall_Effect02.Add(SecondaryTypeBreakableWall_Effect02[x]);
+                stageInfoEditor.SecondaryTypeBreakableWall_Effect03.Add(SecondaryTypeBreakableWall_Effect03[x]);
+                stageInfoEditor.SecondaryTypeBreakableWall_Sound.Add(SecondaryTypeBreakableWall_Sound[x]);
+                stageInfoEditor.SecondaryTypeBreakableObject_Effect01.Add(SecondaryTypeBreakableObject_Effect01[x]);
+                stageInfoEditor.SecondaryTypeBreakableObject_Effect02.Add(SecondaryTypeBreakableObject_Effect02[x]);
+                stageInfoEditor.SecondaryTypeBreakableObject_Effect03.Add(SecondaryTypeBreakableObject_Effect03[x]);
+                stageInfoEditor.SecondaryTypeBreakableObject_path.Add(SecondaryTypeBreakableObject_path[x]);
+                stageInfoEditor.SecondaryTypeBreakableObject_Speed01.Add(SecondaryTypeBreakableObject_Speed01[x]);
+                stageInfoEditor.SecondaryTypeBreakableObject_Speed02.Add(SecondaryTypeBreakableObject_Speed02[x]);
+                stageInfoEditor.SecondaryTypeBreakableObject_Speed03.Add(SecondaryTypeBreakableObject_Speed03[x]);
+                stageInfoEditor.SecondaryTypeBreakableWall_volume.Add(SecondaryTypeBreakableWall_volume[x]);
+                stageInfoEditor.EntryCount++;
+
+                Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog c = new Microsoft.WindowsAPICodePack.Dialogs.CommonOpenFileDialog();
+                c.IsFolderPicker = true;
+
+                if (c.ShowDialog() == Microsoft.WindowsAPICodePack.Dialogs.CommonFileDialogResult.Ok) {
+                    string stageModPath = c.FileName +"\\" + StageNameList[x] + " - mod\\" + StageNameList[x]+"\\";
+                    if (!Directory.Exists(stageModPath)) {
+                        Directory.CreateDirectory(stageModPath);
+                    }
+                    if (data_win32path.Contains("data_win32")) {
+                        for (int v = 0; v< SecondarySectionFilePath[x].Count; v++) {
+                            if (File.Exists(data_win32path + SecondarySectionFilePath[x][v].Replace("data/", "\\").Replace("/", "\\"))){
+                                CopyFiles(data_win32path + SecondarySectionFilePath[x][v].Replace("data/", "\\").Replace("/", "\\"), stageModPath + SecondarySectionFilePath[x][v].Replace("data/", "data_win32\\").Replace("/", "\\"));
+                            }
+                        }
+                    }
+                    if (!Directory.Exists(stageModPath + "data_win32\\stage\\WIN64\\")) {
+                        Directory.CreateDirectory(stageModPath + "data_win32\\stage\\WIN64\\");
+                    }
+                    Directory.CreateDirectory(stageModPath + "moddingapi\\mods\\"+ StageNameList[x]);
+                    stageInfoEditor.SaveFileAs(stageModPath + "data_win32\\stage\\WIN64\\stageInfo.bin.xfbin");
+                    byte[] image = File.ReadAllBytes(Directory.GetCurrentDirectory() + "\\systemFiles\\stage_tex.png");
+                    byte[] image_mod = File.ReadAllBytes(Directory.GetCurrentDirectory() + "\\systemFiles\\template_icon.png");
+                    File.WriteAllBytes(stageModPath + "stage_tex.png", image);
+                    File.WriteAllText(stageModPath + "BGM_ID.txt", "69");
+                    List<string> lang = new List<string>();
+                    lang.Add("arae=Stage without name");
+                    lang.Add("chi=Stage without name");
+                    lang.Add("eng=Stage without name");
+                    lang.Add("esmx=Stage without name");
+                    lang.Add("fre=Stage without name");
+                    lang.Add("ger=Stage without name");
+                    lang.Add("ita=Stage without name");
+                    lang.Add("kokr=Stage without name");
+                    lang.Add("pol=Stage without name");
+                    lang.Add("por=Stage without name");
+                    lang.Add("rus=Карта без названия");
+                    lang.Add("spa=Stage without name");
+                    File.WriteAllLines(stageModPath + "stageMessage.txt", lang.ToArray());
+                    File.WriteAllText(c.FileName + "\\" + StageNameList[x] + " - mod\\" + "Author.txt", "Unknown");
+                    File.WriteAllText(c.FileName + "\\" + StageNameList[x] + " - mod\\" + "ModdingAPI.txt", "true");
+                    File.WriteAllText(c.FileName + "\\" + StageNameList[x] + " - mod\\" + "Description.txt", "");
+                    File.WriteAllBytes(c.FileName + "\\" + StageNameList[x] + " - mod\\" + "Icon.png", image_mod);
+                    MessageBox.Show(StageNameList[x] + " was exported successfully!");
+                }
+            } else {
+                MessageBox.Show("Select stage which you want to export");
+            }
+        }
+        public void CopyFiles(string originalDataWin32, string newDataWin32) {
+            if (File.Exists(originalDataWin32)) {
+                if (!Directory.Exists(Path.GetDirectoryName(newDataWin32))) {
+                    Directory.CreateDirectory(Path.GetDirectoryName(newDataWin32));
+                }
+                File.Copy(originalDataWin32, newDataWin32, true);
+            }
         }
     }
 }
