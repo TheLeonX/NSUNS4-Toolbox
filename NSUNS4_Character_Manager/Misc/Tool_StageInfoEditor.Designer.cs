@@ -35,6 +35,7 @@
             this.saveToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.StageCount = new System.Windows.Forms.Label();
@@ -203,7 +204,6 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label49 = new System.Windows.Forms.Label();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.exportStageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Shadow_X_Pos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Glare_power_value)).BeginInit();
@@ -302,6 +302,13 @@
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // exportStageToolStripMenuItem
+            // 
+            this.exportStageToolStripMenuItem.Name = "exportStageToolStripMenuItem";
+            this.exportStageToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.exportStageToolStripMenuItem.Text = "Export stage";
+            this.exportStageToolStripMenuItem.Click += new System.EventHandler(this.exportStageToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -964,7 +971,7 @@
             0,
             -2147483648});
             this.Glare_power_value.Name = "Glare_power_value";
-            this.Glare_power_value.Size = new System.Drawing.Size(165, 23);
+            this.Glare_power_value.Size = new System.Drawing.Size(96, 23);
             this.Glare_power_value.TabIndex = 122;
             // 
             // label47
@@ -1050,7 +1057,7 @@
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label37.ForeColor = System.Drawing.Color.Maroon;
-            this.label37.Location = new System.Drawing.Point(1013, 495);
+            this.label37.Location = new System.Drawing.Point(1083, 495);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(96, 13);
             this.label37.TabIndex = 135;
@@ -1064,7 +1071,7 @@
             0,
             0,
             0});
-            this.Light_power_value.Location = new System.Drawing.Point(1115, 493);
+            this.Light_power_value.Location = new System.Drawing.Point(1179, 493);
             this.Light_power_value.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -1076,7 +1083,7 @@
             0,
             -2147483648});
             this.Light_power_value.Name = "Light_power_value";
-            this.Light_power_value.Size = new System.Drawing.Size(160, 23);
+            this.Light_power_value.Size = new System.Drawing.Size(96, 23);
             this.Light_power_value.TabIndex = 134;
             this.Light_power_value.ValueChanged += new System.EventHandler(this.Light_power_value_ValueChanged);
             // 
@@ -1281,7 +1288,7 @@
             0,
             0});
             this.Light_Z_Pos.Name = "Light_Z_Pos";
-            this.Light_Z_Pos.Size = new System.Drawing.Size(164, 24);
+            this.Light_Z_Pos.Size = new System.Drawing.Size(96, 24);
             this.Light_Z_Pos.TabIndex = 168;
             // 
             // Light_Y_Pos
@@ -1661,7 +1668,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Maroon;
-            this.label16.Location = new System.Drawing.Point(1013, 524);
+            this.label16.Location = new System.Drawing.Point(1044, 524);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(129, 13);
             this.label16.TabIndex = 192;
@@ -1675,7 +1682,7 @@
             0,
             0,
             65536});
-            this.BlurValue.Location = new System.Drawing.Point(1143, 520);
+            this.BlurValue.Location = new System.Drawing.Point(1179, 520);
             this.BlurValue.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -1687,7 +1694,7 @@
             0,
             -2147483648});
             this.BlurValue.Name = "BlurValue";
-            this.BlurValue.Size = new System.Drawing.Size(131, 23);
+            this.BlurValue.Size = new System.Drawing.Size(95, 23);
             this.BlurValue.TabIndex = 191;
             this.BlurValue.ValueChanged += new System.EventHandler(this.BlurValue_ValueChanged);
             // 
@@ -1745,7 +1752,7 @@
             0,
             -2147483648});
             this.Vagueness_glare.Name = "Vagueness_glare";
-            this.Vagueness_glare.Size = new System.Drawing.Size(165, 23);
+            this.Vagueness_glare.Size = new System.Drawing.Size(96, 23);
             this.Vagueness_glare.TabIndex = 202;
             // 
             // lensFlareEnabledText
@@ -1834,7 +1841,7 @@
             0,
             -2147483648});
             this.M_Glare_Value1.Name = "M_Glare_Value1";
-            this.M_Glare_Value1.Size = new System.Drawing.Size(164, 23);
+            this.M_Glare_Value1.Size = new System.Drawing.Size(96, 23);
             this.M_Glare_Value1.TabIndex = 222;
             // 
             // label22
@@ -1868,7 +1875,7 @@
             0,
             -2147483648});
             this.M_Glare_Value2.Name = "M_Glare_Value2";
-            this.M_Glare_Value2.Size = new System.Drawing.Size(165, 23);
+            this.M_Glare_Value2.Size = new System.Drawing.Size(96, 23);
             this.M_Glare_Value2.TabIndex = 225;
             // 
             // button37
@@ -1889,7 +1896,7 @@
             this.SkyColor.Name = "SkyColor";
             this.SkyColor.Size = new System.Drawing.Size(157, 25);
             this.SkyColor.TabIndex = 228;
-            this.SkyColor.Text = "Background color palette";
+            this.SkyColor.Text = "Fog palette";
             this.SkyColor.UseVisualStyleBackColor = false;
             this.SkyColor.Click += new System.EventHandler(this.SkyColor_Click);
             // 
@@ -1898,11 +1905,11 @@
             this.label48.AutoSize = true;
             this.label48.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label48.ForeColor = System.Drawing.Color.Maroon;
-            this.label48.Location = new System.Drawing.Point(680, 524);
+            this.label48.Location = new System.Drawing.Point(753, 524);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(157, 13);
+            this.label48.Size = new System.Drawing.Size(79, 13);
             this.label48.TabIndex = 232;
-            this.label48.Text = "Background color strength";
+            this.label48.Text = "Fog strength";
             // 
             // Sky_light_strength
             // 
@@ -1919,7 +1926,7 @@
             0,
             0});
             this.Sky_light_strength.Name = "Sky_light_strength";
-            this.Sky_light_strength.Size = new System.Drawing.Size(165, 23);
+            this.Sky_light_strength.Size = new System.Drawing.Size(96, 23);
             this.Sky_light_strength.TabIndex = 231;
             // 
             // Search_TB
@@ -1943,7 +1950,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::Properties.Resources.НовыйХолст6;
-            this.pictureBox3.Location = new System.Drawing.Point(789, 69);
+            this.pictureBox3.Location = new System.Drawing.Point(818, 76);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(422, 165);
             this.pictureBox3.TabIndex = 201;
@@ -1979,7 +1986,7 @@
             // RockColorInfo_tb
             // 
             this.RockColorInfo_tb.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.RockColorInfo_tb.Location = new System.Drawing.Point(846, 179);
+            this.RockColorInfo_tb.Location = new System.Drawing.Point(847, 179);
             this.RockColorInfo_tb.MaxLength = 8;
             this.RockColorInfo_tb.Name = "RockColorInfo_tb";
             this.RockColorInfo_tb.ReadOnly = true;
@@ -1989,7 +1996,7 @@
             // PlayerLightColorInfo_tb
             // 
             this.PlayerLightColorInfo_tb.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.PlayerLightColorInfo_tb.Location = new System.Drawing.Point(846, 211);
+            this.PlayerLightColorInfo_tb.Location = new System.Drawing.Point(847, 211);
             this.PlayerLightColorInfo_tb.MaxLength = 8;
             this.PlayerLightColorInfo_tb.Name = "PlayerLightColorInfo_tb";
             this.PlayerLightColorInfo_tb.ReadOnly = true;
@@ -2019,7 +2026,7 @@
             // ShadowColorInfo_tb
             // 
             this.ShadowColorInfo_tb.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.ShadowColorInfo_tb.Location = new System.Drawing.Point(846, 306);
+            this.ShadowColorInfo_tb.Location = new System.Drawing.Point(847, 306);
             this.ShadowColorInfo_tb.MaxLength = 8;
             this.ShadowColorInfo_tb.Name = "ShadowColorInfo_tb";
             this.ShadowColorInfo_tb.ReadOnly = true;
@@ -2029,7 +2036,7 @@
             // GlareColorInfo_tb
             // 
             this.GlareColorInfo_tb.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.GlareColorInfo_tb.Location = new System.Drawing.Point(846, 332);
+            this.GlareColorInfo_tb.Location = new System.Drawing.Point(847, 332);
             this.GlareColorInfo_tb.MaxLength = 8;
             this.GlareColorInfo_tb.Name = "GlareColorInfo_tb";
             this.GlareColorInfo_tb.ReadOnly = true;
@@ -2083,7 +2090,7 @@
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label41.ForeColor = System.Drawing.Color.Maroon;
-            this.label41.Location = new System.Drawing.Point(1013, 466);
+            this.label41.Location = new System.Drawing.Point(1108, 469);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(71, 13);
             this.label41.TabIndex = 249;
@@ -2097,7 +2104,7 @@
             0,
             0,
             0});
-            this.unk1_v.Location = new System.Drawing.Point(1090, 464);
+            this.unk1_v.Location = new System.Drawing.Point(1179, 464);
             this.unk1_v.Maximum = new decimal(new int[] {
             500000,
             0,
@@ -2109,7 +2116,7 @@
             0,
             -2147483648});
             this.unk1_v.Name = "unk1_v";
-            this.unk1_v.Size = new System.Drawing.Size(185, 23);
+            this.unk1_v.Size = new System.Drawing.Size(96, 23);
             this.unk1_v.TabIndex = 248;
             this.unk1_v.ValueChanged += new System.EventHandler(this.unk1_v_ValueChanged);
             // 
@@ -2239,7 +2246,7 @@
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.Maroon;
-            this.label18.Location = new System.Drawing.Point(1016, 553);
+            this.label18.Location = new System.Drawing.Point(1097, 553);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(76, 13);
             this.label18.TabIndex = 266;
@@ -2253,7 +2260,7 @@
             0,
             0,
             65536});
-            this.unknown1_v.Location = new System.Drawing.Point(1098, 550);
+            this.unknown1_v.Location = new System.Drawing.Point(1179, 550);
             this.unknown1_v.Maximum = new decimal(new int[] {
             1,
             0,
@@ -2265,7 +2272,7 @@
             0,
             -2147483648});
             this.unknown1_v.Name = "unknown1_v";
-            this.unknown1_v.Size = new System.Drawing.Size(177, 23);
+            this.unknown1_v.Size = new System.Drawing.Size(96, 23);
             this.unknown1_v.TabIndex = 265;
             // 
             // label21
@@ -2273,7 +2280,7 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.Maroon;
-            this.label21.Location = new System.Drawing.Point(1016, 607);
+            this.label21.Location = new System.Drawing.Point(1016, 610);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(157, 13);
             this.label21.TabIndex = 264;
@@ -2303,7 +2310,7 @@
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.Maroon;
-            this.label23.Location = new System.Drawing.Point(1015, 580);
+            this.label23.Location = new System.Drawing.Point(1033, 580);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(140, 13);
             this.label23.TabIndex = 262;
@@ -2318,7 +2325,7 @@
             0,
             0,
             65536});
-            this.unknown2_v.Location = new System.Drawing.Point(1161, 576);
+            this.unknown2_v.Location = new System.Drawing.Point(1179, 576);
             this.unknown2_v.Maximum = new decimal(new int[] {
             1,
             0,
@@ -2330,7 +2337,7 @@
             0,
             -2147483648});
             this.unknown2_v.Name = "unknown2_v";
-            this.unknown2_v.Size = new System.Drawing.Size(114, 23);
+            this.unknown2_v.Size = new System.Drawing.Size(96, 23);
             this.unknown2_v.TabIndex = 261;
             // 
             // label45
@@ -2378,13 +2385,6 @@
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(99, 23);
             this.numericUpDown2.TabIndex = 269;
-            // 
-            // exportStageToolStripMenuItem
-            // 
-            this.exportStageToolStripMenuItem.Name = "exportStageToolStripMenuItem";
-            this.exportStageToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
-            this.exportStageToolStripMenuItem.Text = "Export stage";
-            this.exportStageToolStripMenuItem.Click += new System.EventHandler(this.exportStageToolStripMenuItem_Click);
             // 
             // Tool_StageInfoEditor
             // 
