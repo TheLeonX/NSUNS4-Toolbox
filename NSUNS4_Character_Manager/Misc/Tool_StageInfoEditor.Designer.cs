@@ -1921,7 +1921,7 @@
             131072});
             this.Sky_light_strength.Location = new System.Drawing.Point(842, 521);
             this.Sky_light_strength.Maximum = new decimal(new int[] {
-            1,
+            1000,
             0,
             0,
             0});

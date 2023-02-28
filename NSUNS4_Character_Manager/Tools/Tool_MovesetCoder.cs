@@ -78,6 +78,9 @@ namespace NSUNS4_Character_Manager.Tools
 
         public List<int> verList = new List<int>();
         List<int> verLength = new List<int>();
+
+        public List<string> HeaderSectionNames = new List<string>();
+
         public List<List<byte[]>> plAnmList = new List<List<byte[]>>();
         public List<List<List<byte[]>>> movementList = new List<List<List<byte[]>>>();
 
@@ -97,6 +100,9 @@ namespace NSUNS4_Character_Manager.Tools
             fileBytes = File.ReadAllBytes(filePath);
 
             // Find all ver sections
+
+            //XfbinParser.GetNameList(fileBytes);
+
             int actualver = 0;
             while(actualver != -1)
             {
@@ -133,7 +139,7 @@ namespace NSUNS4_Character_Manager.Tools
                 EffectIndex++;
                 EffectIndexCounter = NamesList[EffectIndex - 1].IndexOf("prm_sklslot");
             }
-            while (EffectIndexCounter == -1);
+            while (EffectIndexCounter == -1 && EffectIndex != NamesList.Count());
             byte[] EffectEntry = new byte[8]
             {
                     0x00,
@@ -218,7 +224,7 @@ namespace NSUNS4_Character_Manager.Tools
                     HitIndex++;
                     HitIndexCounter = NamesList[HitIndex - 1].IndexOf("prm_hit");
                 }
-                while (HitIndexCounter == -1);
+                while (HitIndexCounter == -1 && HitIndex != NamesList.Count());
                 byte[] CollisionEntry = new byte[8]
                 {
                     0x00,
@@ -328,7 +334,7 @@ namespace NSUNS4_Character_Manager.Tools
                     BossIndex++;
                     BossIndexCounter = NamesList[BossIndex - 1].IndexOf("prm_boss");
                 }
-                while (BossIndexCounter == -1);
+                while (BossIndexCounter == -1 && BossIndex != NamesList.Count());
             }
             
 
@@ -1823,7 +1829,7 @@ namespace NSUNS4_Character_Manager.Tools
             listBox2.Items.Clear();
             anm_list.Items.Clear();
             mov_list.Items.Clear();
-
+            HeaderSectionNames.Clear();
             fileBytes = new byte[0];
 
             verSection.Clear();
@@ -2707,6 +2713,17 @@ namespace NSUNS4_Character_Manager.Tools
             else
             {
                 MessageBox.Show("Select Ver section before pasting code!");
+            }
+        }
+
+        private void button10_Click_1(object sender, EventArgs e) {
+            if (anm_list.Items.Count != 0 && listBox1.SelectedIndex!=-1) {
+                anm_list.Items.Clear();
+                plAnmList[listBox1.SelectedIndex].Clear();
+                movementList[listBox1.SelectedIndex].Clear();
+                if (autosave.Checked == true) {
+                    AutoSave();
+                }
             }
         }
     }

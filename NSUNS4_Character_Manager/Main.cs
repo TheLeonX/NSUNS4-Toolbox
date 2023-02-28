@@ -100,6 +100,7 @@ namespace NSUNS4_Character_Manager
         private Button button13;
         private LinkLabel linkLabel12;
         private Button button30;
+        private Button button31;
         public byte[] PRMEditorCopiedSection;
         public byte[] TheValue
         {
@@ -295,7 +296,7 @@ namespace NSUNS4_Character_Manager
         }
         public static int b_byteArrayToIntRevTwoBytes(byte[] actual)
         {
-            return actual[3] + actual[2] * 256;
+            return actual[1] + actual[0] * 256;
         }
         public static int b_byteArrayToIntRev(byte[] actual)
         {
@@ -323,6 +324,14 @@ namespace NSUNS4_Character_Manager
         {
 
             return BitConverter.ToSingle(actual, index);
+        }
+        public static float b_ReadFloatRev(byte[] actual, int index) {
+
+            List<byte> a = new List<byte>();
+            for (int x = 0; x < 4; x++) {
+                a.Add(actual[index + 3 - x]);
+            }
+            return BitConverter.ToSingle(a.ToArray(), 0);
         }
 
         public static string b_ReadString(byte[] actual, int index, int count = -1)
@@ -462,35 +471,40 @@ namespace NSUNS4_Character_Manager
             return output;
         }
 
-        public static byte[] b_AddBytes(byte[] actual, byte[] bytesToAdd, int Reverse = 0, int index = 0, int count = -1)
-        {
+        public static byte[] b_AddBytes(byte[] actual, byte[] bytesToAdd, int Reverse = 0, int index = 0, int count = -1) {
             List<byte> a = actual.ToList();
-            if (Reverse == 0)
-            {
+            if (Reverse == 0) {
                 if (count == -1) count = bytesToAdd.Length;
                 //            for (int x = index; x < index + count; x++)
                 //{
                 //	a.Add(bytesToAdd[x]);
                 //}
-                for (int x = index; x < count; x++)
-                {
+                for (int x = index; x < count; x++) {
                     a.Add(bytesToAdd[x]);
                 }
-            }
-            else
-            {
+            } else {
                 if (count == -1) count = bytesToAdd.Length;
                 //            for (int x = index; x < index + count; x++)
                 //{
                 //	a.Add(bytesToAdd[bytesToAdd.Length - 1 - x]);
                 //}
-                for (int x = index; x < count; x++)
-                {
+                for (int x = index; x < count; x++) {
                     a.Add(bytesToAdd[bytesToAdd.Length - 1 - x]);
                 }
             }
             return a.ToArray();
         }
+
+        //public static byte[] b_AddBytes2(byte[] actual, byte[] bytesToAdd) {
+        //    byte[] act1 = actual;
+        //    if (act1.Length!= 0) {
+        //        bytesToAdd
+        //        return act1;
+        //    }
+        //    else {
+        //        return bytesToAdd;
+        //    }
+        //}
 
         public static byte[] b_AddInt(byte[] actual, int _num)
         {
@@ -858,6 +872,7 @@ namespace NSUNS4_Character_Manager
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
+            this.button31 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1354,6 +1369,7 @@ namespace NSUNS4_Character_Manager
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.button31);
             this.tabPage6.Controls.Add(this.linkLabel12);
             this.tabPage6.Controls.Add(this.linkLabel10);
             this.tabPage6.Controls.Add(this.linkLabel8);
@@ -1559,6 +1575,16 @@ namespace NSUNS4_Character_Manager
             this.linkLabel9.TabStop = true;
             this.linkLabel9.Text = "CC2\'s game Files";
             this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
+            // 
+            // button31
+            // 
+            this.button31.Location = new System.Drawing.Point(301, 40);
+            this.button31.Name = "button31";
+            this.button31.Size = new System.Drawing.Size(299, 38);
+            this.button31.TabIndex = 44;
+            this.button31.Text = "AnmStream to Anm converter";
+            this.button31.UseVisualStyleBackColor = true;
+            this.button31.Click += new System.EventHandler(this.button31_Click);
             // 
             // Main
             // 
@@ -2005,6 +2031,11 @@ namespace NSUNS4_Character_Manager
 
         private void button30_Click(object sender, EventArgs e) {
             Tool_spTypeSupportParamEditor t = new Tool_spTypeSupportParamEditor();
+            t.Show();
+        }
+
+        private void button31_Click(object sender, EventArgs e) {
+            Tool_AnmStreamConverter t = new Tool_AnmStreamConverter();
             t.Show();
         }
     }
