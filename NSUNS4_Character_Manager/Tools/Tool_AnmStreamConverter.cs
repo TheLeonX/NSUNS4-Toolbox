@@ -516,6 +516,11 @@ namespace NSUNS4_Character_Manager.Tools {
                 byteFileCount1[1],
                 byteFileCount1[0]
             };
+            byte[] byteFileCount3 = BitConverter.GetBytes((fileCount*2) + 1);
+            byte[] revbyteFileCount3 = new byte[2]{
+                byteFileCount3[1],
+                byteFileCount3[0]
+            };
             int EntryCount = ClumpIndex_List[0].Count;
             int EntryCount_new = 0;
             for (int y = 0; y < EntryCount; y++) {
@@ -739,12 +744,12 @@ namespace NSUNS4_Character_Manager.Tools {
                         fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 0x12 });
 
                         //Material float value 0
-                        fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 0x00, 0x00, 0x16 });
-                        fileBytes = Main.b_AddBytes(fileBytes, revbyteFileCount);
+                        fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 0x00, 0x00, 0x0C });
+                        fileBytes = Main.b_AddBytes(fileBytes, revbyteFileCount3);
                         fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 12 });
                         //Material float value 1
-                        fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 0x01, 0x00, 0x16 });
-                        fileBytes = Main.b_AddBytes(fileBytes, revbyteFileCount);
+                        fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 0x01, 0x00, 0x0C });
+                        fileBytes = Main.b_AddBytes(fileBytes, revbyteFileCount3);
                         fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 12 });
                         //Material float value 2
                         fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 0x02, 0x00, 0x16 });
@@ -771,12 +776,12 @@ namespace NSUNS4_Character_Manager.Tools {
                         fileBytes = Main.b_AddBytes(fileBytes, revbyteFileCount);
                         fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 12 });
                         //Material float value 8
-                        fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 0x08, 0x00, 0x16 });
-                        fileBytes = Main.b_AddBytes(fileBytes, revbyteFileCount);
+                        fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 0x08, 0x00, 0x0C });
+                        fileBytes = Main.b_AddBytes(fileBytes, revbyteFileCount3);
                         fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 12 });
                         //Material float value 9
-                        fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 0x09, 0x00, 0x16 });
-                        fileBytes = Main.b_AddBytes(fileBytes, revbyteFileCount);
+                        fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 0x09, 0x00, 0x0C });
+                        fileBytes = Main.b_AddBytes(fileBytes, revbyteFileCount3);
                         fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 12 });
                         //Material float value 10
                         fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 0x0A, 0x00, 0x16 });
@@ -812,6 +817,10 @@ namespace NSUNS4_Character_Manager.Tools {
                         fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 12 });
 
                         for (int x = 0; x < fileCount; x++) {
+                            byte[] frame_1 = BitConverter.GetBytes(x*0x64);
+                            byte[] frame_2 = BitConverter.GetBytes((x * 0x64) + 0x32);
+
+
                             byte[] Mat0value = BitConverter.GetBytes(MaterialFloat0anim_List[x][y]);
                             byte[] Mat1value = BitConverter.GetBytes(MaterialFloat1anim_List[x][y]);
                             byte[] Mat2value = BitConverter.GetBytes(MaterialFloat2_List[x][y]);
@@ -828,6 +837,19 @@ namespace NSUNS4_Character_Manager.Tools {
                             byte[] Mat13value = BitConverter.GetBytes(MaterialFloat13_List[x][y]);
                             byte[] Mat14value = BitConverter.GetBytes(MaterialFloat14_List[x][y]);
                             byte[] Mat15value = BitConverter.GetBytes(MaterialFloat15_List[x][y]);
+
+                            byte[] revframe_1 = new byte[4] {
+                                frame_1[3],
+                                frame_1[2],
+                                frame_1[1],
+                                frame_1[0]
+                            };
+                            byte[] revframe_2 = new byte[4] {
+                                frame_2[3],
+                                frame_2[2],
+                                frame_2[1],
+                                frame_2[0]
+                            };
 
                             byte[] revMat0value = new byte[4] {
                                 Mat0value[3],
@@ -925,16 +947,32 @@ namespace NSUNS4_Character_Manager.Tools {
                                 Mat15value[1],
                                 Mat15value[0]
                             };
+                            Part1Value = Main.b_AddBytes(Part1Value, revframe_1);
                             Part1Value = Main.b_AddBytes(Part1Value, revMat0value);
+                            Part1Value = Main.b_AddBytes(Part1Value, revframe_2);
+                            Part1Value = Main.b_AddBytes(Part1Value, revMat0value);
+
+                            Part2Value = Main.b_AddBytes(Part2Value, revframe_1);
                             Part2Value = Main.b_AddBytes(Part2Value, revMat1value);
+                            Part2Value = Main.b_AddBytes(Part2Value, revframe_2);
+                            Part2Value = Main.b_AddBytes(Part2Value, revMat1value);
+
                             matPart1Value = Main.b_AddBytes(matPart1Value, revMat2value);
                             matPart2Value = Main.b_AddBytes(matPart2Value, revMat3value);
                             matPart3Value = Main.b_AddBytes(matPart3Value, revMat4value);
                             matPart4Value = Main.b_AddBytes(matPart4Value, revMat5value);
                             matPart5Value = Main.b_AddBytes(matPart5Value, revMat6value);
                             matPart6Value = Main.b_AddBytes(matPart6Value, revMat7value);
+                            Part3Value = Main.b_AddBytes(Part3Value, revframe_1);
                             Part3Value = Main.b_AddBytes(Part3Value, revMat8value);
+                            Part3Value = Main.b_AddBytes(Part3Value, revframe_2);
+                            Part3Value = Main.b_AddBytes(Part3Value, revMat8value);
+
+                            Part4Value = Main.b_AddBytes(Part4Value, revframe_1);
                             Part4Value = Main.b_AddBytes(Part4Value, revMat9value);
+                            Part4Value = Main.b_AddBytes(Part4Value, revframe_2);
+                            Part4Value = Main.b_AddBytes(Part4Value, revMat9value);
+
                             matPart7Value = Main.b_AddBytes(matPart7Value, revMat10value);
                             matPart8Value = Main.b_AddBytes(matPart8Value, revMat11value);
                             matPart9Value = Main.b_AddBytes(matPart9Value, revMat12value);
@@ -943,6 +981,15 @@ namespace NSUNS4_Character_Manager.Tools {
                             matPart12Value = Main.b_AddBytes(matPart12Value, revMat15value);
 
                         }
+
+                        Part1Value = Main.b_AddBytes(Part1Value, new byte[4] {0xFF,0xFF,0xFF,0xFF});
+                        Part1Value = Main.b_AddBytes(Part1Value, new byte[4] { 0x3F, 0x80, 0x00, 0x00 });
+                        Part2Value = Main.b_AddBytes(Part2Value, new byte[4] { 0xFF, 0xFF, 0xFF, 0xFF });
+                        Part2Value = Main.b_AddBytes(Part2Value, new byte[4] { 0x3F, 0x80, 0x00, 0x00 });
+                        Part3Value = Main.b_AddBytes(Part3Value, new byte[4] { 0xFF, 0xFF, 0xFF, 0xFF });
+                        Part3Value = Main.b_AddBytes(Part3Value, new byte[4] { 0x3F, 0x80, 0x00, 0x00 });
+                        Part4Value = Main.b_AddBytes(Part4Value, new byte[4] { 0xFF, 0xFF, 0xFF, 0xFF });
+                        Part4Value = Main.b_AddBytes(Part4Value, new byte[4] { 0x3F, 0x80, 0x00, 0x00 });
                     } else if (EntryType_List[0][y] == 5) {
                         //Only for light dirct
                         fileBytes = Main.b_AddBytes(fileBytes, new byte[] { 0x00, 0x03 });

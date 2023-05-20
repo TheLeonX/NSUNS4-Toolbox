@@ -132,6 +132,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="NSUNS4_Character_Manager\Misc\DxtUtil.cs" />
+    <Compile Include="NSUNS4_Character_Manager\Misc\Tool_Animation60FPS_Fix.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Misc\Tool_Animation60FPS_Fix.Designer.cs">
+      <DependentUpon>Tool_Animation60FPS_Fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="NSUNS4_Character_Manager\Misc\Tool_nus3bankEditor_v2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -354,6 +360,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Functions\Tool_AddCostume.resx">
       <DependentUpon>Tool_AddCostume.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NSUNS4_Character_Manager\Misc\Tool_Animation60FPS_Fix.resx">
+      <DependentUpon>Tool_Animation60FPS_Fix.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Misc\Tool_nus3bankEditor_v2.resx">
       <DependentUpon>Tool_nus3bankEditor_v2.cs</DependentUpon>

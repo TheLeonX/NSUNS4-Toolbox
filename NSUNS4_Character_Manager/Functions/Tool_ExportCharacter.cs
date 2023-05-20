@@ -1287,10 +1287,10 @@ namespace NSUNS4_Character_Manager.Functions {
                                 byte[] Section = new byte[0x20];
                                 Section = Main.b_ReplaceString(Section, ConditionName, 0);
                                 Section = Main.b_ReplaceBytes(Section, BitConverter.GetBytes(CondCharacodeID), 0x17);
-                                if (!Directory.Exists(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode)) {
-                                    Directory.CreateDirectory(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode);
+                                if (!Directory.Exists(f.SelectedPath + "\\" + SaveCharacode + " - MOD\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode)) {
+                                    Directory.CreateDirectory(f.SelectedPath + "\\" + SaveCharacode + " - MOD\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode);
                                 }
-                                File.WriteAllBytes(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode + "\\specialCondParam.xfbin", Section);
+                                File.WriteAllBytes(f.SelectedPath + "\\" + SaveCharacode + " - MOD\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode + "\\specialCondParam.xfbin", Section);
                                 break;
                             }
                         }
@@ -1309,24 +1309,24 @@ namespace NSUNS4_Character_Manager.Functions {
                                 byte[] Section = new byte[0x20];
                                 Section = Main.b_ReplaceString(Section, ConditionName, 0);
                                 Section = Main.b_ReplaceBytes(Section, BitConverter.GetBytes(CondCharacodeID), 0x17);
-                                if (!Directory.Exists(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode)) {
-                                    Directory.CreateDirectory(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode);
+                                if (!Directory.Exists(f.SelectedPath + "\\" + SaveCharacode + " - MOD\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode)) {
+                                    Directory.CreateDirectory(f.SelectedPath + "\\" + SaveCharacode + " - MOD\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode);
                                 }
-                                File.WriteAllBytes(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode + "\\partnerSlotParam.xfbin", Section);
+                                File.WriteAllBytes(f.SelectedPath + "\\" + SaveCharacode + " - MOD\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode + "\\partnerSlotParam.xfbin", Section);
                                 break;
                             }
                         }
                     }
                 }
                 if (cpkPaths.Count >0) {
-                    if (!Directory.Exists(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode)) {
-                        Directory.CreateDirectory(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode);
+                    if (!Directory.Exists(f.SelectedPath + "\\" + SaveCharacode + " - MOD\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode)) {
+                        Directory.CreateDirectory(f.SelectedPath + "\\" + SaveCharacode + " - MOD\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode);
                     }
                     for (int c = 0; c<cpkPaths.Count;c++) {
-                        CopyFiles(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode, cpkPaths[c], f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode +"\\"+cpkNames[c]);
+                        CopyFiles(f.SelectedPath + "\\" + SaveCharacode + " - MOD\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode, cpkPaths[c], f.SelectedPath + "\\" + SaveCharacode + " - MOD\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode +"\\"+cpkNames[c]);
 
                         if (File.Exists(cpkPaths[c]+".info")) {
-                            CopyFiles(f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode, cpkPaths[c] + ".info", f.SelectedPath + "\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode + "\\" + cpkNames[c] + ".info");
+                            CopyFiles(f.SelectedPath + "\\" + SaveCharacode + " - MOD\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode, cpkPaths[c] + ".info", f.SelectedPath + "\\" + SaveCharacode + " - MOD\\" + SaveCharacode + "\\moddingapi\\mods\\" + SaveCharacode + "\\" + cpkNames[c] + ".info");
 
                         }
                     }

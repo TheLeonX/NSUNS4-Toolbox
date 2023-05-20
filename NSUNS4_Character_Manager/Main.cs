@@ -8,6 +8,7 @@ using System.IO;
 using NSUNS4_Character_Manager.Tools;
 using System.Globalization;
 using System.Text;
+using NSUNS4_Character_Manager.Misc;
 
 namespace NSUNS4_Character_Manager
 {
@@ -101,6 +102,7 @@ namespace NSUNS4_Character_Manager
         private LinkLabel linkLabel12;
         private Button button30;
         private Button button31;
+        private Button button32;
         public byte[] PRMEditorCopiedSection;
         public byte[] TheValue
         {
@@ -268,7 +270,7 @@ namespace NSUNS4_Character_Manager
             List<byte> a = new List<byte>();
             for (int x = 0; x < count; x++)
             {
-                a.Add(actual[index + x]);
+                 a.Add(actual[index + x]);
             }
             return a.ToArray();
         }
@@ -857,6 +859,7 @@ namespace NSUNS4_Character_Manager
             this.button24 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.button31 = new System.Windows.Forms.Button();
             this.linkLabel12 = new System.Windows.Forms.LinkLabel();
             this.linkLabel10 = new System.Windows.Forms.LinkLabel();
             this.linkLabel8 = new System.Windows.Forms.LinkLabel();
@@ -872,7 +875,7 @@ namespace NSUNS4_Character_Manager
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
-            this.button31 = new System.Windows.Forms.Button();
+            this.button32 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1369,6 +1372,7 @@ namespace NSUNS4_Character_Manager
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.button32);
             this.tabPage6.Controls.Add(this.button31);
             this.tabPage6.Controls.Add(this.linkLabel12);
             this.tabPage6.Controls.Add(this.linkLabel10);
@@ -1387,6 +1391,17 @@ namespace NSUNS4_Character_Manager
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Other tools";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // button31
+            // 
+            this.button31.Location = new System.Drawing.Point(301, 77);
+            this.button31.Name = "button31";
+            this.button31.Size = new System.Drawing.Size(299, 38);
+            this.button31.TabIndex = 44;
+            this.button31.Text = "AnmStream to Anm converter";
+            this.button31.UseVisualStyleBackColor = true;
+            this.button31.Visible = false;
+            this.button31.Click += new System.EventHandler(this.button31_Click);
             // 
             // linkLabel12
             // 
@@ -1576,15 +1591,15 @@ namespace NSUNS4_Character_Manager
             this.linkLabel9.Text = "CC2\'s game Files";
             this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
             // 
-            // button31
+            // button32
             // 
-            this.button31.Location = new System.Drawing.Point(301, 40);
-            this.button31.Name = "button31";
-            this.button31.Size = new System.Drawing.Size(299, 38);
-            this.button31.TabIndex = 44;
-            this.button31.Text = "AnmStream to Anm converter";
-            this.button31.UseVisualStyleBackColor = true;
-            this.button31.Click += new System.EventHandler(this.button31_Click);
+            this.button32.Location = new System.Drawing.Point(301, 40);
+            this.button32.Name = "button32";
+            this.button32.Size = new System.Drawing.Size(299, 38);
+            this.button32.TabIndex = 45;
+            this.button32.Text = "60 FPS Fix for animations";
+            this.button32.UseVisualStyleBackColor = true;
+            this.button32.Click += new System.EventHandler(this.button32_Click);
             // 
             // Main
             // 
@@ -2036,6 +2051,11 @@ namespace NSUNS4_Character_Manager
 
         private void button31_Click(object sender, EventArgs e) {
             Tool_AnmStreamConverter t = new Tool_AnmStreamConverter();
+            t.Show();
+        }
+
+        private void button32_Click(object sender, EventArgs e) {
+            Tool_Animation60FPS_Fix t = new Tool_Animation60FPS_Fix();
             t.Show();
         }
     }

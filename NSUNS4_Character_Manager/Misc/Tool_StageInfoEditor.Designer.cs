@@ -528,9 +528,9 @@
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.button6.Location = new System.Drawing.Point(681, 175);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(157, 28);
+            this.button6.Size = new System.Drawing.Size(160, 28);
             this.button6.TabIndex = 27;
-            this.button6.Text = "Rock color palette";
+            this.button6.Text = "Rock Color";
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -548,11 +548,12 @@
             // LightColor
             // 
             this.LightColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.LightColor.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 7F);
             this.LightColor.Location = new System.Drawing.Point(680, 274);
             this.LightColor.Name = "LightColor";
-            this.LightColor.Size = new System.Drawing.Size(157, 28);
+            this.LightColor.Size = new System.Drawing.Size(160, 28);
             this.LightColor.TabIndex = 33;
-            this.LightColor.Text = "Light color palette";
+            this.LightColor.Text = "Parallel Light Source Color";
             this.LightColor.UseVisualStyleBackColor = false;
             this.LightColor.Click += new System.EventHandler(this.button9_Click);
             // 
@@ -584,9 +585,9 @@
             this.ShadowColor.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ShadowColor.Location = new System.Drawing.Point(679, 301);
             this.ShadowColor.Name = "ShadowColor";
-            this.ShadowColor.Size = new System.Drawing.Size(157, 28);
+            this.ShadowColor.Size = new System.Drawing.Size(160, 28);
             this.ShadowColor.TabIndex = 37;
-            this.ShadowColor.Text = "Shadow color palette";
+            this.ShadowColor.Text = "Shadow Color";
             this.ShadowColor.UseVisualStyleBackColor = false;
             this.ShadowColor.Click += new System.EventHandler(this.button14_Click);
             // 
@@ -594,15 +595,15 @@
             // 
             this.label29.AutoSize = true;
             this.label29.ForeColor = System.Drawing.Color.Maroon;
-            this.label29.Location = new System.Drawing.Point(713, 634);
+            this.label29.Location = new System.Drawing.Point(724, 634);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(108, 13);
+            this.label29.Size = new System.Drawing.Size(90, 13);
             this.label29.TabIndex = 54;
-            this.label29.Text = "Shadow point pos";
+            this.label29.Text = "Light Direction";
             // 
             // Shadow_X_Pos
             // 
-            this.Shadow_X_Pos.DecimalPlaces = 2;
+            this.Shadow_X_Pos.DecimalPlaces = 3;
             this.Shadow_X_Pos.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Shadow_X_Pos.Increment = new decimal(new int[] {
             10,
@@ -824,9 +825,9 @@
             this.GlareColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.GlareColor.Location = new System.Drawing.Point(679, 330);
             this.GlareColor.Name = "GlareColor";
-            this.GlareColor.Size = new System.Drawing.Size(157, 28);
+            this.GlareColor.Size = new System.Drawing.Size(160, 28);
             this.GlareColor.TabIndex = 97;
-            this.GlareColor.Text = "Glare color palette";
+            this.GlareColor.Text = "Glare Color";
             this.GlareColor.UseVisualStyleBackColor = false;
             this.GlareColor.Click += new System.EventHandler(this.button21_Click);
             // 
@@ -947,9 +948,9 @@
             this.label46.ForeColor = System.Drawing.Color.Maroon;
             this.label46.Location = new System.Drawing.Point(862, 636);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(115, 13);
+            this.label46.Size = new System.Drawing.Size(122, 13);
             this.label46.TabIndex = 115;
-            this.label46.Text = "lensFlare point pos";
+            this.label46.Text = "Lens Flare Direction";
             // 
             // Glare_power_value
             // 
@@ -1055,17 +1056,17 @@
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9.25F);
             this.label37.ForeColor = System.Drawing.Color.Maroon;
-            this.label37.Location = new System.Drawing.Point(1083, 495);
+            this.label37.Location = new System.Drawing.Point(1050, 495);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(96, 13);
+            this.label37.Size = new System.Drawing.Size(123, 16);
             this.label37.TabIndex = 135;
-            this.label37.Text = "Light\'s strength";
+            this.label37.Text = "Fog End Distance";
             // 
             // Light_power_value
             // 
-            this.Light_power_value.DecimalPlaces = 1;
+            this.Light_power_value.DecimalPlaces = 3;
             this.Light_power_value.Increment = new decimal(new int[] {
             100,
             0,
@@ -1103,9 +1104,9 @@
             this.button34.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.button34.Location = new System.Drawing.Point(681, 203);
             this.button34.Name = "button34";
-            this.button34.Size = new System.Drawing.Size(157, 35);
+            this.button34.Size = new System.Drawing.Size(160, 35);
             this.button34.TabIndex = 137;
-            this.button34.Text = "Ground effect color palette";
+            this.button34.Text = "Effect Ambient Light Color";
             this.button34.UseVisualStyleBackColor = false;
             this.button34.Click += new System.EventHandler(this.button34_Click);
             // 
@@ -1125,9 +1126,9 @@
             this.GroundEffectColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.GroundEffectColor.Location = new System.Drawing.Point(681, 239);
             this.GroundEffectColor.Name = "GroundEffectColor";
-            this.GroundEffectColor.Size = new System.Drawing.Size(157, 35);
+            this.GroundEffectColor.Size = new System.Drawing.Size(160, 35);
             this.GroundEffectColor.TabIndex = 141;
-            this.GroundEffectColor.Text = "Character light color palette";
+            this.GroundEffectColor.Text = "Player Ambient Light Color";
             this.GroundEffectColor.UseVisualStyleBackColor = false;
             this.GroundEffectColor.Click += new System.EventHandler(this.button37_Click);
             // 
@@ -1204,9 +1205,9 @@
             this.label61.ForeColor = System.Drawing.Color.Maroon;
             this.label61.Location = new System.Drawing.Point(1151, 637);
             this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(107, 13);
+            this.label61.Size = new System.Drawing.Size(114, 13);
             this.label61.TabIndex = 154;
-            this.label61.Text = "Unknown position";
+            this.label61.Text = "Depth of Field Blur";
             // 
             // label62
             // 
@@ -1231,7 +1232,7 @@
             // 
             // Shadow_Y_Pos
             // 
-            this.Shadow_Y_Pos.DecimalPlaces = 2;
+            this.Shadow_Y_Pos.DecimalPlaces = 3;
             this.Shadow_Y_Pos.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Shadow_Y_Pos.Increment = new decimal(new int[] {
             10,
@@ -1255,7 +1256,7 @@
             // 
             // Shadow_Z_Pos
             // 
-            this.Shadow_Z_Pos.DecimalPlaces = 2;
+            this.Shadow_Z_Pos.DecimalPlaces = 3;
             this.Shadow_Z_Pos.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Shadow_Z_Pos.Location = new System.Drawing.Point(721, 703);
             this.Shadow_Z_Pos.Maximum = new decimal(new int[] {
@@ -1293,7 +1294,7 @@
             // 
             // Light_Y_Pos
             // 
-            this.Light_Y_Pos.DecimalPlaces = 2;
+            this.Light_Y_Pos.DecimalPlaces = 3;
             this.Light_Y_Pos.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Light_Y_Pos.Increment = new decimal(new int[] {
             10,
@@ -1317,7 +1318,7 @@
             // 
             // Light_X_Pos
             // 
-            this.Light_X_Pos.DecimalPlaces = 2;
+            this.Light_X_Pos.DecimalPlaces = 3;
             this.Light_X_Pos.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Light_X_Pos.Increment = new decimal(new int[] {
             10,
@@ -1341,7 +1342,7 @@
             // 
             // lensFlare_Z_Pos
             // 
-            this.lensFlare_Z_Pos.DecimalPlaces = 2;
+            this.lensFlare_Z_Pos.DecimalPlaces = 3;
             this.lensFlare_Z_Pos.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lensFlare_Z_Pos.Location = new System.Drawing.Point(1019, 706);
             this.lensFlare_Z_Pos.Maximum = new decimal(new int[] {
@@ -1360,7 +1361,7 @@
             // 
             // lensFlare_Y_Pos
             // 
-            this.lensFlare_Y_Pos.DecimalPlaces = 2;
+            this.lensFlare_Y_Pos.DecimalPlaces = 3;
             this.lensFlare_Y_Pos.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lensFlare_Y_Pos.Increment = new decimal(new int[] {
             10,
@@ -1384,7 +1385,7 @@
             // 
             // lensFlare_X_Pos
             // 
-            this.lensFlare_X_Pos.DecimalPlaces = 2;
+            this.lensFlare_X_Pos.DecimalPlaces = 3;
             this.lensFlare_X_Pos.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lensFlare_X_Pos.Increment = new decimal(new int[] {
             10,
@@ -1408,7 +1409,7 @@
             // 
             // Glare_Z_Pos
             // 
-            this.Glare_Z_Pos.DecimalPlaces = 2;
+            this.Glare_Z_Pos.DecimalPlaces = 3;
             this.Glare_Z_Pos.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Glare_Z_Pos.Location = new System.Drawing.Point(1165, 706);
             this.Glare_Z_Pos.Maximum = new decimal(new int[] {
@@ -1427,7 +1428,7 @@
             // 
             // Glare_Y_Pos
             // 
-            this.Glare_Y_Pos.DecimalPlaces = 2;
+            this.Glare_Y_Pos.DecimalPlaces = 3;
             this.Glare_Y_Pos.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Glare_Y_Pos.Increment = new decimal(new int[] {
             10,
@@ -1451,7 +1452,7 @@
             // 
             // Glare_X_Pos
             // 
-            this.Glare_X_Pos.DecimalPlaces = 2;
+            this.Glare_X_Pos.DecimalPlaces = 3;
             this.Glare_X_Pos.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Glare_X_Pos.Increment = new decimal(new int[] {
             10,
@@ -1666,13 +1667,13 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9.25F);
             this.label16.ForeColor = System.Drawing.Color.Maroon;
-            this.label16.Location = new System.Drawing.Point(1044, 524);
+            this.label16.Location = new System.Drawing.Point(1036, 523);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(129, 13);
+            this.label16.Size = new System.Drawing.Size(137, 16);
             this.label16.TabIndex = 192;
-            this.label16.Text = "Blur (not glare effect)";
+            this.label16.Text = "Soft Focus Strength";
             // 
             // BlurValue
             // 
@@ -1894,9 +1895,9 @@
             this.SkyColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.SkyColor.Location = new System.Drawing.Point(680, 358);
             this.SkyColor.Name = "SkyColor";
-            this.SkyColor.Size = new System.Drawing.Size(157, 25);
+            this.SkyColor.Size = new System.Drawing.Size(160, 25);
             this.SkyColor.TabIndex = 228;
-            this.SkyColor.Text = "Fog palette";
+            this.SkyColor.Text = "Fog Color";
             this.SkyColor.UseVisualStyleBackColor = false;
             this.SkyColor.Click += new System.EventHandler(this.SkyColor_Click);
             // 
@@ -1950,7 +1951,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::Properties.Resources.НовыйХолст6;
-            this.pictureBox3.Location = new System.Drawing.Point(818, 76);
+            this.pictureBox3.Location = new System.Drawing.Point(847, 73);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(422, 165);
             this.pictureBox3.TabIndex = 201;
@@ -2079,7 +2080,7 @@
             this.button45.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.button45.Location = new System.Drawing.Point(680, 383);
             this.button45.Name = "button45";
-            this.button45.Size = new System.Drawing.Size(157, 25);
+            this.button45.Size = new System.Drawing.Size(160, 25);
             this.button45.TabIndex = 245;
             this.button45.Text = "Modelhit shadow color 1";
             this.button45.UseVisualStyleBackColor = false;
@@ -2088,13 +2089,13 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9.25F);
             this.label41.ForeColor = System.Drawing.Color.Maroon;
-            this.label41.Location = new System.Drawing.Point(1108, 469);
+            this.label41.Location = new System.Drawing.Point(1044, 466);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(71, 13);
+            this.label41.Size = new System.Drawing.Size(129, 16);
             this.label41.TabIndex = 249;
-            this.label41.Text = "Unknown 1";
+            this.label41.Text = "Fog Start Distance";
             // 
             // unk1_v
             // 
@@ -2146,7 +2147,7 @@
             this.button48.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.button48.Location = new System.Drawing.Point(680, 409);
             this.button48.Name = "button48";
-            this.button48.Size = new System.Drawing.Size(157, 25);
+            this.button48.Size = new System.Drawing.Size(160, 25);
             this.button48.TabIndex = 251;
             this.button48.Text = "Modelhit shadow color 2";
             this.button48.UseVisualStyleBackColor = false;
@@ -2220,7 +2221,7 @@
             // 
             // M_Glare_Value3
             // 
-            this.M_Glare_Value3.DecimalPlaces = 2;
+            this.M_Glare_Value3.DecimalPlaces = 3;
             this.M_Glare_Value3.Increment = new decimal(new int[] {
             10,
             0,
@@ -2244,13 +2245,13 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9.25F);
             this.label18.ForeColor = System.Drawing.Color.Maroon;
-            this.label18.Location = new System.Drawing.Point(1097, 553);
+            this.label18.Location = new System.Drawing.Point(977, 552);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(76, 13);
+            this.label18.Size = new System.Drawing.Size(199, 16);
             this.label18.TabIndex = 266;
-            this.label18.Text = "Screen tone";
+            this.label18.Text = "Mono color Conversion (Blue)";
             // 
             // unknown1_v
             // 
@@ -2278,13 +2279,13 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9.25F);
             this.label21.ForeColor = System.Drawing.Color.Maroon;
-            this.label21.Location = new System.Drawing.Point(1016, 610);
+            this.label21.Location = new System.Drawing.Point(969, 609);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(157, 13);
+            this.label21.Size = new System.Drawing.Size(207, 16);
             this.label21.TabIndex = 264;
-            this.label21.Text = "Screen color transparency";
+            this.label21.Text = "Mono color Conversion (Alpha)";
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // unknown3_v
@@ -2308,13 +2309,13 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Font = new System.Drawing.Font("CC2 RocknRoll Latin DB", 9.25F);
             this.label23.ForeColor = System.Drawing.Color.Maroon;
-            this.label23.Location = new System.Drawing.Point(1033, 580);
+            this.label23.Location = new System.Drawing.Point(977, 580);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(140, 13);
+            this.label23.Size = new System.Drawing.Size(196, 16);
             this.label23.TabIndex = 262;
-            this.label23.Text = "Screen color saturation";
+            this.label23.Text = "Mono color Conversion (Red)";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // unknown2_v
