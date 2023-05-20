@@ -1618,7 +1618,7 @@ namespace NSUNS4_Character_Manager
             this.MaximizeBox = false;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Naruto: Storm 4 Toolbox v6.4.1b (TheLeonX\'s build)";
+            this.Text = "Naruto: Storm 4 Toolbox v6.5 (TheLeonX\'s build)";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.Load += new System.EventHandler(this.Main_Load);
             this.menuStrip1.ResumeLayout(false);
