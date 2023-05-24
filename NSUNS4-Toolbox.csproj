@@ -205,6 +205,12 @@
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_AwakeAuraEditor.Designer.cs">
       <DependentUpon>Tool_AwakeAuraEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_AwakeAuraEditor_v2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_AwakeAuraEditor_v2.Designer.cs">
+      <DependentUpon>Tool_AwakeAuraEditor_v2.cs</DependentUpon>
+    </Compile>
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_battleParamEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -331,6 +337,12 @@
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_spTypeSupportParamEditor.Designer.cs">
       <DependentUpon>Tool_spTypeSupportParamEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_StageInfoEditor_v2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_StageInfoEditor_v2.Designer.cs">
+      <DependentUpon>Tool_StageInfoEditor_v2.cs</DependentUpon>
+    </Compile>
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_UnlockCharaTotalEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -390,6 +402,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_AwakeAuraEditor.resx">
       <DependentUpon>Tool_AwakeAuraEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_AwakeAuraEditor_v2.resx">
+      <DependentUpon>Tool_AwakeAuraEditor_v2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_battleParamEditor.resx">
       <DependentUpon>Tool_battleParamEditor.cs</DependentUpon>
@@ -462,6 +477,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_spTypeSupportParamEditor.resx">
       <DependentUpon>Tool_spTypeSupportParamEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_StageInfoEditor_v2.resx">
+      <DependentUpon>Tool_StageInfoEditor_v2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_UnlockCharaTotalEditor.resx">
       <DependentUpon>Tool_UnlockCharaTotalEditor.cs</DependentUpon>

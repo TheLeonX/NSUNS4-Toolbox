@@ -223,3 +223,5 @@ E:\Desktop\C# Projects\NSUNS4-Toolbox\obj\Debug\NSUNS4-Toolbox.csproj.CopyComple
 E:\Desktop\C# Projects\NSUNS4-Toolbox\obj\Debug\NSUNS4 Toolbox.exe
 E:\Desktop\C# Projects\NSUNS4-Toolbox\obj\Debug\NSUNS4 Toolbox.pdb
 E:\Desktop\C# Projects\NSUNS4-Toolbox\obj\Debug\NSUNS4_Character_Manager.Misc.Tool_Animation60FPS_Fix.resources
+E:\Desktop\C# Projects\NSUNS4-Toolbox\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_AwakeAuraEditor_v2.resources
+E:\Desktop\C# Projects\NSUNS4-Toolbox\obj\Debug\NSUNS4_Character_Manager.Tools.Tool_StageInfoEditor_v2.resources

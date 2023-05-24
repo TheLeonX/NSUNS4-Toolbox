@@ -169,7 +169,6 @@
             this.Sky_light_strength = new System.Windows.Forms.NumericUpDown();
             this.Search_TB = new System.Windows.Forms.TextBox();
             this.Search = new System.Windows.Forms.Button();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.button41 = new System.Windows.Forms.Button();
             this.button43 = new System.Windows.Forms.Button();
             this.RockColorInfo_tb = new System.Windows.Forms.TextBox();
@@ -230,7 +229,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.M_Glare_Value1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.M_Glare_Value2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Sky_light_strength)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.unk1_v)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.M_Glare_Value3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.unknown1_v)).BeginInit();
@@ -1948,16 +1946,6 @@
             this.Search.UseVisualStyleBackColor = true;
             this.Search.Click += new System.EventHandler(this.Search_Click);
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Properties.Resources.НовыйХолст6;
-            this.pictureBox3.Location = new System.Drawing.Point(847, 73);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(422, 165);
-            this.pictureBox3.TabIndex = 201;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Visible = false;
-            // 
             // button41
             // 
             this.button41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
@@ -2409,7 +2397,6 @@
             this.Controls.Add(this.glare1_cb);
             this.Controls.Add(this.shadow2_cb);
             this.Controls.Add(this.shadow1_cb);
-            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.Unknown2ColorInfo_tb);
             this.Controls.Add(this.button47);
             this.Controls.Add(this.button48);
@@ -2595,7 +2582,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.M_Glare_Value1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.M_Glare_Value2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Sky_light_strength)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.unk1_v)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.M_Glare_Value3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.unknown1_v)).EndInit();
@@ -2731,7 +2717,6 @@
         private System.Windows.Forms.NumericUpDown BlurValue;
         private System.Windows.Forms.LinkLabel linkLabel3;
         private System.Windows.Forms.LinkLabel linkLabel4;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.NumericUpDown Vagueness_glare;
         private System.Windows.Forms.Label lensFlareEnabledText;

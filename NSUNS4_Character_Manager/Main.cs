@@ -9,6 +9,7 @@ using NSUNS4_Character_Manager.Tools;
 using System.Globalization;
 using System.Text;
 using NSUNS4_Character_Manager.Misc;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace NSUNS4_Character_Manager
 {
@@ -859,6 +860,7 @@ namespace NSUNS4_Character_Manager
             this.button24 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.button32 = new System.Windows.Forms.Button();
             this.button31 = new System.Windows.Forms.Button();
             this.linkLabel12 = new System.Windows.Forms.LinkLabel();
             this.linkLabel10 = new System.Windows.Forms.LinkLabel();
@@ -875,7 +877,6 @@ namespace NSUNS4_Character_Manager
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
-            this.button32 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1392,6 +1393,16 @@ namespace NSUNS4_Character_Manager
             this.tabPage6.Text = "Other tools";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // button32
+            // 
+            this.button32.Location = new System.Drawing.Point(301, 40);
+            this.button32.Name = "button32";
+            this.button32.Size = new System.Drawing.Size(299, 38);
+            this.button32.TabIndex = 45;
+            this.button32.Text = "60 FPS Fix for animations";
+            this.button32.UseVisualStyleBackColor = true;
+            this.button32.Click += new System.EventHandler(this.button32_Click);
+            // 
             // button31
             // 
             this.button31.Location = new System.Drawing.Point(301, 77);
@@ -1591,16 +1602,6 @@ namespace NSUNS4_Character_Manager
             this.linkLabel9.Text = "CC2\'s game Files";
             this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
             // 
-            // button32
-            // 
-            this.button32.Location = new System.Drawing.Point(301, 40);
-            this.button32.Name = "button32";
-            this.button32.Size = new System.Drawing.Size(299, 38);
-            this.button32.TabIndex = 45;
-            this.button32.Text = "60 FPS Fix for animations";
-            this.button32.UseVisualStyleBackColor = true;
-            this.button32.Click += new System.EventHandler(this.button32_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1618,7 +1619,7 @@ namespace NSUNS4_Character_Manager
             this.MaximizeBox = false;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Naruto: Storm 4 Toolbox v6.5 (TheLeonX\'s build)";
+            this.Text = "Naruto: Storm 4 Toolbox v6.6 (TheLeonX\'s build)";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.Load += new System.EventHandler(this.Main_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -1753,7 +1754,7 @@ namespace NSUNS4_Character_Manager
 
         private void button16_Click(object sender, EventArgs e)
         {
-            Tool_AwakeAuraEditor s = new Tool_AwakeAuraEditor();
+            Tool_AwakeAuraEditor_v2 s = new Tool_AwakeAuraEditor_v2();
             s.Show();
         }
 
@@ -1782,7 +1783,7 @@ namespace NSUNS4_Character_Manager
 
         private void button20_Click(object sender, EventArgs e)
         {
-            Misc.Tool_StageInfoEditor s = new Misc.Tool_StageInfoEditor();
+            Tool_StageInfoEditor_v2 s = new Tool_StageInfoEditor_v2();
             s.Show();
         }
 
@@ -1878,7 +1879,7 @@ namespace NSUNS4_Character_Manager
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start("https://discord.gg/brN9cZxAqm");
+            System.Diagnostics.Process.Start("https://discord.com/invite/naruto-storm-modding-server-841394026599022682");
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
@@ -2057,6 +2058,18 @@ namespace NSUNS4_Character_Manager
         private void button32_Click(object sender, EventArgs e) {
             Tool_Animation60FPS_Fix t = new Tool_Animation60FPS_Fix();
             t.Show();
+        }
+    }
+
+    public static class ExtensionMethods {
+        // Deep clone
+        public static T DeepClone<T>(this T a) {
+            using (MemoryStream stream = new MemoryStream()) {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(stream, a);
+                stream.Position = 0;
+                return (T)formatter.Deserialize(stream);
+            }
         }
     }
 }

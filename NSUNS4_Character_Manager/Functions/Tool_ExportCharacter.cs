@@ -358,7 +358,8 @@ namespace NSUNS4_Character_Manager.Functions {
                                         for (int c = 0; c < damageEffModFile.EntryCount; c++) {
                                             if (damageEffModFile.HitId_List[c] == selectedhit && !HitId_List.Contains(selectedhit)) {
                                                 HitId_List.Add(damageEffModFile.HitId_List[c]);
-                                                ExtraHitId_List.Add(damageEffModFile.ExtraHitId_List[c]);
+                                                //ExtraHitId_List.Add(damageEffModFile.ExtraHitId_List[c]); doesnt work with mod manager
+                                                ExtraHitId_List.Add(0);
                                                 ExtraSoundId_List.Add(damageEffModFile.ExtraSoundId_List[c]);
                                                 EffectPrmId_List.Add(damageEffModFile.EffectPrmId_List[c]);
                                                 SoundId_List.Add(damageEffModFile.SoundId_List[c]);
@@ -1204,9 +1205,10 @@ namespace NSUNS4_Character_Manager.Functions {
                     CueIDsList.Add(new List<int>());
                     VoiceOnlysList.Add(new List<int>());
                     for (int i = 0; i < CharacterMessageIds.Count; i++) {
+                        string crc32_message = BitConverter.ToString(Main.crc32(CharacterMessageIds[i]));
                         if (MessageInfoFile.CRC32CodesList[l].Count != 0) {
                             for (int x = 0; x < MessageInfoFile.CRC32CodesList[l].Count; x++) {
-                                if (BitConverter.ToString(MessageInfoFile.CRC32CodesList[l][x]) == BitConverter.ToString(Main.crc32(CharacterMessageIds[i])) && !UsedMessageIDs.Contains(CharacterMessageIds[i])) {
+                                if (BitConverter.ToString(MessageInfoFile.CRC32CodesList[l][x]) == crc32_message && !UsedMessageIDs.Contains(CharacterMessageIds[i])) {
                                     CRC32CodesList[l].Add(MessageInfoFile.CRC32CodesList[l][x]);
                                     MainTextsList[l].Add(MessageInfoFile.MainTextsList[l][x]);
                                     ExtraTextsList[l].Add(MessageInfoFile.ExtraTextsList[l][x]);
