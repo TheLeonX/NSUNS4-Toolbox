@@ -293,7 +293,9 @@ namespace NSUNS4_Character_Manager.Tools {
         }
 
         private void Tool_privateCameraEditor_Load(object sender, EventArgs e) {
-
+            if (File.Exists(Main.privateCameraPath)) {
+                OpenFile(Main.privateCameraPath);
+            }
         }
     }
 }

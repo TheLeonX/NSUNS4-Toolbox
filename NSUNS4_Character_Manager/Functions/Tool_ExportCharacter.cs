@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+//using static System.Net.WebRequestMethods;
+//using static System.Net.WebRequestMethods;
 
 namespace NSUNS4_Character_Manager.Functions {
 
@@ -440,109 +442,8 @@ namespace NSUNS4_Character_Manager.Functions {
                     }
                 }
             }
-            if (btlcmnExist) {
-                List<string> UsedSoundList = new List<string>();
-                if (evExist) {
-                    byte[] evFile = File.ReadAllBytes(evPath);
-                    List<int> UsedSound_ev_List = Main.b_FindBytesList(evFile, new byte[3] { 0x00, 0x53, 0x5F });
-                    for (int i = 0; i < UsedSound_ev_List.Count; i++) {
-                        UsedSoundList.Add(Main.b_ReadString(evFile, UsedSound_ev_List[i] + 1));
-                    }
-                }
-                if (ev_splExist) {
-                    byte[] ev_spl_File = File.ReadAllBytes(ev_splPath);
-                    List<int> UsedSound_ev_spl_List = Main.b_FindBytesList(ev_spl_File, new byte[3] { 0x00, 0x53, 0x5F });
-                    for (int i = 0; i < UsedSound_ev_spl_List.Count; i++) {
-                        UsedSoundList.Add(Main.b_ReadString(ev_spl_File, UsedSound_ev_spl_List[i] + 1));
-                    }
-                }
-                if ((ev_splExist || evExist) && UsedSoundList.Count > 0) {
-                    Misc.Tool_nus3bankEditor_v2 btlcmnFile = new Misc.Tool_nus3bankEditor_v2();
-                    btlcmnFile.OpenFile(btlcmnPath);
-                    List<int> TONE_SectionType_List = new List<int>();
-                    List<byte[]> TONE_SectionTypeValues_List = new List<byte[]>();
-                    List<string> TONE_SoundName_List = new List<string>();
-                    List<int> TONE_SoundPos_List = new List<int>();
-                    List<int> TONE_SoundSize_List = new List<int>();
-                    List<float> TONE_MainVolume_List = new List<float>();
-                    List<byte[]> TONE_SoundSettings_List = new List<byte[]>();
-                    List<byte[]> TONE_SoundData_List = new List<byte[]>();
-                    List<int> TONE_RandomizerType_List = new List<int>();
-                    List<int> TONE_RandomizerLength_List = new List<int>();
-                    List<int> TONE_RandomizerUnk1_List = new List<int>();
-                    List<int> TONE_RandomizerSectionCount_List = new List<int>();
-                    List<List<int>> TONE_RandomizerOneSection_ID_List = new List<List<int>>();
-                    List<List<int>> TONE_RandomizerOneSection_unk_List = new List<List<int>>();
-                    List<List<float>> TONE_RandomizerOneSection_PlayChance_List = new List<List<float>>();
-                    List<List<int>> TONE_RandomizerOneSection_SoundID_List = new List<List<int>>();
-                    List<float> TONE_RandomizerUnk2_List = new List<float>();
-                    List<float> TONE_RandomizerUnk3_List = new List<float>();
-                    List<float> TONE_RandomizerUnk4_List = new List<float>();
-                    List<float> TONE_RandomizerUnk5_List = new List<float>();
-                    List<float> TONE_RandomizerUnk6_List = new List<float>();
-                    List<bool> TONE_OverlaySound_List = new List<bool>();
-                    if (btlcmnFile.TONE_SoundName_List.Count > 3000) {
-                        for (int z = 3000; z < btlcmnFile.TONE_SoundName_List.Count; z++) {
-                            for (int c = 0; c < UsedSoundList.Count; c++) {
-                                if (btlcmnFile.TONE_SoundName_List[z] == UsedSoundList[c] && btlcmnFile.TONE_SoundData_List[z].Length != 0 && btlcmnFile.TONE_SectionType_List[z] == 0) {
-                                    TONE_SectionType_List.Add(btlcmnFile.TONE_SectionType_List[z]);
-                                    TONE_SectionTypeValues_List.Add(btlcmnFile.TONE_SectionTypeValues_List[z]);
-                                    TONE_SoundName_List.Add(btlcmnFile.TONE_SoundName_List[z]);
-                                    TONE_SoundPos_List.Add(btlcmnFile.TONE_SoundPos_List[z]);
-                                    TONE_SoundSize_List.Add(btlcmnFile.TONE_SoundSize_List[z]);
-                                    TONE_MainVolume_List.Add(btlcmnFile.TONE_MainVolume_List[z]);
-                                    TONE_SoundSettings_List.Add(btlcmnFile.TONE_SoundSettings_List[z]);
-                                    TONE_SoundData_List.Add(btlcmnFile.TONE_SoundData_List[z]);
-                                    TONE_RandomizerType_List.Add(btlcmnFile.TONE_RandomizerType_List[z]);
-                                    TONE_RandomizerLength_List.Add(btlcmnFile.TONE_RandomizerLength_List[z]);
-                                    TONE_RandomizerUnk1_List.Add(btlcmnFile.TONE_RandomizerUnk1_List[z]);
-                                    TONE_RandomizerSectionCount_List.Add(btlcmnFile.TONE_RandomizerSectionCount_List[z]);
-                                    TONE_RandomizerOneSection_ID_List.Add(btlcmnFile.TONE_RandomizerOneSection_ID_List[z]);
-                                    TONE_RandomizerOneSection_unk_List.Add(btlcmnFile.TONE_RandomizerOneSection_unk_List[z]);
-                                    TONE_RandomizerOneSection_PlayChance_List.Add(btlcmnFile.TONE_RandomizerOneSection_PlayChance_List[z]);
-                                    TONE_RandomizerOneSection_SoundID_List.Add(btlcmnFile.TONE_RandomizerOneSection_SoundID_List[z]);
-                                    TONE_RandomizerUnk2_List.Add(btlcmnFile.TONE_RandomizerUnk2_List[z]);
-                                    TONE_RandomizerUnk3_List.Add(btlcmnFile.TONE_RandomizerUnk3_List[z]);
-                                    TONE_RandomizerUnk4_List.Add(btlcmnFile.TONE_RandomizerUnk4_List[z]);
-                                    TONE_RandomizerUnk5_List.Add(btlcmnFile.TONE_RandomizerUnk5_List[z]);
-                                    TONE_RandomizerUnk6_List.Add(btlcmnFile.TONE_RandomizerUnk6_List[z]);
-                                    TONE_OverlaySound_List.Add(btlcmnFile.TONE_OverlaySound_List[z]);
-                                }
-
-                            }
-                        }
-                        btlcmnFile.TONE_SectionType_List = TONE_SectionType_List;
-                        btlcmnFile.TONE_SectionTypeValues_List = TONE_SectionTypeValues_List;
-                        btlcmnFile.TONE_SoundName_List = TONE_SoundName_List;
-                        btlcmnFile.TONE_SoundPos_List = TONE_SoundPos_List;
-                        btlcmnFile.TONE_SoundSize_List = TONE_SoundSize_List;
-                        btlcmnFile.TONE_MainVolume_List = TONE_MainVolume_List;
-                        btlcmnFile.TONE_SoundSettings_List = TONE_SoundSettings_List;
-                        btlcmnFile.TONE_SoundData_List = TONE_SoundData_List;
-                        btlcmnFile.TONE_RandomizerType_List = TONE_RandomizerType_List;
-                        btlcmnFile.TONE_RandomizerLength_List = TONE_RandomizerLength_List;
-                        btlcmnFile.TONE_RandomizerUnk1_List = TONE_RandomizerUnk1_List;
-                        btlcmnFile.TONE_RandomizerSectionCount_List = TONE_RandomizerSectionCount_List;
-                        btlcmnFile.TONE_RandomizerOneSection_ID_List = TONE_RandomizerOneSection_ID_List;
-                        btlcmnFile.TONE_RandomizerOneSection_unk_List = TONE_RandomizerOneSection_unk_List;
-                        btlcmnFile.TONE_RandomizerOneSection_PlayChance_List = TONE_RandomizerOneSection_PlayChance_List;
-                        btlcmnFile.TONE_RandomizerOneSection_SoundID_List = TONE_RandomizerOneSection_SoundID_List;
-                        btlcmnFile.TONE_RandomizerUnk2_List = TONE_RandomizerUnk2_List;
-                        btlcmnFile.TONE_RandomizerUnk3_List = TONE_RandomizerUnk3_List;
-                        btlcmnFile.TONE_RandomizerUnk4_List = TONE_RandomizerUnk4_List;
-                        btlcmnFile.TONE_RandomizerUnk5_List = TONE_RandomizerUnk5_List;
-                        btlcmnFile.TONE_RandomizerUnk6_List = TONE_RandomizerUnk6_List;
-                        btlcmnFile.TONE_OverlaySound_List = TONE_OverlaySound_List;
-                        if (btlcmnFile.TONE_SoundName_List.Count != 0) {
-                            if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\sound\\PC\\"))) {
-                                Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\sound\\PC\\"));
-                            }
-                            btlcmnFile.SaveFileAs(SaveDirectory + "\\sound\\PC\\btlcmn.xfbin");
-
-                        }
-                    }
-                }
-            }
+            List<string> UsedSoundList = new List<string>();
+            
             if (prmLoadExist) {
                 Tool_SpcloadEditor SpcloadFile = new Tool_SpcloadEditor();
                 SpcloadFile.OpenFile(prmLoadPath);
@@ -642,6 +543,19 @@ namespace NSUNS4_Character_Manager.Functions {
                         }
 
                     }
+                    if (SpcloadFile.spcloadParam[i].path.Contains("skill")) {
+                        if (File.Exists(Main.datawin32Path + "\\skill\\" + SpcloadFile.spcloadParam[i].name + ".xfbin")) {
+                            byte[] skill_file = File.ReadAllBytes(Main.datawin32Path + "\\skill\\" + SpcloadFile.spcloadParam[i].name + ".xfbin");
+                            List<int> UsedSound_skill_List = Main.b_FindBytesList(skill_file, new byte[18] { 0x53, 0x6F, 0x75, 0x6E, 0x64, 0x45, 0x66, 0x66, 0x65, 0x63, 0x74, 0x20, 0x63, 0x6F, 0x64, 0x65, 0x3D, 0x22 });
+                            for (int iz = 0; iz < UsedSound_skill_List.Count; iz++) {
+                                MessageBox.Show(Main.b_ReadString3(skill_file, UsedSound_skill_List[iz] + 18,-1,0x22));
+                                if (!UsedSoundList.Contains(Main.b_ReadString3(skill_file, UsedSound_skill_List[iz]+18, -1, 0x22))) {
+                                    UsedSoundList.Add(Main.b_ReadString3(skill_file, UsedSound_skill_List[iz] + 18, -1, 0x22));
+                                }
+                            }
+                        }
+
+                    }
                     if (names.Count == 0) {
                         if (File.Exists(Main.datawin32Path + "\\" + SpcloadFile.spcloadParam[i].path + "\\" + name + ".xfbin"))
                             CopyFiles(SaveDirectory + "\\" + SpcloadFile.spcloadParam[i].path, Main.datawin32Path + "\\" + SpcloadFile.spcloadParam[i].path + "\\" + name + ".xfbin", SaveDirectory + "\\" + SpcloadFile.spcloadParam[i].path + "\\" + name + ".xfbin");
@@ -653,6 +567,115 @@ namespace NSUNS4_Character_Manager.Functions {
                         }
                     }
 
+                }
+            }
+            if (btlcmnExist) {
+                if (evExist) {
+                    byte[] evFile = File.ReadAllBytes(evPath);
+                    List<int> UsedSound_ev_List = Main.b_FindBytesList(evFile, new byte[3] { 0x00, 0x53, 0x5F });
+                    for (int i = 0; i < UsedSound_ev_List.Count; i++) {
+                        if (!UsedSoundList.Contains(Main.b_ReadString(evFile, UsedSound_ev_List[i] + 1))) {
+                            UsedSoundList.Add(Main.b_ReadString(evFile, UsedSound_ev_List[i] + 1));
+                        }
+                    }
+                }
+                if (ev_splExist) {
+                    byte[] ev_spl_File = File.ReadAllBytes(ev_splPath);
+                    List<int> UsedSound_ev_spl_List = Main.b_FindBytesList(ev_spl_File, new byte[3] { 0x00, 0x53, 0x5F });
+                    for (int i = 0; i < UsedSound_ev_spl_List.Count; i++) {
+                        if (!UsedSoundList.Contains(Main.b_ReadString(ev_spl_File, UsedSound_ev_spl_List[i] + 1))) {
+                            UsedSoundList.Add(Main.b_ReadString(ev_spl_File, UsedSound_ev_spl_List[i] + 1));
+                        }
+                    }
+                }
+
+
+
+                if ((ev_splExist || evExist) && UsedSoundList.Count > 0) {
+                    Misc.Tool_nus3bankEditor_v2 btlcmnFile = new Misc.Tool_nus3bankEditor_v2();
+                    btlcmnFile.OpenFile(btlcmnPath);
+                    List<int> TONE_SectionType_List = new List<int>();
+                    List<byte[]> TONE_SectionTypeValues_List = new List<byte[]>();
+                    List<string> TONE_SoundName_List = new List<string>();
+                    List<int> TONE_SoundPos_List = new List<int>();
+                    List<int> TONE_SoundSize_List = new List<int>();
+                    List<float> TONE_MainVolume_List = new List<float>();
+                    List<byte[]> TONE_SoundSettings_List = new List<byte[]>();
+                    List<byte[]> TONE_SoundData_List = new List<byte[]>();
+                    List<int> TONE_RandomizerType_List = new List<int>();
+                    List<int> TONE_RandomizerLength_List = new List<int>();
+                    List<int> TONE_RandomizerUnk1_List = new List<int>();
+                    List<int> TONE_RandomizerSectionCount_List = new List<int>();
+                    List<List<int>> TONE_RandomizerOneSection_ID_List = new List<List<int>>();
+                    List<List<int>> TONE_RandomizerOneSection_unk_List = new List<List<int>>();
+                    List<List<float>> TONE_RandomizerOneSection_PlayChance_List = new List<List<float>>();
+                    List<List<int>> TONE_RandomizerOneSection_SoundID_List = new List<List<int>>();
+                    List<float> TONE_RandomizerUnk2_List = new List<float>();
+                    List<float> TONE_RandomizerUnk3_List = new List<float>();
+                    List<float> TONE_RandomizerUnk4_List = new List<float>();
+                    List<float> TONE_RandomizerUnk5_List = new List<float>();
+                    List<float> TONE_RandomizerUnk6_List = new List<float>();
+                    List<bool> TONE_OverlaySound_List = new List<bool>();
+                    if (btlcmnFile.TONE_SoundName_List.Count > 3000) {
+                        for (int z = 3000; z < btlcmnFile.TONE_SoundName_List.Count; z++) {
+                            for (int c = 0; c < UsedSoundList.Count; c++) {
+                                if (btlcmnFile.TONE_SoundName_List[z] == UsedSoundList[c] && btlcmnFile.TONE_SoundData_List[z].Length != 0 && btlcmnFile.TONE_SectionType_List[z] == 0) {
+                                    TONE_SectionType_List.Add(btlcmnFile.TONE_SectionType_List[z]);
+                                    TONE_SectionTypeValues_List.Add(btlcmnFile.TONE_SectionTypeValues_List[z]);
+                                    TONE_SoundName_List.Add(btlcmnFile.TONE_SoundName_List[z]);
+                                    TONE_SoundPos_List.Add(btlcmnFile.TONE_SoundPos_List[z]);
+                                    TONE_SoundSize_List.Add(btlcmnFile.TONE_SoundSize_List[z]);
+                                    TONE_MainVolume_List.Add(btlcmnFile.TONE_MainVolume_List[z]);
+                                    TONE_SoundSettings_List.Add(btlcmnFile.TONE_SoundSettings_List[z]);
+                                    TONE_SoundData_List.Add(btlcmnFile.TONE_SoundData_List[z]);
+                                    TONE_RandomizerType_List.Add(btlcmnFile.TONE_RandomizerType_List[z]);
+                                    TONE_RandomizerLength_List.Add(btlcmnFile.TONE_RandomizerLength_List[z]);
+                                    TONE_RandomizerUnk1_List.Add(btlcmnFile.TONE_RandomizerUnk1_List[z]);
+                                    TONE_RandomizerSectionCount_List.Add(btlcmnFile.TONE_RandomizerSectionCount_List[z]);
+                                    TONE_RandomizerOneSection_ID_List.Add(btlcmnFile.TONE_RandomizerOneSection_ID_List[z]);
+                                    TONE_RandomizerOneSection_unk_List.Add(btlcmnFile.TONE_RandomizerOneSection_unk_List[z]);
+                                    TONE_RandomizerOneSection_PlayChance_List.Add(btlcmnFile.TONE_RandomizerOneSection_PlayChance_List[z]);
+                                    TONE_RandomizerOneSection_SoundID_List.Add(btlcmnFile.TONE_RandomizerOneSection_SoundID_List[z]);
+                                    TONE_RandomizerUnk2_List.Add(btlcmnFile.TONE_RandomizerUnk2_List[z]);
+                                    TONE_RandomizerUnk3_List.Add(btlcmnFile.TONE_RandomizerUnk3_List[z]);
+                                    TONE_RandomizerUnk4_List.Add(btlcmnFile.TONE_RandomizerUnk4_List[z]);
+                                    TONE_RandomizerUnk5_List.Add(btlcmnFile.TONE_RandomizerUnk5_List[z]);
+                                    TONE_RandomizerUnk6_List.Add(btlcmnFile.TONE_RandomizerUnk6_List[z]);
+                                    TONE_OverlaySound_List.Add(btlcmnFile.TONE_OverlaySound_List[z]);
+                                }
+
+                            }
+                        }
+                        btlcmnFile.TONE_SectionType_List = TONE_SectionType_List;
+                        btlcmnFile.TONE_SectionTypeValues_List = TONE_SectionTypeValues_List;
+                        btlcmnFile.TONE_SoundName_List = TONE_SoundName_List;
+                        btlcmnFile.TONE_SoundPos_List = TONE_SoundPos_List;
+                        btlcmnFile.TONE_SoundSize_List = TONE_SoundSize_List;
+                        btlcmnFile.TONE_MainVolume_List = TONE_MainVolume_List;
+                        btlcmnFile.TONE_SoundSettings_List = TONE_SoundSettings_List;
+                        btlcmnFile.TONE_SoundData_List = TONE_SoundData_List;
+                        btlcmnFile.TONE_RandomizerType_List = TONE_RandomizerType_List;
+                        btlcmnFile.TONE_RandomizerLength_List = TONE_RandomizerLength_List;
+                        btlcmnFile.TONE_RandomizerUnk1_List = TONE_RandomizerUnk1_List;
+                        btlcmnFile.TONE_RandomizerSectionCount_List = TONE_RandomizerSectionCount_List;
+                        btlcmnFile.TONE_RandomizerOneSection_ID_List = TONE_RandomizerOneSection_ID_List;
+                        btlcmnFile.TONE_RandomizerOneSection_unk_List = TONE_RandomizerOneSection_unk_List;
+                        btlcmnFile.TONE_RandomizerOneSection_PlayChance_List = TONE_RandomizerOneSection_PlayChance_List;
+                        btlcmnFile.TONE_RandomizerOneSection_SoundID_List = TONE_RandomizerOneSection_SoundID_List;
+                        btlcmnFile.TONE_RandomizerUnk2_List = TONE_RandomizerUnk2_List;
+                        btlcmnFile.TONE_RandomizerUnk3_List = TONE_RandomizerUnk3_List;
+                        btlcmnFile.TONE_RandomizerUnk4_List = TONE_RandomizerUnk4_List;
+                        btlcmnFile.TONE_RandomizerUnk5_List = TONE_RandomizerUnk5_List;
+                        btlcmnFile.TONE_RandomizerUnk6_List = TONE_RandomizerUnk6_List;
+                        btlcmnFile.TONE_OverlaySound_List = TONE_OverlaySound_List;
+                        if (btlcmnFile.TONE_SoundName_List.Count != 0) {
+                            if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\sound\\PC\\"))) {
+                                Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\sound\\PC\\"));
+                            }
+                            btlcmnFile.SaveFileAs(SaveDirectory + "\\sound\\PC\\btlcmn.xfbin");
+
+                        }
+                    }
                 }
             }
             if (damageprmExist) {

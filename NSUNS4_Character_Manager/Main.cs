@@ -404,6 +404,29 @@ namespace NSUNS4_Character_Manager
             }
             return a;
         }
+
+        public static string b_ReadString3(byte[] actual, int index, int count = -1, int skip = 0) {
+            string a = "";
+            if (count == -1) {
+                for (int x2 = index; x2 < actual.Length; x2++) {
+                    if (actual[x2] != 0 && actual[x2] != skip) {
+                        string str = a;
+                        char c = (char)actual[x2];
+                        a = str + c;
+                    } else {
+                        x2 = actual.Length;
+                    }
+                }
+            } else {
+                for (int x = index; x < index + count; x++) {
+                    string str2 = a;
+                    char c = (char)actual[x];
+                    a = str2 + c;
+                }
+            }
+            return a;
+        }
+
         public static byte[] b_ReplaceBytes(byte[] actual, byte[] bytesToReplace, int Index, int Invert = 0)
         {
             if (Invert == 0)
@@ -1454,12 +1477,13 @@ namespace NSUNS4_Character_Manager
             this.linkLabel10.AutoSize = true;
             this.linkLabel10.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.linkLabel10.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel10.Location = new System.Drawing.Point(3, 124);
+            this.linkLabel10.Location = new System.Drawing.Point(508, 463);
             this.linkLabel10.Name = "linkLabel10";
             this.linkLabel10.Size = new System.Drawing.Size(80, 15);
             this.linkLabel10.TabIndex = 41;
             this.linkLabel10.TabStop = true;
             this.linkLabel10.Text = "CPK Repacker";
+            this.linkLabel10.Visible = false;
             this.linkLabel10.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel10_LinkClicked);
             // 
             // linkLabel8
@@ -1467,7 +1491,7 @@ namespace NSUNS4_Character_Manager
             this.linkLabel8.AutoSize = true;
             this.linkLabel8.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.linkLabel8.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel8.Location = new System.Drawing.Point(3, 169);
+            this.linkLabel8.Location = new System.Drawing.Point(4, 142);
             this.linkLabel8.Name = "linkLabel8";
             this.linkLabel8.Size = new System.Drawing.Size(70, 15);
             this.linkLabel8.TabIndex = 40;
@@ -1480,7 +1504,7 @@ namespace NSUNS4_Character_Manager
             this.linkLabel7.AutoSize = true;
             this.linkLabel7.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.linkLabel7.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel7.Location = new System.Drawing.Point(4, 154);
+            this.linkLabel7.Location = new System.Drawing.Point(4, 127);
             this.linkLabel7.Name = "linkLabel7";
             this.linkLabel7.Size = new System.Drawing.Size(84, 15);
             this.linkLabel7.TabIndex = 39;
@@ -1493,12 +1517,13 @@ namespace NSUNS4_Character_Manager
             this.linkLabel6.AutoSize = true;
             this.linkLabel6.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.linkLabel6.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel6.Location = new System.Drawing.Point(4, 139);
+            this.linkLabel6.Location = new System.Drawing.Point(526, 478);
             this.linkLabel6.Name = "linkLabel6";
             this.linkLabel6.Size = new System.Drawing.Size(62, 15);
             this.linkLabel6.TabIndex = 38;
             this.linkLabel6.TabStop = true;
             this.linkLabel6.Text = "NUT Tools";
+            this.linkLabel6.Visible = false;
             this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
             // 
             // linkLabel5
@@ -2021,7 +2046,7 @@ namespace NSUNS4_Character_Manager
         }
 
         private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start("https://github.com/SutandoTsukai181/010-Editor-Binary-Templates");
+            System.Diagnostics.Process.Start("https://github.com/superuser590/Storm-Engine-010-Editor-Templates");
         }
 
         private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
