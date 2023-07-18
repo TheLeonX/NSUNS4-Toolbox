@@ -59,7 +59,7 @@ namespace NSUNS4_Character_Manager
             int basedpp = -1;
             for(int x = 0; x < dpp.EntryCount; x++)
             {
-                if(basechar == dpp.CharaList[x])
+                if(basechar == dpp.duelPlayerParam[x].CharaList)
                 {
                     basedpp = x;
                     x = dpp.EntryCount;
@@ -75,15 +75,15 @@ namespace NSUNS4_Character_Manager
             dpp.listBox1.SelectedIndex = basedpp;
             dpp.AddEntry();
             int indexdpp = dpp.EntryCount - 1;
-            dpp.CharaList[indexdpp] = character;
+            dpp.duelPlayerParam[indexdpp].CharaList = character;
 
             // Set costume
-            if (model != "") dpp.CostumeList[indexdpp][0] = model;
-            else dpp.CostumeList[indexdpp][0] = character;
+            if (model != "") dpp.duelPlayerParam[indexdpp].CostumeList[0] = model;
+            else dpp.duelPlayerParam[indexdpp].CostumeList[0] = character;
 
             // Set binPath and binName
-            dpp.BinPath[indexdpp] = "Z:/param/player/Converter/bin/" + character + "prm_bas.bin";
-            dpp.BinName[indexdpp] = character + "prm_bas";
+            dpp.duelPlayerParam[indexdpp].BinPath = "Z:/param/player/Converter/bin/" + character + "prm_bas.bin";
+            dpp.duelPlayerParam[indexdpp].BinName = character + "prm_bas";
 
             // Open PSP
             Tool_PlayerSettingParamEditor psp = new Tool_PlayerSettingParamEditor();

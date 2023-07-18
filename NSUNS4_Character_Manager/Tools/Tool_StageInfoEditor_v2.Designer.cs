@@ -2237,7 +2237,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Tool_StageInfoEditor_v2";
-            this.Text = "Tool_StageInfoEditor_v2";
+            this.Text = "StageInfo Editor v2";
             this.Load += new System.EventHandler(this.Tool_StageInfoEditor_v2_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

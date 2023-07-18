@@ -57,6 +57,7 @@ namespace NSUNS4_Character_Manager
         public static string conditionprmPath = "[null]";
         public static string damageprmPath = "[null]";
         public static string spTypeSupportParamPath = "[null]";
+        public static string privateCameraPath = "[null]";
         private Button button9;
         private Button button10;
         private Button button11;
@@ -104,6 +105,7 @@ namespace NSUNS4_Character_Manager
         private Button button30;
         private Button button31;
         private Button button32;
+        private Button button33;
         public byte[] PRMEditorCopiedSection;
         public byte[] TheValue
         {
@@ -127,62 +129,66 @@ namespace NSUNS4_Character_Manager
 
         void CreateConfig()
         {
-            List<string> cfg = new List<string>();
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
+            List<string> cfg = new List<string> {
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]"
+            };
             File.WriteAllLines(ConfigPath, cfg.ToArray());
             MessageBox.Show("Config file created.");
         }
 
         void SaveConfig()
         {
-            List<string> cfg = new List<string>();
-            cfg.Add(datawin32Path);
-            cfg.Add(chaPath);
-            cfg.Add(dppPath);
-            cfg.Add(pspPath);
-            cfg.Add(unlPath);
-            cfg.Add(cspPath);
-            cfg.Add(iconPath);
-            cfg.Add(awakeAuraPath);
-            cfg.Add(ougiFinishPath);
-            cfg.Add(skillCustomizePath);
-            cfg.Add(spSkillCustomizePath);
-            cfg.Add(afterAttachObjectPath);
-            cfg.Add(appearanceAnmPath);
-            cfg.Add(stageInfoPath);
-            cfg.Add(battleParamPath);
-            cfg.Add(episodeParamPath);
-            cfg.Add(episodeMovieParamPath);
-            cfg.Add(messageInfoPath);
-            cfg.Add(cmnparamPath);
-            cfg.Add(effectprmPath);
-            cfg.Add(damageeffPath);
-            cfg.Add(conditionprmPath);
-            cfg.Add(damageprmPath);
-            cfg.Add(spTypeSupportParamPath);
+            List<string> cfg = new List<string> {
+                datawin32Path,
+                chaPath,
+                dppPath,
+                pspPath,
+                unlPath,
+                cspPath,
+                iconPath,
+                awakeAuraPath,
+                ougiFinishPath,
+                skillCustomizePath,
+                spSkillCustomizePath,
+                afterAttachObjectPath,
+                appearanceAnmPath,
+                stageInfoPath,
+                battleParamPath,
+                episodeParamPath,
+                episodeMovieParamPath,
+                messageInfoPath,
+                cmnparamPath,
+                effectprmPath,
+                damageeffPath,
+                conditionprmPath,
+                damageprmPath,
+                spTypeSupportParamPath,
+                privateCameraPath
+            };
             File.WriteAllLines(ConfigPath, cfg.ToArray());
             MessageBox.Show("Config file saved.");
         }
@@ -214,6 +220,7 @@ namespace NSUNS4_Character_Manager
             if (cfg.Length > 21) conditionprmPath = cfg[21];
             if (cfg.Length > 22) damageprmPath = cfg[22];
             if (cfg.Length > 23) spTypeSupportParamPath = cfg[23];
+            if (cfg.Length > 24) privateCameraPath = cfg[24];
             //MessageBox.Show("Loaded paths.");
         }
 
@@ -849,6 +856,7 @@ namespace NSUNS4_Character_Manager
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button33 = new System.Windows.Forms.Button();
             this.button30 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button29 = new System.Windows.Forms.Button();
@@ -945,22 +953,24 @@ namespace NSUNS4_Character_Manager
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(0, 3);
+            this.button6.Location = new System.Drawing.Point(380, 3);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(225, 36);
             this.button6.TabIndex = 6;
             this.button6.Text = "Import (.ns4) costume";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(0, 36);
+            this.button7.Location = new System.Drawing.Point(380, 37);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(225, 36);
             this.button7.TabIndex = 7;
             this.button7.Text = "Export (.ns4) costume";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Visible = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // menuStrip1
@@ -1088,7 +1098,7 @@ namespace NSUNS4_Character_Manager
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(0, 101);
+            this.button12.Location = new System.Drawing.Point(3, 21);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(225, 36);
             this.button12.TabIndex = 16;
@@ -1232,6 +1242,7 @@ namespace NSUNS4_Character_Manager
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button33);
             this.tabPage3.Controls.Add(this.button30);
             this.tabPage3.Controls.Add(this.button13);
             this.tabPage3.Controls.Add(this.button29);
@@ -1260,6 +1271,17 @@ namespace NSUNS4_Character_Manager
             this.tabPage3.Text = "Character Managment";
             this.tabPage3.UseVisualStyleBackColor = true;
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // button33
+            // 
+            this.button33.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.button33.Location = new System.Drawing.Point(301, 337);
+            this.button33.Name = "button33";
+            this.button33.Size = new System.Drawing.Size(299, 38);
+            this.button33.TabIndex = 35;
+            this.button33.Text = "privateCamera Editor";
+            this.button33.UseVisualStyleBackColor = true;
+            this.button33.Click += new System.EventHandler(this.button33_Click);
             // 
             // button30
             // 
@@ -1546,7 +1568,7 @@ namespace NSUNS4_Character_Manager
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 83);
+            this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 15);
             this.label1.TabIndex = 18;
@@ -1554,7 +1576,7 @@ namespace NSUNS4_Character_Manager
             // 
             // button25
             // 
-            this.button25.Location = new System.Drawing.Point(0, 136);
+            this.button25.Location = new System.Drawing.Point(3, 56);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(225, 36);
             this.button25.TabIndex = 17;
@@ -1619,7 +1641,7 @@ namespace NSUNS4_Character_Manager
             this.MaximizeBox = false;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Naruto: Storm 4 Toolbox v6.6 (TheLeonX\'s build)";
+            this.Text = "Naruto: Storm 4 Toolbox v6.7";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.Load += new System.EventHandler(this.Main_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -1920,6 +1942,7 @@ namespace NSUNS4_Character_Manager
             conditionprmPath = datawin32Path + "\\spc\\conditionprm.bin.xfbin";
             damageprmPath = datawin32Path + "\\spc\\damageprm.bin.xfbin";
             spTypeSupportParamPath = datawin32Path + "\\spc\\WIN64\\spTypeSupportParam.xfbin";
+            privateCameraPath = datawin32Path + "\\spc\\privateCamera.bin.xfbin";
 
             SaveConfig();
         }
@@ -1946,6 +1969,7 @@ namespace NSUNS4_Character_Manager
                 damageprmPath = datawin32Path + "\\spc\\damageprm.bin.xfbin";
                 messageInfoPath = datawin32Path + "\\message";
                 spTypeSupportParamPath = datawin32Path + "\\spc\\WIN64\\spTypeSupportParam.xfbin";
+                privateCameraPath = datawin32Path + "\\spc\\privateCamera.bin.xfbin";
             }
                 
             else {
@@ -2057,6 +2081,11 @@ namespace NSUNS4_Character_Manager
 
         private void button32_Click(object sender, EventArgs e) {
             Tool_Animation60FPS_Fix t = new Tool_Animation60FPS_Fix();
+            t.Show();
+        }
+
+        private void button33_Click(object sender, EventArgs e) {
+            Tool_privateCameraEditor t = new Tool_privateCameraEditor();
             t.Show();
         }
     }

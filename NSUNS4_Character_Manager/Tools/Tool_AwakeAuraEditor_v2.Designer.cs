@@ -51,6 +51,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,10 +113,12 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Normal State",
             "Awakening State"});
-            this.comboBox1.Location = new System.Drawing.Point(377, 164);
+            this.comboBox1.Location = new System.Drawing.Point(297, 7);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(272, 21);
             this.comboBox1.TabIndex = 45;
+            this.comboBox1.Visible = false;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // checkBox1
             // 
@@ -278,7 +283,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(320, 195);
+            this.label7.Location = new System.Drawing.Point(323, 213);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(51, 13);
             this.label7.TabIndex = 55;
@@ -291,7 +296,7 @@
             "No condition",
             "Nearest Ground Position",
             "??? (Was used mostly for old Susanoo)"});
-            this.comboBox2.Location = new System.Drawing.Point(377, 192);
+            this.comboBox2.Location = new System.Drawing.Point(380, 210);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(272, 21);
             this.comboBox2.TabIndex = 54;
@@ -299,18 +304,50 @@
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(377, 219);
+            this.checkBox3.Location = new System.Drawing.Point(380, 237);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(106, 17);
             this.checkBox3.TabIndex = 56;
             this.checkBox3.Text = "Unknown setting";
             this.checkBox3.UseVisualStyleBackColor = true;
             // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(377, 167);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(87, 17);
+            this.checkBox4.TabIndex = 57;
+            this.checkBox4.Text = "Awake State";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Location = new System.Drawing.Point(470, 167);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(87, 17);
+            this.checkBox5.TabIndex = 58;
+            this.checkBox5.Text = "Normal State";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(418, 187);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(91, 13);
+            this.label8.TabIndex = 59;
+            this.label8.Text = "(choose only one)";
+            // 
             // Tool_AwakeAuraEditor_v2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(659, 325);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.checkBox5);
+            this.Controls.Add(this.checkBox4);
             this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBox2);
@@ -378,5 +415,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.Label label8;
     }
 }

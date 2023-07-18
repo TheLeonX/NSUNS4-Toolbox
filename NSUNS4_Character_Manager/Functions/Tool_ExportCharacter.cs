@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NSUNS4_Character_Manager.Functions {
+
     public partial class Tool_ExportCharacter : Form {
         public Tool_ExportCharacter() {
             InitializeComponent();
@@ -90,6 +91,7 @@ namespace NSUNS4_Character_Manager.Functions {
             bool evExist = false;
             bool ev_splExist = false;
             bool spTypeSupportParamExist = false;
+            bool privateCameraExist = false;
             List<bool> messageFolderExist = new List<bool>();
             string prmPath = "";
             string prmLoadPath = "";
@@ -110,6 +112,7 @@ namespace NSUNS4_Character_Manager.Functions {
             string evPath = "";
             string ev_splPath = "";
             string spTypeSupportParamPath = "";
+            string privateCameraPath = "";
             List<string> messageFolderPath = new List<string>();
             string moddingAPIPath = Main.datawin32Path.Replace(d.Name, "moddingapi\\mods");
 
@@ -333,6 +336,16 @@ namespace NSUNS4_Character_Manager.Functions {
                     spTypeSupportParamPath = "";
                 }
             }
+            foreach (FileInfo file in Files) {
+                if (file.FullName.Contains("spc\\privateCamera.bin.xfbin")) {
+                    privateCameraExist = true;
+                    privateCameraPath = file.FullName;
+                    break;
+                } else {
+                    privateCameraExist = false;
+                    privateCameraPath = "";
+                }
+            }
             if (prmExist) {
                 Tool_MovesetCoder PrmFile = new Tool_MovesetCoder();
                 PrmFile.OpenFile(prmPath);
@@ -534,13 +547,13 @@ namespace NSUNS4_Character_Manager.Functions {
                 Tool_SpcloadEditor SpcloadFile = new Tool_SpcloadEditor();
                 SpcloadFile.OpenFile(prmLoadPath);
                 for (int i = 0; i< SpcloadFile.entryCount; i++) {
-                    string name = SpcloadFile.nameList[i];
+                    string name = SpcloadFile.spcloadParam[i].name;
                     List<string> names = new List<string>();
-                    if (SpcloadFile.nameList[i].Contains("<code>"))
-                        name = SpcloadFile.nameList[i].Replace("<code>", SaveCharacode);
-                    else if (SpcloadFile.nameList[i].Contains("<codeMotion>"))
-                        name = SpcloadFile.nameList[i].Replace("<codeMotion>", SaveCharacode);
-                    else if (SpcloadFile.nameList[i].Contains("<codeAwakeModel>")) {
+                    if (SpcloadFile.spcloadParam[i].name.Contains("<code>"))
+                        name = SpcloadFile.spcloadParam[i].name.Replace("<code>", SaveCharacode);
+                    else if (SpcloadFile.spcloadParam[i].name.Contains("<codeMotion>"))
+                        name = SpcloadFile.spcloadParam[i].name.Replace("<codeMotion>", SaveCharacode);
+                    else if (SpcloadFile.spcloadParam[i].name.Contains("<codeAwakeModel>")) {
                         Tool_DuelPlayerParamEditor DppFile = new Tool_DuelPlayerParamEditor();
                         if (File.Exists(Main.dppPath))
                             DppFile.OpenFile(Main.dppPath);
@@ -548,18 +561,18 @@ namespace NSUNS4_Character_Manager.Functions {
                             DppFile.OpenFile(Directory.GetCurrentDirectory()+ "\\systemFiles\\duelPlayerParam.xfbin");
                         int dppIndex = 0;
                         for (int x = 0; x<DppFile.EntryCount; x++) {
-                            if (DppFile.BinName[x].Contains(SaveCharacode)) {
+                            if (DppFile.duelPlayerParam[x].BinName.Contains(SaveCharacode)) {
                                 dppIndex = x;
                                 break;
                             }
                         }
-                        for (int x =0; x< DppFile.AwkCostumeList[dppIndex].Length; x++) {
-                            name = SpcloadFile.nameList[i].Replace("<codeAwakeModel>", DppFile.AwkCostumeList[dppIndex][x]);
+                        for (int x =0; x< DppFile.duelPlayerParam[dppIndex].AwkCostumeList.Length; x++) {
+                            name = SpcloadFile.spcloadParam[i].name.Replace("<codeAwakeModel>", DppFile.duelPlayerParam[dppIndex].AwkCostumeList[x]);
                             names.Add(name);
                         }
                         
                     } 
-                    else if (SpcloadFile.nameList[i].Contains("<codeAwake>")) {
+                    else if (SpcloadFile.spcloadParam[i].name.Contains("<codeAwake>")) {
                         Tool_DuelPlayerParamEditor DppFile = new Tool_DuelPlayerParamEditor();
                         if (File.Exists(Main.dppPath))
                             DppFile.OpenFile(Main.dppPath);
@@ -567,15 +580,15 @@ namespace NSUNS4_Character_Manager.Functions {
                             DppFile.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\duelPlayerParam.xfbin");
                         int dppIndex = 0;
                         for (int x = 0; x < DppFile.EntryCount; x++) {
-                            if (DppFile.BinName[x].Contains(SaveCharacode)) {
+                            if (DppFile.duelPlayerParam[x].BinName.Contains(SaveCharacode)) {
                                 dppIndex = x;
                                 break;
                             }
                         }
-                        name = SpcloadFile.nameList[i].Replace("<codeAwake>", DppFile.AwkCostumeList[dppIndex][0]);
+                        name = SpcloadFile.spcloadParam[i].name.Replace("<codeAwake>", DppFile.duelPlayerParam[dppIndex].AwkCostumeList[0]);
 
                     } 
-                    else if (SpcloadFile.nameList[i].Contains("<codeAwake2>")) {
+                    else if (SpcloadFile.spcloadParam[i].name.Contains("<codeAwake2>")) {
                         Tool_DuelPlayerParamEditor DppFile = new Tool_DuelPlayerParamEditor();
                         if (File.Exists(Main.dppPath))
                             DppFile.OpenFile(Main.dppPath);
@@ -583,15 +596,15 @@ namespace NSUNS4_Character_Manager.Functions {
                             DppFile.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\duelPlayerParam.xfbin");
                         int dppIndex = 0;
                         for (int x = 0; x < DppFile.EntryCount; x++) {
-                            if (DppFile.BinName[x].Contains(SaveCharacode)) {
+                            if (DppFile.duelPlayerParam[x].BinName.Contains(SaveCharacode)) {
                                 dppIndex = x;
                                 break;
                             }
                         }
-                        name = SpcloadFile.nameList[i].Replace("<codeAwake2>", DppFile.AwkCostumeList[dppIndex][0]);
+                        name = SpcloadFile.spcloadParam[i].name.Replace("<codeAwake2>", DppFile.duelPlayerParam[dppIndex].AwkCostumeList[0]);
 
                     } 
-                    else if (SpcloadFile.nameList[i].Contains("<codeAwake2Model>")) {
+                    else if (SpcloadFile.spcloadParam[i].name.Contains("<codeAwake2Model>")) {
                         Tool_DuelPlayerParamEditor DppFile = new Tool_DuelPlayerParamEditor();
                         if (File.Exists(Main.dppPath))
                             DppFile.OpenFile(Main.dppPath);
@@ -599,18 +612,18 @@ namespace NSUNS4_Character_Manager.Functions {
                             DppFile.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\duelPlayerParam.xfbin");
                         int dppIndex = 0;
                         for (int x = 0; x < DppFile.EntryCount; x++) {
-                            if (DppFile.BinName[x].Contains(SaveCharacode)) {
+                            if (DppFile.duelPlayerParam[x].BinName.Contains(SaveCharacode)) {
                                 dppIndex = x;
                                 break;
                             }
                         }
-                        for (int x = 0; x < DppFile.AwkCostumeList[dppIndex].Length; x++) {
-                            name = SpcloadFile.nameList[i].Replace("<codeAwake2Model>", DppFile.AwkCostumeList[dppIndex][x]);
+                        for (int x = 0; x < DppFile.duelPlayerParam[dppIndex].AwkCostumeList.Length; x++) {
+                            name = SpcloadFile.spcloadParam[i].name.Replace("<codeAwake2Model>", DppFile.duelPlayerParam[dppIndex].AwkCostumeList[x]);
                             names.Add(name);
                         }
 
                     } 
-                    else if (SpcloadFile.nameList[i].Contains("<codeModel>")) {
+                    else if (SpcloadFile.spcloadParam[i].name.Contains("<codeModel>")) {
                         Tool_DuelPlayerParamEditor DppFile = new Tool_DuelPlayerParamEditor();
                         if (File.Exists(Main.dppPath))
                             DppFile.OpenFile(Main.dppPath);
@@ -618,25 +631,25 @@ namespace NSUNS4_Character_Manager.Functions {
                             DppFile.OpenFile(Directory.GetCurrentDirectory() + "\\systemFiles\\duelPlayerParam.xfbin");
                         int dppIndex = 0;
                         for (int x = 0; x < DppFile.EntryCount; x++) {
-                            if (DppFile.BinName[x].Contains(SaveCharacode)) {
+                            if (DppFile.duelPlayerParam[x].BinName.Contains(SaveCharacode)) {
                                 dppIndex = x;
                                 break;
                             }
                         }
-                        for (int x = 0; x < DppFile.CostumeList[dppIndex].Length; x++) {
-                            name = SpcloadFile.nameList[i].Replace("<codeModel>", DppFile.CostumeList[dppIndex][x]);
+                        for (int x = 0; x < DppFile.duelPlayerParam[dppIndex].CostumeList.Length; x++) {
+                            name = SpcloadFile.spcloadParam[i].name.Replace("<codeModel>", DppFile.duelPlayerParam[dppIndex].CostumeList[x]);
                             names.Add(name);
                         }
 
                     }
                     if (names.Count == 0) {
-                        if (File.Exists(Main.datawin32Path + "\\" + SpcloadFile.pathList[i] + "\\" + name + ".xfbin"))
-                            CopyFiles(SaveDirectory + "\\" + SpcloadFile.pathList[i], Main.datawin32Path + "\\" + SpcloadFile.pathList[i] + "\\" + name + ".xfbin", SaveDirectory + "\\" + SpcloadFile.pathList[i] + "\\" + name + ".xfbin");
+                        if (File.Exists(Main.datawin32Path + "\\" + SpcloadFile.spcloadParam[i].path + "\\" + name + ".xfbin"))
+                            CopyFiles(SaveDirectory + "\\" + SpcloadFile.spcloadParam[i].path, Main.datawin32Path + "\\" + SpcloadFile.spcloadParam[i].path + "\\" + name + ".xfbin", SaveDirectory + "\\" + SpcloadFile.spcloadParam[i].path + "\\" + name + ".xfbin");
                     }
                     else {
                         for (int x = 0; x< names.Count; x++) {
-                            if (File.Exists(Main.datawin32Path + "\\" + SpcloadFile.pathList[i] + "\\" + names[x] + ".xfbin"))
-                                CopyFiles(SaveDirectory + "\\" + SpcloadFile.pathList[i], Main.datawin32Path + "\\" + SpcloadFile.pathList[i] + "\\" + names[x] + ".xfbin", SaveDirectory + "\\" + SpcloadFile.pathList[i] + "\\" + names[x] + ".xfbin");
+                            if (File.Exists(Main.datawin32Path + "\\" + SpcloadFile.spcloadParam[i].path + "\\" + names[x] + ".xfbin"))
+                                CopyFiles(SaveDirectory + "\\" + SpcloadFile.spcloadParam[i].path, Main.datawin32Path + "\\" + SpcloadFile.spcloadParam[i].path + "\\" + names[x] + ".xfbin", SaveDirectory + "\\" + SpcloadFile.spcloadParam[i].path + "\\" + names[x] + ".xfbin");
                         }
                     }
 
@@ -689,26 +702,8 @@ namespace NSUNS4_Character_Manager.Functions {
                 Tool_DuelPlayerParamEditor DppFile = new Tool_DuelPlayerParamEditor();
                 DppFile.OpenFile(dppPath);
                 for (int i = 0; i < DppFile.EntryCount; i++) {
-                    if (!DppFile.BinName[i].Contains(SaveCharacode)) {
-                        DppFile.BinPath.RemoveAt(i);
-                        DppFile.BinName.RemoveAt(i);
-                        DppFile.Data.RemoveAt(i);
-                        DppFile.CharaList.RemoveAt(i);
-                        DppFile.CostumeList.RemoveAt(i);
-                        DppFile.AwkCostumeList.RemoveAt(i);
-                        DppFile.DefaultAssist1.RemoveAt(i);
-                        DppFile.DefaultAssist2.RemoveAt(i);
-                        DppFile.AwkAction.RemoveAt(i);
-                        DppFile.ItemList.RemoveAt(i);
-                        DppFile.ItemCount.RemoveAt(i);
-                        DppFile.Partner.RemoveAt(i);
-                        DppFile.SettingList.RemoveAt(i);
-                        DppFile.Setting2List.RemoveAt(i);
-                        DppFile.EnableAwaSkillList.RemoveAt(i);
-                        DppFile.VictoryAngleList.RemoveAt(i);
-                        DppFile.VictoryPosList.RemoveAt(i);
-                        DppFile.VictoryUnknownList.RemoveAt(i);
-                        DppFile.AwaSettingList.RemoveAt(i);
+                    if (!DppFile.duelPlayerParam[i].BinName.Contains(SaveCharacode)) {
+                        DppFile.duelPlayerParam.RemoveAt(i);
                         i--;
                         DppFile.EntryCount--;
                     }
@@ -721,10 +716,10 @@ namespace NSUNS4_Character_Manager.Functions {
                     DppFile.SaveFileAs(SaveDirectory + "\\spc\\duelPlayerParam.xfbin");
                     if (!prmLoadExist) {
                         for (int cos = 0; cos < 20; cos++) {
-                            if (DppFile.CostumeList[0][cos] != "" && File.Exists(Main.datawin32Path + "\\spc\\" + DppFile.CostumeList[0][cos] + "bod1.xfbin"))
-                                CopyFiles(SaveDirectory + "\\spc\\", Main.datawin32Path + "\\spc\\" + DppFile.CostumeList[0][cos] + "bod1.xfbin", SaveDirectory + "\\spc\\" + DppFile.CostumeList[0][cos] + "bod1.xfbin");
-                            if (DppFile.AwkCostumeList[0][cos] != "" && File.Exists(Main.datawin32Path + "\\spc\\" + DppFile.AwkCostumeList[0][cos] + "bod1.xfbin"))
-                                CopyFiles(SaveDirectory + "\\spc\\", Main.datawin32Path + "\\spc\\" + DppFile.AwkCostumeList[0][cos] + "bod1.xfbin", SaveDirectory + "\\spc\\" + DppFile.AwkCostumeList[0][cos] + "bod1.xfbin");
+                            if (DppFile.duelPlayerParam[0].CostumeList[cos] != "" && File.Exists(Main.datawin32Path + "\\spc\\" + DppFile.duelPlayerParam[0].CostumeList[cos] + "bod1.xfbin"))
+                                CopyFiles(SaveDirectory + "\\spc\\", Main.datawin32Path + "\\spc\\" + DppFile.duelPlayerParam[0].CostumeList[cos] + "bod1.xfbin", SaveDirectory + "\\spc\\" + DppFile.duelPlayerParam[0].CostumeList[cos] + "bod1.xfbin");
+                            if (DppFile.duelPlayerParam[0].AwkCostumeList[cos] != "" && File.Exists(Main.datawin32Path + "\\spc\\" + DppFile.duelPlayerParam[0].AwkCostumeList[cos] + "bod1.xfbin"))
+                                CopyFiles(SaveDirectory + "\\spc\\", Main.datawin32Path + "\\spc\\" + DppFile.duelPlayerParam[0].AwkCostumeList[cos] + "bod1.xfbin", SaveDirectory + "\\spc\\" + DppFile.duelPlayerParam[0].AwkCostumeList[cos] + "bod1.xfbin");
 
                         }
                     }
@@ -908,6 +903,28 @@ namespace NSUNS4_Character_Manager.Functions {
                     }
                     skillCustomizeFile.SaveFileAs(SaveDirectory + "\\spc\\WIN64\\skillCustomizeParam.xfbin");
                 }
+            }
+            if (privateCameraExist) {
+                Tool_privateCameraEditor privateCameraFile = new Tool_privateCameraEditor();
+                privateCameraFile.OpenFile(privateCameraPath);
+                Tool_privateCameraEditor privateCameraFileSave = new Tool_privateCameraEditor();
+
+                Tool_privateCameraEditor.privateCamera entry = new Tool_privateCameraEditor.privateCamera();
+
+
+                if(CharacodeID < privateCameraFile.privateCameraParam.Count) {
+                    privateCameraFileSave.privateCameraParam.Add(privateCameraFile.privateCameraParam[CharacodeID - 1].DeepClone());
+                } else {
+                    privateCameraFileSave.privateCameraParam.Add(entry);
+                }
+                privateCameraFileSave.EntryCount++;
+                if (privateCameraFileSave.EntryCount != 0) {
+                    if (!Directory.Exists(Path.GetDirectoryName(SaveDirectory + "\\spc"))) {
+                        Directory.CreateDirectory(Path.GetDirectoryName(SaveDirectory + "\\spc\\"));
+                    }
+                    privateCameraFileSave.SaveFileAs(SaveDirectory + "\\spc\\privateCamera.bin.xfbin");
+                }
+
             }
             if (spskillCustomizeExist) {
                 Tool_SpSkillCustomizeParamEditor spSkillCustomizeFile = new Tool_SpSkillCustomizeParamEditor();

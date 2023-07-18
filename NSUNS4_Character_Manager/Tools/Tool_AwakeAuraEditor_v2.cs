@@ -23,7 +23,8 @@ namespace NSUNS4_Character_Manager.Tools {
 
         public class AwakeAuraParam {
             public string Characode;
-            public bool State;
+            public bool NormalStateEnabled;
+            public bool AwakeStateEnabled;
             public string SkillFile;
             public string Effect;
             public bool PlayerModelFirstBone;
@@ -58,7 +59,8 @@ namespace NSUNS4_Character_Manager.Tools {
                 int _ptr = 296 + 0x48 * x;
                 AwakeAuraParam AwakeAuraEntry = new AwakeAuraParam();
                 AwakeAuraEntry.Characode = Main.b_ReadString(fileBytes, _ptr + Main.b_ReadInt(fileBytes, _ptr));
-                AwakeAuraEntry.State = Convert.ToBoolean(Main.b_ReadInt(fileBytes, _ptr + 0x0C));
+                AwakeAuraEntry.NormalStateEnabled = Convert.ToBoolean(Main.b_ReadInt(fileBytes, _ptr + 0x08));
+                AwakeAuraEntry.AwakeStateEnabled = Convert.ToBoolean(Main.b_ReadInt(fileBytes, _ptr + 0x0C));
                 AwakeAuraEntry.SkillFile = Main.b_ReadString(fileBytes, _ptr + 0x10 + Main.b_ReadInt(fileBytes, _ptr + 0x10));
                 AwakeAuraEntry.Effect = Main.b_ReadString(fileBytes, _ptr + 0x18 + Main.b_ReadInt(fileBytes, _ptr + 0x18));
                 AwakeAuraEntry.PlayerModelFirstBone = Convert.ToBoolean(Main.b_ReadInt(fileBytes, _ptr + 0x20));
@@ -69,12 +71,7 @@ namespace NSUNS4_Character_Manager.Tools {
                 AwakeAuraEntry.UnknownSetting = Convert.ToBoolean(Main.b_ReadInt(fileBytes, _ptr + 0x44));
 
                 AwakeAura.Add(AwakeAuraEntry);
-                string state = "";
-                if (Main.b_ReadInt(fileBytes, _ptr + 0x0C) == 1)
-                    state = "Awake";
-                else
-                    state = "Normal";
-                listBox1.Items.Add(Main.b_ReadString(fileBytes, _ptr + Main.b_ReadInt(fileBytes, _ptr)) +", State: " + state + ", First Bone: "+ Main.b_ReadString(fileBytes, _ptr + 0x28 + Main.b_ReadInt(fileBytes, _ptr + 0x28)));
+                listBox1.Items.Add(Main.b_ReadString(fileBytes, _ptr + Main.b_ReadInt(fileBytes, _ptr)) + ", First Bone: "+ Main.b_ReadString(fileBytes, _ptr + 0x28 + Main.b_ReadInt(fileBytes, _ptr + 0x28)));
             }
         }
         public void ClearFile() {
@@ -97,11 +94,13 @@ namespace NSUNS4_Character_Manager.Tools {
                 Effect_text.Text = AwakeAura[x].Effect;
                 FirstBone_text.Text = AwakeAura[x].FirstBone;
                 SecondBone_text.Text = AwakeAura[x].SecondBone;
-                comboBox1.SelectedIndex = Convert.ToInt32(AwakeAura[x].State);
+                //comboBox1.SelectedIndex = Convert.ToInt32(AwakeAura[x].State);
                 comboBox2.SelectedIndex = AwakeAura[x].Condition;
                 checkBox1.Checked = AwakeAura[x].PlayerModelFirstBone;
                 checkBox2.Checked = AwakeAura[x].PlayerModelSecondBone;
                 checkBox3.Checked = AwakeAura[x].UnknownSetting;
+                checkBox4.Checked = AwakeAura[x].AwakeStateEnabled;
+                checkBox5.Checked = AwakeAura[x].NormalStateEnabled;
             }
         }
 
@@ -110,7 +109,8 @@ namespace NSUNS4_Character_Manager.Tools {
             if (x != -1) {
                 AwakeAuraParam AwakeAuraEntry = new AwakeAuraParam();
                 AwakeAuraEntry.Characode = AwakeAura[x].Characode;
-                AwakeAuraEntry.State = AwakeAura[x].State;
+                AwakeAuraEntry.AwakeStateEnabled = AwakeAura[x].AwakeStateEnabled;
+                AwakeAuraEntry.NormalStateEnabled = AwakeAura[x].NormalStateEnabled;
                 AwakeAuraEntry.SkillFile = AwakeAura[x].SkillFile;
                 AwakeAuraEntry.Effect = AwakeAura[x].Effect;
                 AwakeAuraEntry.PlayerModelFirstBone = AwakeAura[x].PlayerModelFirstBone;
@@ -119,13 +119,14 @@ namespace NSUNS4_Character_Manager.Tools {
                 AwakeAuraEntry.SecondBone = AwakeAura[x].SecondBone;
                 AwakeAuraEntry.Condition = AwakeAura[x].Condition;
                 AwakeAuraEntry.UnknownSetting = AwakeAura[x].UnknownSetting;
-
+                listBox1.Items.Add(AwakeAuraEntry.Characode + ", First Bone: " + AwakeAuraEntry.FirstBone);
                 AwakeAura.Add(AwakeAuraEntry);
                 EntryCount++;
             } else {
                 AwakeAuraParam AwakeAuraEntry = new AwakeAuraParam();
                 AwakeAuraEntry.Characode = "";
-                AwakeAuraEntry.State = true;
+                AwakeAuraEntry.AwakeStateEnabled = true;
+                AwakeAuraEntry.NormalStateEnabled = false;
                 AwakeAuraEntry.SkillFile = "";
                 AwakeAuraEntry.Effect = "";
                 AwakeAuraEntry.PlayerModelFirstBone = false;
@@ -134,7 +135,7 @@ namespace NSUNS4_Character_Manager.Tools {
                 AwakeAuraEntry.SecondBone = "";
                 AwakeAuraEntry.Condition = 0;
                 AwakeAuraEntry.UnknownSetting = false;
-
+                listBox1.Items.Add(AwakeAuraEntry.Characode + ", First Bone: " + AwakeAuraEntry.FirstBone);
                 AwakeAura.Add(AwakeAuraEntry);
                 EntryCount++;
             }
@@ -144,6 +145,8 @@ namespace NSUNS4_Character_Manager.Tools {
             int x = listBox1.SelectedIndex;
             if (x != -1) {
                 AwakeAura.RemoveAt(x);
+                listBox1.Items.RemoveAt(x);
+                listBox1.SelectedIndex = x - 1;
                 EntryCount--;
             } else
                 MessageBox.Show("Select entry which you want to delete.");
@@ -576,13 +579,8 @@ namespace NSUNS4_Character_Manager.Tools {
                     byte[] ptrBytes3 = BitConverter.GetBytes(newPointer3);
                     file = Main.b_ReplaceBytes(file, ptrBytes3, 296 + 72 * x2 + 56);
                 }
-
-
-                // VALUES
-                if (AwakeAura[x2].State) {
-                    file = Main.b_ReplaceBytes(file, BitConverter.GetBytes(AwakeAura[x2].State), 296 + 72 * x2 + 12);
-                } else
-                    file = Main.b_ReplaceBytes(file, BitConverter.GetBytes(1), 296 + 72 * x2 + 8);
+                file = Main.b_ReplaceBytes(file, BitConverter.GetBytes(AwakeAura[x2].NormalStateEnabled), 296 + 72 * x2 + 8);
+                file = Main.b_ReplaceBytes(file, BitConverter.GetBytes(AwakeAura[x2].AwakeStateEnabled), 296 + 72 * x2 + 12);
 
 
                 file = Main.b_ReplaceBytes(file, BitConverter.GetBytes(AwakeAura[x2].PlayerModelFirstBone), 296 + 72 * x2 + 0x20);
@@ -637,7 +635,8 @@ namespace NSUNS4_Character_Manager.Tools {
             if (x != -1) {
                 if (comboBox2.SelectedIndex != 2) {
                     AwakeAura[x].Characode = Characode_text.Text;
-                    AwakeAura[x].State = Convert.ToBoolean(comboBox1.SelectedIndex);
+                    AwakeAura[x].AwakeStateEnabled = checkBox4.Checked;
+                    AwakeAura[x].NormalStateEnabled = checkBox5.Checked;
                     AwakeAura[x].SkillFile = SkillFile_text.Text;
                     AwakeAura[x].Effect = Effect_text.Text;
                     AwakeAura[x].PlayerModelFirstBone = checkBox1.Checked;
@@ -646,10 +645,12 @@ namespace NSUNS4_Character_Manager.Tools {
                     AwakeAura[x].SecondBone = SecondBone_text.Text;
                     AwakeAura[x].Condition = comboBox2.SelectedIndex;
                     AwakeAura[x].UnknownSetting = checkBox3.Checked;
+                    listBox1.Items[x] = AwakeAura[x].Characode + ", First Bone: " + AwakeAura[x].FirstBone;
                 } else {
                     if (SecondBone_text.Text != "") {
                         AwakeAura[x].Characode = Characode_text.Text;
-                        AwakeAura[x].State = Convert.ToBoolean(comboBox1.SelectedIndex);
+                        AwakeAura[x].AwakeStateEnabled = checkBox4.Checked;
+                        AwakeAura[x].NormalStateEnabled = checkBox5.Checked;
                         AwakeAura[x].SkillFile = SkillFile_text.Text;
                         AwakeAura[x].Effect = Effect_text.Text;
                         AwakeAura[x].PlayerModelFirstBone = checkBox1.Checked;
@@ -658,6 +659,8 @@ namespace NSUNS4_Character_Manager.Tools {
                         AwakeAura[x].SecondBone = SecondBone_text.Text;
                         AwakeAura[x].Condition = comboBox2.SelectedIndex;
                         AwakeAura[x].UnknownSetting = checkBox3.Checked;
+                        listBox1.Items[x]=AwakeAura[x].Characode + ", First Bone: " + AwakeAura[x].FirstBone;
+
                     } else {
                         MessageBox.Show("You have to write second bone for that aura, otherwise game will crash!");
                     }
@@ -695,6 +698,10 @@ namespace NSUNS4_Character_Manager.Tools {
         }
 
         private void Search_TB_TextChanged(object sender, EventArgs e) {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e) {
 
         }
     }

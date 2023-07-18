@@ -205,5 +205,9 @@ namespace NSUNS4_Character_Manager.Misc {
         private void Tool_Animation60FPS_Fix_DragEnter(object sender, DragEventArgs e) {
             e.Effect = DragDropEffects.Copy;
         }
+
+        private void Tool_Animation60FPS_Fix_Load(object sender, EventArgs e) {
+
+        }
     }
 }

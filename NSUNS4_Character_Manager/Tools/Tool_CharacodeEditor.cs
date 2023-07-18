@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -42,6 +42,9 @@ namespace NSUNS4_Character_Manager
 		private ToolStripMenuItem closeToolStripMenuItem;
         private TextBox Search_TB;
         private Button Search;
+        private Button button3;
+        private Button button4;
+        private Button button5;
         private TextBox textBox1;
 
 		public Tool_CharacodeEditor()
@@ -390,6 +393,9 @@ namespace NSUNS4_Character_Manager
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.Search_TB = new System.Windows.Forms.TextBox();
             this.Search = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -398,16 +404,16 @@ namespace NSUNS4_Character_Manager
             this.ListBox1.FormattingEnabled = true;
             this.ListBox1.Items.AddRange(new object[] {
             "No file loaded..."});
-            this.ListBox1.Location = new System.Drawing.Point(13, 29);
+            this.ListBox1.Location = new System.Drawing.Point(10, 29);
             this.ListBox1.Name = "ListBox1";
-            this.ListBox1.Size = new System.Drawing.Size(273, 329);
+            this.ListBox1.Size = new System.Drawing.Size(319, 277);
             this.ListBox1.TabIndex = 0;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(13, 384);
+            this.button2.Location = new System.Drawing.Point(10, 353);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(274, 23);
+            this.button2.Size = new System.Drawing.Size(339, 23);
             this.button2.TabIndex = 2;
             this.button2.Text = "Remove selected ID";
             this.button2.UseVisualStyleBackColor = true;
@@ -415,9 +421,9 @@ namespace NSUNS4_Character_Manager
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(119, 361);
+            this.button1.Location = new System.Drawing.Point(10, 331);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(168, 23);
+            this.button1.Size = new System.Drawing.Size(166, 23);
             this.button1.TabIndex = 3;
             this.button1.Text = "Add new ID";
             this.button1.UseVisualStyleBackColor = true;
@@ -430,7 +436,7 @@ namespace NSUNS4_Character_Manager
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(295, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(354, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -485,35 +491,68 @@ namespace NSUNS4_Character_Manager
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 361);
+            this.textBox1.Location = new System.Drawing.Point(11, 307);
             this.textBox1.MaxLength = 8;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(104, 23);
+            this.textBox1.Size = new System.Drawing.Size(338, 23);
             this.textBox1.TabIndex = 5;
             // 
             // Search_TB
             // 
-            this.Search_TB.Location = new System.Drawing.Point(13, 406);
+            this.Search_TB.Location = new System.Drawing.Point(11, 374);
             this.Search_TB.MaxLength = 15;
             this.Search_TB.Name = "Search_TB";
-            this.Search_TB.Size = new System.Drawing.Size(106, 23);
+            this.Search_TB.Size = new System.Drawing.Size(231, 23);
             this.Search_TB.TabIndex = 38;
             // 
             // Search
             // 
-            this.Search.Location = new System.Drawing.Point(119, 406);
+            this.Search.Location = new System.Drawing.Point(243, 374);
             this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(168, 23);
+            this.Search.Size = new System.Drawing.Size(106, 23);
             this.Search.TabIndex = 37;
             this.Search.Text = "Search ID";
             this.Search.UseVisualStyleBackColor = true;
             this.Search.Click += new System.EventHandler(this.Search_Click);
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(176, 331);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(173, 23);
+            this.button3.TabIndex = 39;
+            this.button3.Text = "Save ID";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(328, 29);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(21, 143);
+            this.button4.TabIndex = 40;
+            this.button4.Text = "▲";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(328, 171);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(21, 136);
+            this.button5.TabIndex = 41;
+            this.button5.Text = "▼";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // Tool_CharacodeEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(295, 433);
+            this.ClientSize = new System.Drawing.Size(354, 403);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.Search_TB);
             this.Controls.Add(this.Search);
             this.Controls.Add(this.textBox1);
@@ -579,6 +618,61 @@ namespace NSUNS4_Character_Manager
 			if (File.Exists(Main.chaPath)) {
 				OpenFile(Main.chaPath);
 			}
+        }
+
+        void SwitchMoveUp() {
+            int x = ListBox1.SelectedIndex;
+			if (x != -1) {
+				if (x > 0) {
+                    string CharacodeID = CharacterList[x];
+                    string CharacodeID_new = CharacterList[x-1];
+                    CharacterList[x] = CharacodeID_new;
+                    CharacterList[x - 1] = CharacodeID;
+
+
+                    ListBox1.Items[x-1] = (x).ToString("X2") + " = " + CharacodeID;
+                    ListBox1.Items[x] = (x+1).ToString("X2") + " = " + CharacodeID_new;
+					ListBox1.SelectedIndex = ListBox1.SelectedIndex - 1;
+                }
+			} else
+				MessageBox.Show("Select entry");
+                
+        }
+
+        void SwitchMoveDown() {
+            int x = ListBox1.SelectedIndex;
+            if (x != -1) {
+                if (x < ListBox1.Items.Count) {
+                    string CharacodeID = CharacterList[x];
+                    string CharacodeID_new = CharacterList[x + 1];
+                    CharacterList[x] = CharacodeID_new;
+                    CharacterList[x + 1] = CharacodeID;
+
+
+                    ListBox1.Items[x + 1] = (x+2).ToString("X2") + " = " + CharacodeID;
+                    ListBox1.Items[x] = (x + 1).ToString("X2") + " = " + CharacodeID_new;
+                    ListBox1.SelectedIndex = ListBox1.SelectedIndex + 1;
+                }
+            } else
+                MessageBox.Show("Select entry");
+
+        }
+
+        private void button3_Click(object sender, EventArgs e) {
+			int x = ListBox1.SelectedIndex;
+			if (x != -1) {
+				CharacterList[x] = textBox1.Text;
+				ListBox1.Items[x] = (x+1).ToString("X2") + " = " + textBox1.Text;
+
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e) {
+			SwitchMoveUp();
+        }
+
+        private void button5_Click(object sender, EventArgs e) {
+			SwitchMoveDown();
         }
     }
 }

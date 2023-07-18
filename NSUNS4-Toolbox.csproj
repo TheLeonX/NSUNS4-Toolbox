@@ -307,6 +307,12 @@
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_PortPRM.Designer.cs">
       <DependentUpon>Tool_PortPRM.cs</DependentUpon>
     </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_privateCameraEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_privateCameraEditor.Designer.cs">
+      <DependentUpon>Tool_privateCameraEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_RosterEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -459,6 +465,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_PortPRM.resx">
       <DependentUpon>Tool_PortPRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_privateCameraEditor.resx">
+      <DependentUpon>Tool_privateCameraEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_RosterEditor.resx">
       <DependentUpon>Tool_RosterEditor.cs</DependentUpon>

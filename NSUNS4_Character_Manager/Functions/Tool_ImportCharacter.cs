@@ -558,50 +558,13 @@ namespace NSUNS4_Character_Manager.Functions {
                             }
                             if (ReplaceCharacterList[i]) {
                                 for (int c = 0; c < DppOriginalFile.EntryCount; c++) {
-                                    if (DppOriginalFile.BinName[i].Contains(d.Name)) {
-                                        DppOriginalFile.BinPath[i] = DppModFile.BinPath[0];
-                                        DppOriginalFile.BinName[i] = DppModFile.BinName[0];
-                                        DppOriginalFile.Data[i] = DppModFile.Data[0];
-                                        DppOriginalFile.CharaList[i] = DppModFile.CharaList[0];
-                                        DppOriginalFile.CostumeList[i] = DppModFile.CostumeList[0];
-                                        DppOriginalFile.AwkCostumeList[i] = DppModFile.AwkCostumeList[0];
-                                        DppOriginalFile.DefaultAssist1[i] = DppModFile.DefaultAssist1[0];
-                                        DppOriginalFile.DefaultAssist2[i] = DppModFile.DefaultAssist2[0];
-                                        DppOriginalFile.AwkAction[i] = DppModFile.AwkAction[0];
-                                        DppOriginalFile.ItemList[i] = DppModFile.ItemList[0];
-                                        DppOriginalFile.ItemCount[i] = DppModFile.ItemCount[0];
-                                        DppOriginalFile.Partner[i] = DppModFile.Partner[0];
-                                        DppOriginalFile.SettingList[i] = DppModFile.SettingList[0];
-                                        DppOriginalFile.Setting2List[i] = DppModFile.Setting2List[0];
-                                        DppOriginalFile.EnableAwaSkillList[i] = DppModFile.EnableAwaSkillList[0];
-                                        DppOriginalFile.VictoryAngleList[i] = DppModFile.VictoryAngleList[0];
-                                        DppOriginalFile.VictoryPosList[i] = DppModFile.VictoryPosList[0];
-                                        DppOriginalFile.VictoryUnknownList[i] = DppModFile.VictoryUnknownList[0];
-                                        DppOriginalFile.AwaSettingList[i] = DppModFile.AwaSettingList[0];
+                                    if (DppOriginalFile.duelPlayerParam[i].BinName.Contains(d.Name)) {
+                                        DppOriginalFile.duelPlayerParam[i] = DppModFile.duelPlayerParam[0];
                                     }
-
                                 }
 
                             } else {
-                                DppOriginalFile.BinPath.Add(DppModFile.BinPath[0]);
-                                DppOriginalFile.BinName.Add(DppModFile.BinName[0]);
-                                DppOriginalFile.Data.Add(DppModFile.Data[0]);
-                                DppOriginalFile.CharaList.Add(DppModFile.CharaList[0]);
-                                DppOriginalFile.CostumeList.Add(DppModFile.CostumeList[0]);
-                                DppOriginalFile.AwkCostumeList.Add(DppModFile.AwkCostumeList[0]);
-                                DppOriginalFile.DefaultAssist1.Add(DppModFile.DefaultAssist1[0]);
-                                DppOriginalFile.DefaultAssist2.Add(DppModFile.DefaultAssist2[0]);
-                                DppOriginalFile.AwkAction.Add(DppModFile.AwkAction[0]);
-                                DppOriginalFile.ItemList.Add(DppModFile.ItemList[0]);
-                                DppOriginalFile.ItemCount.Add(DppModFile.ItemCount[0]);
-                                DppOriginalFile.Partner.Add(DppModFile.Partner[0]);
-                                DppOriginalFile.SettingList.Add(DppModFile.SettingList[0]);
-                                DppOriginalFile.Setting2List.Add(DppModFile.Setting2List[0]);
-                                DppOriginalFile.EnableAwaSkillList.Add(DppModFile.EnableAwaSkillList[0]);
-                                DppOriginalFile.VictoryAngleList.Add(DppModFile.VictoryAngleList[0]);
-                                DppOriginalFile.VictoryPosList.Add(DppModFile.VictoryPosList[0]);
-                                DppOriginalFile.VictoryUnknownList.Add(DppModFile.VictoryUnknownList[0]);
-                                DppOriginalFile.AwaSettingList.Add(DppModFile.AwaSettingList[0]);
+                                DppOriginalFile.duelPlayerParam.Add(DppModFile.duelPlayerParam[0]);
                                 DppOriginalFile.EntryCount++;
                             }
                             if (!Directory.Exists(Main.datawin32Path + "\\spc")) {

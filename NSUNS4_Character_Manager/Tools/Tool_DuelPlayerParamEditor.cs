@@ -1,4 +1,4 @@
-using NSUNS4_Character_Manager.Tools;
+﻿using NSUNS4_Character_Manager.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Header;
 
 namespace NSUNS4_Character_Manager
 {
@@ -14,7 +15,7 @@ namespace NSUNS4_Character_Manager
 		public bool FileOpen = false;
 		public string FilePath = "";
 		public int EntryCount = 0;
-		public List<string> BinPath = new List<string>();
+        /*public List<string> BinPath = new List<string>();
 		public List<string> BinName = new List<string>();
 		public List<byte[]> Data = new List<byte[]>();
 		public List<string> CharaList = new List<string>();
@@ -32,7 +33,31 @@ namespace NSUNS4_Character_Manager
 		public List<int> EnableAwaSkillList = new List<int>();
 		public List<int> VictoryAngleList = new List<int>();
 		public List<int> VictoryPosList = new List<int>();
-		public List<int> VictoryUnknownList = new List<int>();
+		public List<int> VictoryUnknownList = new List<int>();*/
+        [Serializable]
+        public class duelPlayerParamEntry {
+			public string BinPath;
+			public string BinName;
+			public byte[] Data = new byte[0];
+			public string CharaList;
+			public string[] CostumeList;
+			public string[] AwkCostumeList;
+			public string DefaultAssist1;
+			public string DefaultAssist2;
+            public string AwkAction;
+            public string[] ItemList;
+			public byte[] ItemCount = new byte[0];
+			public string Partner;
+			public byte[] SettingList = new byte[0];
+			public byte[] AwaSettingList = new byte[0];
+			public byte[] Setting2List = new byte[0];
+			public int EnableAwaSkillList;
+			public int VictoryAngleList;
+			public int VictoryPosList;
+			public int VictoryUnknownList;
+		}
+
+		public List<duelPlayerParamEntry> duelPlayerParam = new List<duelPlayerParamEntry>();
 
 		private IContainer components = null;
 		public ListBox listBox1;
@@ -84,6 +109,8 @@ namespace NSUNS4_Character_Manager
         private Label label14;
         private NumericUpDown v_cam_unk;
         private Label label15;
+        private Button button5;
+        private Button button6;
         private TextBox w_item4;
 
 		public Tool_DuelPlayerParamEditor()
@@ -96,826 +123,812 @@ namespace NSUNS4_Character_Manager
 			FileOpen = true;
 			FilePath = "";
 			EntryCount = 0;
-			BinPath.Clear();
-			BinName.Clear();
-			Data.Clear();
-			CharaList.Clear();
-			CostumeList.Clear();
-			AwkCostumeList.Clear();
-			DefaultAssist1.Clear();
-			DefaultAssist2.Clear();
-			AwkAction.Clear();
-			ItemList.Clear();
-			ItemCount.Clear();
-            Partner.Clear();
-			SettingList.Clear();
-			Setting2List.Clear();
-			EnableAwaSkillList.Clear();
-			VictoryAngleList.Clear();
-			VictoryPosList.Clear();
-			VictoryUnknownList.Clear();
-			AwaSettingList.Clear();
 			listBox1.ClearSelected();
 			listBox1.Items.Clear();
 			EntryCount = 1;
-			BinPath.Add("Z:/param/player/Converter/bin/1newprm_bas.bin");
-			BinName.Add("1newprm_bas");
-			Data.Add(new byte[760]
-			{
-				50,
-				110,
-				114,
-				116,
-				0,
-				0,
-				0,
-				0,
-				50,
-				110,
-				114,
-				116,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				100,
-				110,
-				114,
-				107,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				100,
-				110,
-				114,
-				100,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				50,
-				110,
-				114,
-				113,
-				0,
-				0,
-				0,
-				0,
-				50,
-				110,
-				114,
-				113,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				50,
-				110,
-				114,
-				113,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				50,
-				110,
-				114,
-				113,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				168,
-				192,
-				1,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				45,
-				1,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				255,
-				0,
-				0,
-				0,
-				0,
-				50,
-				115,
-				107,
-				114,
-				0,
-				0,
-				0,
-				0,
-				50,
-				107,
-				107,
-				115,
-				0,
-				0,
-				0,
-				0,
-				160,
-				0,
-				148,
-				0,
-				148,
-				0,
-				40,
-				0,
-				45,
-				0,
-				110,
-				0,
-				0,
-				0,
-				0,
-				66,
-				0,
-				0,
-				200,
-				66,
-				0,
-				0,
-				128,
-				63,
-				0,
-				0,
-				128,
-				63,
-				0,
-				0,
-				128,
-				63,
-				0,
-				0,
-				128,
-				63,
-				0,
-				0,
-				128,
-				63,
-				0,
-				0,
-				128,
-				63,
-				0,
-				0,
-				128,
-				63,
-				65,
-				87,
-				65,
-				75,
-				69,
-				95,
-				50,
-				78,
-				82,
-				71,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				32,
-				66,
-				70,
-				0,
-				14,
-				0,
-				25,
-				0,
-				15,
-				0,
-				0,
-				0,
-				0,
-				63,
-				66,
-				65,
-				84,
-				84,
-				76,
-				69,
-				95,
-				73,
-				84,
-				69,
-				77,
-				49,
-				53,
-				48,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				2,
-				0,
-				66,
-				65,
-				84,
-				84,
-				76,
-				69,
-				95,
-				73,
-				84,
-				69,
-				77,
-				57,
-				48,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				2,
-				0,
-				66,
-				65,
-				84,
-				84,
-				76,
-				69,
-				95,
-				73,
-				84,
-				69,
-				77,
-				57,
-				57,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				2,
-				0,
-				66,
-				65,
-				84,
-				84,
-				76,
-				69,
-				95,
-				73,
-				84,
-				69,
-				77,
-				49,
-				52,
-				52,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				2,
-				0,
-				0,
-				0,
-				0,
-				66,
-				0,
-				0,
-				200,
-				66,
-				70,
-				0,
-				14,
-				0,
-				25,
-				0,
-				15,
-				0,
-				0,
-				0,
-				0,
-				63,
-				0,
-				0,
-				0,
-				63,
-				0,
-				0,
-				64,
-				63,
-				102,
-				102,
-				230,
-				63,
-				0,
-				0,
-				160,
-				64,
-				0,
-				0,
-				0,
-				64,
-				0,
-				0,
-				128,
-				63,
-				0,
-				0,
-				128,
-				63,
-				0,
-				0,
-				112,
-				65,
-				0,
-				0,
-				0,
-				64,
-				0,
-				0,
-				0,
-				0,
-				1,
-				0,
-				0,
-				0,
-				1,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				205,
-				204,
-				204,
-				61,
-				205,
-				204,
-				204,
-				61,
-				154,
-				153,
-				153,
-				62,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0,
-				0
-			});
-			CharaList.Add("1new");
+
+			duelPlayerParam = new List<duelPlayerParamEntry>();
+            duelPlayerParamEntry dpp_entry = new duelPlayerParamEntry();
+
+			dpp_entry.BinPath = "Z:/param/player/Converter/bin/1newprm_bas.bin";
+            dpp_entry.BinName = "1newprm_bas";
+			dpp_entry.Data= new byte[760]
+            {
+                50,
+                110,
+                114,
+                116,
+                0,
+                0,
+                0,
+                0,
+                50,
+                110,
+                114,
+                116,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                100,
+                110,
+                114,
+                107,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                100,
+                110,
+                114,
+                100,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                110,
+                114,
+                113,
+                0,
+                0,
+                0,
+                0,
+                50,
+                110,
+                114,
+                113,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                110,
+                114,
+                113,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                50,
+                110,
+                114,
+                113,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                168,
+                192,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                45,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                255,
+                0,
+                0,
+                0,
+                0,
+                50,
+                115,
+                107,
+                114,
+                0,
+                0,
+                0,
+                0,
+                50,
+                107,
+                107,
+                115,
+                0,
+                0,
+                0,
+                0,
+                160,
+                0,
+                148,
+                0,
+                148,
+                0,
+                40,
+                0,
+                45,
+                0,
+                110,
+                0,
+                0,
+                0,
+                0,
+                66,
+                0,
+                0,
+                200,
+                66,
+                0,
+                0,
+                128,
+                63,
+                0,
+                0,
+                128,
+                63,
+                0,
+                0,
+                128,
+                63,
+                0,
+                0,
+                128,
+                63,
+                0,
+                0,
+                128,
+                63,
+                0,
+                0,
+                128,
+                63,
+                0,
+                0,
+                128,
+                63,
+                65,
+                87,
+                65,
+                75,
+                69,
+                95,
+                50,
+                78,
+                82,
+                71,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                32,
+                66,
+                70,
+                0,
+                14,
+                0,
+                25,
+                0,
+                15,
+                0,
+                0,
+                0,
+                0,
+                63,
+                66,
+                65,
+                84,
+                84,
+                76,
+                69,
+                95,
+                73,
+                84,
+                69,
+                77,
+                49,
+                53,
+                48,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                66,
+                65,
+                84,
+                84,
+                76,
+                69,
+                95,
+                73,
+                84,
+                69,
+                77,
+                57,
+                48,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                66,
+                65,
+                84,
+                84,
+                76,
+                69,
+                95,
+                73,
+                84,
+                69,
+                77,
+                57,
+                57,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                66,
+                65,
+                84,
+                84,
+                76,
+                69,
+                95,
+                73,
+                84,
+                69,
+                77,
+                49,
+                52,
+                52,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                2,
+                0,
+                0,
+                0,
+                0,
+                66,
+                0,
+                0,
+                200,
+                66,
+                70,
+                0,
+                14,
+                0,
+                25,
+                0,
+                15,
+                0,
+                0,
+                0,
+                0,
+                63,
+                0,
+                0,
+                0,
+                63,
+                0,
+                0,
+                64,
+                63,
+                102,
+                102,
+                230,
+                63,
+                0,
+                0,
+                160,
+                64,
+                0,
+                0,
+                0,
+                64,
+                0,
+                0,
+                128,
+                63,
+                0,
+                0,
+                128,
+                63,
+                0,
+                0,
+                112,
+                65,
+                0,
+                0,
+                0,
+                64,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                205,
+                204,
+                204,
+                61,
+                205,
+                204,
+                204,
+                61,
+                154,
+                153,
+                153,
+                62,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            };
+            dpp_entry.CharaList = "1new";
 			string[] costumes = new string[20];
 			for (int x4 = 0; x4 < 20; x4++)
 			{
 				costumes[x4] = "";
 			}
-			CostumeList.Add(costumes);
+            dpp_entry.CostumeList = costumes;
 			string[] awkcostumes = new string[20];
 			for (int x3 = 0; x3 < 20; x3++)
 			{
 				awkcostumes[x3] = "";
 			}
-			AwkCostumeList.Add(awkcostumes);
-			DefaultAssist1.Add("");
-			DefaultAssist2.Add("");
-			AwkAction.Add("");
-			string[] items = new string[4];
+            dpp_entry.AwkCostumeList = awkcostumes;
+			dpp_entry.DefaultAssist1 = "";
+            dpp_entry.DefaultAssist2 = "";
+            dpp_entry.AwkAction = "";
+            string[] items = new string[4];
 			for (int x2 = 0; x2 < 4; x2++)
 			{
 				items[x2] = "";
 			}
-			ItemList.Add(items);
+            dpp_entry.ItemList = items;
 			byte[] itemc = new byte[4];
 			for (int x = 0; x < 4; x++)
 			{
 				itemc[x] = 0;
 			}
-			ItemCount.Add(itemc);
-            Partner.Add("");
-            listBox1.Items.Add(BinName[0]);
+            dpp_entry.ItemCount = itemc;
+            dpp_entry.Partner = "";
+			duelPlayerParam.Add(dpp_entry);
+            listBox1.Items.Add(dpp_entry.BinName);
 		}
 
-		public void OpenFile(string basepath = "")
+        /*public void OpenFile(string basepath = "")
 		{
 			OpenFileDialog o = new OpenFileDialog();
 			{
@@ -940,45 +953,34 @@ namespace NSUNS4_Character_Manager
 
 			listBox1.Items.Clear();
 			EntryCount = 0;
-			BinPath.Clear();
-			BinName.Clear();
-			Data.Clear();
-			CharaList.Clear();
-			CostumeList.Clear();
-			AwkCostumeList.Clear();
-			DefaultAssist1.Clear();
-			DefaultAssist2.Clear();
-			AwkAction.Clear();
-			ItemList.Clear();
-			ItemCount.Clear();
-            Partner.Clear();
-			SettingList.Clear();
-			Setting2List.Clear();
-			EnableAwaSkillList.Clear();
-			VictoryAngleList.Clear();
-			VictoryPosList.Clear();
-			VictoryUnknownList.Clear();
-			AwaSettingList.Clear();
-			FilePath = o.FileName;
+            duelPlayerParam = new List<duelPlayerParamEntry>();
+            duelPlayerParamEntry dpp_entry = new duelPlayerParamEntry();
+            
+            FilePath = o.FileName;
 			byte[] FileBytes = File.ReadAllBytes(FilePath);
 			EntryCount = Main.b_byteArrayToIntRev(Main.b_ReadByteArray(FileBytes, 36, 4)) - 1;
+            for (int x2 = 0; x2 < EntryCount; x2++) {
+                duelPlayerParam.Add(dpp_entry);
+            }
             //if (this.Visible) MessageBox.Show("This file contains " + EntryCount.ToString("X2") + " entries.");
-			int Index3 = 128;
+            int Index3 = 128;
 			for (int x3 = 0; x3 < EntryCount; x3++)
 			{
 				string path = Main.b_ReadString(FileBytes, Index3);
-				BinPath.Add(path);
+				duelPlayerParam[x3].BinPath = path;
 				Index3 = Index3 + path.Length + 1;
 			}
 			Index3++;
-			for (int x2 = 0; x2 < EntryCount + 2; x2++)
+			for (int x2 = 0; x2 < EntryCount; x2++)
 			{
 				string name = Main.b_ReadString(FileBytes, Index3);
-				BinName.Add(name);
+				if (name == "Page0")
+					x2++;
+                if (name == "index")
+                    x2++;
+                duelPlayerParam[x2].BinName = name;
 				Index3 = Index3 + name.Length + 1;
 			}
-			BinName.RemoveAt(1);
-			BinName.RemoveAt(1);
 			int StartOfFile = 68 + Main.b_byteArrayToIntRev(Main.b_ReadByteArray(FileBytes, 16, 4));
 			for (int x = 0; x < EntryCount; x++)
 			{
@@ -987,7 +989,7 @@ namespace NSUNS4_Character_Manager
 				{
 					data.Add(FileBytes[StartOfFile + 760 * x + 48 * x + y]);
 				}
-				Data.Add(data.ToArray());
+                duelPlayerParam[x].Data = data.ToArray();
 				int _ptr = StartOfFile + 760 * x + 48 * x;
 				string characodeid = Main.b_ReadString(FileBytes, _ptr);
 				string[] costumeid = new string[20];
@@ -1027,30 +1029,140 @@ namespace NSUNS4_Character_Manager
 						itemcount[i] = count;
 					}
 				}
-				SettingList.Add(Main.b_ReadByteArray(FileBytes, _ptr + 448, 36));
-				Setting2List.Add(Main.b_ReadByteArray(FileBytes, _ptr + 500, 16));
-				EnableAwaSkillList.Add(FileBytes[_ptr + 0x153]);
-				VictoryAngleList.Add(FileBytes[_ptr + 0x1B8]);
-				VictoryPosList.Add(FileBytes[_ptr + 0x1B6]);
-				VictoryUnknownList.Add(FileBytes[_ptr + 0x1B4]);
+                duelPlayerParam[x].SettingList = Main.b_ReadByteArray(FileBytes, _ptr + 448, 36);
+                duelPlayerParam[x].Setting2List = Main.b_ReadByteArray(FileBytes, _ptr + 500, 16);
+                duelPlayerParam[x].EnableAwaSkillList = FileBytes[_ptr + 0x153];
+                duelPlayerParam[x].VictoryAngleList = FileBytes[_ptr + 0x1B8];
+                duelPlayerParam[x].VictoryPosList = FileBytes[_ptr + 0x1B6];
+                duelPlayerParam[x].VictoryUnknownList = FileBytes[_ptr + 0x1B4];
 
-				AwaSettingList.Add(Main.b_ReadByteArray(FileBytes, _ptr + 644, 84));
+                duelPlayerParam[x].AwaSettingList = Main.b_ReadByteArray(FileBytes, _ptr + 644, 84);
 				string partner = Main.b_ReadString(FileBytes, _ptr + 328);
-                CharaList.Add(characodeid);
-				CostumeList.Add(costumeid);
-				AwkCostumeList.Add(awkcostumeid);
-				DefaultAssist1.Add(defAssist3);
-				DefaultAssist2.Add(defAssist2);
-				AwkAction.Add(awkaction);
-				ItemList.Add(itemlist);
-				ItemCount.Add(itemcount);
-                Partner.Add(partner);
-                listBox1.Items.Add(BinName[x]);
+                duelPlayerParam[x].CharaList = characodeid;
+                duelPlayerParam[x].CostumeList = costumeid;
+                duelPlayerParam[x].AwkCostumeList = awkcostumeid;
+                duelPlayerParam[x].DefaultAssist1 = defAssist3;
+                duelPlayerParam[x].DefaultAssist2 = defAssist2;
+                duelPlayerParam[x].AwkAction = awkaction;
+                duelPlayerParam[x].ItemList = itemlist;
+                duelPlayerParam[x].ItemCount = itemcount;
+                duelPlayerParam[x].Partner = partner;
+                listBox1.Items.Add(duelPlayerParam[x].BinName);
 			}
 			Index3++;
-		}
+		}*/
 
-		public void SaveFile()
+        public void OpenFile(string basepath = "") {
+            OpenFileDialog o = new OpenFileDialog();
+            {
+                o.DefaultExt = ".xfbin";
+                o.Filter = "*.xfbin|*.xfbin";
+            }
+
+            if (basepath == "") {
+                o.ShowDialog();
+            } else {
+                o.FileName = basepath;
+            }
+
+            if (!(o.FileName != "") || !File.Exists(o.FileName)) {
+                return;
+            }
+            FileOpen = true;
+
+            listBox1.Items.Clear();
+            EntryCount = 0;
+            duelPlayerParam.Clear();
+            FilePath = o.FileName;
+            byte[] FileBytes = File.ReadAllBytes(FilePath);
+            EntryCount = Main.b_byteArrayToIntRev(Main.b_ReadByteArray(FileBytes, 36, 4)) - 1;
+            //if (this.Visible) MessageBox.Show("This file contains " + EntryCount.ToString("X2") + " entries.");
+            int Index3 = 128;
+            for (int x3 = 0; x3 < EntryCount; x3++) {
+                duelPlayerParam.Add(new duelPlayerParamEntry());
+            }
+            for (int x3 = 0; x3 < EntryCount; x3++) {
+                string path = Main.b_ReadString(FileBytes, Index3);
+				duelPlayerParam[x3].BinPath = path;
+                Index3 = Index3 + path.Length + 1;
+            }
+            Index3++;
+			List<string> binName = new List<string>();
+            for (int x2 = 0; x2 < EntryCount + 2; x2++) {
+                string name = Main.b_ReadString(FileBytes, Index3);
+                binName.Add(name);
+                Index3 = Index3 + name.Length + 1;
+            }
+            binName.RemoveAt(1);
+            binName.RemoveAt(1);
+            for (int x2 = 0; x2 < EntryCount; x2++) {
+                duelPlayerParam[x2].BinName = binName[x2];
+            }
+
+            int StartOfFile = 68 + Main.b_byteArrayToIntRev(Main.b_ReadByteArray(FileBytes, 16, 4));
+            for (int x = 0; x < EntryCount; x++) {
+                List<byte> data = new List<byte>();
+                for (int y = 0; y < 760; y++) {
+                    data.Add(FileBytes[StartOfFile + 760 * x + 48 * x + y]);
+                }
+                duelPlayerParam[x].Data = data.ToArray();
+                int _ptr = StartOfFile + 760 * x + 48 * x;
+                string characodeid = Main.b_ReadString(FileBytes, _ptr);
+                string[] costumeid = new string[20];
+                for (int c2 = 0; c2 < 20; c2++) {
+                    costumeid[c2] = "";
+                    string cid = Main.b_ReadString(FileBytes, _ptr + 8 + 8 * c2);
+                    if (cid != "") {
+                        costumeid[c2] = cid;
+                    }
+                }
+                string[] awkcostumeid = new string[20];
+                for (int c = 0; c < 20; c++) {
+                    awkcostumeid[c] = "";
+                    string awkcid = Main.b_ReadString(FileBytes, _ptr + 168 + 8 * c);
+                    if (awkcid != "") {
+                        awkcostumeid[c] = awkcid;
+                    }
+                }
+                string defAssist3 = Main.b_ReadString(FileBytes, _ptr + 420);
+                string defAssist2 = Main.b_ReadString(FileBytes, _ptr + 428);
+                string awkaction = Main.b_ReadString(FileBytes, _ptr + 484);
+                string[] itemlist = new string[4];
+                byte[] itemcount = new byte[4];
+                for (int i = 0; i < 4; i++) {
+                    itemlist[i] = "";
+                    itemcount[i] = 0;
+                    string item = Main.b_ReadString(FileBytes, _ptr + 516 + 32 * i);
+                    byte count = FileBytes[_ptr + 546 + 32 * i];
+                    if (item != "") {
+                        itemlist[i] = item;
+                        itemcount[i] = count;
+                    }
+                }
+                duelPlayerParam[x].SettingList = Main.b_ReadByteArray(FileBytes, _ptr + 448, 36);
+                duelPlayerParam[x].Setting2List = Main.b_ReadByteArray(FileBytes, _ptr + 500, 16);
+                duelPlayerParam[x].EnableAwaSkillList = FileBytes[_ptr + 0x153];
+                duelPlayerParam[x].VictoryAngleList = FileBytes[_ptr + 0x1B8];
+                duelPlayerParam[x].VictoryPosList = FileBytes[_ptr + 0x1B6];
+                duelPlayerParam[x].VictoryUnknownList = FileBytes[_ptr + 0x1B4];
+
+                duelPlayerParam[x].AwaSettingList = Main.b_ReadByteArray(FileBytes, _ptr + 644, 84);
+                string partner = Main.b_ReadString(FileBytes, _ptr + 328);
+                duelPlayerParam[x].CharaList = characodeid;
+                duelPlayerParam[x].CostumeList = costumeid;
+                duelPlayerParam[x].AwkCostumeList = awkcostumeid;
+                duelPlayerParam[x].DefaultAssist1 = defAssist3;
+                duelPlayerParam[x].DefaultAssist2 = defAssist2;
+                duelPlayerParam[x].AwkAction = awkaction;
+                duelPlayerParam[x].ItemList = itemlist;
+                duelPlayerParam[x].ItemCount = itemcount;
+                duelPlayerParam[x].Partner = partner;
+                listBox1.Items.Add(duelPlayerParam[x].BinName);
+            }
+            Index3++;
+        }
+
+        public void SaveFile()
 		{
 			if (FilePath != "")
 			{
@@ -1111,15 +1223,16 @@ namespace NSUNS4_Character_Manager
 		{
 			int actualEntry = EntryCount;
 			EntryCount++;
-			BinPath.Add("Z:/param/player/Converter/bin/" + w_charaprmbas.Text + "prm_bas.bin");
-			BinName.Add(w_charaprmbas.Text + "prm_bas");
+            duelPlayerParamEntry dpp_entry = new duelPlayerParamEntry();
+            dpp_entry.BinPath = "Z:/param/player/Converter/bin/" + w_charaprmbas.Text + "prm_bas.bin";
+            dpp_entry.BinName = w_charaprmbas.Text + "prm_bas";
 			if (listBox1.SelectedIndex != -1)
 			{
-				Data.Add(Data[listBox1.SelectedIndex]);
+                dpp_entry.Data = duelPlayerParam[listBox1.SelectedIndex].Data;
 			}
 			else
 			{
-				Data.Add(new byte[760]
+                dpp_entry.Data = new byte[760]
 				{
 					50,
 					110,
@@ -1881,58 +1994,59 @@ namespace NSUNS4_Character_Manager
 					0,
 					0,
 					0
-				});
+				};
 			}
-			CharaList.Add(w_characodeid.Text);
+            dpp_entry.CharaList = w_characodeid.Text;
 
 			string[] costumes = new string[20];
 			for (int x = 0; x < 20; x++)
 			{
-                costumes[x] = CostumeList[listBox1.SelectedIndex][x];
+                costumes[x] = duelPlayerParam[listBox1.SelectedIndex].CostumeList[x];
 			}
-			CostumeList.Add(costumes);
+            dpp_entry.CostumeList = costumes;
 
 			string[] awkcostumes = new string[20];
 			for (int x = 0; x < 20; x++)
 			{
-                awkcostumes[x] = AwkCostumeList[listBox1.SelectedIndex][x];
+                awkcostumes[x] = duelPlayerParam[listBox1.SelectedIndex].AwkCostumeList[x];
 			}
-			AwkCostumeList.Add(awkcostumes);
+            dpp_entry.AwkCostumeList = awkcostumes;
 
-			DefaultAssist1.Add(w_defaultassist1.Text);
-			DefaultAssist2.Add(w_defaultassist2.Text);
-			AwkAction.Add(w_awkaction.Text);
-			ItemList.Add(new string[4]
+            dpp_entry.DefaultAssist1 = w_defaultassist1.Text;
+            dpp_entry.DefaultAssist2 = w_defaultassist2.Text;
+            dpp_entry.AwkAction = w_awkaction.Text;
+            dpp_entry.ItemList = new string[4]
 			{
 				w_item1.Text,
 				w_item2.Text,
 				w_item3.Text,
 				w_item4.Text
-			});
-			ItemCount.Add(new byte[4]
+			};
+            dpp_entry.ItemCount = new byte[4]
 			{
 				(byte)w_itemc1.Value,
 				(byte)w_itemc2.Value,
 				(byte)w_itemc3.Value,
 				(byte)w_itemc4.Value
-			});
-			byte[] add_setting1List = SettingList[listBox1.SelectedIndex];
-			byte[] add_setting2List = Setting2List[listBox1.SelectedIndex];
-			byte[] add_settingAwaList = AwaSettingList[listBox1.SelectedIndex];
-			int add_EnableAwaSkill = EnableAwaSkillList[listBox1.SelectedIndex];
+			};
+			byte[] add_setting1List = duelPlayerParam[listBox1.SelectedIndex].SettingList;
+			byte[] add_setting2List = duelPlayerParam[listBox1.SelectedIndex].Setting2List;
+			byte[] add_settingAwaList = duelPlayerParam[listBox1.SelectedIndex].AwaSettingList;
+			int add_EnableAwaSkill = duelPlayerParam[listBox1.SelectedIndex].EnableAwaSkillList;
 
-			int add_VictoryAngle = VictoryAngleList[listBox1.SelectedIndex];
-			int add_VictoryPos = VictoryPosList[listBox1.SelectedIndex];
-			int add_VictoryUnknown = VictoryUnknownList[listBox1.SelectedIndex];
-			VictoryAngleList.Add(add_VictoryAngle);
-			VictoryPosList.Add(add_VictoryPos);
-			VictoryUnknownList.Add(add_VictoryUnknown);
-			SettingList.Add(add_setting1List);
-			Setting2List.Add(add_setting2List);
-			EnableAwaSkillList.Add(add_EnableAwaSkill);
-			AwaSettingList.Add(add_settingAwaList);
-			Partner.Add(w_partner.Text);
-			listBox1.Items.Add(BinName[actualEntry]);
+			int add_VictoryAngle = duelPlayerParam[listBox1.SelectedIndex].VictoryAngleList;
+			int add_VictoryPos = duelPlayerParam[listBox1.SelectedIndex].VictoryPosList;
+			int add_VictoryUnknown = duelPlayerParam[listBox1.SelectedIndex].VictoryUnknownList;
+            dpp_entry.VictoryAngleList = add_VictoryAngle;
+            dpp_entry.VictoryPosList = add_VictoryPos;
+            dpp_entry.VictoryUnknownList = add_VictoryUnknown;
+            dpp_entry.SettingList=add_setting1List;
+            dpp_entry.Setting2List = add_setting2List;
+            dpp_entry.EnableAwaSkillList = add_EnableAwaSkill;
+            dpp_entry.AwaSettingList = add_settingAwaList;
+            dpp_entry.Partner = w_partner.Text;
+			listBox1.Items.Add(dpp_entry.BinName);
+			duelPlayerParam.Add(dpp_entry);
 			listBox1.SelectedIndex = actualEntry;
 		}
 
@@ -1952,18 +2066,7 @@ namespace NSUNS4_Character_Manager
 						listBox1.ClearSelected();
 					}
 					EntryCount--;
-					BinPath.RemoveAt(x);
-					BinName.RemoveAt(x);
-					Data.RemoveAt(x);
-					CharaList.RemoveAt(x);
-					CostumeList.RemoveAt(x);
-					AwkCostumeList.RemoveAt(x);
-					DefaultAssist1.RemoveAt(x);
-					DefaultAssist2.RemoveAt(x);
-					AwkAction.RemoveAt(x);
-					ItemList.RemoveAt(x);
-					ItemCount.RemoveAt(x);
-                    Partner.RemoveAt(x);
+                    duelPlayerParam.RemoveAt(x);
                     listBox1.Items.RemoveAt(x);
 				}
 				else
@@ -1982,33 +2085,33 @@ namespace NSUNS4_Character_Manager
 			int x = listBox1.SelectedIndex;
 			if (x != -1)
 			{
-				BinPath[x] = "Z:/param/player/Converter/bin/" + w_charaprmbas.Text + "prm_bas.bin";
-				BinName[x] = w_charaprmbas.Text + "prm_bas";
-				CharaList[x] = w_characodeid.Text;
-				DefaultAssist1[x] = w_defaultassist1.Text;
-				DefaultAssist2[x] = w_defaultassist2.Text;
-				AwkAction[x] = w_awkaction.Text;
+                duelPlayerParam[x].BinPath = "Z:/param/player/Converter/bin/" + w_charaprmbas.Text + "prm_bas.bin";
+                duelPlayerParam[x].BinName = w_charaprmbas.Text + "prm_bas";
+                duelPlayerParam[x].CharaList = w_characodeid.Text;
+                duelPlayerParam[x].DefaultAssist1 = w_defaultassist1.Text;
+                duelPlayerParam[x].DefaultAssist2 = w_defaultassist2.Text;
+                duelPlayerParam[x].AwkAction = w_awkaction.Text;
 
-				EnableAwaSkillList[x] = (int)v_enableAwaSkill.Value;
-				VictoryAngleList[x] = (int)v_vic_cam_angle.Value;
-				VictoryPosList[x] = (int)v_vic_cam_pos.Value;
-				VictoryUnknownList[x] = (int)v_cam_unk.Value;
-				ItemList[x] = new string[4]
+                duelPlayerParam[x].EnableAwaSkillList = (int)v_enableAwaSkill.Value;
+                duelPlayerParam[x].VictoryAngleList = (int)v_vic_cam_angle.Value;
+                duelPlayerParam[x].VictoryPosList = (int)v_vic_cam_pos.Value;
+                duelPlayerParam[x].VictoryUnknownList = (int)v_cam_unk.Value;
+                duelPlayerParam[x].ItemList = new string[4]
 				{
 					w_item1.Text,
 					w_item2.Text,
 					w_item3.Text,
 					w_item4.Text
 				};
-				ItemCount[x] = new byte[4]
+                duelPlayerParam[x].ItemCount = new byte[4]
 				{
 					(byte)w_itemc1.Value,
 					(byte)w_itemc2.Value,
 					(byte)w_itemc3.Value,
 					(byte)w_itemc4.Value
 				};
-                Partner[x] = w_partner.Text;
-                listBox1.Items[x] = BinName[x];
+                duelPlayerParam[x].Partner = w_partner.Text;
+                listBox1.Items[x] = duelPlayerParam[x].BinName;
 			}
 			else
 			{
@@ -2158,7 +2261,7 @@ namespace NSUNS4_Character_Manager
 
             for (int x6 = 0; x6 < EntryCount; x6++)
 			{
-				fileBytes36 = Main.b_AddString(fileBytes36, BinPath[x6]);
+				fileBytes36 = Main.b_AddString(fileBytes36, duelPlayerParam[x6].BinPath);
 				fileBytes36 = Main.b_AddBytes(fileBytes36, new byte[1]);
 			}
 
@@ -2167,7 +2270,7 @@ namespace NSUNS4_Character_Manager
 
             for (int x5 = 0; x5 < 1; x5++)
 			{
-				fileBytes36 = Main.b_AddString(fileBytes36, BinName[x5]);
+				fileBytes36 = Main.b_AddString(fileBytes36, duelPlayerParam[x5].BinName);
 				fileBytes36 = Main.b_AddBytes(fileBytes36, new byte[1]);
 			}
 
@@ -2178,7 +2281,7 @@ namespace NSUNS4_Character_Manager
 
             for (int x4 = 1; x4 < EntryCount; x4++)
 			{
-				fileBytes36 = Main.b_AddString(fileBytes36, BinName[x4]);
+				fileBytes36 = Main.b_AddString(fileBytes36, duelPlayerParam[x4].BinName);
 				fileBytes36 = Main.b_AddBytes(fileBytes36, new byte[1]);
 			}
 
@@ -2429,34 +2532,34 @@ namespace NSUNS4_Character_Manager
 					2,
 					248
 				}));
-				fileBytes36 = Main.b_AddBytes(fileBytes36, Data[x].ToArray());
+				fileBytes36 = Main.b_AddBytes(fileBytes36, duelPlayerParam[x].Data.ToArray());
 				int _ptr = 68 + FullLength + 48 * x + 760 * x;
-				fileBytes36 = Main.b_ReplaceString(fileBytes36, CharaList[x], _ptr, 8);
+				fileBytes36 = Main.b_ReplaceString(fileBytes36, duelPlayerParam[x].CharaList, _ptr, 8);
 				for (int i = 0; i < 20; i++)
 				{
-					fileBytes36 = Main.b_ReplaceString(fileBytes36, CostumeList[x][i], _ptr + 8 + 8 * i, 8);
-					fileBytes36 = Main.b_ReplaceString(fileBytes36, AwkCostumeList[x][i], _ptr + 168 + 8 * i, 8);
+					fileBytes36 = Main.b_ReplaceString(fileBytes36, duelPlayerParam[x].CostumeList[i], _ptr + 8 + 8 * i, 8);
+					fileBytes36 = Main.b_ReplaceString(fileBytes36, duelPlayerParam[x].AwkCostumeList[i], _ptr + 168 + 8 * i, 8);
 				}
 
-				fileBytes36 = Main.b_ReplaceBytes(fileBytes36, new byte[1] { (byte)EnableAwaSkillList[x] }, _ptr + 0x153);
-				fileBytes36 = Main.b_ReplaceBytes(fileBytes36, new byte[1] { (byte)VictoryUnknownList[x] }, _ptr + 0x1B4);
-				fileBytes36 = Main.b_ReplaceBytes(fileBytes36, new byte[1] { (byte)VictoryPosList[x] }, _ptr + 0x1B6);
-				fileBytes36 = Main.b_ReplaceBytes(fileBytes36, new byte[1] { (byte)VictoryAngleList[x] }, _ptr + 0x1B8);
-				fileBytes36 = Main.b_ReplaceString(fileBytes36, DefaultAssist1[x], _ptr + 420, 8);
-				fileBytes36 = Main.b_ReplaceString(fileBytes36, DefaultAssist2[x], _ptr + 428, 8);
-				fileBytes36 = Main.b_ReplaceString(fileBytes36, AwkAction[x], _ptr + 484, 16);
-				fileBytes36 = Main.b_ReplaceBytes(fileBytes36, SettingList[x], _ptr + 448);
-				fileBytes36 = Main.b_ReplaceBytes(fileBytes36, Setting2List[x], _ptr + 500);
-				fileBytes36 = Main.b_ReplaceBytes(fileBytes36, AwaSettingList[x], _ptr + 644);
-				fileBytes36 = Main.b_ReplaceString(fileBytes36, ItemList[x][0], _ptr + 516, 16);
-				fileBytes36[_ptr + 546] = ItemCount[x][0];
-				fileBytes36 = Main.b_ReplaceString(fileBytes36, ItemList[x][1], _ptr + 548, 16);
-				fileBytes36[_ptr + 578] = ItemCount[x][1];
-				fileBytes36 = Main.b_ReplaceString(fileBytes36, ItemList[x][2], _ptr + 580, 16);
-				fileBytes36[_ptr + 610] = ItemCount[x][2];
-				fileBytes36 = Main.b_ReplaceString(fileBytes36, ItemList[x][3], _ptr + 612, 16);
-				fileBytes36[_ptr + 642] = ItemCount[x][3];
-				fileBytes36 = Main.b_ReplaceString(fileBytes36, Partner[x], _ptr + 328, 8);
+				fileBytes36 = Main.b_ReplaceBytes(fileBytes36, new byte[1] { (byte)duelPlayerParam[x].EnableAwaSkillList }, _ptr + 0x153);
+				fileBytes36 = Main.b_ReplaceBytes(fileBytes36, new byte[1] { (byte)duelPlayerParam[x].VictoryUnknownList }, _ptr + 0x1B4);
+				fileBytes36 = Main.b_ReplaceBytes(fileBytes36, new byte[1] { (byte)duelPlayerParam[x].VictoryPosList }, _ptr + 0x1B6);
+				fileBytes36 = Main.b_ReplaceBytes(fileBytes36, new byte[1] { (byte)duelPlayerParam[x].VictoryAngleList }, _ptr + 0x1B8);
+				fileBytes36 = Main.b_ReplaceString(fileBytes36, duelPlayerParam[x].DefaultAssist1, _ptr + 420, 8);
+				fileBytes36 = Main.b_ReplaceString(fileBytes36, duelPlayerParam[x].DefaultAssist2, _ptr + 428, 8);
+				fileBytes36 = Main.b_ReplaceString(fileBytes36, duelPlayerParam[x].AwkAction, _ptr + 484, 16);
+				fileBytes36 = Main.b_ReplaceBytes(fileBytes36, duelPlayerParam[x].SettingList, _ptr + 448);
+				fileBytes36 = Main.b_ReplaceBytes(fileBytes36, duelPlayerParam[x].Setting2List, _ptr + 500);
+				fileBytes36 = Main.b_ReplaceBytes(fileBytes36, duelPlayerParam[x].AwaSettingList, _ptr + 644);
+				fileBytes36 = Main.b_ReplaceString(fileBytes36, duelPlayerParam[x].ItemList[0], _ptr + 516, 16);
+				fileBytes36[_ptr + 546] = duelPlayerParam[x].ItemCount[0];
+				fileBytes36 = Main.b_ReplaceString(fileBytes36, duelPlayerParam[x].ItemList[1], _ptr + 548, 16);
+				fileBytes36[_ptr + 578] = duelPlayerParam[x].ItemCount[1];
+				fileBytes36 = Main.b_ReplaceString(fileBytes36, duelPlayerParam[x].ItemList[2], _ptr + 580, 16);
+				fileBytes36[_ptr + 610] = duelPlayerParam[x].ItemCount[2];
+				fileBytes36 = Main.b_ReplaceString(fileBytes36, duelPlayerParam[x].ItemList[3], _ptr + 612, 16);
+				fileBytes36[_ptr + 642] = duelPlayerParam[x].ItemCount[3];
+				fileBytes36 = Main.b_ReplaceString(fileBytes36, duelPlayerParam[x].Partner, _ptr + 328, 8);
             }
 			return Main.b_AddBytes(fileBytes36, new byte[20]
 			{
@@ -2597,7 +2700,7 @@ namespace NSUNS4_Character_Manager
 			int x = listBox1.SelectedIndex;
 			if (x != -1)
 			{
-				Tool_DuelPlayerParamEditor_Costumes t = new Tool_DuelPlayerParamEditor_Costumes(CostumeList[x].ToArray(), this, x);
+				Tool_DuelPlayerParamEditor_Costumes t = new Tool_DuelPlayerParamEditor_Costumes(duelPlayerParam[x].CostumeList.ToArray(), this, x);
 				t.ShowDialog();
 			}
 			else
@@ -2611,7 +2714,7 @@ namespace NSUNS4_Character_Manager
 			int x = listBox1.SelectedIndex;
 			if (x != -1)
 			{
-				Tool_DuelPlayerParamEditor_Costumes t = new Tool_DuelPlayerParamEditor_Costumes(AwkCostumeList[x].ToArray(), this, x, 0);
+				Tool_DuelPlayerParamEditor_Costumes t = new Tool_DuelPlayerParamEditor_Costumes(duelPlayerParam[x].AwkCostumeList.ToArray(), this, x, 0);
 				t.ShowDialog();
 			}
 			else
@@ -2625,24 +2728,24 @@ namespace NSUNS4_Character_Manager
 			int x = listBox1.SelectedIndex;
 			if (x != -1)
 			{
-                w_charaprmbas.Text = BinName[x].Substring(0, BinName[x].Length - 7);
-                w_characodeid.Text = CharaList[x];
-				w_defaultassist1.Text = DefaultAssist1[x];
-				w_defaultassist2.Text = DefaultAssist2[x];
-				w_awkaction.Text = AwkAction[x];
-				w_item1.Text = ItemList[x][0];
-				w_itemc1.Value = ItemCount[x][0];
-				w_item2.Text = ItemList[x][1];
-				w_itemc2.Value = ItemCount[x][1];
-				w_item3.Text = ItemList[x][2];
-				w_itemc3.Value = ItemCount[x][2];
-				w_item4.Text = ItemList[x][3];
-				w_itemc4.Value = ItemCount[x][3];
-                w_partner.Text = Partner[x];
-				v_enableAwaSkill.Value = EnableAwaSkillList[x];
-				v_vic_cam_angle.Value = VictoryAngleList[x];
-				v_vic_cam_pos.Value = VictoryPosList[x];
-				v_cam_unk.Value = VictoryUnknownList[x];
+                w_charaprmbas.Text = duelPlayerParam[x].BinName.Substring(0, duelPlayerParam[x].BinName.Length - 7);
+                w_characodeid.Text = duelPlayerParam[x].CharaList;
+				w_defaultassist1.Text = duelPlayerParam[x].DefaultAssist1;
+				w_defaultassist2.Text = duelPlayerParam[x].DefaultAssist2;
+				w_awkaction.Text = duelPlayerParam[x].AwkAction;
+				w_item1.Text = duelPlayerParam[x].ItemList[0];
+				w_itemc1.Value = duelPlayerParam[x].ItemCount[0];
+				w_item2.Text = duelPlayerParam[x].ItemList[1];
+				w_itemc2.Value = duelPlayerParam[x].ItemCount[1];
+				w_item3.Text = duelPlayerParam[x].ItemList[2];
+				w_itemc3.Value = duelPlayerParam[x].ItemCount[2];
+				w_item4.Text = duelPlayerParam[x].ItemList[3];
+				w_itemc4.Value = duelPlayerParam[x].ItemCount[3];
+                w_partner.Text = duelPlayerParam[x].Partner;
+				v_enableAwaSkill.Value = duelPlayerParam[x].EnableAwaSkillList;
+				v_vic_cam_angle.Value = duelPlayerParam[x].VictoryAngleList;
+				v_vic_cam_pos.Value = duelPlayerParam[x].VictoryPosList;
+				v_cam_unk.Value = duelPlayerParam[x].VictoryUnknownList;
 
 			}
 			else
@@ -2733,6 +2836,8 @@ namespace NSUNS4_Character_Manager
             this.label14 = new System.Windows.Forms.Label();
             this.v_cam_unk = new System.Windows.Forms.NumericUpDown();
             this.label15 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.w_itemc1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.w_itemc2)).BeginInit();
@@ -2751,37 +2856,37 @@ namespace NSUNS4_Character_Manager
             this.listBox1.ItemHeight = 17;
             this.listBox1.Location = new System.Drawing.Point(13, 39);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(293, 497);
+            this.listBox1.Size = new System.Drawing.Size(276, 480);
             this.listBox1.TabIndex = 0;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(309, 578);
+            this.button1.Location = new System.Drawing.Point(14, 520);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(352, 23);
+            this.button1.Size = new System.Drawing.Size(154, 23);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Add new entry with this data (using the selected entry as a base)";
+            this.button1.Text = "Duplicate Entry";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(309, 548);
+            this.button2.Location = new System.Drawing.Point(168, 520);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(352, 23);
+            this.button2.Size = new System.Drawing.Size(138, 23);
             this.button2.TabIndex = 2;
-            this.button2.Text = "Save selected entry";
+            this.button2.Text = "Save Entry";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(13, 548);
+            this.button3.Location = new System.Drawing.Point(14, 542);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(293, 23);
+            this.button3.Size = new System.Drawing.Size(292, 23);
             this.button3.TabIndex = 3;
-            this.button3.Text = "Remove selected entry";
+            this.button3.Text = "Remove Entry";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -3097,18 +3202,18 @@ namespace NSUNS4_Character_Manager
             // 
             // Search_TB
             // 
-            this.Search_TB.Location = new System.Drawing.Point(13, 577);
+            this.Search_TB.Location = new System.Drawing.Point(15, 565);
             this.Search_TB.MaxLength = 15;
             this.Search_TB.Name = "Search_TB";
-            this.Search_TB.Size = new System.Drawing.Size(172, 23);
+            this.Search_TB.Size = new System.Drawing.Size(177, 23);
             this.Search_TB.TabIndex = 36;
             this.Search_TB.TextChanged += new System.EventHandler(this.Search_TB_TextChanged);
             // 
             // Search
             // 
-            this.Search.Location = new System.Drawing.Point(189, 577);
+            this.Search.Location = new System.Drawing.Point(191, 565);
             this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(117, 23);
+            this.Search.Size = new System.Drawing.Size(115, 23);
             this.Search.TabIndex = 35;
             this.Search.Text = "Search Character ID";
             this.Search.UseVisualStyleBackColor = true;
@@ -3117,9 +3222,9 @@ namespace NSUNS4_Character_Manager
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Segoe UI", 15.5F);
-            this.button4.Location = new System.Drawing.Point(309, 455);
+            this.button4.Location = new System.Drawing.Point(308, 519);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(352, 81);
+            this.button4.Size = new System.Drawing.Size(353, 68);
             this.button4.TabIndex = 37;
             this.button4.Text = "Value Settings";
             this.button4.UseVisualStyleBackColor = true;
@@ -3219,11 +3324,34 @@ namespace NSUNS4_Character_Manager
             this.label15.TabIndex = 45;
             this.label15.Text = "Unknown value:";
             // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.button5.Location = new System.Drawing.Point(289, 38);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(18, 250);
+            this.button5.TabIndex = 47;
+            this.button5.Text = "▲";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(289, 286);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(17, 233);
+            this.button6.TabIndex = 48;
+            this.button6.Text = "▼";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Tool_DuelPlayerParamEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(669, 610);
+            this.ClientSize = new System.Drawing.Size(669, 592);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.v_cam_unk);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.v_vic_cam_pos);
@@ -3303,7 +3431,7 @@ namespace NSUNS4_Character_Manager
 			{
 				if (Search_TB.Text != "")
 				{
-					if (Main.SearchStringIndex(BinName, Search_TB.Text, EntryCount, listBox1.SelectedIndex) != -1)
+					/*if (Main.SearchStringIndex(BinName, Search_TB.Text, EntryCount, listBox1.SelectedIndex) != -1)
 					{
 						listBox1.SelectedIndex = Main.SearchStringIndex(BinName, Search_TB.Text, EntryCount, listBox1.SelectedIndex);
 					}
@@ -3317,8 +3445,23 @@ namespace NSUNS4_Character_Manager
 						{
 							MessageBox.Show("Section with that name doesn't exist in file");
 						}
-					}
-				}
+					}*/
+					int sel_entry = listBox1.SelectedIndex;
+
+                    for (int c = sel_entry; c<listBox1.Items.Count; c++) {
+						if (listBox1.Items[c].ToString().Contains(Search_TB.Text)) {
+							listBox1.SelectedIndex = c;
+							return;
+						}
+                    }
+                    for (int c = 0; c< sel_entry; c++) {
+                        if (listBox1.Items[c].ToString().Contains(Search_TB.Text)) {
+                            listBox1.SelectedIndex = c;
+                            return;
+                        }
+                    }
+					MessageBox.Show("Entry doesn't exist in file with that name");
+                }
 				else
 				{
 					MessageBox.Show("Write name of section in textbox");
@@ -3340,7 +3483,7 @@ namespace NSUNS4_Character_Manager
 			int x = listBox1.SelectedIndex;
 			if (x != -1)
 			{
-				Tool_DuelPlayerParamEditor_settings s = new Tool_DuelPlayerParamEditor_settings(SettingList[x], Setting2List[x], AwaSettingList[x], BinName[x], this, x);
+				Tool_DuelPlayerParamEditor_settings s = new Tool_DuelPlayerParamEditor_settings(duelPlayerParam[x].SettingList, duelPlayerParam[x].Setting2List, duelPlayerParam[x].AwaSettingList, duelPlayerParam[x].BinName, this, x);
 				s.ShowDialog();
 			}
 			else
@@ -3354,5 +3497,47 @@ namespace NSUNS4_Character_Manager
 			Tool_DSP_ItemList s = new Tool_DSP_ItemList();
 			s.Show();
 		}
+
+		void EntryMoveUp() {
+			int x = listBox1.SelectedIndex;
+			if (x != -1) {
+				if (x > 0) {
+					duelPlayerParamEntry dpp_entry = duelPlayerParam[x];
+                    duelPlayerParamEntry new_dpp_entry = duelPlayerParam[x-1];
+
+					duelPlayerParam[x] = new_dpp_entry;
+					duelPlayerParam[x - 1] = dpp_entry;
+					listBox1.Items[x] = duelPlayerParam[x].BinName.DeepClone();
+                    listBox1.Items[x-1] = duelPlayerParam[x-1].BinName.DeepClone();
+					listBox1.SelectedIndex = x - 1;
+                }
+			} else {
+				MessageBox.Show("Select entry.");
+			}
+		}
+        void EntryMoveDown() {
+            int x = listBox1.SelectedIndex;
+            if (x != -1) {
+                if (x < listBox1.Items.Count) {
+                    duelPlayerParamEntry dpp_entry = duelPlayerParam[x];
+                    duelPlayerParamEntry new_dpp_entry = duelPlayerParam[x + 1];
+
+                    duelPlayerParam[x] = new_dpp_entry;
+                    duelPlayerParam[x + 1] = dpp_entry;
+                    listBox1.Items[x] = duelPlayerParam[x].BinName.DeepClone();
+                    listBox1.Items[x + 1] = duelPlayerParam[x + 1].BinName.DeepClone();
+                    listBox1.SelectedIndex = x + 1;
+                }
+            } else {
+                MessageBox.Show("Select entry.");
+            }
+        }
+        private void button5_Click(object sender, EventArgs e) {
+			EntryMoveUp();
+        }
+
+        private void button6_Click(object sender, EventArgs e) {
+			EntryMoveDown();
+        }
     }
 }

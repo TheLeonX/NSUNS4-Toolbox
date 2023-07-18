@@ -46,6 +46,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Tool_Animation60FPS_Fix";
             this.Text = "Animation 60FPS Fix Tool";
+            this.Load += new System.EventHandler(this.Tool_Animation60FPS_Fix_Load);
             this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Tool_Animation60FPS_Fix_DragDrop);
             this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Tool_Animation60FPS_Fix_DragEnter);
             this.ResumeLayout(false);
