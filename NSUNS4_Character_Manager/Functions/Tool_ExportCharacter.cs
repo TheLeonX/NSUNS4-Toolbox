@@ -548,8 +548,7 @@ namespace NSUNS4_Character_Manager.Functions {
                             byte[] skill_file = File.ReadAllBytes(Main.datawin32Path + "\\skill\\" + SpcloadFile.spcloadParam[i].name + ".xfbin");
                             List<int> UsedSound_skill_List = Main.b_FindBytesList(skill_file, new byte[18] { 0x53, 0x6F, 0x75, 0x6E, 0x64, 0x45, 0x66, 0x66, 0x65, 0x63, 0x74, 0x20, 0x63, 0x6F, 0x64, 0x65, 0x3D, 0x22 });
                             for (int iz = 0; iz < UsedSound_skill_List.Count; iz++) {
-                                MessageBox.Show(Main.b_ReadString3(skill_file, UsedSound_skill_List[iz] + 18,-1,0x22));
-                                if (!UsedSoundList.Contains(Main.b_ReadString3(skill_file, UsedSound_skill_List[iz]+18, -1, 0x22))) {
+                                 if (!UsedSoundList.Contains(Main.b_ReadString3(skill_file, UsedSound_skill_List[iz]+18, -1, 0x22))) {
                                     UsedSoundList.Add(Main.b_ReadString3(skill_file, UsedSound_skill_List[iz] + 18, -1, 0x22));
                                 }
                             }

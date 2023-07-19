@@ -215,9 +215,6 @@ namespace NSUNS4_Character_Manager
                 actualFile = Main.b_AddBytes(actualFile, BitConverter.GetBytes(spcloadParam[x].type));
                 actualFile = Main.b_AddBytes(actualFile, BitConverter.GetBytes(spcloadParam[x].costumeIndex));
                 actualFile = Main.b_AddBytes(actualFile, BitConverter.GetBytes(spcloadParam[x].loadcond));
-
-                // Add end of entry
-                actualFile = Main.b_AddBytes(actualFile, new byte[] { 0x0, 0x0 });
             }
 
             // Add EOF

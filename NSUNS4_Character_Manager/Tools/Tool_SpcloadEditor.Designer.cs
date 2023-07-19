@@ -53,6 +53,9 @@
             this.button5 = new System.Windows.Forms.Button();
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -177,30 +180,30 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(427, 150);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 15);
+            this.label3.Size = new System.Drawing.Size(202, 15);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Type of file:";
+            this.label3.Text = "Type of file (required for postEffects):";
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Empty",
-            "Spc file (0x1)",
-            "0x2",
-            "0x3",
-            "0x4",
-            "0x5",
-            "0x6",
-            "0x7",
-            "0x8",
-            "0x9",
-            "0xA",
-            "Effect file (0xB)",
-            "0xC",
-            "0xD",
-            "Skill file (0xE)",
-            "0xF"});
+            "0x00 - Empty",
+            "0x01 - Common File",
+            "0x02 - bod1c",
+            "0x03 - bod1l",
+            "0x04 - bod1s",
+            "0x05 - skl",
+            "0x06 - spl",
+            "0x07 - awa/aws",
+            "0x08 - unknown",
+            "0x09 - Model File",
+            "0x0A - acc",
+            "0x0B - Effect file",
+            "0x0C - Param file",
+            "0x0D - Param file",
+            "0x0E - Skill file",
+            "0x0F - unknown"});
             this.comboBox1.Location = new System.Drawing.Point(430, 167);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(266, 21);
@@ -219,7 +222,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(427, 191);
+            this.label4.Location = new System.Drawing.Point(427, 228);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(90, 15);
             this.label4.TabIndex = 12;
@@ -228,9 +231,9 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Hexadecimal = true;
-            this.numericUpDown1.Location = new System.Drawing.Point(430, 208);
+            this.numericUpDown1.Location = new System.Drawing.Point(430, 246);
             this.numericUpDown1.Maximum = new decimal(new int[] {
-            4096,
+            -1,
             0,
             0,
             0});
@@ -288,7 +291,7 @@
             // 
             // numericUpDown2
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(431, 252);
+            this.numericUpDown2.Location = new System.Drawing.Point(430, 205);
             this.numericUpDown2.Maximum = new decimal(new int[] {
             20,
             0,
@@ -300,23 +303,55 @@
             0,
             -2147483648});
             this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(266, 23);
+            this.numericUpDown2.Size = new System.Drawing.Size(265, 23);
             this.numericUpDown2.TabIndex = 52;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(428, 235);
+            this.label6.Location = new System.Drawing.Point(427, 188);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(86, 15);
             this.label6.TabIndex = 51;
             this.label6.Text = "Costume Index";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(427, 272);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(243, 15);
+            this.label7.TabIndex = 53;
+            this.label7.Text = "List of known load conditions (IMPORTANT):";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(428, 287);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(134, 105);
+            this.label8.TabIndex = 54;
+            this.label8.Text = "0x01 - Always load\r\n0x02 - Load for supports\r\n0x03 - Load for players\r\n0x05 - Loa" +
+    "d for Awake\r\n0x0B - Skill 1\r\n0x13 - Skill 2\r\n0x23 - Skill 3\r\n";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(568, 287);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(101, 105);
+            this.label9.TabIndex = 55;
+            this.label9.Text = "0x43 - Skill 4\r\n0x83 - Skill 5\r\n0x2003 - Skill 6\r\n0x101 - Ultimate 1\r\n0x102 - Ult" +
+    "imate 2\r\n0x104 - Ultimate 3\r\n0x108 - Ultimate 4";
             // 
             // Tool_SpcloadEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(702, 425);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.numericUpDown2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button6);
@@ -381,5 +416,8 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }
