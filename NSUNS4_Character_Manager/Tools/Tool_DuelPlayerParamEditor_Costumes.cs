@@ -89,12 +89,12 @@ namespace NSUNS4_Character_Manager
 		{
 			if (mod == -1)
 			{
-				tool.CostumeList[str_index] = str_list;
+				tool.duelPlayerParam[str_index].CostumeList = str_list;
 				MessageBox.Show("Costume list saved correctly.");
 			}
 			else
 			{
-				tool.AwkCostumeList[str_index] = str_list;
+				tool.duelPlayerParam[str_index].AwkCostumeList = str_list;
 				MessageBox.Show("Awakening costume list saved correctly.");
 			}
 		}

@@ -49,8 +49,16 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -60,7 +68,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(524, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(702, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -79,45 +87,45 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saeToolStripMenuItem
             // 
             this.saeToolStripMenuItem.Name = "saeToolStripMenuItem";
-            this.saeToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.saeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saeToolStripMenuItem.Text = "Save";
             this.saeToolStripMenuItem.Click += new System.EventHandler(this.saeToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveAsToolStripMenuItem.Text = "Save As...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(12, 83);
+            this.listBox1.Location = new System.Drawing.Point(3, 31);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(225, 199);
+            this.listBox1.Size = new System.Drawing.Size(403, 342);
             this.listBox1.TabIndex = 1;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 293);
+            this.button1.Location = new System.Drawing.Point(4, 374);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 23);
+            this.button1.Size = new System.Drawing.Size(197, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Add entry";
             this.button1.UseVisualStyleBackColor = true;
@@ -125,9 +133,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(126, 293);
+            this.button2.Location = new System.Drawing.Point(201, 374);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(111, 23);
+            this.button2.Size = new System.Drawing.Size(206, 23);
             this.button2.TabIndex = 3;
             this.button2.Text = "Remove entry";
             this.button2.UseVisualStyleBackColor = true;
@@ -136,7 +144,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(243, 34);
+            this.label1.Location = new System.Drawing.Point(427, 66);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(110, 15);
             this.label1.TabIndex = 4;
@@ -144,7 +152,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(246, 51);
+            this.textBox1.Location = new System.Drawing.Point(430, 83);
             this.textBox1.MaxLength = 30;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(266, 23);
@@ -152,7 +160,7 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(246, 99);
+            this.textBox2.Location = new System.Drawing.Point(431, 124);
             this.textBox2.MaxLength = 30;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(266, 23);
@@ -161,7 +169,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(243, 82);
+            this.label2.Location = new System.Drawing.Point(428, 107);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(219, 15);
             this.label2.TabIndex = 6;
@@ -170,42 +178,42 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(243, 130);
+            this.label3.Location = new System.Drawing.Point(427, 150);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 15);
+            this.label3.Size = new System.Drawing.Size(202, 15);
             this.label3.TabIndex = 8;
-            this.label3.Text = "Type of file:";
+            this.label3.Text = "Type of file (required for postEffects):";
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "Empty",
-            "Spc file (0x1)",
-            "0x2",
-            "0x3",
-            "0x4",
-            "0x5",
-            "0x6",
-            "0x7",
-            "0x8",
-            "0x9",
-            "0xA",
-            "Effect file (0xB)",
-            "0xC",
-            "0xD",
-            "Skill file (0xE)",
-            "0xF"});
-            this.comboBox1.Location = new System.Drawing.Point(246, 147);
+            "0x00 - Empty",
+            "0x01 - Common File",
+            "0x02 - bod1c",
+            "0x03 - bod1l",
+            "0x04 - bod1s",
+            "0x05 - skl",
+            "0x06 - spl",
+            "0x07 - awa/aws",
+            "0x08 - unknown",
+            "0x09 - Model File",
+            "0x0A - acc",
+            "0x0B - Effect file",
+            "0x0C - Param file",
+            "0x0D - Param file",
+            "0x0E - Skill file",
+            "0x0F - unknown"});
+            this.comboBox1.Location = new System.Drawing.Point(430, 167);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(266, 21);
             this.comboBox1.TabIndex = 10;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(246, 233);
+            this.button3.Location = new System.Drawing.Point(4, 397);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(266, 83);
+            this.button3.Size = new System.Drawing.Size(687, 24);
             this.button3.TabIndex = 11;
             this.button3.Text = "Save entry";
             this.button3.UseVisualStyleBackColor = true;
@@ -214,7 +222,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(243, 179);
+            this.label4.Location = new System.Drawing.Point(427, 228);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(90, 15);
             this.label4.TabIndex = 12;
@@ -223,9 +231,9 @@
             // numericUpDown1
             // 
             this.numericUpDown1.Hexadecimal = true;
-            this.numericUpDown1.Location = new System.Drawing.Point(246, 196);
+            this.numericUpDown1.Location = new System.Drawing.Point(430, 246);
             this.numericUpDown1.Maximum = new decimal(new int[] {
-            4096,
+            -1,
             0,
             0,
             0});
@@ -235,16 +243,16 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(12, 51);
+            this.textBox3.Location = new System.Drawing.Point(430, 40);
             this.textBox3.MaxLength = 30;
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(139, 23);
+            this.textBox3.Size = new System.Drawing.Size(189, 23);
             this.textBox3.TabIndex = 15;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 34);
+            this.label5.Location = new System.Drawing.Point(432, 23);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(154, 15);
             this.label5.TabIndex = 14;
@@ -252,19 +260,102 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(158, 51);
+            this.button4.Location = new System.Drawing.Point(620, 40);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(79, 21);
+            this.button4.Size = new System.Drawing.Size(76, 21);
             this.button4.TabIndex = 16;
             this.button4.Text = "Save ID";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(406, 205);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(18, 192);
+            this.button6.TabIndex = 50;
+            this.button6.Text = "▼";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button5
+            // 
+            this.button5.Font = new System.Drawing.Font("Segoe UI", 10.5F);
+            this.button5.Location = new System.Drawing.Point(406, 31);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(18, 175);
+            this.button5.TabIndex = 49;
+            this.button5.Text = "▲";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(430, 205);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(265, 23);
+            this.numericUpDown2.TabIndex = 52;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(427, 188);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(86, 15);
+            this.label6.TabIndex = 51;
+            this.label6.Text = "Costume Index";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(427, 272);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(243, 15);
+            this.label7.TabIndex = 53;
+            this.label7.Text = "List of known load conditions (IMPORTANT):";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(428, 287);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(134, 105);
+            this.label8.TabIndex = 54;
+            this.label8.Text = "0x01 - Always load\r\n0x02 - Load for supports\r\n0x03 - Load for players\r\n0x05 - Loa" +
+    "d for Awake\r\n0x0B - Skill 1\r\n0x13 - Skill 2\r\n0x23 - Skill 3\r\n";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(568, 287);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(101, 105);
+            this.label9.TabIndex = 55;
+            this.label9.Text = "0x43 - Skill 4\r\n0x83 - Skill 5\r\n0x2003 - Skill 6\r\n0x101 - Ultimate 1\r\n0x102 - Ult" +
+    "imate 2\r\n0x104 - Ultimate 3\r\n0x108 - Ultimate 4";
+            // 
             // Tool_SpcloadEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(524, 328);
+            this.ClientSize = new System.Drawing.Size(702, 425);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label5);
@@ -292,6 +383,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -320,5 +412,12 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
     }
 }

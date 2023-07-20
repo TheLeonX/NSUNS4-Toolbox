@@ -147,6 +147,7 @@
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.t_loadsection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.t_direction)).BeginInit();
@@ -337,7 +338,7 @@
             this.anm_list.FormattingEnabled = true;
             this.anm_list.Location = new System.Drawing.Point(10, 140);
             this.anm_list.Name = "anm_list";
-            this.anm_list.Size = new System.Drawing.Size(216, 472);
+            this.anm_list.Size = new System.Drawing.Size(216, 446);
             this.anm_list.TabIndex = 6;
             this.anm_list.SelectedIndexChanged += new System.EventHandler(this.anm_list_SelectedIndexChanged);
             // 
@@ -953,7 +954,7 @@
             // 
             // b_moveuppl
             // 
-            this.b_moveuppl.Location = new System.Drawing.Point(11, 615);
+            this.b_moveuppl.Location = new System.Drawing.Point(11, 618);
             this.b_moveuppl.Name = "b_moveuppl";
             this.b_moveuppl.Size = new System.Drawing.Size(106, 23);
             this.b_moveuppl.TabIndex = 67;
@@ -963,7 +964,7 @@
             // 
             // b_movedownpl
             // 
-            this.b_movedownpl.Location = new System.Drawing.Point(120, 615);
+            this.b_movedownpl.Location = new System.Drawing.Point(120, 618);
             this.b_movedownpl.Name = "b_movedownpl";
             this.b_movedownpl.Size = new System.Drawing.Size(106, 23);
             this.b_movedownpl.TabIndex = 68;
@@ -1374,11 +1375,22 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(10, 593);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(216, 23);
+            this.button10.TabIndex = 112;
+            this.button10.Text = "Delete all";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click_1);
+            // 
             // Tool_MovesetCoder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1011, 738);
+            this.Controls.Add(this.button10);
             this.Controls.Add(this.button9);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.button8);
@@ -1639,5 +1651,6 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         public System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button button10;
     }
 }

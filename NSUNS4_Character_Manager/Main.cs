@@ -8,6 +8,8 @@ using System.IO;
 using NSUNS4_Character_Manager.Tools;
 using System.Globalization;
 using System.Text;
+using NSUNS4_Character_Manager.Misc;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace NSUNS4_Character_Manager
 {
@@ -55,6 +57,7 @@ namespace NSUNS4_Character_Manager
         public static string conditionprmPath = "[null]";
         public static string damageprmPath = "[null]";
         public static string spTypeSupportParamPath = "[null]";
+        public static string privateCameraPath = "[null]";
         private Button button9;
         private Button button10;
         private Button button11;
@@ -100,6 +103,9 @@ namespace NSUNS4_Character_Manager
         private Button button13;
         private LinkLabel linkLabel12;
         private Button button30;
+        private Button button31;
+        private Button button32;
+        private Button button33;
         public byte[] PRMEditorCopiedSection;
         public byte[] TheValue
         {
@@ -123,62 +129,66 @@ namespace NSUNS4_Character_Manager
 
         void CreateConfig()
         {
-            List<string> cfg = new List<string>();
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
-            cfg.Add("[null]");
+            List<string> cfg = new List<string> {
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]",
+                "[null]"
+            };
             File.WriteAllLines(ConfigPath, cfg.ToArray());
             MessageBox.Show("Config file created.");
         }
 
         void SaveConfig()
         {
-            List<string> cfg = new List<string>();
-            cfg.Add(datawin32Path);
-            cfg.Add(chaPath);
-            cfg.Add(dppPath);
-            cfg.Add(pspPath);
-            cfg.Add(unlPath);
-            cfg.Add(cspPath);
-            cfg.Add(iconPath);
-            cfg.Add(awakeAuraPath);
-            cfg.Add(ougiFinishPath);
-            cfg.Add(skillCustomizePath);
-            cfg.Add(spSkillCustomizePath);
-            cfg.Add(afterAttachObjectPath);
-            cfg.Add(appearanceAnmPath);
-            cfg.Add(stageInfoPath);
-            cfg.Add(battleParamPath);
-            cfg.Add(episodeParamPath);
-            cfg.Add(episodeMovieParamPath);
-            cfg.Add(messageInfoPath);
-            cfg.Add(cmnparamPath);
-            cfg.Add(effectprmPath);
-            cfg.Add(damageeffPath);
-            cfg.Add(conditionprmPath);
-            cfg.Add(damageprmPath);
-            cfg.Add(spTypeSupportParamPath);
+            List<string> cfg = new List<string> {
+                datawin32Path,
+                chaPath,
+                dppPath,
+                pspPath,
+                unlPath,
+                cspPath,
+                iconPath,
+                awakeAuraPath,
+                ougiFinishPath,
+                skillCustomizePath,
+                spSkillCustomizePath,
+                afterAttachObjectPath,
+                appearanceAnmPath,
+                stageInfoPath,
+                battleParamPath,
+                episodeParamPath,
+                episodeMovieParamPath,
+                messageInfoPath,
+                cmnparamPath,
+                effectprmPath,
+                damageeffPath,
+                conditionprmPath,
+                damageprmPath,
+                spTypeSupportParamPath,
+                privateCameraPath
+            };
             File.WriteAllLines(ConfigPath, cfg.ToArray());
             MessageBox.Show("Config file saved.");
         }
@@ -210,6 +220,7 @@ namespace NSUNS4_Character_Manager
             if (cfg.Length > 21) conditionprmPath = cfg[21];
             if (cfg.Length > 22) damageprmPath = cfg[22];
             if (cfg.Length > 23) spTypeSupportParamPath = cfg[23];
+            if (cfg.Length > 24) privateCameraPath = cfg[24];
             //MessageBox.Show("Loaded paths.");
         }
 
@@ -267,7 +278,7 @@ namespace NSUNS4_Character_Manager
             List<byte> a = new List<byte>();
             for (int x = 0; x < count; x++)
             {
-                a.Add(actual[index + x]);
+                 a.Add(actual[index + x]);
             }
             return a.ToArray();
         }
@@ -295,7 +306,7 @@ namespace NSUNS4_Character_Manager
         }
         public static int b_byteArrayToIntRevTwoBytes(byte[] actual)
         {
-            return actual[3] + actual[2] * 256;
+            return actual[1] + actual[0] * 256;
         }
         public static int b_byteArrayToIntRev(byte[] actual)
         {
@@ -323,6 +334,14 @@ namespace NSUNS4_Character_Manager
         {
 
             return BitConverter.ToSingle(actual, index);
+        }
+        public static float b_ReadFloatRev(byte[] actual, int index) {
+
+            List<byte> a = new List<byte>();
+            for (int x = 0; x < 4; x++) {
+                a.Add(actual[index + 3 - x]);
+            }
+            return BitConverter.ToSingle(a.ToArray(), 0);
         }
 
         public static string b_ReadString(byte[] actual, int index, int count = -1)
@@ -385,6 +404,29 @@ namespace NSUNS4_Character_Manager
             }
             return a;
         }
+
+        public static string b_ReadString3(byte[] actual, int index, int count = -1, int skip = 0) {
+            string a = "";
+            if (count == -1) {
+                for (int x2 = index; x2 < actual.Length; x2++) {
+                    if (actual[x2] != 0 && actual[x2] != skip) {
+                        string str = a;
+                        char c = (char)actual[x2];
+                        a = str + c;
+                    } else {
+                        x2 = actual.Length;
+                    }
+                }
+            } else {
+                for (int x = index; x < index + count; x++) {
+                    string str2 = a;
+                    char c = (char)actual[x];
+                    a = str2 + c;
+                }
+            }
+            return a;
+        }
+
         public static byte[] b_ReplaceBytes(byte[] actual, byte[] bytesToReplace, int Index, int Invert = 0)
         {
             if (Invert == 0)
@@ -462,35 +504,40 @@ namespace NSUNS4_Character_Manager
             return output;
         }
 
-        public static byte[] b_AddBytes(byte[] actual, byte[] bytesToAdd, int Reverse = 0, int index = 0, int count = -1)
-        {
+        public static byte[] b_AddBytes(byte[] actual, byte[] bytesToAdd, int Reverse = 0, int index = 0, int count = -1) {
             List<byte> a = actual.ToList();
-            if (Reverse == 0)
-            {
+            if (Reverse == 0) {
                 if (count == -1) count = bytesToAdd.Length;
                 //            for (int x = index; x < index + count; x++)
                 //{
                 //	a.Add(bytesToAdd[x]);
                 //}
-                for (int x = index; x < count; x++)
-                {
+                for (int x = index; x < count; x++) {
                     a.Add(bytesToAdd[x]);
                 }
-            }
-            else
-            {
+            } else {
                 if (count == -1) count = bytesToAdd.Length;
                 //            for (int x = index; x < index + count; x++)
                 //{
                 //	a.Add(bytesToAdd[bytesToAdd.Length - 1 - x]);
                 //}
-                for (int x = index; x < count; x++)
-                {
+                for (int x = index; x < count; x++) {
                     a.Add(bytesToAdd[bytesToAdd.Length - 1 - x]);
                 }
             }
             return a.ToArray();
         }
+
+        //public static byte[] b_AddBytes2(byte[] actual, byte[] bytesToAdd) {
+        //    byte[] act1 = actual;
+        //    if (act1.Length!= 0) {
+        //        bytesToAdd
+        //        return act1;
+        //    }
+        //    else {
+        //        return bytesToAdd;
+        //    }
+        //}
 
         public static byte[] b_AddInt(byte[] actual, int _num)
         {
@@ -832,6 +879,7 @@ namespace NSUNS4_Character_Manager
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button33 = new System.Windows.Forms.Button();
             this.button30 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button29 = new System.Windows.Forms.Button();
@@ -843,6 +891,8 @@ namespace NSUNS4_Character_Manager
             this.button24 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.button32 = new System.Windows.Forms.Button();
+            this.button31 = new System.Windows.Forms.Button();
             this.linkLabel12 = new System.Windows.Forms.LinkLabel();
             this.linkLabel10 = new System.Windows.Forms.LinkLabel();
             this.linkLabel8 = new System.Windows.Forms.LinkLabel();
@@ -926,22 +976,24 @@ namespace NSUNS4_Character_Manager
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(0, 3);
+            this.button6.Location = new System.Drawing.Point(380, 3);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(225, 36);
             this.button6.TabIndex = 6;
             this.button6.Text = "Import (.ns4) costume";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(0, 36);
+            this.button7.Location = new System.Drawing.Point(380, 37);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(225, 36);
             this.button7.TabIndex = 7;
             this.button7.Text = "Export (.ns4) costume";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Visible = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // menuStrip1
@@ -1069,7 +1121,7 @@ namespace NSUNS4_Character_Manager
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(0, 101);
+            this.button12.Location = new System.Drawing.Point(3, 21);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(225, 36);
             this.button12.TabIndex = 16;
@@ -1213,6 +1265,7 @@ namespace NSUNS4_Character_Manager
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.button33);
             this.tabPage3.Controls.Add(this.button30);
             this.tabPage3.Controls.Add(this.button13);
             this.tabPage3.Controls.Add(this.button29);
@@ -1241,6 +1294,17 @@ namespace NSUNS4_Character_Manager
             this.tabPage3.Text = "Character Managment";
             this.tabPage3.UseVisualStyleBackColor = true;
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // button33
+            // 
+            this.button33.Font = new System.Drawing.Font("Segoe UI", 8.5F);
+            this.button33.Location = new System.Drawing.Point(301, 337);
+            this.button33.Name = "button33";
+            this.button33.Size = new System.Drawing.Size(299, 38);
+            this.button33.TabIndex = 35;
+            this.button33.Text = "privateCamera Editor";
+            this.button33.UseVisualStyleBackColor = true;
+            this.button33.Click += new System.EventHandler(this.button33_Click);
             // 
             // button30
             // 
@@ -1354,6 +1418,8 @@ namespace NSUNS4_Character_Manager
             // 
             // tabPage6
             // 
+            this.tabPage6.Controls.Add(this.button32);
+            this.tabPage6.Controls.Add(this.button31);
             this.tabPage6.Controls.Add(this.linkLabel12);
             this.tabPage6.Controls.Add(this.linkLabel10);
             this.tabPage6.Controls.Add(this.linkLabel8);
@@ -1371,6 +1437,27 @@ namespace NSUNS4_Character_Manager
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Other tools";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // button32
+            // 
+            this.button32.Location = new System.Drawing.Point(301, 40);
+            this.button32.Name = "button32";
+            this.button32.Size = new System.Drawing.Size(299, 38);
+            this.button32.TabIndex = 45;
+            this.button32.Text = "60 FPS Fix for animations";
+            this.button32.UseVisualStyleBackColor = true;
+            this.button32.Click += new System.EventHandler(this.button32_Click);
+            // 
+            // button31
+            // 
+            this.button31.Location = new System.Drawing.Point(301, 77);
+            this.button31.Name = "button31";
+            this.button31.Size = new System.Drawing.Size(299, 38);
+            this.button31.TabIndex = 44;
+            this.button31.Text = "AnmStream to Anm converter";
+            this.button31.UseVisualStyleBackColor = true;
+            this.button31.Visible = false;
+            this.button31.Click += new System.EventHandler(this.button31_Click);
             // 
             // linkLabel12
             // 
@@ -1390,12 +1477,13 @@ namespace NSUNS4_Character_Manager
             this.linkLabel10.AutoSize = true;
             this.linkLabel10.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.linkLabel10.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel10.Location = new System.Drawing.Point(3, 124);
+            this.linkLabel10.Location = new System.Drawing.Point(508, 463);
             this.linkLabel10.Name = "linkLabel10";
             this.linkLabel10.Size = new System.Drawing.Size(80, 15);
             this.linkLabel10.TabIndex = 41;
             this.linkLabel10.TabStop = true;
             this.linkLabel10.Text = "CPK Repacker";
+            this.linkLabel10.Visible = false;
             this.linkLabel10.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel10_LinkClicked);
             // 
             // linkLabel8
@@ -1403,7 +1491,7 @@ namespace NSUNS4_Character_Manager
             this.linkLabel8.AutoSize = true;
             this.linkLabel8.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.linkLabel8.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel8.Location = new System.Drawing.Point(3, 169);
+            this.linkLabel8.Location = new System.Drawing.Point(4, 142);
             this.linkLabel8.Name = "linkLabel8";
             this.linkLabel8.Size = new System.Drawing.Size(70, 15);
             this.linkLabel8.TabIndex = 40;
@@ -1416,7 +1504,7 @@ namespace NSUNS4_Character_Manager
             this.linkLabel7.AutoSize = true;
             this.linkLabel7.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.linkLabel7.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel7.Location = new System.Drawing.Point(4, 154);
+            this.linkLabel7.Location = new System.Drawing.Point(4, 127);
             this.linkLabel7.Name = "linkLabel7";
             this.linkLabel7.Size = new System.Drawing.Size(84, 15);
             this.linkLabel7.TabIndex = 39;
@@ -1429,12 +1517,13 @@ namespace NSUNS4_Character_Manager
             this.linkLabel6.AutoSize = true;
             this.linkLabel6.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.linkLabel6.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel6.Location = new System.Drawing.Point(4, 139);
+            this.linkLabel6.Location = new System.Drawing.Point(526, 478);
             this.linkLabel6.Name = "linkLabel6";
             this.linkLabel6.Size = new System.Drawing.Size(62, 15);
             this.linkLabel6.TabIndex = 38;
             this.linkLabel6.TabStop = true;
             this.linkLabel6.Text = "NUT Tools";
+            this.linkLabel6.Visible = false;
             this.linkLabel6.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel6_LinkClicked);
             // 
             // linkLabel5
@@ -1504,7 +1593,7 @@ namespace NSUNS4_Character_Manager
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 83);
+            this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 15);
             this.label1.TabIndex = 18;
@@ -1512,7 +1601,7 @@ namespace NSUNS4_Character_Manager
             // 
             // button25
             // 
-            this.button25.Location = new System.Drawing.Point(0, 136);
+            this.button25.Location = new System.Drawing.Point(3, 56);
             this.button25.Name = "button25";
             this.button25.Size = new System.Drawing.Size(225, 36);
             this.button25.TabIndex = 17;
@@ -1577,7 +1666,7 @@ namespace NSUNS4_Character_Manager
             this.MaximizeBox = false;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Naruto: Storm 4 Toolbox v6.4.1b (TheLeonX\'s build)";
+            this.Text = "Naruto: Storm 4 Toolbox v6.7.1";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.Load += new System.EventHandler(this.Main_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -1712,7 +1801,7 @@ namespace NSUNS4_Character_Manager
 
         private void button16_Click(object sender, EventArgs e)
         {
-            Tool_AwakeAuraEditor s = new Tool_AwakeAuraEditor();
+            Tool_AwakeAuraEditor_v2 s = new Tool_AwakeAuraEditor_v2();
             s.Show();
         }
 
@@ -1741,7 +1830,7 @@ namespace NSUNS4_Character_Manager
 
         private void button20_Click(object sender, EventArgs e)
         {
-            Misc.Tool_StageInfoEditor s = new Misc.Tool_StageInfoEditor();
+            Tool_StageInfoEditor_v2 s = new Tool_StageInfoEditor_v2();
             s.Show();
         }
 
@@ -1837,7 +1926,7 @@ namespace NSUNS4_Character_Manager
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start("https://discord.gg/brN9cZxAqm");
+            System.Diagnostics.Process.Start("https://discord.com/invite/naruto-storm-modding-server-841394026599022682");
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
@@ -1878,6 +1967,7 @@ namespace NSUNS4_Character_Manager
             conditionprmPath = datawin32Path + "\\spc\\conditionprm.bin.xfbin";
             damageprmPath = datawin32Path + "\\spc\\damageprm.bin.xfbin";
             spTypeSupportParamPath = datawin32Path + "\\spc\\WIN64\\spTypeSupportParam.xfbin";
+            privateCameraPath = datawin32Path + "\\spc\\privateCamera.bin.xfbin";
 
             SaveConfig();
         }
@@ -1904,6 +1994,7 @@ namespace NSUNS4_Character_Manager
                 damageprmPath = datawin32Path + "\\spc\\damageprm.bin.xfbin";
                 messageInfoPath = datawin32Path + "\\message";
                 spTypeSupportParamPath = datawin32Path + "\\spc\\WIN64\\spTypeSupportParam.xfbin";
+                privateCameraPath = datawin32Path + "\\spc\\privateCamera.bin.xfbin";
             }
                 
             else {
@@ -1955,7 +2046,7 @@ namespace NSUNS4_Character_Manager
         }
 
         private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            System.Diagnostics.Process.Start("https://github.com/SutandoTsukai181/010-Editor-Binary-Templates");
+            System.Diagnostics.Process.Start("https://github.com/superuser590/Storm-Engine-010-Editor-Templates");
         }
 
         private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
@@ -2006,6 +2097,33 @@ namespace NSUNS4_Character_Manager
         private void button30_Click(object sender, EventArgs e) {
             Tool_spTypeSupportParamEditor t = new Tool_spTypeSupportParamEditor();
             t.Show();
+        }
+
+        private void button31_Click(object sender, EventArgs e) {
+            Tool_AnmStreamConverter t = new Tool_AnmStreamConverter();
+            t.Show();
+        }
+
+        private void button32_Click(object sender, EventArgs e) {
+            Tool_Animation60FPS_Fix t = new Tool_Animation60FPS_Fix();
+            t.Show();
+        }
+
+        private void button33_Click(object sender, EventArgs e) {
+            Tool_privateCameraEditor t = new Tool_privateCameraEditor();
+            t.Show();
+        }
+    }
+
+    public static class ExtensionMethods {
+        // Deep clone
+        public static T DeepClone<T>(this T a) {
+            using (MemoryStream stream = new MemoryStream()) {
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(stream, a);
+                stream.Position = 0;
+                return (T)formatter.Deserialize(stream);
+            }
         }
     }
 }

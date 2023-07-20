@@ -27,6 +27,10 @@ namespace NSUNS4_Character_Manager.Tools
             {
                 comboBox3.Items.Add(sectionnames[i]);
             }
+            if (checkBox1.Checked)
+                removeSoundSection = true;
+            else
+                removeSoundSection = false;
         }
         public bool changeSettings;
         private void Tool_PortPRM_Load(object sender, EventArgs e)
@@ -240,7 +244,7 @@ namespace NSUNS4_Character_Manager.Tools
                                 }
                                 if (prev_index >= 0x72 && prev_index <= 0x77)
                                 {
-                                    PL_ANM_PREV_Name = PL_ANM_PREV_Name + "ATK_FAR0" + (prev_index - 0x72).ToString();
+                                    PL_ANM_PREV_Name = PL_ANM_PREV_Name + "ATK_FAR0" + (prev_index - 0x73).ToString();
                                 }
 
                                 if (prev_index >= 0x78 && prev_index <= 0x82)
@@ -1643,6 +1647,9 @@ namespace NSUNS4_Character_Manager.Tools
 
                 }
 
+                if (textBox6.Text != "") {
+                    MessageBox.Show("Code was generated!");
+                }
                 
             }
             else
@@ -1859,7 +1866,7 @@ namespace NSUNS4_Character_Manager.Tools
                     int functionSound = FunctionIDList[countOfAllMovementSections + i];
                     if (comboBox1.Text == "Naruto Storm 1")
                     {
-                        if (functionSound == 0x26 || functionSound == 0x4F || functionSound == 0x67)
+                        if (functionSound == 0x26 || functionSound == 0x4F || functionSound == 0x67 || functionSound == 0x69)
                             portedFunction = -1;
                     }
                     else if (comboBox1.Text == "Naruto Storm 2/Gen")
@@ -1918,6 +1925,8 @@ namespace NSUNS4_Character_Manager.Tools
                 FunctionSection = Main.b_ReplaceBytes(FunctionSection, usedBytes, 0x22);
                 //Param 1
                 sectionBytes = BitConverter.GetBytes(FunctionParam1List[countOfAllMovementSections + i]);
+                if (portedFunction == 0x77)
+                    sectionBytes = BitConverter.GetBytes(1);
                 usedBytes = new byte[2]
                 {
                     sectionBytes[0],
@@ -2409,7 +2418,6 @@ namespace NSUNS4_Character_Manager.Tools
             {
                 button2.Enabled = true;
             }
-            MessageBox.Show("Code was generated!");
         }
 
         private void GenerateJoJoASBRCode() {
@@ -2961,7 +2969,6 @@ namespace NSUNS4_Character_Manager.Tools
             if (ConvertedSection.Length != 0 && PRMFileOpened == true) {
                 button2.Enabled = true;
             }
-            MessageBox.Show("Code was generated!");
         }
         private void button4_Click(object sender, EventArgs e)
         {
@@ -2995,7 +3002,7 @@ namespace NSUNS4_Character_Manager.Tools
                     byte[] actualSection = Main.b_StringToBytes(textBox6.Text);
                     for (int i = 0; i<countOfSection; i++)
                     {
-                        if (!ListPL_ANM_Names[i].Contains("SCENE_BEGIN") && !ListPL_ANM_Names[i].Contains("LOSE")) 
+                        if (!ListPL_ANM_Names[i].Contains("SCENE_BEGIN") && !ListPL_ANM_Names[i].Contains("LOSE") && ListPL_ANM_Names[i]!="" && !ListPL_ANM_Names[i].Contains("DUMMY")) 
                         {
                             tool.anm_list.Items.Add(ListPL_ANM_Names[i]);
                             //tool.plAnmList.Add(new List<byte[]>());

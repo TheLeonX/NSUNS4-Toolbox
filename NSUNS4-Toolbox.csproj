@@ -49,6 +49,9 @@
   <PropertyGroup>
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Win32.Registry, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Win32.Registry.4.7.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
@@ -82,6 +85,7 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Security.AccessControl, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Security.AccessControl.4.7.0\lib\net461\System.Security.AccessControl.dll</HintPath>
     </Reference>
@@ -128,6 +132,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="NSUNS4_Character_Manager\Misc\DxtUtil.cs" />
+    <Compile Include="NSUNS4_Character_Manager\Misc\Tool_Animation60FPS_Fix.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Misc\Tool_Animation60FPS_Fix.Designer.cs">
+      <DependentUpon>Tool_Animation60FPS_Fix.cs</DependentUpon>
+    </Compile>
     <Compile Include="NSUNS4_Character_Manager\Misc\Tool_nus3bankEditor_v2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +187,12 @@
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_afterAttachObject.Designer.cs">
       <DependentUpon>Tool_afterAttachObject.cs</DependentUpon>
     </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_AnmStreamConverter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_AnmStreamConverter.Designer.cs">
+      <DependentUpon>Tool_AnmStreamConverter.cs</DependentUpon>
+    </Compile>
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_appearenceAnmEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,6 +204,12 @@
     </Compile>
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_AwakeAuraEditor.Designer.cs">
       <DependentUpon>Tool_AwakeAuraEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_AwakeAuraEditor_v2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_AwakeAuraEditor_v2.Designer.cs">
+      <DependentUpon>Tool_AwakeAuraEditor_v2.cs</DependentUpon>
     </Compile>
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_battleParamEditor.cs">
       <SubType>Form</SubType>
@@ -285,6 +307,12 @@
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_PortPRM.Designer.cs">
       <DependentUpon>Tool_PortPRM.cs</DependentUpon>
     </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_privateCameraEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_privateCameraEditor.Designer.cs">
+      <DependentUpon>Tool_privateCameraEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_RosterEditor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -314,6 +342,12 @@
     </Compile>
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_spTypeSupportParamEditor.Designer.cs">
       <DependentUpon>Tool_spTypeSupportParamEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_StageInfoEditor_v2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NSUNS4_Character_Manager\Tools\Tool_StageInfoEditor_v2.Designer.cs">
+      <DependentUpon>Tool_StageInfoEditor_v2.cs</DependentUpon>
     </Compile>
     <Compile Include="NSUNS4_Character_Manager\Tools\Tool_UnlockCharaTotalEditor.cs">
       <SubType>Form</SubType>
@@ -345,6 +379,9 @@
     <EmbeddedResource Include="NSUNS4_Character_Manager\Functions\Tool_AddCostume.resx">
       <DependentUpon>Tool_AddCostume.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NSUNS4_Character_Manager\Misc\Tool_Animation60FPS_Fix.resx">
+      <DependentUpon>Tool_Animation60FPS_Fix.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Misc\Tool_nus3bankEditor_v2.resx">
       <DependentUpon>Tool_nus3bankEditor_v2.cs</DependentUpon>
     </EmbeddedResource>
@@ -363,11 +400,17 @@
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_afterAttachObject.resx">
       <DependentUpon>Tool_afterAttachObject.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_AnmStreamConverter.resx">
+      <DependentUpon>Tool_AnmStreamConverter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_appearenceAnmEditor.resx">
       <DependentUpon>Tool_appearenceAnmEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_AwakeAuraEditor.resx">
       <DependentUpon>Tool_AwakeAuraEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_AwakeAuraEditor_v2.resx">
+      <DependentUpon>Tool_AwakeAuraEditor_v2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_battleParamEditor.resx">
       <DependentUpon>Tool_battleParamEditor.cs</DependentUpon>
@@ -423,6 +466,9 @@
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_PortPRM.resx">
       <DependentUpon>Tool_PortPRM.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_privateCameraEditor.resx">
+      <DependentUpon>Tool_privateCameraEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_RosterEditor.resx">
       <DependentUpon>Tool_RosterEditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -440,6 +486,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_spTypeSupportParamEditor.resx">
       <DependentUpon>Tool_spTypeSupportParamEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_StageInfoEditor_v2.resx">
+      <DependentUpon>Tool_StageInfoEditor_v2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NSUNS4_Character_Manager\Tools\Tool_UnlockCharaTotalEditor.resx">
       <DependentUpon>Tool_UnlockCharaTotalEditor.cs</DependentUpon>

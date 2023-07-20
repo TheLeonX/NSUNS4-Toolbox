@@ -67,6 +67,7 @@
             this.label61 = new System.Windows.Forms.Label();
             this.comboBox7 = new System.Windows.Forms.ComboBox();
             this.label60 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
@@ -83,6 +84,7 @@
             this.checkBox11 = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.checkBox13 = new System.Windows.Forms.CheckBox();
             this.comboBox10 = new System.Windows.Forms.ComboBox();
@@ -98,6 +100,7 @@
             this.checkBox15 = new System.Windows.Forms.CheckBox();
             this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.checkBox16 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.checkBox18 = new System.Windows.Forms.CheckBox();
@@ -193,9 +196,6 @@
             this.textBox22 = new System.Windows.Forms.TextBox();
             this.textBox21 = new System.Windows.Forms.TextBox();
             this.textBox20 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.label50 = new System.Windows.Forms.Label();
             this.numericUpDown37 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown38 = new System.Windows.Forms.NumericUpDown();
@@ -299,7 +299,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(90, 33);
             this.button1.TabIndex = 2;
-            this.button1.Text = "Copy entry";
+            this.button1.Text = "Duplicate entry";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -635,6 +635,16 @@
             this.label60.TabIndex = 80;
             this.label60.Text = "Skill";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(287, 241);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(178, 17);
+            this.checkBox1.TabIndex = 29;
+            this.checkBox1.Text = "Enable alternative win animation";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // checkBox5
             // 
             this.checkBox5.AutoSize = true;
@@ -822,6 +832,16 @@
             this.label19.TabIndex = 93;
             this.label19.Text = "Skill";
             // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(287, 241);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(178, 17);
+            this.checkBox2.TabIndex = 30;
+            this.checkBox2.Text = "Enable alternative win animation";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
             // checkBox12
             // 
             this.checkBox12.AutoSize = true;
@@ -999,6 +1019,16 @@
             this.checkBox16.TabIndex = 112;
             this.checkBox16.Text = "Alt Texture for Player Model";
             this.checkBox16.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(287, 241);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(178, 17);
+            this.checkBox3.TabIndex = 31;
+            this.checkBox3.Text = "Enable alternative win animation";
+            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -2068,36 +2098,6 @@
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new System.Drawing.Size(327, 20);
             this.textBox20.TabIndex = 18;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(287, 241);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(178, 17);
-            this.checkBox1.TabIndex = 29;
-            this.checkBox1.Text = "Enable alternative win animation";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(287, 241);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(178, 17);
-            this.checkBox2.TabIndex = 30;
-            this.checkBox2.Text = "Enable alternative win animation";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(287, 241);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(178, 17);
-            this.checkBox3.TabIndex = 31;
-            this.checkBox3.Text = "Enable alternative win animation";
-            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // label50
             // 

@@ -103,10 +103,16 @@ namespace NSUNS4_Character_Manager.Tools {
             ClearFile();
             FileOpen = true;
             FilePath = o.FileName;
+
             byte[] FileBytes = File.ReadAllBytes(FilePath);
-            EntryCount = Main.b_ReadInt(FileBytes, 0x12C);
+            int file_ptr = Main.b_FindBytes(FileBytes, Encoding.ASCII.GetBytes("index"));
+
+
+
+
+            EntryCount = Main.b_ReadInt(FileBytes, file_ptr + 0x65);
             for (int x2 = 0; x2 < EntryCount; x2++) {
-                long _ptr = 0x130 + 0xB0 * x2;
+                long _ptr = file_ptr + 0x69 + 0xB0 * x2;
 
                 string ConditionName = Main.b_ReadString(FileBytes, (int)_ptr);
                 int ConditionDuration = Main.b_ReadInt(FileBytes, (int)_ptr + 0x40);
