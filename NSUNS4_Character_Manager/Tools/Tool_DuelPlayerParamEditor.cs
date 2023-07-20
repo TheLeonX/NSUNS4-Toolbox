@@ -3447,7 +3447,8 @@ namespace NSUNS4_Character_Manager
 						}
 					}*/
 					int sel_entry = listBox1.SelectedIndex;
-
+					if (sel_entry < 0)
+						sel_entry = 0;
                     for (int c = sel_entry; c<listBox1.Items.Count; c++) {
 						if (listBox1.Items[c].ToString().Contains(Search_TB.Text)) {
 							listBox1.SelectedIndex = c;
