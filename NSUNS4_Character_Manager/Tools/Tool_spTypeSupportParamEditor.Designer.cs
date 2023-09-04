@@ -81,6 +81,10 @@ namespace NSUNS4_Character_Manager.Tools {
             this.label17 = new System.Windows.Forms.Label();
             this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
             this.label18 = new System.Windows.Forms.Label();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -219,7 +223,7 @@ namespace NSUNS4_Character_Manager.Tools {
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(479, 128);
+            this.checkBox1.Location = new System.Drawing.Point(391, 146);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(85, 17);
             this.checkBox1.TabIndex = 10;
@@ -258,9 +262,9 @@ namespace NSUNS4_Character_Manager.Tools {
             this.checkBox2.AutoSize = true;
             this.checkBox2.Location = new System.Drawing.Point(391, 127);
             this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(72, 17);
+            this.checkBox2.Size = new System.Drawing.Size(112, 17);
             this.checkBox2.TabIndex = 13;
-            this.checkBox2.Text = "Unknown";
+            this.checkBox2.Text = "Enable on Ground";
             this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // label2
@@ -394,9 +398,9 @@ namespace NSUNS4_Character_Manager.Tools {
             this.checkBox3.AutoSize = true;
             this.checkBox3.Location = new System.Drawing.Point(391, 218);
             this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(72, 17);
+            this.checkBox3.Size = new System.Drawing.Size(112, 17);
             this.checkBox3.TabIndex = 23;
-            this.checkBox3.Text = "Unknown";
+            this.checkBox3.Text = "Enable on Ground";
             this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // numericUpDown6
@@ -429,7 +433,7 @@ namespace NSUNS4_Character_Manager.Tools {
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(479, 219);
+            this.checkBox4.Location = new System.Drawing.Point(391, 237);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(85, 17);
             this.checkBox4.TabIndex = 20;
@@ -511,9 +515,9 @@ namespace NSUNS4_Character_Manager.Tools {
             this.checkBox5.AutoSize = true;
             this.checkBox5.Location = new System.Drawing.Point(391, 312);
             this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(72, 17);
+            this.checkBox5.Size = new System.Drawing.Size(112, 17);
             this.checkBox5.TabIndex = 33;
-            this.checkBox5.Text = "Unknown";
+            this.checkBox5.Text = "Enable on Ground";
             this.checkBox5.UseVisualStyleBackColor = true;
             // 
             // numericUpDown9
@@ -546,7 +550,7 @@ namespace NSUNS4_Character_Manager.Tools {
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(479, 313);
+            this.checkBox6.Location = new System.Drawing.Point(391, 331);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(85, 17);
             this.checkBox6.TabIndex = 30;
@@ -628,9 +632,9 @@ namespace NSUNS4_Character_Manager.Tools {
             this.checkBox7.AutoSize = true;
             this.checkBox7.Location = new System.Drawing.Point(391, 405);
             this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(72, 17);
+            this.checkBox7.Size = new System.Drawing.Size(112, 17);
             this.checkBox7.TabIndex = 43;
-            this.checkBox7.Text = "Unknown";
+            this.checkBox7.Text = "Enable on Ground";
             this.checkBox7.UseVisualStyleBackColor = true;
             // 
             // numericUpDown12
@@ -663,7 +667,7 @@ namespace NSUNS4_Character_Manager.Tools {
             // checkBox8
             // 
             this.checkBox8.AutoSize = true;
-            this.checkBox8.Location = new System.Drawing.Point(479, 406);
+            this.checkBox8.Location = new System.Drawing.Point(391, 424);
             this.checkBox8.Name = "checkBox8";
             this.checkBox8.Size = new System.Drawing.Size(85, 17);
             this.checkBox8.TabIndex = 40;
@@ -731,11 +735,55 @@ namespace NSUNS4_Character_Manager.Tools {
             this.label18.TabIndex = 53;
             this.label18.Text = "Characode";
             // 
+            // checkBox9
+            // 
+            this.checkBox9.AutoSize = true;
+            this.checkBox9.Location = new System.Drawing.Point(391, 445);
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.Size = new System.Drawing.Size(72, 17);
+            this.checkBox9.TabIndex = 54;
+            this.checkBox9.Text = "Unknown";
+            this.checkBox9.UseVisualStyleBackColor = true;
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Location = new System.Drawing.Point(391, 352);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(72, 17);
+            this.checkBox10.TabIndex = 55;
+            this.checkBox10.Text = "Unknown";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Location = new System.Drawing.Point(391, 258);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(72, 17);
+            this.checkBox11.TabIndex = 56;
+            this.checkBox11.Text = "Unknown";
+            this.checkBox11.UseVisualStyleBackColor = true;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Location = new System.Drawing.Point(391, 167);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(72, 17);
+            this.checkBox12.TabIndex = 57;
+            this.checkBox12.Text = "Unknown";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            // 
             // Tool_spTypeSupportParamEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(570, 519);
+            this.Controls.Add(this.checkBox12);
+            this.Controls.Add(this.checkBox11);
+            this.Controls.Add(this.checkBox10);
+            this.Controls.Add(this.checkBox9);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.numericUpDown14);
             this.Controls.Add(this.label17);
@@ -875,5 +923,9 @@ namespace NSUNS4_Character_Manager.Tools {
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.NumericUpDown numericUpDown14;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.CheckBox checkBox9;
+        private System.Windows.Forms.CheckBox checkBox10;
+        private System.Windows.Forms.CheckBox checkBox11;
+        private System.Windows.Forms.CheckBox checkBox12;
     }
 }

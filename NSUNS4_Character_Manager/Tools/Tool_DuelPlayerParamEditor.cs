@@ -3431,21 +3431,7 @@ namespace NSUNS4_Character_Manager
 			{
 				if (Search_TB.Text != "")
 				{
-					/*if (Main.SearchStringIndex(BinName, Search_TB.Text, EntryCount, listBox1.SelectedIndex) != -1)
-					{
-						listBox1.SelectedIndex = Main.SearchStringIndex(BinName, Search_TB.Text, EntryCount, listBox1.SelectedIndex);
-					}
-					else
-					{
-						if (Main.SearchStringIndex(BinName, Search_TB.Text, EntryCount, 0) != -1)
-						{
-							listBox1.SelectedIndex = Main.SearchStringIndex(BinName, Search_TB.Text, EntryCount, -1);
-						}
-						else
-						{
-							MessageBox.Show("Section with that name doesn't exist in file");
-						}
-					}*/
+
 					int sel_entry = listBox1.SelectedIndex;
 					if (sel_entry < 0)
 						sel_entry = 0;

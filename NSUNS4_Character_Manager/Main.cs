@@ -1666,7 +1666,7 @@ namespace NSUNS4_Character_Manager
             this.MaximizeBox = false;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Naruto: Storm 4 Toolbox v6.7.1";
+            this.Text = "Naruto: Storm 4 Toolbox v6.7.2";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.Load += new System.EventHandler(this.Main_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -2006,14 +2006,7 @@ namespace NSUNS4_Character_Manager
         }
 
         private void button25_Click(object sender, EventArgs e) {
-            if (Directory.Exists(datawin32Path) || (datawin32Path != "[null]" && datawin32Path !="")) {
-                Functions.Tool_ImportCharacter s = new Functions.Tool_ImportCharacter();
-                s.ShowDialog();
-            }
-            else {
-                MessageBox.Show("For using that function, you need to select your data_win32 directory with mod");
-                return;
-            }
+            
             
         }
 
