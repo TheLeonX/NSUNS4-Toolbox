@@ -532,7 +532,7 @@ namespace NSUNS4_Character_Manager.Tools
                 Skill4air_Priority_List.Add(Skill4air_Prior_value);
                 Skill5air_Priority_List.Add(Skill5air_Prior_value);
                 Skill6air_Priority_List.Add(Skill6air_Prior_value);
-                SkillAwaair_Priority_List.Add(Skill6air_Prior_value);
+                SkillAwaair_Priority_List.Add(SkillAwaair_Prior_value);
 
             }
             for (int x = 0; x < EntryCount; x++)
@@ -2122,6 +2122,10 @@ namespace NSUNS4_Character_Manager.Tools
 
         private void search_value_ValueChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void v_sklawaair_prior_ValueChanged(object sender, EventArgs e) {
 
         }
     }

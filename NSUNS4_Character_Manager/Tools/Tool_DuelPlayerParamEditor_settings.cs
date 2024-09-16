@@ -381,9 +381,9 @@ namespace NSUNS4_Character_Manager.Tools
                 ExtraAbilityCDByte[3],
             };
 
-            tool.SettingList[set_index] = newListSave1;
-            tool.Setting2List[set_index] = newListSave2;
-            tool.AwaSettingList[set_index] = newListSaveAwa;
+            tool.duelPlayerParam[set_index].SettingList = newListSave1;
+            tool.duelPlayerParam[set_index].Setting2List = newListSave2;
+            tool.duelPlayerParam[set_index].AwaSettingList = newListSaveAwa;
             MessageBox.Show("Settings saved correctly.");
         }
     }

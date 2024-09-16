@@ -906,6 +906,7 @@
             this.v_sklawaair_prior.Name = "v_sklawaair_prior";
             this.v_sklawaair_prior.Size = new System.Drawing.Size(84, 23);
             this.v_sklawaair_prior.TabIndex = 185;
+            this.v_sklawaair_prior.ValueChanged += new System.EventHandler(this.v_sklawaair_prior_ValueChanged);
             // 
             // v_skl6air_prior
             // 

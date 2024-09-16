@@ -35,8 +35,8 @@ namespace NSUNS4_Character_Manager
             int dppIndex = -1;
             for (int x = 0; x < dpp.EntryCount; x++)
             {
-                string thischaracter = dpp.CharaList[x];
-                if (thischaracter == character)
+                string thischaracter = dpp.duelPlayerParam[x].BinName;
+                if (thischaracter.Contains(character))
                 {
                     dppIndex = x;
                     x = dpp.EntryCount;
@@ -53,10 +53,10 @@ namespace NSUNS4_Character_Manager
             dpp.listBox1.SelectedIndex = dppIndex;
             for (int x = 0; x < 20; x++)
             {
-                if (dpp.CostumeList[dppIndex][x] == "")
+                if (dpp.duelPlayerParam[dppIndex].CostumeList[x] == "")
                 {
-                    dpp.CostumeList[dppIndex][x] = model;
-                    dpp.AwkCostumeList[dppIndex][x] = awamodel;
+                    dpp.duelPlayerParam[dppIndex].CostumeList[x] = model;
+                    dpp.duelPlayerParam[dppIndex].AwkCostumeList[x] = awamodel;
                     dpp_costId = x;
                     x = 20;
                 }

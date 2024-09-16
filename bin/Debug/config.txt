@@ -22,3 +22,4 @@ E:\Steam(2)\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4\data_win32\
 E:\Steam(2)\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4\data_win32\spc\conditionprm.bin.xfbin
 E:\Steam(2)\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4\data_win32\spc\damageprm.bin.xfbin
 E:\Steam(2)\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4\data_win32\spc\WIN64\spTypeSupportParam.xfbin
+E:\Steam(2)\steamapps\common\NARUTO SHIPPUDEN Ultimate Ninja STORM 4\data_win32\spc\privateCamera.bin.xfbin

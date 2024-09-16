@@ -1077,14 +1077,14 @@ namespace NSUNS4_Character_Manager.Misc
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            pictureBox3.Visible = true;
+            //pictureBox3.Visible = true;
             linkLabel3.Enabled = true;
             linkLabel4.Enabled = false;
         }
 
         private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            pictureBox3.Visible = false;
+            //pictureBox3.Visible = false;
             linkLabel3.Enabled = false;
             linkLabel4.Enabled = true;
         }

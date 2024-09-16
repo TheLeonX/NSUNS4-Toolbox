@@ -505,7 +505,7 @@ namespace NSUNS4_Character_Manager
             "ME_WARP_AROUND_ENEMY",
             "ME_ATK_HOMING_ON",//NOT SURE
             "ME_ATK_HOMING_OFF",
-            "",
+            "ME_ATK_HOMING_ALLRANGE",
             "",
             "",
             "ME_ATKHIT2_ON",

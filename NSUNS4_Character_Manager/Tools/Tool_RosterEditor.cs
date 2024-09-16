@@ -1228,7 +1228,7 @@ namespace NSUNS4_Character_Manager
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(207, 33);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Create new slot with this data";
+            this.button1.Text = "Duplicate selected slot";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

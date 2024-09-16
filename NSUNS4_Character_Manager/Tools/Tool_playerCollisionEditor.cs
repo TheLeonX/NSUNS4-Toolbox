@@ -14,49 +14,66 @@ namespace NSUNS4_Character_Manager.Tools
     {
         public Tool_MovesetCoder tool;
         public int EntryCount;
-        public List<int> collisionSecTypeValue = new List<int>();
+        [Serializable]
+        public class PRMcollision {
+            public int Type;
+            public int State;
+            public int EnablerBone;
+            public long Radius;
+            public long YPos;
+            public long ZPos;
+            public string BoneName;
+        }
+        public List<PRMcollision> collisionSection = new List<PRMcollision>();
+        /*public List<int> collisionSecTypeValue = new List<int>();
         public List<int> collisionSecStateValue = new List<int>();
         public List<int> collisionSecEnablerBoneValue = new List<int>();
         public List<long> collisionSecRadiusValue = new List<long>();
         public List<long> collisionSecYPosValue = new List<long>();
         public List<long> collisionSecZPosValue = new List<long>();
-        public List<string> collisionSecBoneName = new List<string>();
+        public List<string> collisionSecBoneName = new List<string>();*/
         public Tool_playerCollisionEditor(Tool_MovesetCoder t, List<int> collisionSecTypeValueList, List<int> collisionSecStateValueList, List<int> collisionSecEnablerBoneValueList, List<long> collisionSecRadiusValueList, List<long> collisionSecYPosValueList, List<long> collisionSecZPosValueList, List<string> collisionSecBoneNameList, int count)
         {
             InitializeComponent();
             tool = t;
             EntryCount = count;
-            collisionSecTypeValue = collisionSecTypeValueList;
-            collisionSecStateValue = collisionSecStateValueList;
-            collisionSecEnablerBoneValue = collisionSecEnablerBoneValueList;
-            collisionSecRadiusValue = collisionSecRadiusValueList;
-            collisionSecYPosValue = collisionSecYPosValueList;
-            collisionSecZPosValue = collisionSecZPosValueList;
-            collisionSecBoneName = collisionSecBoneNameList;
+            collisionSection = new List<PRMcollision>();
+            for (int h = 0; h< collisionSecTypeValueList.Count; h++) {
+                PRMcollision Entry = new PRMcollision();
+                Entry.Type = collisionSecTypeValueList[h].DeepClone();
+                Entry.State = collisionSecStateValueList[h].DeepClone();
+                Entry.EnablerBone = collisionSecEnablerBoneValueList[h].DeepClone();
+                Entry.Radius = collisionSecRadiusValueList[h].DeepClone();
+                Entry.YPos = collisionSecYPosValueList[h].DeepClone();
+                Entry.ZPos = collisionSecZPosValueList[h].DeepClone();
+                Entry.BoneName = collisionSecBoneNameList[h].DeepClone();
+                collisionSection.Add(Entry);
+            }
+
             for (int x = 0; x < EntryCount; x++)
             {
                 string TypeSection = "";
                 string StateSection = "";
                 string LoadBone = "";
-                if (collisionSecTypeValue[x] == 0)
+                if (collisionSection[x].Type == 0)
                     TypeSection = "collision";
-                else if (collisionSecTypeValue[x] == 1)
+                else if (collisionSection[x].Type == 1)
                     TypeSection = "hurtbox";
-                else if (collisionSecTypeValue[x] == 2)
+                else if (collisionSection[x].Type == 2)
                     TypeSection = "tracker";
 
-                if (collisionSecStateValue[x] == 2)
+                if (collisionSection[x].State == 2)
                     StateSection = "normal mode";
-                else if (collisionSecStateValue[x] == 3)
+                else if (collisionSection[x].State == 3)
                     StateSection = "awakening mode";
                 else
                     StateSection = "unknown";
 
-                if (collisionSecEnablerBoneValue[x] == 0)
+                if (collisionSection[x].EnablerBone == 0)
                 {
-                    LoadBone = "enabled, hurtbox loaded: " + collisionSecBoneName[x];
+                    LoadBone = "enabled, hurtbox loaded: " + collisionSection[x].BoneName;
                 }    
-                else if (collisionSecEnablerBoneValue[x] == 1)
+                else if (collisionSection[x].EnablerBone == 1)
                     LoadBone = "disabled";
 
                 listBox1.Items.Add("Type: "+ TypeSection + ", State: " + StateSection + ", hurtbox: " + LoadBone);
@@ -85,21 +102,21 @@ namespace NSUNS4_Character_Manager.Tools
         {
             if (listBox1.SelectedIndex != -1)
             {
-                comboBox1.SelectedIndex = collisionSecTypeValue[listBox1.SelectedIndex];
-                numericUpDown1.Value = collisionSecStateValue[listBox1.SelectedIndex];
-                comboBox2.SelectedIndex = collisionSecEnablerBoneValue[listBox1.SelectedIndex];
-                textBox1.Text = collisionSecBoneName[listBox1.SelectedIndex];
-                numericUpDown2.Value = collisionSecRadiusValue[listBox1.SelectedIndex];
-                numericUpDown3.Value = collisionSecYPosValue[listBox1.SelectedIndex];
-                numericUpDown4.Value = collisionSecZPosValue[listBox1.SelectedIndex];
+                comboBox1.SelectedIndex = collisionSection[listBox1.SelectedIndex].Type;
+                numericUpDown1.Value = collisionSection[listBox1.SelectedIndex].State;
+                comboBox2.SelectedIndex = collisionSection[listBox1.SelectedIndex].EnablerBone;
+                textBox1.Text = collisionSection[listBox1.SelectedIndex].BoneName;
+                numericUpDown2.Value = collisionSection[listBox1.SelectedIndex].Radius;
+                numericUpDown3.Value = collisionSection[listBox1.SelectedIndex].YPos;
+                numericUpDown4.Value = collisionSection[listBox1.SelectedIndex].ZPos;
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedIndex != -1 && comboBox2.SelectedIndex != -1)
+            if (listBox1.SelectedIndex != -1)
             {
-                string BoneName = "";
+                /*string BoneName = "";
                 bool boneNameFiled = true;
                 if (comboBox2.SelectedIndex == 0 && textBox1.Text != "")
                     BoneName = textBox1.Text;
@@ -148,12 +165,19 @@ namespace NSUNS4_Character_Manager.Tools
 
                     listBox1.Items.Add("Type: " + TypeSection + ", State: " + StateSection + ", hurtbox: " + LoadBone);
                     listBox1.SelectedIndex = EntryCount - 1;
-                }
-                
+                }*/
+                collisionSection.Add(collisionSection[listBox1.SelectedIndex].DeepClone());
+                listBox1.Items.Add(listBox1.Items[listBox1.SelectedIndex]);
+                listBox1.SelectedIndex = EntryCount - 1;
+                EntryCount++;
+
+
             }
             else
             {
-                MessageBox.Show("Can't create new section.");
+                PRMcollision Entry = new PRMcollision();
+                collisionSection.Add(Entry.DeepClone());
+                EntryCount++;
             }
         }
 
@@ -174,36 +198,36 @@ namespace NSUNS4_Character_Manager.Tools
                     BoneName = "";
                 if (boneNamefiled)
                 {
-                    collisionSecTypeValue[listBox1.SelectedIndex] = comboBox1.SelectedIndex;
-                    collisionSecStateValue[listBox1.SelectedIndex] = (int)numericUpDown1.Value;
-                    collisionSecEnablerBoneValue[listBox1.SelectedIndex] = comboBox2.SelectedIndex;
-                    collisionSecBoneName[listBox1.SelectedIndex] = BoneName;
-                    collisionSecRadiusValue[listBox1.SelectedIndex] = (long)numericUpDown2.Value;
-                    collisionSecYPosValue[listBox1.SelectedIndex] = (long)numericUpDown3.Value;
-                    collisionSecZPosValue[listBox1.SelectedIndex] = (long)numericUpDown4.Value;
+                    collisionSection[listBox1.SelectedIndex].Type = comboBox1.SelectedIndex;
+                    collisionSection[listBox1.SelectedIndex].State = (int)numericUpDown1.Value;
+                    collisionSection[listBox1.SelectedIndex].EnablerBone = comboBox2.SelectedIndex;
+                    collisionSection[listBox1.SelectedIndex].BoneName = BoneName;
+                    collisionSection[listBox1.SelectedIndex].Radius = (long)numericUpDown2.Value;
+                    collisionSection[listBox1.SelectedIndex].YPos = (long)numericUpDown3.Value;
+                    collisionSection[listBox1.SelectedIndex].ZPos = (long)numericUpDown4.Value;
 
                     string TypeSection = "";
                     string StateSection = "";
                     string LoadBone = "";
-                    if (collisionSecTypeValue[listBox1.SelectedIndex] == 0)
+                    if (collisionSection[listBox1.SelectedIndex].Type == 0)
                         TypeSection = "collision";
-                    else if (collisionSecTypeValue[listBox1.SelectedIndex] == 1)
+                    else if (collisionSection[listBox1.SelectedIndex].Type == 1)
                         TypeSection = "hurtbox";
-                    else if (collisionSecTypeValue[listBox1.SelectedIndex] == 2)
+                    else if (collisionSection[listBox1.SelectedIndex].Type == 2)
                         TypeSection = "tracker";
 
-                    if (collisionSecStateValue[listBox1.SelectedIndex] == 2)
+                    if (collisionSection[listBox1.SelectedIndex].State == 2)
                         StateSection = "normal mode";
-                    else if (collisionSecStateValue[listBox1.SelectedIndex] == 3)
+                    else if (collisionSection[listBox1.SelectedIndex].State == 3)
                         StateSection = "awakening mode";
                     else
                         StateSection = "unknown";
 
-                    if (collisionSecEnablerBoneValue[listBox1.SelectedIndex] == 0)
+                    if (collisionSection[listBox1.SelectedIndex].EnablerBone == 0)
                     {
-                        LoadBone = "enabled, hurtbox loaded: " + collisionSecBoneName[listBox1.SelectedIndex];
+                        LoadBone = "enabled, hurtbox loaded: " + collisionSection[listBox1.SelectedIndex].BoneName;
                     }
-                    else if (collisionSecEnablerBoneValue[listBox1.SelectedIndex] == 1)
+                    else if (collisionSection[listBox1.SelectedIndex].EnablerBone == 1)
                         LoadBone = "disabled";
 
                     listBox1.Items[listBox1.SelectedIndex] = "Type: " + TypeSection + ", State: " + StateSection + ", hurtbox: " + LoadBone;
@@ -221,13 +245,7 @@ namespace NSUNS4_Character_Manager.Tools
             if (listBox1.SelectedIndex != -1)
             {
                 int index = listBox1.SelectedIndex;
-                collisionSecTypeValue.RemoveAt(listBox1.SelectedIndex);
-                collisionSecStateValue.RemoveAt(listBox1.SelectedIndex);
-                collisionSecEnablerBoneValue.RemoveAt(listBox1.SelectedIndex);
-                collisionSecBoneName.RemoveAt(listBox1.SelectedIndex);
-                collisionSecRadiusValue.RemoveAt(listBox1.SelectedIndex);
-                collisionSecYPosValue.RemoveAt(listBox1.SelectedIndex);
-                collisionSecZPosValue.RemoveAt(listBox1.SelectedIndex);
+                collisionSection.RemoveAt(listBox1.SelectedIndex);
                 EntryCount--;
                 listBox1.Items.RemoveAt(listBox1.SelectedIndex);
                 listBox1.SelectedIndex = index - 1;
@@ -240,13 +258,24 @@ namespace NSUNS4_Character_Manager.Tools
 
         private void saveAndCloseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            tool.collisionSecTypeValue = collisionSecTypeValue;
-            tool.collisionSecStateValue = collisionSecStateValue;
-            tool.collisionSecEnablerBoneValue = collisionSecEnablerBoneValue;
-            tool.collisionSecBoneName = collisionSecBoneName;
-            tool.collisionSecRadiusValue = collisionSecRadiusValue;
-            tool.collisionSecYPosValue = collisionSecYPosValue;
-            tool.collisionSecZPosValue = collisionSecZPosValue;
+            tool.collisionSecTypeValue.Clear();
+            tool.collisionSecStateValue.Clear();
+            tool.collisionSecEnablerBoneValue.Clear();
+            tool.collisionSecBoneName.Clear();
+            tool.collisionSecRadiusValue.Clear();
+            tool.collisionSecYPosValue.Clear();
+            tool.collisionSecZPosValue.Clear();
+
+            for (int c=0; c<EntryCount; c++) {
+                tool.collisionSecTypeValue.Add(collisionSection[c].Type.DeepClone());
+                tool.collisionSecStateValue.Add(collisionSection[c].State.DeepClone());
+                tool.collisionSecEnablerBoneValue.Add(collisionSection[c].EnablerBone.DeepClone());
+                tool.collisionSecBoneName.Add(collisionSection[c].BoneName.DeepClone());
+                tool.collisionSecRadiusValue.Add(collisionSection[c].Radius.DeepClone());
+                tool.collisionSecYPosValue.Add(collisionSection[c].YPos.DeepClone());
+                tool.collisionSecZPosValue.Add(collisionSection[c].ZPos.DeepClone());
+
+            }
             tool.collisionSecCount = EntryCount;
             tool.collisionChanged = true;
             MessageBox.Show("Collision data saved.");

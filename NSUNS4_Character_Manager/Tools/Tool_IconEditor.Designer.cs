@@ -253,7 +253,7 @@
             // 
             this.button1.Location = new System.Drawing.Point(12, 328);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(257, 32);
+            this.button1.Size = new System.Drawing.Size(259, 32);
             this.button1.TabIndex = 32;
             this.button1.Text = "Remove selected entry";
             this.button1.UseVisualStyleBackColor = true;
@@ -284,7 +284,7 @@
             this.CreateButton.Name = "CreateButton";
             this.CreateButton.Size = new System.Drawing.Size(200, 35);
             this.CreateButton.TabIndex = 35;
-            this.CreateButton.Text = "Create new entry with this data";
+            this.CreateButton.Text = "Duplicate Entry";
             this.CreateButton.UseVisualStyleBackColor = true;
             this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
@@ -374,7 +374,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "Tool_IconEditor";
-            this.Text = "Player_icon Editor";
+            this.Text = "Player Icon Editor";
             this.Load += new System.EventHandler(this.Tool_IconEditor_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
